@@ -1,0 +1,352 @@
+[
+  {
+    "id": "CO-4",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The procedure code is inconsistent with the modifier used. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set: -Add any required modifier(s)"
+  },
+  {
+    "id": "CO-5",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The procedure code/type of bill is inconsistent with the place of service. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set: -Verify Place of Service is allowed for the service(s) rendered"
+  },
+  {
+    "id": "CO-16",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Claim/service lacks information or has submission/billing error(s). Usage: Do not use this code for claims attachment(s)/other documentation. At least one Remark Code must be provided (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.) Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "-Verify the procedure code type"
+  },
+  {
+    "id": "CO-18",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Exact duplicate claim/service (Use only with Group Code OA except where state workers' compensation regulations requires CO)",
+    "solution": "-Verify if service was previously billed for the same DOS, billed amount, units/minutes, service code, and/or performing provider | -If service should be reported for a subsequent time on the same DOS, review and include the appropriate modifier to indicate this is a unique service | -If no changes are to be made to the denied service, this is a valid denial"
+  },
+  {
+    "id": "CO-26",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Expenses incurred prior to coverage.",
+    "solution": "-Verify the Episode is open and active for the DOS billed | -Verify Client's eligibility for DOS | -Verify the P-AUTH reported is for the correct program, guarantor, and service | -Verify the P-AUTH is active for the DOS billed"
+  },
+  {
+    "id": "CO-27",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Expenses incurred after coverage terminated.",
+    "solution": "-Verify the Episode is open and active for the DOS billed | -Verify Client's eligibility for DOS | -Verify the P-AUTH reported is for the correct program, guarantor, and service | -Verify the P-AUTH is active for the DOS billed"
+  },
+  {
+    "id": "CO-29",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The time limit for filing has expired.",
+    "solution": "-Verify DOS is not more than 400 days (for MH) or 305 days (for SUTS) before bill date for replacement claims | -If bill date and DOS is correct, this is a valid denial"
+  },
+  {
+    "id": "CO-31",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Patient cannot be identified as our insured.",
+    "solution": "Refer to CPT Code Set and P-Auth File: | -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service | -Verify there is an open episode for the correct program | -Verify client's financial eligibility demographics: | Name | DOB | Address | Coverage effective date | Coverage end date | CIN"
+  },
+  {
+    "id": "CO-45",
+    "group": "Contractual Obligation",
+    "type": "Adjustment Code",
+    "problem": "Charge exceeds fee schedule/maximum allowable or contracted/legislated fee arrangement. Usage: This adjustment amount cannot equal the total service or claim charge amount; and must not duplicate provider adjustment amounts (payments and contractual reductions) that have resulted from prior payer(s) adjudication. (Use only with Group Codes PR or CO depending upon liability)",
+    "solution": "-This is an approval notice | -The billed amount exceeds the contractual agreed amount | -This balance is not payable"
+  },
+  {
+    "id": "CO-58",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Treatment was deemed by the payer to have been rendered in an inappropriate or invalid place of service. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set and P-Auth File: | -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service | -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) | -Verify the service rendered is covered under the P-AUTH being reported | -Verify Place of Service is allowed for the service(s) rendered | -If service code is not allowed for the POS, this is a valid denial"
+  },
+  {
+    "id": "CO-95",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Plan procedures not followed.",
+    "solution": "Refer to CPT Code Set and P-Auth File: | -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service | -Verify there is an open episode for the correct program | -Verify client's financial eligibility demographics: | Name | DOB | Address | Coverage effective date | Coverage end date | CIN | -Verify client has an admission Dx | -Verify the Dx is supported | -Verify the Dx is effective for the DOS of the claim"
+  },
+  {
+    "id": "CO-146",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Diagnosis was invalid for the date(s) of service reported.",
+    "solution": "-Verify the Dx is supported | -Verify the Dx is effective for the DOS of the claim | -If corrections can be made to the Dx, correct Dx and resubmit claim"
+  },
+  {
+    "id": "CO-152",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Payer deems the information submitted does not support this length of service. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set: | -Verify the maximum units/minutes for the service code billed | If units/minutes were reported inaccurately, make appropriate changes and resubmit | If units/minutes exceed the maximum duration for the service code billed, review for subsequent coding/modifier | If units/minutes exceed the maximum duration and no corrections can be made bill only the maximum, additional time will not be paid"
+  },
+  {
+    "id": "CO-177",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Patient has not met the required eligibility requirements.",
+    "solution": "-Verify client's financial eligibility for DOS billed"
+  },
+  {
+    "id": "CO-181",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Procedure code was invalid on the date of service.",
+    "solution": "Refer to CPT Code Set and P-Auth File: | -Verify claimed units, unit cannot be zero | -Verify the service code reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara) | -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) | -Verify the service rendered is covered under the P-AUTH being reported | -If billed amount for service is zero, this is a valid denial"
+  },
+  {
+    "id": "CO-185",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The rendering provider is not eligible to perform the service billed. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Run Provider Credentialing Report to verify credentials are correct for provider: | -Verify Provider's NPI is correct | -Verify performing provider is effective on DOS | -Verify POS is allowed for claimed service code | -Verify provider's license type is allowed for service | -If provider is not active, denial is valid"
+  },
+  {
+    "id": "CO-197",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Precertification/authorization/notification/pre-treatment absent.",
+    "solution": "Refer to CPT Code Set and P-Auth File: | -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service | -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) | -Verify the service rendered is covered under the P-AUTH being reported | -Verify the Dx billed on the claim is approved for the service rendered and on the County's approved Dx list"
+  },
+  {
+    "id": "CO-200",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Expenses incurred during lapse in coverage",
+    "solution": "Refer to CPT Code Set and P-Auth File: | -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service | -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) | -Verify the service rendered is covered under the P-AUTH being reported | -Verify the Dx billed on the claim is approved for the service rendered and on the County's approved Dx list"
+  },
+  {
+    "id": "CO-208",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "National Provider Identifier - Not matched.",
+    "solution": "Run Provider Credentialing Report to verify credentials are correct for provider: | -Verify Provider's NPI is correct | -Verify performing provider is effective on DOS | -Verify POS is allowed for claimed service code | -Verify provider's license type is allowed for service | -If provider is not active, denial is valid"
+  },
+  {
+    "id": "CO-A1",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Claim/Service denied. At least one Remark Code must be provided (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.) The following will be added to this definition on 7/1/2023, Usage: Use this code only when a more specific Claim Adjustment Reason Code is not available.",
+    "solution": "-Verify admission date"
+  },
+  {
+    "id": "CO-B7",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "This provider was not certified/eligible to be paid for this procedure/service on this date of service. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Run Provider Credentialing Report to verify credentials are correct for provider: | -Verify Provider's NPI is correct | -Verify performing provider is effective on DOS | -Verify POS is allowed for claimed service code | -Verify provider's license type is allowed for service | -If provider is not active, denial is valid"
+  },
+  {
+    "id": "1",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Deductible Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "2",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Coinsurance Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "3",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Co-payment Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "6",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure/revenue code is inconsistent with the patient's age. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "7",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure/revenue code is inconsistent with the patient's gender. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "8",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure code is inconsistent with the provider type/specialty (taxonomy). Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "9",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the patient's age. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "10",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the patient's gender. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "11",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the procedure. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "12",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the provider type. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "13",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The date of death precedes the date of service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "14",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The date of birth follows the date of service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "19",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This is a work-related injury/illness and thus the liability of the Worker's Compensation Carrier.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "20",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This injury/illness is covered by the liability carrier.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "21",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This injury/illness is the liability of the no-fault carrier.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "22",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This care may be covered by another payer per coordination of benefits.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "23",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "The impact of prior payer(s) adjudication including payments and/or adjustments. (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "24",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Charges are covered under a capitation agreement/managed care plan.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "32",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Our records indicate the patient is not an eligible dependent.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "33",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Insured has no dependent coverage.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "34",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Insured has no coverage for newborns.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "35",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Lifetime benefit maximum has been reached.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "39",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services denied at the time authorization/pre-certification was requested.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "40",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Charges do not meet qualifications for emergent/urgent care. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "44",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Prompt-pay discount.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "49",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This is a non-covered service because it is a routine/preventive exam or a diagnostic/screening procedure done in conjunction with a routine/preventive exam. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "50",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "These are non-covered services because this is not deemed a 'medical necessity' by the payer. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "51",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "These are non-covered services because this is a pre-existing condition. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "53",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services by an immediate relative or a member of the same household are not covered.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  }
+]

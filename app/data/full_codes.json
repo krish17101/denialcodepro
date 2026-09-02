@@ -1,0 +1,2067 @@
+[
+  {
+    "id": "1",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Deductible Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "2",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Coinsurance Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "3",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Co-payment Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-4",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The procedure code is inconsistent with the modifier used.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set: -Add any required modifier(s)"
+  },
+  {
+    "id": "CO-5",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The procedure code/type of bill is inconsistent with the place of service.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set: -Verify Place of Service is allowed for the service(s) rendered"
+  },
+  {
+    "id": "6",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure/revenue code is inconsistent with the patient's age.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "7",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure/revenue code is inconsistent with the patient's gender.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "8",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure code is inconsistent with the provider type/specialty (taxonomy).   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "9",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the patient's age.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "10",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the patient's gender.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "11",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the procedure.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "12",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the provider type.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "13",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The date of death precedes the date of service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "14",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The date of birth follows the date of service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-16",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Claim/service lacks information or has submission/billing error(s).   Usage: Do not use this code for claims attachment(s)/other documentation. At least one Remark Code must be provided (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.) Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "-Verify the procedure code type"
+  },
+  {
+    "id": "CO-18",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Exact duplicate claim/service   (Use only with Group Code OA except where state workers' compensation regulations requires CO)",
+    "solution": "-Verify if service was previously billed for the same DOS, billed amount, units/minutes, service code, and/or  performing provider  -If service should be reported for a subsequent time on the same DOS, review and include the appropriate modifier to indicate this is a unique service  -If no changes are to be made to the denied service, this is a valid denial"
+  },
+  {
+    "id": "19",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This is a work-related injury/illness and thus the liability of the Worker's Compensation Carrier.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "20",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This injury/illness is covered by the liability carrier.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "21",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This injury/illness is the liability of the no-fault carrier.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "22",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This care may be covered by another payer per coordination of benefits.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "23",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "The impact of prior payer(s) adjudication including payments and/or adjustments.   (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "24",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Charges are covered under a capitation agreement/managed care plan.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-26",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Expenses incurred prior to coverage.",
+    "solution": "-Verify the Episode is open and active for the DOS billed -Verify Client's eligibility for DOS -Verify the P-AUTH reported is for the correct program, guarantor, and service  -Verify the P-AUTH is active for the DOS billed"
+  },
+  {
+    "id": "CO-27",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Expenses incurred after coverage terminated.",
+    "solution": "-Verify the Episode is open and active for the DOS billed -Verify Client's eligibility for DOS -Verify the P-AUTH reported is for the correct program, guarantor, and service  -Verify the P-AUTH is active for the DOS billed"
+  },
+  {
+    "id": "CO-29",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The time limit for filing has expired.",
+    "solution": "-Verify DOS is not more than 400 days (for MH) or 305 days (for SUTS) before bill date for replacement claims  -If bill date and DOS is correct, this is a valid denial"
+  },
+  {
+    "id": "CO-31",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Patient cannot be identified as our insured.",
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify there is an open episode for the correct program -Verify client's financial eligibility demographics:        Name        DOB        Address        Coverage effective date        Coverage end date        CIN"
+  },
+  {
+    "id": "32",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Our records indicate the patient is not an eligible dependent.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "33",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Insured has no dependent coverage.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "34",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Insured has no coverage for newborns.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "35",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Lifetime benefit maximum has been reached.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "39",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services denied at the time authorization/pre-certification was requested.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "40",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Charges do not meet qualifications for emergent/urgent care.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "44",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Prompt-pay discount.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-45",
+    "group": "Contractual Obligation",
+    "type": "Adjustment Code",
+    "problem": "Charge exceeds fee schedule/maximum allowable or contracted/legislated fee arrangement.   Usage: This adjustment amount cannot equal the total service or claim charge amount; and must not duplicate provider adjustment amounts (payments and contractual reductions) that have resulted from prior payer(s) adjudication. (Use only with Group Codes PR or CO depending upon liability)",
+    "solution": "-This is an approval notice -The billed amount exceeds the contractual agreed amount -This balance is not payable"
+  },
+  {
+    "id": "49",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This is a non-covered service because it is a routine/preventive exam or a diagnostic/screening procedure done in conjunction with a routine/preventive exam.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "50",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "These are non-covered services because this is not deemed a 'medical necessity' by the payer.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "51",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "These are non-covered services because this is a pre-existing condition.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "53",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services by an immediate relative or a member of the same household are not covered.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "54",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Multiple physicians/assistants are not covered in this case.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "55",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure/treatment/drug is deemed experimental/investigational by the payer.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "56",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure/treatment has not been deemed 'proven to be effective' by the payer.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-58",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Treatment was deemed by the payer to have been rendered in an inappropriate or invalid place of service.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) -Verify the service rendered is covered under the P-AUTH being reported -Verify Place of Service is allowed for the service(s) rendered  -If service code is not allowed for the POS, this is a valid denial"
+  },
+  {
+    "id": "59",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Processed based on multiple or concurrent procedure rules.  (For example multiple surgery or diagnostic imaging, concurrent anesthesia.)  Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "60",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Charges for outpatient services are not covered when performed within a period of time prior to or after inpatient services.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "61",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Adjusted for failure to obtain second surgical opinion",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "66",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Blood Deductible.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "69",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Day outlier amount.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "70",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Cost outlier - Adjustment to compensate for additional costs.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "74",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Indirect Medical Education Adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "75",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Direct Medical Education Adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "76",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Disproportionate Share Adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "78",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Non-Covered days/Room charge adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "85",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Patient Interest Adjustment   (Use Only Group code PR)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "89",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Professional fees removed from charges.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "90",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Ingredient cost adjustment. Usage: To be used for pharmaceuticals only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "91",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Dispensing fee adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "94",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Processed in Excess of charges.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-95",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Plan procedures not followed.",
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify there is an open episode for the correct program -Verify client's financial eligibility demographics:        Name        DOB        Address        Coverage effective date        Coverage end date        CIN -Verify client has an admission Dx -Verify the Dx is supported -Verify the Dx is effective for the DOS of the claim"
+  },
+  {
+    "id": "96",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Non-covered charge(s). At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)  Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "97",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The benefit for this service is included in the payment/allowance for another service/procedure that has already been adjudicated.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "100",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment made to patient/insured/responsible party.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "101",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Predetermination: anticipated payment upon completion of services or claim adjudication.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "102",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Major Medical Adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "103",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Provider promotional discount (e.g., Senior citizen discount).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "104",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Managed care withholding.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "105",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Tax withholding.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "106",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Patient payment option/election not in effect.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "107",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The related or qualifying claim/service was not identified on this claim.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "108",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Rent/purchase guidelines were not met.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "109",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim/service not covered by this payer/contractor. You must send the claim/service to the correct payer/contractor.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "110",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Billing date predates service date.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "111",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Not covered unless the provider accepts assignment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "112",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Service not furnished directly to the patient and/or not documented.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "114",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure/product not approved by the Food and Drug Administration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "115",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure postponed, canceled, or delayed.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "116",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The advance indemnification notice signed by the patient did not comply with requirements.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "117",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Transportation is only covered to the closest facility that can provide the necessary care.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "118",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "ESRD network support adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "119",
+    "group": "General Adjustment",
+    "type": "Denial Code - Submit only if all the units are over the limit",
+    "problem": "Benefit maximum for this time period or occurrence has been reached.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "121",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Indemnification adjustment - compensation for outstanding member responsibility.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "122",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Psychiatric reduction.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "128",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Newborn's services are covered in the mother's Allowance.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "129",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Prior processing information appears incorrect. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "130",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Claim submission fee.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "131",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Claim specific negotiated discount.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "132",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Prearranged demonstration project adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "133",
+    "group": "General Adjustment",
+    "type": "N/A - Pended claims in your system should not be submitted to MassHealth. If MCEs submit an encounter with this CARC, it will be rejected",
+    "problem": "The disposition of this service line is pending further review.   (Use only with Group Code OA).  Usage: Use of this code requires a reversal and correction when the service line is finalized (use only in Loop 2110 CAS segment of the 835 or Loop 2430 of the 837).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "134",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Technical fees removed from charges.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "135",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Interim bills cannot be processed.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "136",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Failure to follow prior payer's coverage rules.   (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "137",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Regulatory Surcharges, Assessments, Allowances or Health Related Taxes.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "139",
+    "group": "General Adjustment",
+    "type": "N/A - Should not be used. If MCEs submit an encounter with this CARC, it will be rejected",
+    "problem": "Contracted funding agreement - Subscriber is employed by the provider of services.   Use only with Group Code CO.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "140",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Patient/Insured health identification number and name do not match.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "142",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Monthly Medicaid patient liability amount.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "143",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Portion of payment deferred.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "144",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Incentive adjustment, e.g. preferred product/service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-146",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Diagnosis was invalid for the date(s) of service reported.",
+    "solution": "-Verify the Dx is supported -Verify the Dx is effective for the DOS of the claim  -If corrections can be made to the Dx, correct Dx and resubmit claim"
+  },
+  {
+    "id": "147",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Provider contracted/negotiated rate expired or not on file.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "148",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Information from another provider was not provided or was insufficient/incomplete. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "149",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Lifetime benefit maximum has been reached for this service/benefit category.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "150",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payer deems the information submitted does not support this level of service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "151",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted because the payer deems the information submitted does not support this many/frequency of services.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-152",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Payer deems the information submitted does not support this length of service.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Refer to CPT Code Set: -Verify the maximum units/minutes for the service code billed  If units/minutes were reported inaccurately, make appropriate changes and resubmit  If units/minutes exceed the maximum duration for the service code billed, review for subsequent coding/modifier If units/minutes exceed the maximum duration and no corrections can be made bill only the maximum, additional time will not be paid"
+  },
+  {
+    "id": "153",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payer deems the information submitted does not support this dosage.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "154",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payer deems the information submitted does not support this day's supply.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "155",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Patient refused the service/procedure.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "157",
+    "group": "General Adjustment",
+    "type": "N/A - Should not be used. If MCEs submit an encounter with this CARC, it will be rejected",
+    "problem": "Service/procedure was provided as a result of an act of war.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "158",
+    "group": "General Adjustment",
+    "type": "N/A - Should not be used. If MCEs submit an encounter with this CARC, it will be rejected",
+    "problem": "Service/procedure was provided outside of the United States.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "159",
+    "group": "General Adjustment",
+    "type": "N/A - Should not be used. If MCEs submit an encounter with this CARC, it will be rejected",
+    "problem": "Service/procedure was provided as a result of terrorism.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "160",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Injury/illness was the result of an activity that is a benefit exclusion.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "161",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Provider performance bonus",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "163",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Attachment/other documentation referenced on the claim was not received.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "164",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Attachment/other documentation referenced on the claim was not received in a timely fashion.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "166",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "These services were submitted after this payers responsibility for processing claims under this plan ended.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "167",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This (these) diagnosis(es) is (are) not covered.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "169",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Alternate benefit has been provided.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "170",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payment is denied when performed/billed by this type of provider.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "171",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payment is denied when performed/billed by this type of provider in this type of facility.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "172",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment is adjusted when performed/billed by a provider of this specialty.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "173",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Service/equipment was not prescribed by a physician.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "174",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Service was not prescribed prior to delivery.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "175",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Prescription is incomplete.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "176",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Prescription is not current.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-177",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Patient has not met the required eligibility requirements.",
+    "solution": "-Verify client's financial eligibility for DOS billed"
+  },
+  {
+    "id": "178",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Patient has not met the required spend down requirements.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "179",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Patient has not met the required waiting requirements.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "180",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Patient has not met the required residency requirements.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-181",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Procedure code was invalid on the date of service.",
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify claimed units, unit cannot be zero -Verify the service code reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara) -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) -Verify the service rendered is covered under the P-AUTH being reported   -If billed amount for service is zero, this is a valid denial"
+  },
+  {
+    "id": "182",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure modifier was invalid on the date of service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "183",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The referring provider is not eligible to refer the service billed.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "184",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The prescribing/ordering provider is not eligible to prescribe/order the service billed.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-185",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "The rendering provider is not eligible to perform the service billed.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Run BHSD 7521 Provider Credentialing Report to verify credentials are correct for provider: -Verify Provider's NPI is correct -Verify performing provider is effective on DOS -Verify POS is allowed for claimed service code -Verify provider's license type is allowed for service  -If provider is not active, denial is valid -If changes need to be made to the effective date of the provider, contact BHSD Business Office and BHSD Credentialing"
+  },
+  {
+    "id": "186",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Level of care change adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "187",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Consumer Spending Account payments   (includes but is not limited to Flexible Spending Account, Health Savings Account, Health Reimbursement Account, etc.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "188",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This product/procedure is only covered when used according to FDA recommendations.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "189",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "'Not otherwise classified' or 'unlisted' procedure code (CPT/HCPCS) was billed when there is a specific procedure code for this procedure/service",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "190",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment is included in the allowance for a Skilled Nursing Facility (SNF) qualified stay.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "192",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Non standard adjustment code from paper remittance.   Usage: This code is to be used by providers/payers providing Coordination of Benefits information to another payer in the 837 transaction only. This code is only used when the non-standard code cannot be reasonably mapped to an existing Claims Adjustment Reason Code, specifically Deductible, Coinsurance and Co-payment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "193",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Original payment decision is being maintained. Upon review, it was determined that this claim was processed properly.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "194",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Anesthesia performed by the operating physician, the assistant surgeon or the attending physician.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "195",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Refund issued to an erroneous priority payer for this claim/service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-197",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Precertification/authorization/notification/pre-treatment absent.",
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) -Verify the service rendered is covered under the P-AUTH being reported -Verify the Dx billed on the claim is approved for the service rendered and on the County's approved Dx list"
+  },
+  {
+    "id": "198",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Precertification/notification/authorization/pre-treatment exceeded.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "199",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Revenue code and Procedure code do not match.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-200",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Expenses incurred during lapse in coverage",
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) -Verify the service rendered is covered under the P-AUTH being reported -Verify the Dx billed on the claim is approved for the service rendered and on the County's approved Dx list"
+  },
+  {
+    "id": "201",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Patient is responsible for amount of this claim/service through 'set aside arrangement' or other agreement.   (Use only with Group Code PR) At least one Remark Code must be provided (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "202",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Non-covered personal comfort or convenience services.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "203",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Discontinued or reduced service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "204",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This service/equipment/drug is not covered under the patient's current benefit plan",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "205",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Pharmacy discount card processing fee",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "206",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "National Provider Identifier - missing.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "207",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "National Provider identifier - Invalid format",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-208",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "National Provider Identifier - Not matched.",
+    "solution": "Run BHSD 7521 Provider Credentialing Report to verify credentials are correct for provider: -Verify Provider's NPI is correct -Verify performing provider is effective on DOS -Verify POS is allowed for claimed service code -Verify provider's license type is allowed for service  -If provider is not active, denial is valid -If changes need to be made to the effective date of the provider, contact BHSD Business Office and BHSD Credentialing"
+  },
+  {
+    "id": "209",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Per regulatory or other agreement. The provider cannot collect this amount from the patient. However, this amount may be billed to subsequent payer. Refund to patient if collected.   (Use only with Group code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "210",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted because pre-certification/authorization not received in a timely fashion",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "211",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "National Drug Codes (NDC) not eligible for rebate, are not covered.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "212",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Administrative surcharges are not covered",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "213",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Non-compliance with the physician self referral prohibition legislation or payer policy.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "215",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Based on subrogation of a third party settlement",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "216",
+    "group": "General Adjustment",
+    "type": "N/A - other CARCs should be utilized to indicate the reason for adjustment or denial after review. ",
+    "problem": "Based on the findings of a review organization",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "219",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Based on extent of injury.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') for the jurisdictional regulation. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "222",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Exceeds the contracted maximum number of hours/days/units by this provider for this period. This is not patient specific.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "223",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Adjustment code for mandated federal, state or local law/regulation that is not already covered by another code and is mandated before a new code can be created.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "224",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Patient identification compromised by identity theft. Identity verification required for processing this and future claims.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "225",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Penalty or Interest Payment by Payer   (Only used for plan to plan encounter reporting within the 837)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "226",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Information requested from the Billing/Rendering Provider was not provided or not provided timely or was insufficient/incomplete. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "227",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Information requested from the patient/insured/responsible party was not provided or was insufficient/incomplete. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "228",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Denied for failure of this provider, another provider or the subscriber to supply requested information to a previous payer for their adjudication",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "229",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Partial charge amount not considered by Medicare due to the initial claim Type of Bill being 12X.   Usage: This code can only be used in the 837 transaction to convey Coordination of Benefits information when the secondary payer's cost avoidance policy allows providers to bypass claim submission to a prior payer. (Use only with Group Code PR)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "231",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Mutually exclusive procedures cannot be done in the same day/setting.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "232",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Institutional Transfer Amount. Usage: Applies to institutional claims only and explains the DRG amount difference when the patient care crosses multiple institutions.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "233",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services/charges related to the treatment of a hospital-acquired condition or preventable medical error.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "234",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This procedure is not paid separately. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "235",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Sales Tax",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "236",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This procedure or procedure/modifier combination is not compatible with another procedure or procedure/modifier combination provided on the same day according to the National Correct Coding Initiative or workers compensation state regulations/ fee schedule requirements.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "237",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Legislated/Regulatory Penalty. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "238",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Claim spans eligible and ineligible periods of coverage, this is the reduction for the ineligible period.   (Use only with Group Code PR)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "239",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim spans eligible and ineligible periods of coverage. Rebill separate claims.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "240",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The diagnosis is inconsistent with the patient's birth weight.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "241",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Low Income Subsidy (LIS) Co-payment Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "242",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services not provided by network/primary care providers.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "243",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services not authorized by network/primary care providers.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "245",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Provider performance program withhold.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "246",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This non-payable code is for required reporting only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "247",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Deductible for Professional service rendered in an Institutional setting and billed on an Institutional claim.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "248",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Coinsurance for Professional service rendered in an Institutional setting and billed on an Institutional claim.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "249",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This claim has been identified as a readmission.   (Use only with Group Code CO)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "250",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The attachment/other documentation that was received was the incorrect attachment/document. The expected attachment/document is still missing. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "251",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The attachment/other documentation that was received was incomplete or deficient. The necessary information is still needed to process the claim. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "252",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "An attachment/other documentation is required to adjudicate this claim/service. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "253",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Sequestration - reduction in federal payment",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "254",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the dental plan, but benefits not available under this plan. Submit these services to the patient's medical plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "256",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Service not payable per managed care contract.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "257",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The disposition of the claim/service is undetermined during the premium payment grace period, per Health Insurance Exchange requirements. This claim/service will be reversed and corrected when the grace period ends (due to premium payment or lack of premium payment).   (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "258",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim/service not covered when patient is in custody/incarcerated. Applicable federal, state or local authority may cover the claim/service.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "259",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Additional payment for Dental/Vision service utilization.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "260",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Processed under Medicaid ACA Enhanced Fee Schedule",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "261",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure or service is inconsistent with the patient's history.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "262",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Adjustment for delivery cost.   Usage: To be used for pharmaceuticals only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "263",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Adjustment for shipping cost.   Usage: To be used for pharmaceuticals only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "264",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Adjustment for postage cost.   Usage: To be used for pharmaceuticals only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "265",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Adjustment for administrative cost.   Usage: To be used for pharmaceuticals only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "266",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Adjustment for compound preparation cost.   Usage: To be used for pharmaceuticals only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "267",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim/service spans multiple months. At least one Remark Code must be provided   (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "268",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The Claim spans two calendar years. Please resubmit one claim per calendar year.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "269",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Anesthesia not covered for this service/procedure.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "270",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Submit these services to the patient's dental plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "271",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Prior contractual reductions related to a current periodic payment as part of a contractual payment schedule when deferred amounts have been previously reported.   (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "272",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Coverage/program guidelines were not met.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "273",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Coverage/program guidelines were exceeded.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "274",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Fee/Service not payable per patient Care Coordination arrangement.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "275",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Prior payer's (or payers') patient responsibility (deductible, coinsurance, co-payment) not covered. (Use only with Group Code PR)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "276",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services denied by the prior payer(s) are not covered by this payer.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "277",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The disposition of the claim/service is undetermined during the premium payment grace period, per Health Insurance SHOP Exchange requirements. This claim/service will be reversed and corrected when the grace period ends (due to premium payment or lack of premium payment).   (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "278",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Performance program proficiency requirements not met.   (Use only with Group Codes CO or PI) Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "279",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services not provided by Preferred network providers.   Usage: Use this code when there are member network limitations. For example, using contracted providers not in the member's 'narrow' network.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "280",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Submit these services to the patient's Pharmacy plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "281",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Deductible waived per contractual agreement. Use only with Group Code CO.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "282",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The procedure/revenue code is inconsistent with the type of bill.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "283",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Attending provider is not eligible to provide direction of care.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "284",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Precertification/authorization/notification/pre-treatment number may be valid but does not apply to the billed services.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "285",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Appeal procedures not followed",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "286",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Appeal time limits not met",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "287",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Referral exceeded",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "288",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Referral absent",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "289",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services considered under the dental and medical plans, benefits not available.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "290",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the dental plan, but benefits not available under this plan. Claim has been forwarded to the patient's medical plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "291",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Claim has been forwarded to the patient's dental plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "292",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Claim has been forwarded to the patient's pharmacy plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "293",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment made to employer.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "294",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment made to attorney.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "295",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Pharmacy Direct/Indirect Remuneration (DIR)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "296",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Precertification/authorization/notification/pre-treatment number may be valid but does not apply to the provider.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "297",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Submit these services to the patient's vision plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "298",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Claim has been forwarded to the patient's vision plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "299",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The billing provider is not eligible to receive payment for the service billed.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "300",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the Medical Plan, but benefits not available under this plan. Claim has been forwarded to the patient's Behavioral Health Plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "301",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the Medical Plan, but benefits not available under this plan. Submit these services to the patient's Behavioral Health Plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "302",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Precertification/notification/authorization/pre-treatment time limit has expired.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "303",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Prior payer's (or payers') patient responsibility (deductible, coinsurance, co-payment) not covered for Qualified Medicare and Medicaid Beneficiaries.   (Use only with Group Code CO)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "304",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Submit these services to the patient's hearing plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "305",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Claim received by the medical plan, but benefits not available under this plan. Claim has been forwarded to the patient's hearing plan for further consideration.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "306",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Type of bill is inconsistent with the patient status. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "A0",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Patient refund amount.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-A1",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Claim/Service denied. At least one Remark Code must be provided (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.) The following will be added to this definition on 7/1/2023,   Usage: Use this code only when a more specific Claim Adjustment Reason Code is not available.",
+    "solution": "-Verify admission date"
+  },
+  {
+    "id": "A5",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Medicare Claim PPS Capital Cost Outlier Amount.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "A6",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Prior hospitalization or 30 day transfer requirement not met.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "A8",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Ungroupable DRG.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B1",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Non-covered visits.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B4",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Late filing penalty.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "CO-B7",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "This provider was not certified/eligible to be paid for this procedure/service on this date of service. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Run BHSD 7521 Provider Credentialing Report to verify credentials are correct for provider: -Verify Provider's NPI is correct -Verify performing provider is effective on DOS -Verify POS is allowed for claimed service code -Verify provider's license type is allowed for service  -If provider is not active, denial is valid -If changes need to be made to the effective date of the provider, contact BHSD Business Office and BHSD Credentialing"
+  },
+  {
+    "id": "B8",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Alternative services were available, and should have been utilized. Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B9",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Patient is enrolled in a Hospice.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B10",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Allowed amount has been reduced because a component of the basic procedure/test was paid. The beneficiary is not liable for more than the charge limit for the basic procedure/test.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B11",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The claim/service has been transferred to the proper payer/processor for processing. Claim/service not covered by this payer/processor.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B12",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Services not documented in patient's medical records.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B13",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Previously paid. Payment for this claim/service may have been provided in a previous payment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B14",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Only one visit or consultation per physician per day is covered.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B15",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "This service/procedure requires that a qualifying service/procedure be received and covered. The qualifying other service/procedure has not been received/adjudicated.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B16",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "'New Patient' qualifications were not met.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B20",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure/service was partially or fully furnished by another provider.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B22",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "This payment is adjusted based on the diagnosis.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "B23",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure billed is not authorized per your Clinical Laboratory Improvement Amendment (CLIA) proficiency test.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P1",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "State-mandated Requirement for Property and Casualty, see Claim Payment Remarks Code for specific explanation. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P2",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Not a work related injury/illness and thus not the liability of the workers' compensation carrier   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') for the jurisdictional regulation. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF). To be used for Workers' Compensation only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P3",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Workers' Compensation case settled. Patient is responsible for amount of this claim/service through WC 'Medicare set aside arrangement' or other agreement. To be used for Workers' Compensation only.   (Use only with Group Code PR)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P4",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Workers' Compensation claim adjudicated as non-compensable. This Payer not liable for claim or service/treatment.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') for the jurisdictional regulation. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF). To be used for Workers' Compensation only",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P5",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Based on payer reasonable and customary fees. No maximum allowable defined by legislated fee arrangement. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P6",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Based on entitlement to benefits.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') for the jurisdictional regulation. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF). To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P7",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The applicable fee schedule/fee database does not contain the billed code. Please resubmit a bill with the appropriate fee schedule/fee database code(s) that best describe the service(s) provided and supporting documentation if required. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P8",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Claim is under investigation.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') for the jurisdictional regulation. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF). To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P9",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "No available or correlating CPT/HCPCS code to describe this service. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P10",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment reduced to zero due to litigation. Additional information will be sent following the conclusion of litigation. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P11",
+    "group": "General Adjustment",
+    "type": "N/A - Pended claims in your system should not be submitted to MassHealth. If MCEs submit an encounter with this CARC, it will be rejected",
+    "problem": "The disposition of the related Property & Casualty claim (injury or illness) is pending due to litigation. To be used for Property and Casualty only. (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P12",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Workers' compensation jurisdictional fee schedule adjustment.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Class of Contract Code Identification Segment (Loop 2100 Other Claim Related Information REF). If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Workers' Compensation only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P13",
+    "group": "General Adjustment",
+    "type": "N/A - Please reference other workers' compensation CARCs",
+    "problem": "Payment reduced or denied based on workers' compensation jurisdictional regulations or payment policies, use only if no other code is applicable.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') if the jurisdictional regulation applies. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Workers' Compensation only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P14",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "The Benefit for this Service is included in the payment/allowance for another service/procedure that has been performed on the same day.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P15",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Workers' Compensation Medical Treatment Guideline Adjustment. To be used for Workers' Compensation only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P16",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Medical provider not authorized/certified to provide treatment to injured workers in this jurisdiction. To be used for Workers' Compensation only.   (Use with Group Code CO or OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P17",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Referral not authorized by attending physician per regulatory requirement. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P18",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure is not listed in the jurisdiction fee schedule. An allowance has been made for a comparable service. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P19",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Procedure has a relative value of zero in the jurisdiction fee schedule, therefore no payment is due. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P20",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Service not paid under jurisdiction allowed outpatient facility fee schedule. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P21",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payment denied based on the Medical Payments Coverage (MPC) and/or Personal Injury Protection (PIP) Benefits jurisdictional regulations, or payment policies.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') if the jurisdictional regulation applies. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty Auto only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P22",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted based on the Medical Payments Coverage (MPC) and/or Personal Injury Protection (PIP) Benefits jurisdictional regulations, or payment policies.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') if the jurisdictional regulation applies. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty Auto only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P23",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Medical Payments Coverage (MPC) or Personal Injury Protection (PIP) Benefits jurisdictional fee schedule adjustment.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Class of Contract Code Identification Segment (Loop 2100 Other Claim Related Information REF). If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty Auto only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P24",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted based on Preferred Provider Organization (PPO).   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Class of Contract Code Identification Segment (Loop 2100 Other Claim Related Information REF). If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty only. Use only with Group Code CO.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P25",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted based on Medical Provider Network (MPN).   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Class of Contract Code Identification Segment (Loop 2100 Other Claim Related Information REF). If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty only. (Use only with Group Code CO).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P26",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted based on Voluntary Provider Network (VPN).   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Class of Contract Code Identification Segment (Loop 2100 Other Claim Related Information REF). If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty only. (Use only with Group Code CO).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P27",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payment denied based on the Liability Coverage Benefits jurisdictional regulations and/or payment policies.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') if the jurisdictional regulation applies. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty Auto only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P28",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted based on the Liability Coverage Benefits jurisdictional regulations and/or payment policies.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Insurance Policy Number Segment (Loop 2100 Other Claim Related Information REF qualifier 'IG') if the jurisdictional regulation applies. If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty Auto only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P29",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Liability Benefits jurisdictional fee schedule adjustment.   Usage: If adjustment is at the Claim Level, the payer must send and the provider should refer to the 835 Class of Contract Code Identification Segment (Loop 2100 Other Claim Related Information REF). If adjustment is at the Line Level, the payer must send and the provider should refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment information REF) if the regulations apply. To be used for Property and Casualty Auto only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P30",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payment denied for exacerbation when supporting documentation was not complete. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P31",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Payment denied for exacerbation when treatment exceeds time allowed. To be used for Property and Casualty only.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "P32",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "Payment adjusted due to Apportionment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  }
+]
