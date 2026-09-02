@@ -2253,5 +2253,260 @@
     "type": "Adjustment Code",
     "problem": "Payment adjusted due to Apportionment.",
     "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+  },
+  {
+    "id": "PR-3",
+    "group": "Patient Responsibility",
+    "type": "Adjustment Code",
+    "problem": "Co-payment Amount",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The co-payment (copay) amount has been applied to this claim as a patient responsibility adjustment. After adjudication, the payer determined that the patient owes a fixed copay amount for the service rendered, as defined by their insurance plan. Copays are most common in HMO and PPO plans for office visits, specialist visits, urgent care, and prescription drugs. The adjustment is informational — the claim is not denied, but the patient balance must be collected. The copay amount is typically a flat dollar amount (e.g., $20, $40) rather than a percentage.",
+    "resolutionSteps": [
+      "Verify the patient's copay amount from the eligibility/benefits response (270/271 transaction) or the payer's member portal to confirm the applied amount matches the plan's copay schedule for the specific service type.",
+      "Cross-check the copay against the allowed amount on the ERA to ensure the payer applied the correct fixed amount and did not exceed the plan's copay limit.",
+      "Bill the patient for the copay amount with a clear statement showing the payer's payment, the allowed amount, and the patient responsibility portion.",
+      "If the patient has secondary insurance that covers copays, submit the claim to the secondary payer with the primary EOB attached for coordination of benefits.",
+      "If the patient disputes the copay or the amount appears incorrect, request a claim reconsideration from the payer with the benefits verification documentation."
+    ],
+    "ehrNote": "Claim adjusted PR-3 — co-payment applied; verified copay amount per plan schedule, billed patient for copay, and updated account balance.",
+    "preventativeAction": "Verify copay amounts during pre-visit eligibility checks and collect copays at the time of service to reduce patient balances and bad debt."
+  },
+  {
+    "id": "PR-96",
+    "group": "Patient Responsibility",
+    "type": "Denial Code",
+    "problem": "Non-covered charge(s). At least one Remark Code must be provided (may be comprised of either the NCPDP Reject Reason Code, or Remittance Advice Remark Code that is not an ALERT.)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The charge is non-covered and the payer has determined that the patient is responsible for the amount. At least one Remittance Advice Remark Code (RARC) accompanies this CARC to explain why the charge is non-covered under the patient's plan. Unlike CO-96 (where the provider typically writes off the contractual adjustment), PR-96 shifts the financial responsibility to the patient. This occurs when the service is excluded from the plan benefits and the patient was notified (or should have been notified) of non-coverage, or when the patient elected to receive a service they knew was not covered.",
+    "resolutionSteps": [
+      "Locate the accompanying Remittance Advice Remark Code (RARC) on the ERA/EOB to determine the specific reason the charge is non-covered and assigned to patient responsibility.",
+      "Verify whether the patient signed an Advance Beneficiary Notice (ABN) or financial responsibility form acknowledging non-coverage before the service was rendered; if so, bill the patient for the full amount.",
+      "Review the patient's benefit plan documents to confirm the service is genuinely excluded and that the payer correctly assigned responsibility to the patient rather than the provider.",
+      "If no ABN was obtained and the service was not clearly excluded, file an appeal with the payer arguing that the patient should not be held responsible without proper notification of non-coverage.",
+      "If the patient disputes the charge, provide a detailed explanation of benefits and the payer's non-covered determination; offer a payment plan or financial assistance if appropriate."
+    ],
+    "ehrNote": "Claim denied PR-96 — non-covered charge, patient responsibility; verified ABN status, billed patient if ABN signed, or filed appeal if patient was not properly notified.",
+    "preventativeAction": "Obtain signed ABNs for all services likely to be non-covered under the patient's plan, and verify coverage before rendering non-standard services to prevent patient balance disputes."
+  },
+  {
+    "id": "PR-204",
+    "group": "Patient Responsibility",
+    "type": "Denial Code",
+    "problem": "This service/equipment/drug is not covered under the patient's current benefit plan.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The service, equipment, or drug is not covered under the patient's current benefit plan, and the payer has assigned financial responsibility to the patient. This is a plan-level exclusion where the service is not a covered benefit under the patient's current plan tier or formulary. Unlike CO-204 (where the provider typically writes off the contractual adjustment), PR-204 means the patient is liable for the charge. Common examples include cosmetic procedures, fertility treatments, off-formulary drugs, or elective services excluded from the plan. The provider must have obtained an ABN or financial responsibility form to bill the patient.",
+    "resolutionSteps": [
+      "Review the patient's benefit plan documents or summary plan description (SPD) to confirm the service is genuinely excluded and that the payer correctly assigned responsibility to the patient.",
+      "Verify whether the patient signed an Advance Beneficiary Notice (ABN) or financial responsibility form before the service was rendered; if so, bill the patient for the non-covered amount.",
+      "If the plan has a formulary exception or coverage exception process, submit a request with supporting clinical documentation and a letter of medical necessity from the treating provider.",
+      "If no ABN was obtained, the patient may not be billable — file an appeal with the payer or write off the balance as a provider adjustment depending on the plan's provisions.",
+      "If the patient has secondary insurance that may cover the excluded service, submit the claim to the secondary payer with the primary EOB showing the non-covered determination."
+    ],
+    "ehrNote": "Claim denied PR-204 — service not covered under plan, patient responsibility; verified ABN status, billed patient if ABN signed, or filed appeal if notification was not provided.",
+    "preventativeAction": "Verify benefit coverage for non-standard services during pre-visit eligibility checks and obtain signed ABNs before rendering services likely to be excluded from the patient's plan."
+  },
+  {
+    "id": "OA-18",
+    "group": "General Adjustment",
+    "type": "Denial Code",
+    "problem": "Exact duplicate claim/service (Use only with Group Code OA)",
+    "solution": "Verify if service was previously billed for the same DOS, billed amount, units/minutes, service code, and/or performing provider. If service should be reported for a subsequent time on the same DOS, review and include the appropriate modifier to indicate this is a unique service. If no changes are to be made to the denied service, this is a valid denial.",
+    "rootCause": "The claim is an exact duplicate of a previously submitted claim, identified with Group Code OA (Other Adjustment) rather than CO. The payer's duplicate detection system flagged the claim because it matches an existing claim for the same date of service, procedure code, billed amount, units, and performing provider. OA-18 is used when the duplicate is not a contractual obligation but rather an administrative duplicate — this can result from clearinghouse retransmissions, practice management system glitches, or manual re-keying. The key distinction is that OA indicates the adjustment reason is neither a contractual obligation (CO) nor patient responsibility (PR).",
+    "resolutionSteps": [
+      "Search the practice management system and clearinghouse reports for the original claim using the same DOS, CPT, provider, and billed amount to determine whether the original was paid, denied, or is still pending.",
+      "If the original claim was paid, write off the duplicate denial as a valid adjustment — no further action is needed.",
+      "If the original claim was denied and this is a corrected resubmission, verify the corrected claim was submitted with frequency code 7 (replacement) and the original claim reference; if not, resubmit as a corrected claim.",
+      "If the services were genuinely distinct (same code, same DOS, separate encounters), append modifier 76 (repeat procedure by same provider) or 77 (repeat by another provider) and resubmit with documentation supporting the separate encounters.",
+      "If the duplicate was caused by a clearinghouse or system error, contact the clearinghouse to prevent future duplicate transmissions and document the root cause for process improvement."
+    ],
+    "ehrNote": "Claim denied OA-18 — exact duplicate (Other Adjustment); verified original claim status, applied modifier 76/77 if distinct encounters, or wrote off as valid duplicate.",
+    "preventativeAction": "Configure the practice management system to flag duplicate claims before submission and establish a clearinghouse reconciliation process to catch duplicate transmissions within 24 hours."
+  },
+  {
+    "id": "OA-23",
+    "group": "General Adjustment",
+    "type": "Adjustment Code",
+    "problem": "The impact of prior payer(s) adjudication including payments and/or adjustments. (Use only with Group Code OA)",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The adjustment reflects the impact of prior payer adjudication, including payments and/or adjustments already made by another payer. This is used exclusively with Group Code OA (Other Adjustment) when coordination of benefits applies — a primary payer has already adjudicated the claim, and the secondary payer is adjusting its payment to account for what the primary has already paid or adjusted. The adjustment is not a denial but a coordination calculation. Common scenarios include Medicare as secondary payer, dual commercial coverage, or workers' compensation coordination. The payer is ensuring that the combined payments from all payers do not exceed the total allowed amount.",
+    "resolutionSteps": [
+      "Verify the coordination of benefits order and confirm that the primary payer has already adjudicated the claim; obtain the primary payer's EOB/ERA for reference.",
+      "Cross-check the primary payer's payment and adjustment amounts against the secondary payer's adjustment to ensure the combined total does not exceed the allowed amount and that no duplicate payments are being made.",
+      "If the secondary payer's adjustment appears incorrect — for example, it does not account for the primary's payment or applies the wrong COB calculation — file a claim reconsideration with the primary EOB attached.",
+      "Post the adjustment in the practice management system, ensuring the patient balance reflects only the remaining coinsurance, deductible, or copay after both payers have adjudicated.",
+      "If the adjustment results in a zero balance and the claim is fully satisfied, close the account; if a patient balance remains, bill the patient with a statement showing both payers' adjudications."
+    ],
+    "ehrNote": "Claim adjusted OA-23 — prior payer adjudication impact; verified COB calculation against primary EOB, posted secondary adjustment, and reconciled patient balance.",
+    "preventativeAction": "Always submit primary EOBs with secondary claims and maintain accurate COB records in the practice management system to prevent incorrect coordination adjustments."
+  },
+  {
+    "id": "PI-100",
+    "group": "Patient Responsibility",
+    "type": "Adjustment Code",
+    "problem": "Payment made to patient/insured/responsible party.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer made the payment directly to the patient or insured rather than to the provider. This occurs when the provider is out-of-network, the patient assigned benefits to themselves, or the plan requires payment to the member for certain service types. The patient is now responsible for remitting the payment to the provider. This is a patient responsibility adjustment (PI group) — the payer has fulfilled its obligation by paying the patient, and the provider must collect from the patient. This is common with out-of-network providers, certain behavioral health plans, and plans with member-directed payment provisions.",
+    "resolutionSteps": [
+      "Verify the payer's payment to the patient by checking the ERA/EOB for the payment amount and the payee designation (patient/insured).",
+      "Contact the patient to inform them that the insurance payment was sent directly to them and request that they remit the payment to the provider's office.",
+      "If the patient has already received the check, provide payment instructions and set a deadline for remittance; document the communication in the patient account.",
+      "If the patient has not received the check or disputes the payment, contact the payer to verify the payment date, check number, and mailing address, and request a reissue if the check was lost.",
+      "If the patient refuses to remit the payment, pursue collections per the provider's financial policy or consider whether small claims court is appropriate for the outstanding balance."
+    ],
+    "ehrNote": "Claim adjusted PI-100 — payment made to patient; contacted patient to remit insurance payment to provider, documented communication, and set remittance deadline.",
+    "preventativeAction": "Verify assignment of benefits status at each visit and inform out-of-network patients that payment may be sent directly to them, requiring them to forward the payment to the provider."
+  },
+  {
+    "id": "PI-101",
+    "group": "Patient Responsibility",
+    "type": "Adjustment Code",
+    "problem": "Predetermination: anticipated payment upon completion of services or claim adjudication.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has issued a predetermination indicating an anticipated payment upon completion of services or claim adjudication. This is not a denial — it is an informational adjustment indicating that the payer has reviewed the proposed service and determined it will likely be covered, subject to final claim submission and adjudication. The predetermination is a pre-service review that provides the patient and provider with an estimate of what the payer will pay. The patient may be responsible for any remaining balance after the payer's anticipated payment. This is commonly used for high-cost procedures, surgeries, and dental services where pre-service cost estimates are required.",
+    "resolutionSteps": [
+      "Review the predetermination letter or payer portal notification to confirm the anticipated payment amount, the covered services, and any patient responsibility estimates.",
+      "Verify that the predetermination covers the services being rendered and that the CPT/HCPCS codes match the predetermination approval.",
+      "Inform the patient of the anticipated payer payment and their estimated out-of-pocket responsibility before rendering the service; obtain a financial responsibility acknowledgment.",
+      "After the service is completed, submit the final claim with the predetermination reference number in the appropriate 837 loop to ensure the payer matches the claim to the approved predetermination.",
+      "If the payer's final adjudication differs from the predetermination, file an appeal referencing the predetermination approval and requesting payment consistent with the pre-service determination."
+    ],
+    "ehrNote": "Claim adjusted PI-101 — predetermination anticipated payment; verified predetermination approval, informed patient of estimated responsibility, and submitted claim with predetermination reference.",
+    "preventativeAction": "Obtain predeterminations for all high-cost or elective procedures and ensure the predetermination reference number is included on the final claim to prevent payment discrepancies."
+  },
+  {
+    "id": "PI-102",
+    "group": "Patient Responsibility",
+    "type": "Adjustment Code",
+    "problem": "Major Medical Adjustment.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has applied a Major Medical adjustment to the claim. This adjustment reflects the adjudication of the claim under the patient's major medical benefit plan rather than a basic or supplemental benefit. Major Medical plans typically cover a broad range of services subject to deductibles, coinsurance, and out-of-pocket maximums. The adjustment indicates that the payer has processed the claim under the major medical provisions, which may include different fee schedules, coverage tiers, or cost-sharing structures than other plan components. The patient may be responsible for deductible, coinsurance, or copay amounts under the major medical benefit.",
+    "resolutionSteps": [
+      "Review the ERA/EOB to understand the major medical adjustment, including the allowed amount, the payer's payment, and the patient responsibility (deductible, coinsurance, copay).",
+      "Verify the patient's major medical benefit plan details — deductible status, coinsurance rate, and out-of-pocket maximum — via a 270/271 eligibility transaction or the payer portal.",
+      "Cross-check the adjustment calculation against the plan's major medical provisions to ensure the payer applied the correct deductible, coinsurance, and allowed amount.",
+      "Bill the patient for any remaining balance (deductible, coinsurance, copay) with a statement showing the payer's adjudication and the patient responsibility portion.",
+      "If the adjustment appears incorrect — for example, the wrong deductible was applied or the coinsurance rate does not match the plan — file a claim reconsideration with the benefits verification documentation."
+    ],
+    "ehrNote": "Claim adjusted PI-102 — Major Medical adjustment; verified plan provisions, cross-checked deductible/coinsurance application, and billed patient for remaining balance.",
+    "preventativeAction": "Verify major medical benefit details during pre-visit eligibility checks and provide patients with estimated cost-sharing amounts before service to set payment expectations."
+  },
+  {
+    "id": "PI-103",
+    "group": "Patient Responsibility",
+    "type": "Adjustment Code",
+    "problem": "Provider promotional discount (e.g., Senior citizen discount).",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The adjustment reflects a provider promotional or discretionary discount applied to the claim, such as a senior citizen discount, prompt-pay discount, or financial hardship discount. This is a patient responsibility adjustment (PI group) because the discount reduces the amount the payer is responsible for, and the patient benefits from the reduced charge. The discount is typically offered by the provider as a courtesy or community benefit and is not a contractual obligation with the payer. The payer adjusts its payment based on the discounted charge, and the patient is responsible for any remaining balance after the discount and payer payment.",
+    "resolutionSteps": [
+      "Verify the provider's discount policy to confirm the promotional discount was correctly applied to this claim and patient (e.g., senior citizen age verification, prompt-pay eligibility).",
+      "Review the ERA/EOB to confirm the payer adjusted its payment based on the discounted charge and that the discount was properly reflected in the adjudication.",
+      "Post the discount adjustment in the practice management system, ensuring the patient balance reflects the discounted charge minus the payer's payment.",
+      "Bill the patient for any remaining balance after the discount and payer payment, with a statement clearly showing the promotional discount applied.",
+      "If the payer did not account for the discount in its adjudication, file a claim reconsideration with documentation of the provider's discount policy and the discounted charge amount."
+    ],
+    "ehrNote": "Claim adjusted PI-103 — provider promotional discount applied; verified discount eligibility, posted discount adjustment, and billed patient for remaining balance.",
+    "preventativeAction": "Document provider discount policies in the practice management system and apply discounts consistently at the time of charge entry to prevent post-adjudication discrepancies."
+  },
+  {
+    "id": "PI-104",
+    "group": "Patient Responsibility",
+    "type": "Adjustment Code",
+    "problem": "Managed care withholding.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has withheld a portion of the payment as a managed care withholding. Managed care organizations (MCOs) and certain payer contracts include provisions that allow the payer to withhold a percentage of each claim payment as a financial incentive for providers to meet quality, utilization, or performance metrics. The withheld amount is typically held in a reserve account and may be released to the provider at the end of the contract year if performance targets are met. This is a patient responsibility adjustment (PI group) in some plan structures, meaning the withheld amount may be billed to the patient or written off depending on the provider's contract terms. The withholding is not a denial but a deferred payment mechanism.",
+    "resolutionSteps": [
+      "Review the provider's managed care contract to understand the withholding percentage, the performance metrics, and the schedule for releasing withheld funds.",
+      "Verify the withholding amount on the ERA/EOB against the contract's specified withholding rate and the allowed amount for the claim.",
+      "Post the withholding adjustment in the practice management system as a deferred receivable, not a write-off, since the funds may be recovered at year-end.",
+      "If the withholding was applied in error or exceeds the contractually specified rate, file a payment dispute with the payer citing the contract terms and the incorrect withholding calculation.",
+      "At contract year-end, reconcile all withheld amounts against the payer's performance reconciliation and pursue recovery of any released funds."
+    ],
+    "ehrNote": "Claim adjusted PI-104 — managed care withholding; verified withholding rate per contract, posted as deferred receivable, and scheduled year-end reconciliation.",
+    "preventativeAction": "Track all managed care withholdings in a dedicated ledger and reconcile quarterly with payer reports to ensure withheld funds are properly accounted for and recovered at year-end."
+  },
+  {
+    "id": "CR-1",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Corrected claim - the claim has been processed and is not a duplicate.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has identified this as a corrected claim and confirmed it has been processed — it is not a duplicate. The CR (Correction) group code indicates that the claim was submitted as a corrected or replacement claim (frequency code 7) and the payer has accepted and processed it. This is an informational adjustment confirming that the corrected claim was received, matched to the original claim, and adjudicated. The denial or adjustment reason accompanying CR-1 will specify the outcome of the corrected claim adjudication. This code distinguishes a corrected claim from a duplicate submission, preventing the payer from applying duplicate detection logic.",
+    "resolutionSteps": [
+      "Review the ERA/EOB to confirm the corrected claim was processed and determine the adjudication outcome (paid, denied, or adjusted) based on the accompanying CARC/RARC codes.",
+      "Verify that the corrected claim was matched to the original claim reference and that the corrections (e.g., changed diagnosis, added modifier, corrected units) were applied in the adjudication.",
+      "If the corrected claim was paid, post the payment and reconcile any prior denial or adjustment from the original claim.",
+      "If the corrected claim was denied with a new reason, review the new denial code and follow the specific resolution steps for that CARC.",
+      "If the payer did not apply the corrections (e.g., the modifier was not processed), resubmit with a cover letter emphasizing the corrected fields and include the original claim reference number."
+    ],
+    "ehrNote": "Claim processed CR-1 — corrected claim accepted; verified corrections applied in adjudication, posted payment or followed new denial reason resolution steps.",
+    "preventativeAction": "Always include frequency code 7 and the original claim reference number on corrected claims, and verify the payer's corrected claim processing requirements before resubmission."
+  },
+  {
+    "id": "CR-2",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Corrected claim - the claim has been processed and is not a duplicate. Additional information or documentation is required.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has processed the corrected claim but requires additional information or documentation to complete adjudication. The CR (Correction) group code confirms this is a corrected claim, not a duplicate, but the accompanying RARC will specify what additional documentation is needed — this may include operative notes, medical records, itemized statements, or prior authorization documentation. The claim is pended pending receipt of the required documentation. This differs from CR-1 in that the corrected claim was accepted but cannot be fully adjudicated without the additional information.",
+    "resolutionSteps": [
+      "Locate the accompanying Remittance Advice Remark Code (RARC) on the ERA/EOB to identify the specific additional information or documentation required.",
+      "Retrieve the required documentation from the EHR, practice management system, or prior payer records, ensuring it covers the date of service and the corrected claim details.",
+      "Submit the additional documentation electronically via the payer's provider portal, the clearinghouse attachment service (275 transaction), or by fax/mail with the claim control number or DCN for matching.",
+      "Track the documentation submission and follow up with the payer within 7–10 business days to confirm receipt and claim reprocessing.",
+      "If the payer denies the corrected claim after receiving the documentation, review the new denial reason and determine whether a further appeal or additional corrected claim is needed."
+    ],
+    "ehrNote": "Claim processed CR-2 — corrected claim accepted, additional documentation required; identified required docs per RARC, submitted via payer portal, and tracked for reprocessing.",
+    "preventativeAction": "Include all relevant documentation with the initial corrected claim submission and review the payer's documentation requirements before resubmission to prevent pends."
+  },
+  {
+    "id": "CR-3",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Corrected claim - the claim has been processed and is not a duplicate. The claim has been forwarded to another payer.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has processed the corrected claim and determined that it should be forwarded to another payer for adjudication. The CR (Correction) group code confirms this is a corrected claim, not a duplicate, but the payer has identified that another insurer is responsible for payment — this may be due to coordination of benefits, a change in the patient's primary payer, or the corrected claim revealing that the service falls under a different payer's coverage. The claim is being redirected rather than denied, and the provider should expect adjudication from the receiving payer.",
+    "resolutionSteps": [
+      "Verify the patient's current insurance coverage and coordination of benefits order via a 270/271 eligibility transaction to confirm which payer should be primary.",
+      "Determine whether the corrected claim revealed information (e.g., a different diagnosis, date, or service) that changed the payer responsibility.",
+      "Submit the corrected claim to the correct primary payer with all supporting documentation and the original claim reference.",
+      "If the original payer forwarded the claim, follow up with the receiving payer within 14–21 days to confirm they received the forwarded claim and are processing it.",
+      "If the receiving payer denies or does not acknowledge the forwarded claim, resubmit directly with a cover letter explaining the payer redirect and include the original payer's EOB showing the forward."
+    ],
+    "ehrNote": "Claim processed CR-3 — corrected claim forwarded to another payer; verified COB order, submitted to correct payer, and followed up with receiving payer for adjudication.",
+    "preventativeAction": "Verify coordination of benefits and primary payer responsibility before submitting corrected claims to prevent payer redirects and processing delays."
+  },
+  {
+    "id": "CR-4",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Corrected claim - the claim has been processed and is not a duplicate. The claim has been processed as a replacement claim.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has processed the corrected claim as a replacement claim, confirming it is not a duplicate. The CR (Correction) group code indicates the claim was submitted with frequency code 7 (replacement) and the payer has accepted it as a replacement for the original claim. The original claim is voided, and the replacement claim is adjudicated in its place. This is the expected outcome when a provider submits a corrected claim — the payer replaces the original adjudication with the new one, which may result in a different payment, denial, or adjustment. The provider should reconcile the replacement claim's adjudication against the original.",
+    "resolutionSteps": [
+      "Review the ERA/EOB for the replacement claim to confirm the original claim was voided and the replacement claim was adjudicated with the corrected information.",
+      "Reconcile the replacement claim's payment or adjustment against the original claim's adjudication to identify any payment recoupment, additional payment, or change in denial reason.",
+      "If the payer recouped the original payment and issued a new payment, post both transactions in the practice management system and verify the net financial impact.",
+      "If the replacement claim was denied with a new reason, follow the resolution steps for the new CARC and determine whether a further appeal or additional correction is needed.",
+      "If the payer did not void the original claim and processed both, contact the payer to request a reversal of the original claim to prevent duplicate payment issues."
+    ],
+    "ehrNote": "Claim processed CR-4 — replacement claim adjudicated; reconciled replacement against original, posted recoupment/new payment, and verified net financial impact.",
+    "preventativeAction": "Always include frequency code 7 and the original claim number on replacement claims, and reconcile replacement adjudications against original payments within 30 days to catch recoupment errors."
+  },
+  {
+    "id": "CR-5",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Corrected claim - the claim has been processed and is not a duplicate. The claim has been processed as an adjustment to a previously processed claim.",
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has processed the corrected claim as an adjustment to a previously processed claim, confirming it is not a duplicate. The CR (Correction) group code indicates the claim was submitted as a correction and the payer has adjusted the original adjudication rather than voiding and replacing it. This means the payer modified specific elements of the original claim (e.g., changed the allowed amount, added a modifier, corrected a diagnosis) while keeping the original claim framework intact. The adjustment may result in an additional payment, a recoupment, or a change in patient responsibility. The provider should reconcile the adjustment against the original adjudication to verify the financial impact.",
+    "resolutionSteps": [
+      "Review the ERA/EOB to identify the specific adjustments made to the original claim — changed allowed amount, modified patient responsibility, or added/removed modifiers.",
+      "Reconcile the adjusted adjudication against the original payment to determine whether an additional payment is due, a recoupment is being taken, or the patient balance has changed.",
+      "Post the adjustment in the practice management system, ensuring the original payment, the adjustment amount, and the new balance are all correctly reflected.",
+      "If the adjustment is incorrect — for example, the payer applied the wrong correction or miscalculated the adjustment — file a payment dispute with documentation of the original adjudication and the expected correction.",
+      "If the adjustment resulted in a patient balance change, update the patient statement and bill or refund the patient as appropriate."
+    ],
+    "ehrNote": "Claim processed CR-5 — adjustment to previously processed claim; reconciled adjustment against original, posted adjustment transaction, and updated patient balance.",
+    "preventativeAction": "Document the specific corrections requested on each corrected claim and reconcile adjustments against original adjudications within 30 days to identify payer processing errors."
   }
 ]

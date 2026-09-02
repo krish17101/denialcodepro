@@ -43,11 +43,11 @@ export function SiteFooter() {
               adjustment codes.
             </p>
             <a
-              href="mailto:contact@denialcodepro.com"
+              href="mailto:denialcodepro@gmail.com"
               className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-navy-700 hover:text-navy-900"
             >
               <Mail className="h-4 w-4" />
-              contact@denialcodepro.com
+              denialcodepro@gmail.com
             </a>
           </div>
 

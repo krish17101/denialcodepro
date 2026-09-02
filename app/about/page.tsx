@@ -69,7 +69,7 @@ export default function AboutPage() {
         </p>
         <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center">
           <a
-            href="mailto:contact@denialcodepro.com"
+            href="mailto:denialcodepro@gmail.com"
             className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-900"
           >
             <Mail className="h-4 w-4" />
