@@ -4,6 +4,10 @@ export type ClaimCode = {
   type: string;
   problem: string;
   solution: string;
+  rootCause?: string;
+  resolutionSteps?: string[];
+  ehrNote?: string;
+  preventativeAction?: string;
 };
 
 export const codes: ClaimCode[] = require('../data/full_codes.json');
