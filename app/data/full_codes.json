@@ -62,7 +62,17 @@
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "The procedure code/type of bill is inconsistent with the place of service.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Refer to CPT Code Set: -Verify Place of Service is allowed for the service(s) rendered"
+    "solution": "Refer to CPT Code Set: -Verify Place of Service is allowed for the service(s) rendered",
+    "rootCause": "The procedure code or type of bill billed is inconsistent with the place of service (POS) reported on the claim. Payers maintain lists of which CPT/HCPCS codes are payable in specific POS settings — for example, an inpatient-only procedure billed with POS 11 (office), or an office visit billed with POS 21 (inpatient hospital). The payer's editing logic cross-references the CPT code against the POS and denies when the combination is not permitted per CPT guidelines, Medicare NCD/LCD policies, or payer-specific POS rules referenced in the 835 Healthcare Policy Identification Segment.",
+    "resolutionSteps": [
+      "Review the denied line item against the CPT code set and the payer's published POS policy to determine whether the procedure is allowed in the billed POS.",
+      "Access the medical record to confirm the actual location where the service was rendered and whether the documentation supports the POS billed.",
+      "If the POS was entered incorrectly, submit a corrected claim with the accurate POS code that matches the service location and the CPT code requirements.",
+      "If the POS is correct but the CPT code is not payable in that setting, determine whether a different CPT code applies to the service as rendered in that location, or whether the service must be billed with a different POS.",
+      "If the denial appears erroneous — for example, the CPT code is explicitly allowed in the billed POS per the payer's own policy — file an appeal with the policy citation and the medical record supporting the service location."
+    ],
+    "ehrNote": "Claim denied CO-5 — procedure/POS inconsistency; verified service location in medical record, corrected POS or CPT code, and resubmitted corrected claim.",
+    "preventativeAction": "Maintain a payer-specific POS-to-CPT compatibility matrix in the practice management system and validate POS against the CPT code at the point of charge entry before claim submission."
   },
   {
     "id": "6",
@@ -90,14 +100,34 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "The diagnosis is inconsistent with the patient's age.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The diagnosis code reported on the claim is inconsistent with the patient's age. The payer's editing logic cross-references the ICD-10-CM diagnosis code against the patient's date of birth and denies claims where the diagnosis is clinically impossible for the patient's age group. Common examples include billing a diagnosis specific to a newborn (e.g., P00-P04) for an adult patient, or a diagnosis specific to advanced age (e.g., M81.0 age-related osteoporosis) for a pediatric patient. This typically results from selecting the wrong diagnosis from the EHR problem list, a data entry error, or an outdated patient demographic record.",
+    "resolutionSteps": [
+      "Verify the patient's date of birth in the practice management system against a government-issued ID or the insurance card to confirm the age on the claim is correct.",
+      "Review the medical record to confirm the actual diagnosis documented for the date of service and compare it against the ICD-10-CM code on the claim.",
+      "If the diagnosis code was entered incorrectly or the wrong diagnosis was selected from the problem list, correct the ICD-10-CM code to one that is clinically appropriate for the patient's age and the documented condition.",
+      "Resubmit the corrected claim with the accurate diagnosis code and the verified patient date of birth.",
+      "If the diagnosis is clinically valid for the patient's age but the payer's editing logic flagged it in error, file an appeal with the medical record supporting the diagnosis and a letter explaining the clinical appropriateness."
+    ],
+    "ehrNote": "Claim denied CO-9 — diagnosis/age inconsistency; verified patient DOB, corrected ICD-10-CM code to match documented diagnosis and age, and resubmitted corrected claim.",
+    "preventativeAction": "Configure the EHR to validate ICD-10-CM diagnosis codes against the patient's age at the point of charge entry and flag age-incompatible diagnoses for coder review before claim release."
   },
   {
     "id": "10",
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "The diagnosis is inconsistent with the patient's gender.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The diagnosis code reported on the claim is inconsistent with the patient's gender. The payer's editing logic cross-references the ICD-10-CM diagnosis code against the patient's gender on file and denies claims where the diagnosis is clinically impossible for the reported gender. Common examples include billing a prostate-related diagnosis (e.g., N40.0 benign prostatic hyperplasia) for a female patient, or an ovarian diagnosis (e.g., N83.0 ovarian cyst) for a male patient. This typically results from a data entry error, an incorrect patient gender on the demographic record, or a wrong diagnosis selected from the problem list.",
+    "resolutionSteps": [
+      "Verify the patient's gender in the practice management system against the insurance card and a government-issued ID to confirm the gender on the claim is correct.",
+      "Review the medical record to confirm the actual diagnosis documented for the date of service and compare it against the ICD-10-CM code on the claim.",
+      "If the diagnosis code was entered incorrectly or the wrong diagnosis was selected from the problem list, correct the ICD-10-CM code to one that is clinically appropriate for the patient's gender and the documented condition.",
+      "If the patient's gender was incorrectly recorded in the demographic record, update the patient's gender in the practice management system and resubmit the corrected claim.",
+      "If the diagnosis is clinically valid but the payer's editing logic flagged it in error (e.g., gender-specific diagnosis in a transgender patient), file an appeal with the medical record and a letter explaining the clinical context."
+    ],
+    "ehrNote": "Claim denied CO-10 — diagnosis/gender inconsistency; verified patient gender, corrected ICD-10-CM code or demographic record, and resubmitted corrected claim.",
+    "preventativeAction": "Configure the EHR to validate gender-specific ICD-10-CM diagnosis codes against the patient's gender at the point of charge entry and flag mismatches for coder review before claim release."
   },
   {
     "id": "11",
@@ -176,7 +206,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "This is a work-related injury/illness and thus the liability of the Worker's Compensation Carrier.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer has determined that the injury or illness is work-related and therefore the liability falls under Workers' Compensation rather than the health insurance plan. When a patient presents with an injury that occurred at work or an illness caused by workplace conditions, the payer denies the medical claim and directs the provider to bill the Workers' Compensation carrier. This denial is based on the patient's history, the diagnosis (e.g., occupational injury codes S00-T88 with external cause codes Y92.0 for industrial setting), or information the payer has on file indicating a Workers' Compensation claim exists for this condition.",
+    "resolutionSteps": [
+      "Review the medical record to confirm whether the injury or illness is documented as work-related and whether the patient indicated a Workers' Compensation claim at the time of service.",
+      "Obtain the Workers' Compensation carrier information, claim number, and adjuster contact from the patient or employer.",
+      "Resubmit the claim to the Workers' Compensation carrier with the WC claim number, employer information, and all clinical documentation related to the work-related injury.",
+      "If the injury is not work-related but the payer denied the claim based on incorrect information, file an appeal with documentation from the medical record showing the injury was not work-related and a patient statement confirming the circumstances.",
+      "If the patient disputes the work-related designation, coordinate with the patient and employer to resolve the Workers' Compensation claim status before rebilling the health insurance plan."
+    ],
+    "ehrNote": "Claim denied 19 — work-related injury/illness; verified work-related status in medical record, obtained WC carrier info, and resubmitted claim to Workers' Compensation.",
+    "preventativeAction": "Document the cause of injury and work-relatedness at every visit for injury-related diagnoses and verify Workers' Compensation coverage before billing the health insurance plan."
   },
   {
     "id": "20",
@@ -214,28 +254,68 @@
     "group": "General Adjustment",
     "type": "Adjustment Code",
     "problem": "The impact of prior payer(s) adjudication including payments and/or adjustments.   (Use only with Group Code OA)",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The adjustment reflects the impact of prior payer adjudication, including payments and/or adjustments already made by another payer. This is used with Group Code OA (Other Adjustment) when coordination of benefits applies — a primary payer has already adjudicated the claim, and the secondary payer is adjusting its payment to account for what the primary has already paid or adjusted. The adjustment is not a denial but a coordination calculation. Common scenarios include Medicare as secondary payer, dual commercial coverage, or workers' compensation coordination. The payer ensures combined payments from all payers do not exceed the total allowed amount.",
+    "resolutionSteps": [
+      "Verify the coordination of benefits order and confirm that the primary payer has already adjudicated the claim; obtain the primary payer's EOB/ERA for reference.",
+      "Cross-check the primary payer's payment and adjustment amounts against the secondary payer's adjustment to ensure the combined total does not exceed the allowed amount and no duplicate payments are being made.",
+      "If the secondary payer's adjustment appears incorrect — for example, it does not account for the primary's payment or applies the wrong COB calculation — file a claim reconsideration with the primary EOB attached.",
+      "Post the adjustment in the practice management system, ensuring the patient balance reflects only the remaining coinsurance, deductible, or copay after both payers have adjudicated.",
+      "If the adjustment results in a zero balance and the claim is fully satisfied, close the account; if a patient balance remains, bill the patient with a statement showing both payers' adjudications."
+    ],
+    "ehrNote": "Claim adjusted 23 — prior payer adjudication impact (OA); verified COB calculation against primary EOB, posted secondary adjustment, and reconciled patient balance.",
+    "preventativeAction": "Always submit primary EOBs with secondary claims and maintain accurate COB records in the practice management system to prevent incorrect coordination adjustments."
   },
   {
     "id": "24",
     "group": "General Adjustment",
     "type": "Adjustment Code",
     "problem": "Charges are covered under a capitation agreement/managed care plan.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The charges are covered under a capitation agreement or managed care plan. In a capitated arrangement, the provider receives a fixed monthly payment per member (per member per month, PMPM) regardless of the services rendered, and most services are included in the capitation payment. The payer denies the individual claim because the service is already covered under the capitation agreement — the provider cannot bill the payer on a fee-for-service basis for services included in the capitated contract. This is a contractual adjustment, not a denial for medical necessity or eligibility.",
+    "resolutionSteps": [
+      "Review the provider's managed care contract or capitation agreement to confirm whether the specific service billed is included in the capitated services list.",
+      "Verify that the patient is enrolled in the capitated plan and that the provider has an active capitation contract with the payer for the date of service.",
+      "If the service is included in the capitation agreement, write off the charge as a capitated adjustment — the provider has already been paid through the PMPM capitation payment.",
+      "If the service is not included in the capitation list (e.g., a carve-out service like behavioral health or certain procedures), file a claim reconsideration with the contract citation showing the service is separately billable.",
+      "If the patient was incorrectly assigned to the capitated plan or the capitation was not in effect for the DOS, contact the payer's provider relations to correct the enrollment and resubmit the claim."
+    ],
+    "ehrNote": "Claim adjusted 24 — charges covered under capitation agreement; verified capitated services list, posted capitation write-off, or filed reconsideration for carve-out services.",
+    "preventativeAction": "Maintain a current capitated services list for each managed care contract and train billing staff to identify carve-out services that are separately billable outside the capitation payment."
   },
   {
     "id": "CO-26",
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "Expenses incurred prior to coverage.",
-    "solution": "-Verify the Episode is open and active for the DOS billed -Verify Client's eligibility for DOS -Verify the P-AUTH reported is for the correct program, guarantor, and service  -Verify the P-AUTH is active for the DOS billed"
+    "solution": "-Verify the Episode is open and active for the DOS billed -Verify Client's eligibility for DOS -Verify the P-AUTH reported is for the correct program, guarantor, and service  -Verify the P-AUTH is active for the DOS billed",
+    "rootCause": "The expenses or services were incurred prior to the patient's coverage effective date. The payer's eligibility system compares the date of service on the claim to the patient's coverage effective date and denies the claim if the service was rendered before the patient was enrolled in the plan. This commonly occurs when a patient receives services during a coverage transition period, when there is a lag between enrollment and coverage activation, or when the coverage effective date in the payer's system is incorrect. The claim is denied as a contractual obligation — the payer is not responsible for services rendered before the patient was covered.",
+    "resolutionSteps": [
+      "Verify the patient's coverage effective date via a 270/271 eligibility transaction or the payer portal and compare it to the date of service on the claim.",
+      "If the coverage effective date in the payer's system is incorrect (e.g., the patient enrolled before the date of service but the system shows a later date), contact the payer's provider relations or member services to correct the enrollment record and resubmit the claim.",
+      "If the coverage was genuinely not active on the date of service, determine whether the patient had prior coverage from another payer and submit the claim to that payer.",
+      "If the patient had no coverage on the date of service, bill the patient directly or offer financial assistance/charity care options.",
+      "If the patient disputes the coverage effective date, obtain a coverage letter from the payer confirming the correct enrollment date and file a claim reconsideration with the documentation."
+    ],
+    "ehrNote": "Claim denied CO-26 — expenses incurred prior to coverage; verified coverage effective date, corrected enrollment if applicable, or billed patient/billed prior payer.",
+    "preventativeAction": "Verify coverage effective dates during pre-visit eligibility checks and flag services rendered before the effective date for patient financial counseling before claim submission."
   },
   {
     "id": "CO-27",
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "Expenses incurred after coverage terminated.",
-    "solution": "-Verify the Episode is open and active for the DOS billed -Verify Client's eligibility for DOS -Verify the P-AUTH reported is for the correct program, guarantor, and service  -Verify the P-AUTH is active for the DOS billed"
+    "solution": "-Verify the Episode is open and active for the DOS billed -Verify Client's eligibility for DOS -Verify the P-AUTH reported is for the correct program, guarantor, and service  -Verify the P-AUTH is active for the DOS billed",
+    "rootCause": "The expenses or services were incurred after the patient's coverage terminated. The payer's eligibility system compares the date of service on the claim to the patient's coverage termination date and denies the claim if the service was rendered after the coverage ended. This commonly occurs when a patient loses coverage due to job change, plan cancellation, or aging out of a dependent plan, but continues to receive services using the old insurance card. The claim is denied as a contractual obligation — the payer is not responsible for services rendered after the coverage period ended.",
+    "resolutionSteps": [
+      "Verify the patient's coverage termination date via a 270/271 eligibility transaction or the payer portal and compare it to the date of service on the claim.",
+      "If the coverage termination date in the payer's system is incorrect (e.g., the patient's coverage was extended but the system shows an earlier termination), contact the payer to correct the enrollment record and resubmit the claim.",
+      "If the coverage was genuinely terminated before the date of service, determine whether the patient has new coverage from another payer and submit the claim to that payer.",
+      "If the patient has COBRA or continuation coverage, verify the COBRA premium payment status and resubmit the claim with COBRA documentation.",
+      "If the patient has no current coverage, bill the patient directly or offer financial assistance/charity care options."
+    ],
+    "ehrNote": "Claim denied CO-27 — expenses incurred after coverage terminated; verified termination date, identified new coverage or COBRA, or billed patient directly.",
+    "preventativeAction": "Verify active coverage status at every visit via real-time eligibility checks and inform patients of coverage termination before rendering non-emergency services."
   },
   {
     "id": "CO-29",
@@ -259,7 +339,17 @@
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "Patient cannot be identified as our insured.",
-    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify there is an open episode for the correct program -Verify client's financial eligibility demographics:        Name        DOB        Address        Coverage effective date        Coverage end date        CIN"
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify there is an open episode for the correct program -Verify client's financial eligibility demographics:        Name        DOB        Address        Coverage effective date        Coverage end date        CIN",
+    "rootCause": "The patient cannot be identified as the payer's insured member. The payer's eligibility system cannot match the patient's name, member ID, date of birth, or other identifying information on the claim to an enrolled member in their database. This typically results from an incorrect member ID, a misspelled patient name, a name change not updated in the payer system, a transposed digit in the ID number, or the patient is not actually enrolled in this payer's plan. This is a demographic/eligibility mismatch, not a clinical denial.",
+    "resolutionSteps": [
+      "Verify the patient's member ID, name, and date of birth against the insurance card and a government-issued ID to ensure the claim was submitted with the correct demographic information.",
+      "Run a 270/271 eligibility transaction with the exact member ID and name to confirm the patient is enrolled and identify any demographic discrepancies in the payer's system.",
+      "If the member ID or name was entered incorrectly on the claim, correct the information in the practice management system and resubmit the claim with the accurate member ID and patient demographics.",
+      "If the patient's name changed (e.g., marriage, divorce), contact the payer to update the enrollment record and resubmit once the payer confirms the update.",
+      "If the patient is not enrolled in this payer's plan, determine the correct insurance and resubmit to the appropriate payer."
+    ],
+    "ehrNote": "Claim denied CO-31 — patient not identified as insured; verified demographics against insurance card, corrected member ID or name, and resubmitted claim.",
+    "preventativeAction": "Scan insurance cards at check-in and run real-time 270/271 eligibility checks to validate the member ID and patient demographics before claim submission."
   },
   {
     "id": "32",
@@ -287,14 +377,34 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Lifetime benefit maximum has been reached.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The patient has reached the lifetime benefit maximum under their insurance plan. Some plans impose a lifetime cap on certain benefits — most commonly mental health, substance abuse, rehabilitation, or transplant services — after which no further benefits are payable for that category. The payer tracks accumulated payments toward the lifetime maximum and denies claims once the cap is reached. Note that the Affordable Care Act (ACA) eliminated lifetime limits on essential health benefits for most plans, but grandfathered plans, certain non-essential benefits, and self-funded plans may still have lifetime caps in effect.",
+    "resolutionSteps": [
+      "Verify the patient's lifetime benefit maximum status by contacting the payer's provider relations or checking the payer portal for the accumulated benefit usage and the remaining balance.",
+      "Confirm whether the lifetime maximum applies to the specific service billed and whether the plan is subject to ACA essential health benefit requirements that prohibit lifetime limits.",
+      "If the lifetime maximum has been reached and the plan is ACA-compliant for essential health benefits, file an appeal citing the ACA prohibition on lifetime limits for essential health benefits.",
+      "If the lifetime maximum is valid (e.g., non-essential benefit, grandfathered plan), determine whether the patient has secondary insurance that may cover the service and submit the claim with the primary EOB.",
+      "If no other coverage is available, bill the patient directly or offer financial assistance/charity care options for the non-covered service."
+    ],
+    "ehrNote": "Claim denied 35 — lifetime benefit maximum reached; verified benefit cap status, filed appeal if ACA-protected, or billed patient/secondary payer.",
+    "preventativeAction": "Verify lifetime benefit maximum status during pre-visit eligibility checks for services commonly subject to caps and inform patients of remaining benefits before service delivery."
   },
   {
     "id": "39",
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Services denied at the time authorization/pre-certification was requested.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The services were denied at the time authorization or pre-certification was requested. This means the payer reviewed the proposed service before it was rendered and determined it did not meet their coverage criteria — the denial occurred during the pre-service authorization process, not during post-service claim adjudication. The payer's clinical review team evaluated the request against medical necessity criteria, coverage policies, or plan benefits and denied the authorization before the service was performed. This is a pre-service denial, which means the provider had notice of non-coverage before rendering the service.",
+    "resolutionSteps": [
+      "Obtain the payer's authorization denial letter or portal notification to understand the specific reason the authorization was denied (medical necessity, non-covered benefit, or plan exclusion).",
+      "Review the payer's coverage policy or medical necessity criteria for the denied service to identify what documentation or criteria were not met.",
+      "If the service was not yet rendered, inform the patient of the authorization denial and discuss alternative treatment options or the option to proceed as a self-pay service with a signed financial responsibility form.",
+      "If the service was already rendered, file a formal appeal with a detailed letter of medical necessity, the complete clinical documentation, and references to the payer's policy criteria that are met.",
+      "If the appeal is denied, escalate to the second level of appeal (independent review organization for Medicare, external review for commercial) with peer-reviewed literature supporting the medical necessity of the service."
+    ],
+    "ehrNote": "Claim denied 39 — services denied at authorization request; reviewed denial reason, filed appeal with medical necessity documentation, or informed patient of self-pay option.",
+    "preventativeAction": "Implement a pre-authorization tracking system that flags denied authorizations before service delivery and obtain signed ABNs for services that proceed despite authorization denial."
   },
   {
     "id": "40",
@@ -332,7 +442,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "This is a non-covered service because it is a routine/preventive exam or a diagnostic/screening procedure done in conjunction with a routine/preventive exam.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The service was denied because it is a routine/preventive exam or a diagnostic/screening procedure performed in conjunction with a routine/preventive exam, and the patient's plan does not cover routine preventive services. Some plans — particularly grandfathered plans, short-term plans, or certain HMO plans — exclude routine preventive exams from covered benefits. When a preventive service is billed, the payer denies it as non-covered. If a diagnostic or screening procedure was performed during the same visit as a routine exam, the payer may bundle the diagnostic service with the non-covered routine exam and deny both.",
+    "resolutionSteps": [
+      "Review the medical record to determine whether the visit was a routine/preventive exam or a problem-oriented visit with a specific chief complaint and medical necessity.",
+      "If the visit was problem-oriented (not routine), correct the E&M code and diagnosis codes to reflect the medical necessity of the visit and resubmit the claim with the supporting documentation.",
+      "If the visit was routine/preventive, verify whether the patient's plan covers preventive services under the ACA essential health benefits; if the plan is ACA-compliant, file an appeal citing the ACA preventive services coverage requirement.",
+      "If the plan genuinely excludes routine preventive services, determine whether the patient signed a financial responsibility form or ABN acknowledging non-coverage; if so, bill the patient.",
+      "If a diagnostic procedure was performed during the routine exam and was separately medically necessary, appeal with documentation supporting the diagnostic (non-routine) nature of the procedure and the medical necessity for it."
+    ],
+    "ehrNote": "Claim denied 49 — routine/preventive exam non-covered; verified visit type in medical record, corrected to problem-oriented if applicable, or billed patient with ABN.",
+    "preventativeAction": "Verify preventive service coverage during pre-visit eligibility checks and obtain ABNs for routine exams on plans that exclude preventive benefits before service delivery."
   },
   {
     "id": "50",
@@ -377,7 +497,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Procedure/treatment/drug is deemed experimental/investigational by the payer.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The procedure, treatment, or drug was denied because the payer deemed it experimental or investigational. Payers maintain clinical policies and formularies that classify services as experimental, investigational, or not yet proven effective based on clinical evidence, FDA approval status, and professional society guidelines. Common examples include off-label drug use, emerging surgical techniques, clinical trial interventions, and high-cost specialty drugs not yet on the payer's formulary. The payer applies these policies to deny services that lack sufficient evidence of efficacy, even if the provider believes the service is medically necessary.",
+    "resolutionSteps": [
+      "Obtain the payer's clinical policy or formulary document for the denied service to understand the specific criteria used to classify it as experimental or investigational.",
+      "Gather peer-reviewed clinical literature, professional society guidelines, and FDA documentation that support the efficacy and medical necessity of the service for the patient's specific condition.",
+      "File a formal appeal with a detailed letter of medical necessity, the clinical evidence, and references to the payer's own policy criteria that may be met with additional documentation.",
+      "If the service is part of an FDA-approved clinical trial, include the trial registration and protocol documentation to support the appeal.",
+      "If the appeal is denied, escalate to external review (independent review organization) where an independent clinical reviewer assesses the medical necessity and experimental designation; many states require payers to honor external review decisions."
+    ],
+    "ehrNote": "Claim denied 55 — experimental/investigational service; reviewed payer clinical policy, gathered supporting literature, and filed appeal with medical necessity documentation.",
+    "preventativeAction": "Verify coverage status for experimental or emerging treatments before service delivery and obtain pre-authorization with clinical evidence packages for services likely to be classified as investigational."
   },
   {
     "id": "56",
@@ -391,14 +521,34 @@
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "Treatment was deemed by the payer to have been rendered in an inappropriate or invalid place of service.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) -Verify the service rendered is covered under the P-AUTH being reported -Verify Place of Service is allowed for the service(s) rendered  -If service code is not allowed for the POS, this is a valid denial"
+    "solution": "Refer to CPT Code Set and P-Auth File: -Verify the P-AUTH reported is for the correct program, guarantor (Medi-Cal or County of Santa Clara), and service -Verify the effective date for the P-AUTH (FY of P-AUTH should be effective for DOS billed) -Verify the service rendered is covered under the P-AUTH being reported -Verify Place of Service is allowed for the service(s) rendered  -If service code is not allowed for the POS, this is a valid denial",
+    "rootCause": "The payer determined that the treatment was rendered in an inappropriate or invalid place of service. Unlike CO-5 (where the CPT code is incompatible with the POS), CO-58 focuses on the clinical appropriateness of the treatment setting — for example, a service that should have been performed in an outpatient hospital was performed in an office setting, or a service requiring 24-hour monitoring was performed in an ambulatory setting. The payer applies clinical policies and coverage guidelines to determine the appropriate setting for each procedure and denies claims where the service was rendered in a setting that does not meet the clinical requirements for safe and effective care.",
+    "resolutionSteps": [
+      "Review the payer's coverage policy for the denied CPT code to determine the clinically appropriate place of service settings the payer allows.",
+      "Access the medical record to confirm the actual setting where the service was rendered and whether the documentation supports the medical necessity of the setting.",
+      "If the POS was entered incorrectly, submit a corrected claim with the accurate POS code that matches the service location and the payer's allowed settings.",
+      "If the service was genuinely rendered in a non-standard setting but was medically necessary (e.g., emergent circumstances required an alternative setting), file an appeal with clinical documentation justifying the setting choice.",
+      "If the payer's policy does not allow the billed setting under any circumstances, determine whether the service can be rebilled with a different POS or whether the denial is valid and the balance should be written off."
+    ],
+    "ehrNote": "Claim denied CO-58 — treatment in inappropriate place of service; verified payer POS policy, corrected POS if applicable, or appealed with clinical justification for setting.",
+    "preventativeAction": "Maintain a payer-specific list of approved place-of-service settings for high-cost or setting-sensitive procedures and verify the POS against the payer policy before claim submission."
   },
   {
     "id": "59",
     "group": "General Adjustment",
     "type": "Adjustment Code",
     "problem": "Processed based on multiple or concurrent procedure rules.  (For example multiple surgery or diagnostic imaging, concurrent anesthesia.)  Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The claim was processed based on multiple or concurrent procedure rules. This is an adjustment, not a denial — the payer applied bundling or multiple-procedure payment rules to the claim. Common scenarios include multiple surgery rules (where the most complex procedure is paid at 100% and subsequent procedures are paid at 50%), concurrent anesthesia rules, or diagnostic imaging payment rules. The payer's adjudication system applies National Correct Coding Initiative (NCCI) edits or payer-specific multiple-procedure logic to reduce payment for secondary and subsequent procedures on the same claim or the same date of service.",
+    "resolutionSteps": [
+      "Review the ERA/EOB to understand which multiple-procedure rule was applied (multiple surgery, concurrent anesthesia, diagnostic imaging) and which procedures were affected by the payment reduction.",
+      "Verify that the procedures were correctly bundled per CPT guidelines, NCCI edits, or the payer's multiple-procedure policy; if the bundling is correct, post the adjusted payment.",
+      "If the procedures were distinct and separately reportable (e.g., separate anatomic sites, separate encounters, or distinct services), append the appropriate modifier (59, XE, XS, XP, XU) and submit a corrected claim or appeal.",
+      "Cross-check the multiple-procedure reduction calculation against the payer's published payment rules to ensure the correct percentage was applied to the correct procedures.",
+      "If the reduction was applied in error — for example, the procedures were on different dates of service or different anatomic sites — file a payment dispute with the supporting documentation."
+    ],
+    "ehrNote": "Claim adjusted 59 — multiple/concurrent procedure rules applied; verified bundling per NCCI/CPT guidelines, posted adjusted payment, or appealed with modifier if services were distinct.",
+    "preventativeAction": "Run NCCI and multiple-procedure edit checks in the practice management system before claim submission and train coders on multiple surgery, concurrent anesthesia, and diagnostic imaging payment rules."
   },
   {
     "id": "60",
@@ -475,7 +625,17 @@
     "group": "General Adjustment",
     "type": "Adjustment Code",
     "problem": "Professional fees removed from charges.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The professional fees were removed from the charges on the claim. This adjustment occurs when the payer determines that the professional component of a service is not separately payable — for example, when a global service was billed but the payer only pays the technical component, or when the professional fees are included in a facility payment arrangement. This is common with radiology, pathology, and anesthesia services where the professional and technical components are billed separately (with modifiers 26 and TC), and the payer adjusts one component out based on the billing arrangement or contract terms.",
+    "resolutionSteps": [
+      "Review the ERA/EOB to confirm which professional fees were removed and whether the payer paid the technical component or the global service.",
+      "Verify the provider's billing arrangement with the payer — if the provider is contracted for the technical component only, the professional fee adjustment is correct and should be posted as a contractual write-off.",
+      "If the professional component was billed separately with modifier 26 and the payer incorrectly removed it, file a claim reconsideration citing the modifier and the separate professional component billing.",
+      "If the professional fees were removed because the service was billed as a global code when it should have been split, resubmit with the correct CPT code and modifier (26 for professional, TC for technical).",
+      "If the payer removed the professional fees due to a credentialing or enrollment issue with the rendering provider, verify the provider's enrollment status with the payer and resubmit once the enrollment is corrected."
+    ],
+    "ehrNote": "Claim adjusted 89 — professional fees removed; verified billing arrangement and provider enrollment, posted write-off or filed reconsideration for incorrectly removed professional component.",
+    "preventativeAction": "Verify provider enrollment status for both professional and technical components with each payer and ensure claims are billed with the correct modifiers (26/TC) based on the contracted arrangement."
   },
   {
     "id": "90",
@@ -638,7 +798,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Service not furnished directly to the patient and/or not documented.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The service was not furnished directly to the patient and/or was not documented in the medical record. The payer denied the claim because the documentation does not support that the service was actually provided to the patient — for example, a service billed for a patient who was not present, a service rendered to a non-patient (e.g., a family member), or a service that was ordered but not performed. The payer may have conducted a pre-payment or post-payment audit and found insufficient documentation to verify the service was furnished. This is a documentation and medical necessity denial — the provider must prove the service was rendered directly to the patient.",
+    "resolutionSteps": [
+      "Review the medical record thoroughly to confirm the service was documented as furnished directly to the patient on the date of service billed.",
+      "If the documentation exists but was not submitted with the claim, submit the supporting documentation (office note, operative note, or treatment note) via the payer portal or 275 attachment transaction.",
+      "If the documentation is insufficient — for example, the note does not mention the patient by name, does not describe the service rendered, or lacks a provider signature — obtain an addendum from the rendering provider clarifying the service.",
+      "File a formal appeal with the complete medical record, a letter explaining the service was furnished directly to the patient, and any additional documentation that supports the encounter.",
+      "If the service was not actually rendered to the patient (e.g., a billing error or a service ordered but not performed), withdraw the claim and refund any payment received."
+    ],
+    "ehrNote": "Claim denied 112 — service not furnished to patient or not documented; reviewed medical record, submitted supporting documentation, or filed appeal with complete encounter notes.",
+    "preventativeAction": "Ensure all clinical documentation includes the patient's name, the date of service, a description of the service rendered, and the provider's signature, and conduct periodic documentation audits to verify claim supportability."
   },
   {
     "id": "114",
@@ -680,7 +850,17 @@
     "group": "General Adjustment",
     "type": "Denial Code - Submit only if all the units are over the limit",
     "problem": "Benefit maximum for this time period or occurrence has been reached.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The benefit maximum for this time period or occurrence has been reached. Unlike a lifetime maximum (CO-35), this is a time-limited or occurrence-limited cap — for example, a plan may limit physical therapy visits to 20 per year, chiropractic visits to 12 per year, or ambulance trips to a certain number per quarter. Once the limit is reached for the specified time period, subsequent claims are denied until the period resets. The payer tracks accumulated usage and denies claims that exceed the benefit limit. This is a plan benefit limitation, not a medical necessity denial.",
+    "resolutionSteps": [
+      "Verify the patient's benefit maximum for the specific service category and time period by contacting the payer or checking the payer portal for accumulated usage and the remaining balance.",
+      "Confirm the benefit limit applies to the specific CPT/HCPCS code billed and that the accumulated usage count is accurate.",
+      "If the benefit maximum has been reached and the limit is valid, inform the patient of the benefit limitation and determine whether the service can be billed to the patient directly with a signed ABN.",
+      "If the patient has secondary insurance that covers services beyond the primary benefit limit, submit the claim to the secondary payer with the primary EOB showing the benefit maximum denial.",
+      "If the benefit limit appears incorrect — for example, the payer's usage count includes claims that were denied for other reasons — file a claim reconsideration with documentation of the actual covered service count."
+    ],
+    "ehrNote": "Claim denied 119 — benefit maximum for time period reached; verified benefit limit and usage count, billed patient with ABN, or submitted to secondary payer with primary EOB.",
+    "preventativeAction": "Track benefit-limited service usage (PT, chiropractic, ambulance, etc.) in the practice management system and inform patients when they are approaching their benefit cap before scheduling additional visits."
   },
   {
     "id": "121",
@@ -757,7 +937,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Failure to follow prior payer's coverage rules.   (Use only with Group Code OA)",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The claim was denied because the provider failed to follow the prior payer's coverage rules. This is used exclusively with Group Code OA (Other Adjustment) and occurs in coordination of benefits scenarios where the primary payer had specific coverage rules — such as a required referral, prior authorization, or network restriction — that were not followed. The secondary payer denies the claim because the primary payer's rules were not adhered to, making the service non-covered under the primary plan. The secondary payer is not responsible for a service that the primary payer would have covered had its rules been followed.",
+    "resolutionSteps": [
+      "Obtain the primary payer's EOB/ERA and the accompanying RARC to identify which specific coverage rule was not followed (e.g., missing referral, missing authorization, out-of-network service).",
+      "Verify whether the required referral, authorization, or network restriction was actually in place for the date of service by checking the primary payer's portal or contacting the primary payer directly.",
+      "If the coverage rule was followed but the primary payer incorrectly denied the claim, file an appeal with the primary payer to overturn the denial; once the primary pays, resubmit to the secondary with the corrected primary EOB.",
+      "If the coverage rule was genuinely not followed, determine whether the primary payer allows retro-active referrals or authorizations and request one if possible.",
+      "If the primary payer will not overturn the denial and the secondary payer denies based on the primary's rules, bill the patient or write off the balance as a provider adjustment depending on the plan provisions."
+    ],
+    "ehrNote": "Claim denied 136 — failure to follow prior payer coverage rules (OA); identified unmet primary requirement, appealed with primary payer, or requested retro-referral/authorization.",
+    "preventativeAction": "Verify primary payer coverage rules (referrals, authorizations, network status) before rendering services and track primary payer requirements in the practice management system for COB patients."
   },
   {
     "id": "137",
@@ -816,7 +1006,17 @@
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "Diagnosis was invalid for the date(s) of service reported.",
-    "solution": "-Verify the Dx is supported -Verify the Dx is effective for the DOS of the claim  -If corrections can be made to the Dx, correct Dx and resubmit claim"
+    "solution": "-Verify the Dx is supported -Verify the Dx is effective for the DOS of the claim  -If corrections can be made to the Dx, correct Dx and resubmit claim",
+    "rootCause": "The diagnosis code reported on the claim was invalid for the date(s) of service billed. This occurs when the ICD-10-CM diagnosis code was not effective on the date of service — for example, using a diagnosis code that was added in an ICD-10-CM update after the date of service, or using a code that was deleted or revised before the date of service. The payer's editing system validates each diagnosis code against the ICD-10-CM effective dates and denies claims where the code was not valid on the service date. This typically results from using outdated code books, not updating the EHR code set, or coding from a problem list that contains expired codes.",
+    "resolutionSteps": [
+      "Verify the effective date of the ICD-10-CM diagnosis code on the claim against the current ICD-10-CM code set and the date of service to determine whether the code was valid on that date.",
+      "Review the medical record to confirm the actual diagnosis documented for the date of service and identify the correct ICD-10-CM code that was effective on that date.",
+      "If the diagnosis code was not valid for the DOS, correct the code to one that was effective on the date of service and resubmit the corrected claim.",
+      "If the diagnosis code was valid for the DOS but the payer's editing system incorrectly flagged it, file an appeal with the ICD-10-CM effective date documentation and the medical record supporting the diagnosis.",
+      "Update the EHR code set to the current ICD-10-CM version to prevent future use of expired or not-yet-effective codes."
+    ],
+    "ehrNote": "Claim denied CO-146 — diagnosis invalid for DOS; verified ICD-10-CM effective date, corrected to valid code for the service date, and resubmitted corrected claim.",
+    "preventativeAction": "Update the EHR ICD-10-CM code set annually with the latest CDC updates and run a pre-submission validation check to flag diagnosis codes that are not effective on the date of service."
   },
   {
     "id": "147",
@@ -844,7 +1044,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Payer deems the information submitted does not support this level of service.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The payer deems the information submitted on the claim does not support the level of service billed. This is similar to CO-151 but is used as a denial rather than an adjustment — the payer has reviewed the documentation (either pre-payment or post-payment) and determined that the billed E&M level or procedure code is not supported by the documentation. Common examples include billing a 99214 (level 4 established patient) when the documentation supports only a 99213 (level 3), or billing a comprehensive procedure code when the documentation supports only a limited code. The payer may downcode the service or deny it entirely.",
+    "resolutionSteps": [
+      "Obtain the payer's review findings or the RARC that explains why the submitted documentation does not support the billed level of service.",
+      "Review the medical record against the documentation guidelines for the billed code (1995/1997 E&M guidelines, MDM table, or CPT code-specific documentation requirements) to assess whether the documentation supports the billed level.",
+      "If the documentation supports the original level, file a formal appeal with the complete medical record, a coding rationale letter, and references to the applicable documentation guidelines.",
+      "If the documentation does not support the original level, accept the payer's determination, post the adjusted payment if one was made, and educate the provider on documentation requirements to prevent future downcoding.",
+      "If the payer denied the claim entirely rather than downcoding it, determine whether a corrected claim with a lower-level code is appropriate or whether the appeal should proceed with the original code."
+    ],
+    "ehrNote": "Claim denied 150 — documentation does not support service level; reviewed against E&M/CPT guidelines, appealed if supported, or accepted downcode and educated provider.",
+    "preventativeAction": "Conduct quarterly internal E&M coding audits using certified coders, provide documentation feedback to providers, and implement EHR-based coding calculators that suggest the appropriate level based on documented MDM."
   },
   {
     "id": "151",
@@ -952,7 +1162,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "This (these) diagnosis(es) is (are) not covered.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The diagnosis code(s) reported on the claim is not covered under the patient's benefit plan. Unlike CO-11 (where the diagnosis is inconsistent with the procedure), CO-167 means the diagnosis itself is excluded from coverage — for example, a plan that excludes coverage for certain mental health diagnoses, cosmetic-related conditions, or fertility-related diagnoses. The payer's coverage policy cross-references the ICD-10-CM diagnosis against a list of non-covered diagnoses for the plan and denies the claim when the diagnosis appears on the exclusion list. This is a plan benefit limitation, not a coding error.",
+    "resolutionSteps": [
+      "Obtain the payer's coverage policy or benefit plan document to identify the list of non-covered diagnoses and confirm whether the billed diagnosis is excluded.",
+      "Review the medical record to confirm the actual diagnosis documented for the date of service and determine whether a different, covered diagnosis code accurately represents the patient's condition.",
+      "If a different covered diagnosis accurately reflects the documented condition, correct the diagnosis code and resubmit the claim.",
+      "If the diagnosis is correctly coded but the plan excludes it from coverage, determine whether the patient signed an ABN or financial responsibility form; if so, bill the patient for the non-covered service.",
+      "If the diagnosis should be covered based on the plan documents or the payer's own coverage policy, file an appeal with the benefit plan citation and the medical record supporting the diagnosis."
+    ],
+    "ehrNote": "Claim denied 167 — diagnosis not covered under plan; verified plan exclusion list, corrected diagnosis if applicable, or billed patient with ABN for non-covered diagnosis.",
+    "preventativeAction": "Maintain a list of commonly excluded diagnoses by payer and verify diagnosis coverage during pre-visit eligibility checks for services likely to involve excluded conditions."
   },
   {
     "id": "169",
@@ -966,7 +1186,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Payment is denied when performed/billed by this type of provider.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "Payment is denied because the service was performed or billed by a type of provider that is not eligible to perform or bill for the service. The payer's editing system cross-references the CPT/HCPCS code against the provider's taxonomy code (specialty) or provider type and denies the claim when the provider is not credentialed or contracted to perform that service. Common examples include a primary care physician billing a surgical procedure, a non-physician provider billing a service outside their scope of practice, or a facility billing a professional service that only an individual provider can bill. This is a provider eligibility/scope-of-practice denial.",
+    "resolutionSteps": [
+      "Verify the rendering provider's taxonomy code, specialty, and scope of practice against the CPT/HCPCS code billed to determine whether the provider is eligible to perform and bill the service.",
+      "Check the provider's credentialing and enrollment status with the payer to confirm the provider is enrolled for the specific service type.",
+      "If the wrong rendering provider was entered on the claim, correct the provider information and resubmit the claim with the appropriate rendering provider NPI.",
+      "If the service was performed by an eligible provider but billed under the wrong provider type, correct the billing provider information and resubmit.",
+      "If the provider is genuinely not eligible to perform the service (e.g., scope of practice limitation), write off the balance or determine whether the service can be rebilled under a supervising provider if the payer's rules allow."
+    ],
+    "ehrNote": "Claim denied 170 — provider type not eligible for service; verified provider taxonomy and scope of practice, corrected rendering provider, or wrote off as scope limitation.",
+    "preventativeAction": "Maintain a provider-to-service eligibility matrix in the practice management system and validate the rendering provider's scope of practice against the billed CPT code at the point of charge entry."
   },
   {
     "id": "171",
@@ -980,7 +1210,17 @@
     "group": "General Adjustment",
     "type": "Adjustment Code",
     "problem": "Payment is adjusted when performed/billed by a provider of this specialty.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "Payment is adjusted because the service was performed or billed by a provider of a specialty that triggers a payment reduction or adjustment under the payer's rules. Unlike CO-170 (where the provider type is denied entirely), CO-172 is an adjustment — the service is covered but the payment is reduced because the provider's specialty does not qualify for the full payment rate. For example, a service performed by a non-physician provider (NP, PA) may be paid at a reduced rate (e.g., 85% of the physician fee schedule for Medicare), or a service performed by a specialist in a non-preferred specialty category may receive a reduced reimbursement.",
+    "resolutionSteps": [
+      "Review the ERA/EOB to understand the payment adjustment and confirm the reduction is based on the provider's specialty classification.",
+      "Verify the rendering provider's taxonomy code and specialty designation in the payer's enrollment records to ensure the correct specialty is on file.",
+      "If the provider's specialty was incorrectly classified in the payer's system, contact provider relations to correct the enrollment record and file a claim reconsideration for the adjusted payment.",
+      "If the adjustment is correct per the payer's payment rules (e.g., NP/PA services paid at 85%), post the adjusted payment and verify the patient is not balance-billed for the reduction if the provider is in-network.",
+      "If the adjustment appears to exceed the standard reduction rate or was applied in error, file a payment dispute with the payer citing the contract terms and the expected payment rate."
+    ],
+    "ehrNote": "Claim adjusted 172 — payment adjusted for provider specialty; verified provider specialty enrollment, posted adjusted payment, or filed dispute for incorrect specialty classification.",
+    "preventativeAction": "Verify provider specialty enrollment status with each payer and ensure the correct taxonomy code is on file to prevent incorrect specialty-based payment adjustments."
   },
   {
     "id": "173",
@@ -1015,7 +1255,17 @@
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "Patient has not met the required eligibility requirements.",
-    "solution": "-Verify client's financial eligibility for DOS billed"
+    "solution": "-Verify client's financial eligibility for DOS billed",
+    "rootCause": "The patient has not met the required eligibility requirements for the service billed. This denial occurs when the payer has specific eligibility criteria beyond basic enrollment — for example, a plan may require the patient to complete a health risk assessment, enroll in a disease management program, or meet certain deductible thresholds before certain services are covered. The payer's system checks whether the patient has met these additional eligibility requirements and denies the claim if they have not. This is an eligibility/plan requirement denial, not a medical necessity or coding denial.",
+    "resolutionSteps": [
+      "Contact the payer's provider relations or member services to identify the specific eligibility requirements that were not met and what the patient must do to satisfy them.",
+      "Verify the patient's current enrollment status and any additional program requirements (e.g., disease management enrollment, health assessment completion) via the payer portal or 270/271 transaction.",
+      "If the eligibility requirement can be retroactively satisfied (e.g., completing a health assessment or enrolling in a program), assist the patient in fulfilling the requirement and resubmit the claim.",
+      "If the eligibility requirement cannot be retroactively met, determine whether the service can be billed to the patient directly with a signed ABN or financial responsibility form.",
+      "If the payer's eligibility requirement appears incorrect or the patient has already met it, file a claim reconsideration with documentation showing the requirement was fulfilled."
+    ],
+    "ehrNote": "Claim denied CO-177 — patient eligibility requirements not met; identified unmet requirement, assisted patient in fulfilling it, or billed patient with ABN if requirement cannot be retroactively satisfied.",
+    "preventativeAction": "Verify all eligibility requirements (including program enrollments and health assessments) during pre-visit eligibility checks and inform patients of outstanding requirements before service delivery."
   },
   {
     "id": "178",
@@ -1050,7 +1300,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Procedure modifier was invalid on the date of service.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The procedure modifier reported on the claim was invalid on the date of service. This occurs when a modifier was deleted, revised, or not yet effective on the date of service — for example, using a modifier that was discontinued in a prior CPT update, or using a new modifier that was not yet effective on the DOS. The payer's editing system validates each modifier against the CPT/HCPCS modifier effective dates and denies claims where the modifier was not valid on the service date. This can also occur when a modifier is used with a CPT code that does not permit that modifier.",
+    "resolutionSteps": [
+      "Verify the effective date of the modifier on the claim against the current CPT/HCPCS modifier list and the date of service to determine whether the modifier was valid on that date.",
+      "Review the medical record and the CPT code to confirm whether a different, valid modifier should be used or whether no modifier is needed.",
+      "If the modifier was not valid for the DOS, correct the modifier to one that was effective on the date of service and resubmit the claim, or remove the modifier if it is not required.",
+      "If the modifier was valid for the DOS but the payer's editing system incorrectly flagged it, file an appeal with the CPT/HCPCS modifier documentation showing the effective date.",
+      "Update the EHR and practice management system with the current CPT/HCPCS modifier set to prevent future use of expired or not-yet-effective modifiers."
+    ],
+    "ehrNote": "Claim denied 182 — invalid modifier for DOS; verified modifier effective date, corrected or removed modifier, and resubmitted claim.",
+    "preventativeAction": "Update the EHR and practice management system with the latest CPT/HCPCS modifier set annually and validate modifier effective dates against the DOS at the point of charge entry."
   },
   {
     "id": "183",
@@ -1071,7 +1331,17 @@
     "group": "Contractual Obligation",
     "type": "Denial Code",
     "problem": "The rendering provider is not eligible to perform the service billed.   Usage: Refer to the 835 Healthcare Policy Identification Segment (loop 2110 Service Payment Information REF), if present.",
-    "solution": "Run BHSD 7521 Provider Credentialing Report to verify credentials are correct for provider: -Verify Provider's NPI is correct -Verify performing provider is effective on DOS -Verify POS is allowed for claimed service code -Verify provider's license type is allowed for service  -If provider is not active, denial is valid -If changes need to be made to the effective date of the provider, contact BHSD Business Office and BHSD Credentialing"
+    "solution": "Run BHSD 7521 Provider Credentialing Report to verify credentials are correct for provider: -Verify Provider's NPI is correct -Verify performing provider is effective on DOS -Verify POS is allowed for claimed service code -Verify provider's license type is allowed for service  -If provider is not active, denial is valid -If changes need to be made to the effective date of the provider, contact BHSD Business Office and BHSD Credentialing",
+    "rootCause": "The rendering provider is not eligible to perform the service billed. This denial occurs when the rendering provider's credentialing, enrollment, or license type does not qualify them to perform or bill the specific CPT/HCPCS code. Common examples include a provider whose license type does not cover the service (e.g., a licensed professional counselor billing a medical procedure), a provider whose credentialing with the payer has not been completed or has expired, or a provider whose NPI is not enrolled for the specific service category. The payer cross-references the rendering provider NPI against its enrollment database and denies claims from providers not eligible for the billed service.",
+    "resolutionSteps": [
+      "Verify the rendering provider's NPI, license type, and scope of practice against the CPT/HCPCS code billed to confirm the provider is eligible to perform the service.",
+      "Check the provider's credentialing and enrollment status with the payer to confirm the provider is enrolled and active for the specific service type and date of service.",
+      "If the wrong rendering provider NPI was entered on the claim, correct the provider information and resubmit the claim with the appropriate rendering provider.",
+      "If the provider's credentialing is pending or expired, contact the payer's credentialing department to expedite the enrollment and resubmit the claim once the credentialing is active.",
+      "If the provider's license type genuinely does not cover the service, write off the balance or determine whether the service can be rebilled under a supervising provider if the payer's rules allow."
+    ],
+    "ehrNote": "Claim denied CO-185 — rendering provider not eligible for service; verified provider credentials and enrollment, corrected NPI or expedited credentialing, or wrote off as scope limitation.",
+    "preventativeAction": "Maintain a current provider credentialing and enrollment matrix in the practice management system and verify rendering provider eligibility for each CPT code before claim submission."
   },
   {
     "id": "186",
@@ -1099,7 +1369,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "'Not otherwise classified' or 'unlisted' procedure code (CPT/HCPCS) was billed when there is a specific procedure code for this procedure/service",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The claim was denied because a \"not otherwise classified\" (NOC) or \"unlisted\" procedure code was billed when a more specific code was available. NOC and unlisted codes (e.g., CPT 99199 unlisted special medicine service, 64999 unlisted nervous system procedure) are intended for services that do not have a specific CPT code. The payer's editing system or medical review staff determined that a specific CPT code exists for the service rendered and denied the unlisted code. This denial indicates the provider should have used the specific code rather than the unlisted code, and the payer requires the claim to be resubmitted with the correct specific CPT code.",
+    "resolutionSteps": [
+      "Review the medical record to determine the specific service rendered and identify whether a specific CPT/HCPCS code accurately describes the service performed.",
+      "If a specific CPT code exists for the service, correct the claim by replacing the unlisted code with the specific code and resubmit the corrected claim.",
+      "If no specific CPT code exists and the unlisted code is the only appropriate code, file an appeal with a detailed description of the service, a coding rationale letter, and comparison to similar codes to justify the use of the unlisted code.",
+      "Include the operative note, office note, or procedure documentation that describes the service in sufficient detail to support the unlisted code billing.",
+      "If the payer continues to deny the unlisted code, request a manual review or escalate the appeal to a higher level with a certified coder's rationale supporting the use of the unlisted code."
+    ],
+    "ehrNote": "Claim denied 189 — unlisted code billed when specific code available; reviewed medical record, corrected to specific CPT code, or appealed with coding rationale if unlisted code was appropriate.",
+    "preventativeAction": "Train coders to identify specific CPT codes before defaulting to unlisted codes and implement a pre-submission coding review for all claims using NOC or unlisted procedure codes."
   },
   {
     "id": "190",
@@ -1158,7 +1438,17 @@
     "group": "General Adjustment",
     "type": "Denial Code",
     "problem": "Precertification/notification/authorization/pre-treatment exceeded.",
-    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation."
+    "solution": "Verify claim details and patient demographics. Submit a corrected claim or appeal with necessary supporting medical documentation.",
+    "rootCause": "The precertification, notification, authorization, or pre-treatment that was obtained exceeded the approved limits. Unlike CO-197 (where authorization was absent), CO-198 means an authorization was obtained but the service rendered exceeded the scope of what was authorized — for example, more units were billed than authorized, the service was rendered on a date outside the authorization date range, or the procedure performed was beyond what the authorization covered. The payer's system cross-references the authorized units, date range, and CPT codes against the claim and denies the portion that exceeds the authorization.",
+    "resolutionSteps": [
+      "Verify the authorization details — approved units, date range, and covered CPT codes — by checking the payer portal or the authorization approval letter.",
+      "Compare the authorized units and date range against the services billed on the claim to identify the specific discrepancy (extra units, out-of-range date, or unauthorized procedure).",
+      "If the service genuinely exceeded the authorization (e.g., additional units were medically necessary), request an authorization amendment or additional authorization from the payer with clinical justification for the additional services.",
+      "If the authorization was incorrectly applied — for example, the units were within the authorized limit but the payer's system miscounted — file a claim reconsideration with the authorization approval documentation showing the correct unit count.",
+      "If the authorization cannot be extended and the appeal is denied, write off the non-authorized portion as a provider adjustment or bill the patient if permitted by the plan."
+    ],
+    "ehrNote": "Claim denied 198 — authorization exceeded; verified authorized units/date range, requested authorization amendment for additional services, or filed reconsideration for miscounted units.",
+    "preventativeAction": "Track authorized units and date ranges in the practice management system and alert clinical staff when a patient is approaching the authorization limit so an extension can be requested before the service is rendered."
   },
   {
     "id": "199",
@@ -2508,5 +2798,22 @@
     ],
     "ehrNote": "Claim processed CR-5 — adjustment to previously processed claim; reconciled adjustment against original, posted adjustment transaction, and updated patient balance.",
     "preventativeAction": "Document the specific corrections requested on each corrected claim and reconcile adjustments against original adjudications within 30 days to identify payer processing errors."
+  },
+  {
+    "id": "CO-15",
+    "group": "Contractual Obligation",
+    "type": "Denial Code",
+    "problem": "Authorization absent or incomplete for the service billed.",
+    "solution": "Verify authorization requirements for the service. Obtain retro-authorization if applicable, or file an appeal with supporting clinical documentation.",
+    "rootCause": "The claim was denied because the required prior authorization or notification for the service was absent or incomplete. This is similar to CO-197 but may be used by payers to indicate a broader authorization deficiency — the service may have required a notification (not a full authorization), the authorization was obtained but expired before the date of service, or the authorization number was present but did not match the service billed. Payers maintain lists of services requiring prior authorization and deny claims that do not have a matching, active authorization on file for the specific date of service and procedure code.",
+    "resolutionSteps": [
+      "Check the practice management system and payer portal to determine whether a prior authorization or notification was obtained for this service and date of service.",
+      "If an authorization was obtained, verify the authorization number, date range, and covered CPT codes match what was billed on the claim.",
+      "If no authorization was obtained, contact the payer to request retro-authorization within the allowed window, providing clinical documentation supporting medical necessity.",
+      "If retro-authorization is denied, file a formal appeal with a letter of medical necessity, the clinical documentation, and an explanation of the administrative oversight.",
+      "If the authorization was expired or did not cover the specific service, obtain a new authorization if possible or appeal with documentation justifying the service beyond the original authorization scope."
+    ],
+    "ehrNote": "Claim denied CO-15 — authorization absent or incomplete; verified authorization status, requested retro-auth or appealed with medical necessity documentation.",
+    "preventativeAction": "Maintain a payer-specific prior authorization list with automated expiration alerts and require front-office staff to verify authorization validity for the specific DOS and CPT code before service delivery."
   }
 ]
