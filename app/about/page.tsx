@@ -73,7 +73,7 @@ export default function AboutPage() {
             className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-900"
           >
             <Mail className="h-4 w-4" />
-            contact@denialcodepro.com
+            denialcodepro@gmail.com
           </a>
           <span className="text-sm text-slate-400">
             Placeholder contact form &mdash; email link above for now.
