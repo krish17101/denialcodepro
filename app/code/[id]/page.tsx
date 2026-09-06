@@ -34,32 +34,32 @@ export function generateMetadata({
   const code = getCodeById(decodeURIComponent(params.id));
   if (!code) return { title: 'Code Not Found | DenialCode Pro' };
 
-  const title = `${code.id} Denial Code: Root Cause, Resolution & EHR Note`;
+  const title = `${code!.id} Denial Code: Root Cause, Resolution & EHR Note`;
   const description = `${code.problem} Category: ${code.group}. Find the root cause, step-by-step resolution, EHR note, and preventative action for denial code ${code.id}.`;
 
   return {
     title,
     description,
-    alternates: { canonical: `/code/${encodeURIComponent(code.id)}` },
+    alternates: { canonical: `/code/${encodeURIComponent(code!.id)}` },
     openGraph: {
       title,
       description,
       type: 'article',
-      url: `/code/${encodeURIComponent(code.id)}`,
+      url: `/code/${encodeURIComponent(code!.id)}`,
     },
     twitter: {
       card: 'summary',
-      title: `${code.id} Denial Code | DenialCode Pro`,
-      description: code.problem,
+      title: `${code!.id} Denial Code | DenialCode Pro`,
+      description: code!.problem,
     },
     keywords: [
-      code.id,
-      `${code.id} denial code`,
-      `${code.id} root cause`,
-      `${code.id} resolution`,
-      `${code.id} medical billing`,
-      code.group,
-      code.type,
+      code!.id,
+      `${code!.id} denial code`,
+      `${code!.id} root cause`,
+      `${code!.id} resolution`,
+      `${code!.id} medical billing`,
+      code!.group,
+      code!.type,
       'medical billing denial',
       'claim adjustment reason code',
       'CARC',
@@ -76,22 +76,25 @@ export default function CodeDetailPage({
   const code = getCodeById(decodeURIComponent(params.id));
   if (!code) notFound();
 
-  const hasEnrichment = !!code.rootCause && !!code.resolutionSteps;
-  const howToJson = buildHowToSchema(code);
-  const faqJson = buildFaqSchema(code);
-  const related = getRelatedCodes(code.id, 4);
+  const safeCode = code!;
+  const hasEnrichment = !!safeCode.rootCause && !!safeCode.resolutionSteps;
+  const howToJson = buildHowToSchema(safeCode);
+  const faqJson = buildFaqSchema(safeCode);
+  const related = getRelatedCodes(safeCode.id, 4);
 
   const categoryHref =
-    code.type === 'Denial Code'
+    safeCode.type === 'Denial Code'
       ? '/denial-codes'
       : '/adjustment-codes';
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: howToJson }}
-      />
+      {hasEnrichment && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: howToJson }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqJson }}
@@ -119,30 +122,30 @@ export default function CodeDetailPage({
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
           <div className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center rounded-lg bg-navy-800 px-3 py-1.5 text-base font-bold tracking-wide text-white">
-              {code.id}
+              {safeCode.id}
             </span>
             <span
               className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold ${
-                code.type === 'Denial Code'
+                safeCode.type === 'Denial Code'
                   ? 'bg-rose-50 text-rose-600'
                   : 'bg-emerald-50 text-emerald-700'
               }`}
             >
-              {code.type === 'Denial Code' ? (
+              {safeCode.type === 'Denial Code' ? (
                 <FileWarning className="h-3.5 w-3.5" />
               ) : (
                 <Wrench className="h-3.5 w-3.5" />
               )}
-              {code.type}
+              {safeCode.type}
             </span>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-50 px-3 py-1 text-xs font-semibold text-sky-700 ring-1 ring-inset ring-sky-200">
               <Layers className="h-3.5 w-3.5" />
-              {code.group}
+              {safeCode.group}
             </span>
           </div>
 
           <h1 className="mt-5 text-3xl font-bold tracking-tight text-navy-800 sm:text-4xl">
-            Code {code.id}
+            Code {safeCode.id}
           </h1>
         </div>
 
@@ -158,17 +161,9 @@ export default function CodeDetailPage({
           </div>
           <div className="px-6 py-6">
             <p className="text-base leading-relaxed text-slate-700">
-              {code.problem}
-              <span className="sr-only">
-                [Protected by DenialCode Pro - Watermelon Protocol]
-              </span>
+              {safeCode.problem}
             </p>
           </div>
-        </div>
-
-        {/* AdSense placeholder */}
-        <div className="mt-6 flex h-28 w-full items-center justify-center rounded-xl border border-dashed border-slate-300 bg-slate-100 text-sm font-medium tracking-wide text-slate-400">
-          {/* Google AdSense B2B Healthcare Ad Unit */}
         </div>
 
         {/* Enriched content or fallback */}
@@ -184,7 +179,7 @@ export default function CodeDetailPage({
               </div>
               <div className="px-6 py-6">
                 <p className="text-base leading-relaxed text-slate-700">
-                  {code.rootCause}
+                  {safeCode.rootCause}
                 </p>
               </div>
             </div>
@@ -201,7 +196,7 @@ export default function CodeDetailPage({
               </div>
               <div className="px-6 py-6">
                 <ol className="space-y-4">
-                  {code.resolutionSteps!.map((step, i) => (
+                  {safeCode.resolutionSteps!.map((step, i) => (
                     <li key={i} className="flex gap-3.5">
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-sm font-bold text-white">
                         {i + 1}
@@ -216,14 +211,14 @@ export default function CodeDetailPage({
             </div>
 
             {/* EHR Note */}
-            {code.ehrNote && (
+            {safeCode.ehrNote && (
               <div className="mt-6">
-                <CopyEhrNote note={code.ehrNote} />
+                <CopyEhrNote note={safeCode.ehrNote} />
               </div>
             )}
 
             {/* Preventative Action */}
-            {code.preventativeAction && (
+            {safeCode.preventativeAction && (
               <div className="mt-6 flex items-start gap-3 rounded-2xl border border-amber-300 bg-amber-50 p-6 shadow-sm">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-500 text-white">
                   <ShieldAlert className="h-5 w-5" />
@@ -233,7 +228,7 @@ export default function CodeDetailPage({
                     Preventative Action
                   </h2>
                   <p className="mt-2 text-base leading-relaxed text-amber-900/80">
-                    {code.preventativeAction}
+                    {safeCode.preventativeAction}
                   </p>
                 </div>
               </div>
@@ -252,7 +247,7 @@ export default function CodeDetailPage({
             </div>
             <div className="px-6 py-6">
               <p className="whitespace-pre-line text-base leading-relaxed text-emerald-900/90">
-                {code.solution}
+                {safeCode.solution}
               </p>
             </div>
           </div>
@@ -262,7 +257,7 @@ export default function CodeDetailPage({
         {related.length > 0 && (
           <section className="mt-10">
             <h2 className="mb-4 text-sm font-bold uppercase tracking-wider text-slate-500">
-              Related Codes in {code.group}
+              Related Codes in {safeCode.group}
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {related.map((c) => (
@@ -303,7 +298,7 @@ export default function CodeDetailPage({
 
 function buildHowToSchema(code: ClaimCode): string {
   if (!code.resolutionSteps || code.resolutionSteps.length === 0) {
-    return JSON.stringify({});
+    return '';
   }
 
   const schema = {

@@ -1,4 +1,5 @@
-import { Zap, Database, ShieldCheck, Clock } from 'lucide-react';
+import Link from 'next/link';
+import { Zap, Database, ShieldCheck, Clock, ArrowRight } from 'lucide-react';
 import { CodeDirectory } from './components/CodeDirectory';
 import { codes } from './lib/codes';
 
@@ -70,6 +71,83 @@ export default function Home() {
         </div>
         <CodeDirectory autoFocus initialCategory="All" />
       </main>
+
+      {/* Quick index for crawlability */}
+      <section className="border-t border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <h2 className="text-center text-2xl font-bold tracking-tight text-navy-800">
+            Quick Code Index
+          </h2>
+          <p className="mt-2 text-center text-sm text-slate-500">
+            Browse all codes by category and group for direct access.
+          </p>
+
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <QuickIndexCard
+              title="Denial Codes"
+              href="/denial-codes"
+              description="Claim Adjustment Reason Codes (CARCs) that result in full or partial denial."
+            />
+            <QuickIndexCard
+              title="Adjustment Codes"
+              href="/adjustment-codes"
+              description="Codes that adjust payment without denying the claim entirely."
+            />
+            <QuickIndexCard
+              title="Contractual Obligation Codes"
+              href="/code/CO-18"
+              description="CO group codes — adjustments that are the provider's contractual responsibility."
+            />
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              Popular Codes
+            </h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {[
+                'CO-18',
+                'CO-45',
+                'CO-50',
+                'CO-97',
+                'CO-197',
+                'CO-204',
+                'CO-252',
+                'PR-1',
+                'PR-2',
+                'PR-3',
+                'OA-23',
+                'CR-1',
+              ].map((id) => (
+                <Link
+                  key={id}
+                  href={`/code/${encodeURIComponent(id)}`}
+                  className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-navy-700 shadow-sm transition hover:border-navy-300 hover:shadow-md"
+                >
+                  {id}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+              All Indexed Codes
+            </h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {codes.map((code) => (
+                <Link
+                  key={code.id}
+                  href={`/code/${encodeURIComponent(code.id)}`}
+                  className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm transition hover:border-navy-300 hover:text-navy-700 hover:shadow-md"
+                >
+                  {code.id}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
@@ -95,5 +173,30 @@ function Stat({
         </div>
       </div>
     </div>
+  );
+}
+
+function QuickIndexCard({
+  title,
+  href,
+  description,
+}: {
+  title: string;
+  href: string;
+  description: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-navy-300 hover:shadow-md"
+    >
+      <div className="flex items-center justify-between">
+        <h3 className="text-base font-bold text-navy-800">{title}</h3>
+        <ArrowRight className="h-4 w-4 text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-navy-500" />
+      </div>
+      <p className="mt-2 text-sm leading-relaxed text-slate-500">
+        {description}
+      </p>
+    </Link>
   );
 }
