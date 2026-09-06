@@ -220,14 +220,17 @@ export function CodeDirectory({
                 ))}
               </div>
               {hasMore && (
-                <div className="mt-8 flex justify-center">
+                <div className="mt-10 flex flex-col items-center gap-3">
                   <button
                     onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                    className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-navy-700 shadow-sm transition hover:bg-slate-50 hover:shadow-md"
+                    className="group inline-flex items-center gap-2 rounded-xl bg-navy-800 px-8 py-3.5 text-sm font-semibold text-white shadow-md transition hover:bg-navy-900 hover:shadow-lg active:scale-[0.98]"
                   >
-                    Load More
-                    <ChevronDown className="h-4 w-4" />
+                    View More Codes
+                    <ChevronDown className="h-4 w-4 transition group-hover:translate-y-0.5" />
                   </button>
+                  <p className="text-xs text-slate-400">
+                    Showing {visible.length} of {filtered.length} codes
+                  </p>
                 </div>
               )}
             </>

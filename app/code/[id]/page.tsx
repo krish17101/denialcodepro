@@ -112,10 +112,10 @@ export default function CodeDetailPage({
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-slate-300" />
           <Link href={categoryHref} className="hover:text-navy-700">
-            {code.type === 'Denial Code' ? 'Denial Codes' : 'Adjustment Codes'}
+            {safeCode.type === 'Denial Code' ? 'Denial Codes' : 'Adjustment Codes'}
           </Link>
           <ChevronRight className="h-3.5 w-3.5 text-slate-300" />
-          <span className="font-medium text-navy-700">{code.id}</span>
+          <span className="font-medium text-navy-700">{safeCode.id}</span>
         </nav>
 
         {/* Header card */}
