@@ -78,6 +78,7 @@ export function SiteFooter() {
             information only &mdash; not legal, medical, or financial billing
             advice.
           </p>
+          {/* Sync Test */}
         </div>
       </div>
     </footer>
