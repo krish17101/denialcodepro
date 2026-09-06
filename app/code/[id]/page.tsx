@@ -5,7 +5,7 @@ import {
   AlertTriangle,
   ListChecks,
   Tag,
-  Layers,s
+  Layers,
   FileWarning,
   Wrench,
   ArrowRight,
