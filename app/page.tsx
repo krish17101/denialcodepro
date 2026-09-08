@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Zap, Database, ShieldCheck, Clock, ArrowRight } from 'lucide-react';
 import { CodeDirectory } from './components/CodeDirectory';
+import { AllCodesGrid } from './components/AllCodesGrid';
 import { codes } from './lib/codes';
 
 export default function Home() {
@@ -101,50 +102,7 @@ export default function Home() {
           </div>
 
           <div className="mt-10">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-              Popular Codes
-            </h3>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {[
-                'CO-18',
-                'CO-45',
-                'CO-50',
-                'CO-97',
-                'CO-197',
-                'CO-204',
-                'CO-252',
-                'PR-1',
-                'PR-2',
-                'PR-3',
-                'OA-23',
-                'CR-1',
-              ].map((id) => (
-                <Link
-                  key={id}
-                  href={`/code/${encodeURIComponent(id)}`}
-                  className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-navy-700 shadow-sm transition hover:border-navy-300 hover:shadow-md"
-                >
-                  {id}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-10">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-              All Indexed Codes
-            </h3>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {codes.map((code) => (
-                <Link
-                  key={code.id}
-                  href={`/code/${encodeURIComponent(code.id)}`}
-                  className="inline-flex items-center rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-600 shadow-sm transition hover:border-navy-300 hover:text-navy-700 hover:shadow-md"
-                >
-                  {code.id}
-                </Link>
-              ))}
-            </div>
+            <AllCodesGrid />
           </div>
         </div>
       </section>
