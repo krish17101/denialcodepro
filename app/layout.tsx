@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
+import { FeedbackForm } from './components/FeedbackForm';
 import { Analytics } from './components/Analytics';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -37,6 +38,7 @@ export default function RootLayout({
         <div className="flex min-h-screen flex-col bg-slate-50">
           <SiteHeader />
           <div className="flex-1">{children}</div>
+          <FeedbackForm />
           <SiteFooter />
         </div>
         <Analytics />
