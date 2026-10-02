@@ -8,22 +8,38 @@ import { Analytics } from './components/Analytics';
 
 const inter = Inter({ subsets: ['latin'] });
 
+/**
+ * Root layout — V3.
+ *
+ * Preserves:
+ *  - GA4 Analytics component (G-QL011FYKSR — initialized once here only)
+ *  - metadataBase pointing to https://denialcodepro.com
+ *  - SiteHeader, SiteFooter, FeedbackForm
+ *  - Inter font
+ *
+ * Default metadata applies to every page that does not override it.
+ * Individual pages should set their own title/description/canonical.
+ */
 export const metadata: Metadata = {
-  title: 'DenialCode Pro — Medical Denial Code Lookup & Solutions',
-  description:
-    'Search medical billing denial codes and adjustment codes. Get official problem descriptions and step-by-step solutions to fix and appeal every claim.',
   metadataBase: new URL('https://denialcodepro.com'),
+  title: {
+    default: 'DenialCodePro — Understand the denial. Know what to do next.',
+    template: '%s — DenialCodePro',
+  },
+  description:
+    'Reference information for U.S. medical billing denial codes. Search a denial code, remark code, or denial combination.',
   openGraph: {
-    title: 'DenialCode Pro — Medical Denial Code Lookup & Solutions',
-    description:
-      'Search denial codes and adjustment codes with official descriptions and actionable solutions to fix every claim.',
+    siteName: 'DenialCodePro',
     type: 'website',
+    locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DenialCode Pro — Medical Denial Code Lookup & Solutions',
-    description:
-      'Search denial codes and adjustment codes with actionable solutions.',
+  },
+  // Robots default — individual pages may override
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -41,6 +57,11 @@ export default function RootLayout({
           <FeedbackForm />
           <SiteFooter />
         </div>
+        {/*
+          Analytics — GA4 G-QL011FYKSR.
+          Initialized here and ONLY here. Do not add a second gtag script
+          anywhere else in the application.
+        */}
         <Analytics />
       </body>
     </html>

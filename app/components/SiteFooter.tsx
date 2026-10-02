@@ -3,16 +3,20 @@ import { ShieldPlus, Mail } from 'lucide-react';
 
 const footerLinks = [
   {
-    title: 'Directory',
+    title: 'Browse',
     links: [
-      { href: '/', label: 'All Codes' },
-      { href: '/denial-codes', label: 'Denial Codes' },
-      { href: '/adjustment-codes', label: 'Adjustment Codes' },
+      { href: '/denial-codes', label: 'Denial Codes (CARC)' },
+      { href: '/remark-codes', label: 'Remark Codes (RARC)' },
+      { href: '/guides', label: 'Denial Guides' },
     ],
   },
   {
-    title: 'Company',
-    links: [{ href: '/about', label: 'About Us' }],
+    title: 'Reference',
+    links: [
+      { href: '/sources', label: 'Sources' },
+      { href: '/methodology', label: 'Methodology' },
+      { href: '/about', label: 'About' },
+    ],
   },
   {
     title: 'Legal',
@@ -29,6 +33,7 @@ export function SiteFooter() {
     <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-navy-800 text-white">
@@ -39,8 +44,8 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
-              The fast reference directory for medical billing denial and
-              adjustment codes.
+              Reference information for U.S. medical billing denial codes.
+              Built for billers, not algorithms.
             </p>
             <a
               href="mailto:denialcodepro@gmail.com"
@@ -51,6 +56,7 @@ export function SiteFooter() {
             </a>
           </div>
 
+          {/* Link columns */}
           {footerLinks.map((section) => (
             <div key={section.title}>
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
@@ -76,9 +82,12 @@ export function SiteFooter() {
           <p className="text-center text-sm text-slate-500">
             &copy; {new Date().getFullYear()} DenialCode Pro. Reference
             information only &mdash; not legal, medical, or financial billing
-            advice.
+            advice.{' '}
+            <Link href="/disclaimer" className="underline hover:text-navy-700">
+              Read disclaimer
+            </Link>
+            .
           </p>
-          {/* Sync Test */}
         </div>
       </div>
     </footer>

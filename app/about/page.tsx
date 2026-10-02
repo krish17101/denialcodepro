@@ -1,10 +1,12 @@
-import { ShieldPlus, Mail, Zap, Database, ShieldCheck } from 'lucide-react';
-import { codes } from '../lib/codes';
+import type { Metadata } from 'next';
+import { ShieldPlus, Mail, Search, BookOpen, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
 
-export const metadata = {
-  title: 'About | DenialCode Pro',
+export const metadata: Metadata = {
+  title: 'About — DenialCodePro',
   description:
-    'DenialCode Pro is a free reference directory for medical billing denial and adjustment codes, built to help billing teams resolve claims faster.',
+    'DenialCodePro helps U.S. medical billers understand why a claim was denied, what to check, what to do next, and how to prevent the denial from recurring.',
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {
@@ -18,67 +20,86 @@ export default function AboutPage() {
           </div>
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-navy-800">
-              About DenialCode Pro
+              About DenialCodePro
             </h1>
             <p className="mt-1 text-sm text-slate-500">
-              Fast claim lookup & appeal solutions
+              Understand the denial. Know what to do next.
             </p>
           </div>
         </div>
 
         <p className="mt-6 text-base leading-relaxed text-slate-700">
-          DenialCode Pro is a free programmatic reference directory for medical
-          billing denial and adjustment codes. Our mission is to help medical
-          billing professionals, coders, and revenue cycle teams quickly
-          understand why a claim was denied or adjusted &mdash; and exactly
-          what steps to take to fix or appeal it.
+          DenialCodePro helps U.S. medical billers understand why a claim was
+          denied, identify what to check, determine the appropriate next action,
+          and understand how to prevent the denial from recurring.
         </p>
         <p className="mt-4 text-base leading-relaxed text-slate-700">
-          Every code page includes the official problem description, a
-          structured actionable solution, and related codes for easy
-          navigation. We index {codes.length} codes and counting, with
-          real-time search so you can find the answer you need in seconds.
+          Every denial-resolution guide is researched from official CMS, X12,
+          and Medicare Administrative Contractor (MAC) sources. We document our
+          sources on every page and do not publish guidance we cannot verify.
         </p>
       </div>
 
-      {/* Mission cards */}
+      {/* What we help with */}
       <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
         <MissionCard
-          icon={<Zap className="h-5 w-5" />}
-          title="Fast Lookup"
-          text="Real-time search across every indexed code so you find answers instantly."
+          icon={<Search className="h-5 w-5" />}
+          title="Why was it denied?"
+          text="Understand what the CARC and RARC codes on your remittance advice actually mean."
         />
         <MissionCard
-          icon={<Database className="h-5 w-5" />}
-          title="Comprehensive"
-          text="Official problem descriptions and step-by-step solutions for each code."
+          icon={<BookOpen className="h-5 w-5" />}
+          title="Verified guidance"
+          text="Content sourced from CMS manuals, X12 code sets, and MAC publications — not invented."
         />
         <MissionCard
           icon={<ShieldCheck className="h-5 w-5" />}
-          title="Trustworthy"
-          text="Reference information sourced from standard billing code sets, clearly disclaimed."
+          title="Prevention first"
+          text="Every guide includes upstream steps to reduce the same denial from happening again."
         />
+      </div>
+
+      {/* What we are building */}
+      <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+        <h2 className="text-xl font-bold text-navy-800">
+          What we&apos;re building
+        </h2>
+        <p className="mt-3 text-base leading-relaxed text-slate-700">
+          DenialCodePro V3 is under active development. We are systematically
+          building researched denial-resolution guides prioritised by the most
+          commonly occurring CARC/RARC combinations. Guides will be published as
+          they are completed and verified.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link
+            href="/methodology"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-navy-700 shadow-sm transition hover:bg-slate-50"
+          >
+            Read our methodology
+          </Link>
+          <Link
+            href="/sources"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-navy-700 shadow-sm transition hover:bg-slate-50"
+          >
+            Browse sources
+          </Link>
+        </div>
       </div>
 
       {/* Contact */}
       <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-        <h2 className="text-xl font-bold text-navy-800">Contact Us</h2>
+        <h2 className="text-xl font-bold text-navy-800">Contact</h2>
         <p className="mt-3 text-base leading-relaxed text-slate-700">
-          Have a question, correction, or code suggestion? We&apos;d love to
-          hear from you.
+          Have a question, correction, or suggestion? We&apos;d love to hear
+          from you.
         </p>
-        <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-center">
-          <a
-            href="mailto:denialcodepro@gmail.com"
-            className="inline-flex items-center gap-2 rounded-lg bg-navy-800 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-900"
-          >
-            <Mail className="h-4 w-4" />
-            denialcodepro@gmail.com
-          </a>
-          <span className="text-sm text-slate-400">
-            Placeholder contact form &mdash; email link above for now.
-          </span>
-        </div>
+        <a
+          href="mailto:denialcodepro@gmail.com"
+          className="mt-5 inline-flex items-center gap-2 rounded-lg bg-navy-800 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-900"
+        >
+          <Mail className="h-4 w-4" />
+          denialcodepro@gmail.com
+        </a>
       </div>
     </main>
   );

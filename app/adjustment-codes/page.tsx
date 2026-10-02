@@ -6,6 +6,7 @@ export const metadata = {
   title: 'Adjustment Codes Directory | DenialCode Pro',
   description:
     'Browse all medical billing adjustment codes with official problem descriptions and step-by-step solutions to resolve each adjustment.',
+  robots: { index: false, follow: true },
 };
 
 export default function AdjustmentCodesPage() {

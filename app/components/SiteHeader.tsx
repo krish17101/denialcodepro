@@ -6,9 +6,10 @@ import { useState } from 'react';
 import { Menu, X, ShieldPlus } from 'lucide-react';
 
 const navLinks = [
-  { href: '/', label: 'Code Directory' },
+  { href: '/search', label: 'Search' },
   { href: '/denial-codes', label: 'Denial Codes' },
-  { href: '/adjustment-codes', label: 'Adjustment Codes' },
+  { href: '/remark-codes', label: 'Remark Codes' },
+  { href: '/guides', label: 'Guides' },
   { href: '/about', label: 'About' },
 ];
 
@@ -19,6 +20,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
+        {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-navy-800 text-white shadow-sm">
             <ShieldPlus className="h-5 w-5" />
@@ -28,7 +30,8 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        {/* Desktop nav */}
+        <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => {
             const active =
               link.href === '/'
@@ -38,6 +41,7 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={active ? 'page' : undefined}
                 className={`rounded-lg px-3.5 py-2 text-sm font-medium transition ${
                   active
                     ? 'bg-navy-50 text-navy-800'
@@ -50,17 +54,23 @@ export function SiteHeader() {
           })}
         </nav>
 
+        {/* Mobile toggle */}
         <button
           onClick={() => setOpen((v) => !v)}
           className="inline-flex items-center justify-center rounded-lg p-2 text-slate-600 hover:bg-slate-100 md:hidden"
-          aria-label="Toggle navigation"
+          aria-label={open ? 'Close navigation' : 'Open navigation'}
+          aria-expanded={open}
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
+      {/* Mobile nav */}
       {open && (
-        <nav className="border-t border-slate-200 bg-white md:hidden">
+        <nav
+          aria-label="Mobile navigation"
+          className="border-t border-slate-200 bg-white md:hidden"
+        >
           <div className="mx-auto max-w-7xl space-y-1 px-4 py-3 sm:px-6">
             {navLinks.map((link) => {
               const active =
@@ -72,6 +82,7 @@ export function SiteHeader() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
+                  aria-current={active ? 'page' : undefined}
                   className={`block rounded-lg px-3 py-2.5 text-sm font-medium ${
                     active
                       ? 'bg-navy-50 text-navy-800'

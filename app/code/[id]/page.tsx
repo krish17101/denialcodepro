@@ -65,6 +65,10 @@ export function generateMetadata({
       'CARC',
       'EHR note',
     ],
+    robots: {
+      index: false,
+      follow: true,
+    },
   };
 }
 
