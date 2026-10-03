@@ -180,7 +180,7 @@ export interface Guide {
 // Search
 // ---------------------------------------------------------------------------
 
-export type SearchResultKind = 'carc' | 'rarc' | 'denial' | 'guide' | 'payer';
+export type SearchResultKind = 'carc' | 'rarc' | 'denial' | 'guide' | 'payer' | 'payer_fingerprint';
 
 export interface SearchResult {
   kind: SearchResultKind;

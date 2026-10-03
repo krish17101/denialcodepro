@@ -8,15 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        // Disallow search query URLs, dynamic slug pages (noindex until real content),
-        // and any API or internal routes.
+        // Disallow search query URLs to prevent crawler traps
         disallow: [
           '/search',
-          '/denial/',
-          '/denial-codes/',
-          '/remark-codes/',
-          '/payers/',
-          '/guides/',
         ],
       },
     ],

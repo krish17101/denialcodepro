@@ -13,6 +13,7 @@
 import { search } from '../../../lib/v3/search';
 import { AlertCircle, SearchX, Search } from 'lucide-react';
 import Link from 'next/link';
+import { EventTracker } from './EventTracker';
 
 interface SearchResultsProps {
   query: string;
@@ -36,59 +37,6 @@ export function SearchResults({ query }: SearchResultsProps) {
     );
   }
 
-  // ── Index is empty (Phase 1) ───────────────────────────────────────────────
-  if (response.indexEmpty) {
-    return (
-      <div className="space-y-4">
-        <div className="flex items-start gap-4 rounded-2xl border border-amber-200 bg-amber-50 p-6">
-          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
-          <div>
-            <p className="font-semibold text-amber-900">
-              Denial guides are being built.
-            </p>
-            <p className="mt-1 text-sm leading-relaxed text-amber-800/80">
-              We searched for{' '}
-              <strong className="font-semibold">&ldquo;{query}&rdquo;</strong>{' '}
-              but the denial-resolution knowledge base has not yet been
-              published. Each guide is researched and verified before it goes
-              live. Check back soon, or{' '}
-              <Link
-                href="/about"
-                className="font-medium text-amber-900 underline underline-offset-2"
-              >
-                learn more about how we build content
-              </Link>
-              .
-            </p>
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-slate-200 bg-white p-6">
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-400">
-            While you wait
-          </h2>
-          <ul className="mt-4 space-y-3">
-            <SuggestionLink
-              href="/methodology"
-              label="Read our research methodology"
-            />
-            <SuggestionLink
-              href="/sources"
-              label="Browse our source list"
-            />
-            <SuggestionLink
-              href="/denial-codes"
-              label="Browse denial codes (CARC)"
-            />
-            <SuggestionLink
-              href="/remark-codes"
-              label="Browse remark codes (RARC)"
-            />
-          </ul>
-        </div>
-      </div>
-    );
-  }
 
   // ── No match found ────────────────────────────────────────────────────────
   if (response.noMatch) {
@@ -107,6 +55,7 @@ export function SearchResults({ query }: SearchResultsProps) {
   // ── Results ───────────────────────────────────────────────────────────────
   return (
     <div className="space-y-3">
+      <EventTracker eventName="search_submitted" eventParams={{ search_term: query, result_count: response.results.length }} />
       <p className="text-sm text-slate-500">
         {response.results.length}{' '}
         {response.results.length === 1 ? 'result' : 'results'} for{' '}
@@ -116,6 +65,11 @@ export function SearchResults({ query }: SearchResultsProps) {
         <Link
           key={result.slug}
           href={result.href}
+          onClick={() => {
+            if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
+              (window as any).gtag('event', 'search_result_clicked', { search_term: query, result_url: result.href });
+            }
+          }}
           className="block rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-navy-300 hover:shadow-md"
         >
           <div className="flex items-center justify-between gap-3">
