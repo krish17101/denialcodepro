@@ -10,6 +10,7 @@ import {
   getDenialSlug,
   getPayerSlug,
   payerFingerprintsBySlug,
+  getDenialTitle,
 } from './knowledge/data';
 import { ApprovedCarc, ApprovedRarc, ApprovedDenialFingerprint, ApprovedPayerIntelligence, ApprovedSource, ApprovedPayerFingerprint } from './knowledge/types';
 
@@ -46,7 +47,7 @@ function mapRarcToResult(rarc: ApprovedRarc): SearchResult {
 }
 
 function mapDenialToResult(df: ApprovedDenialFingerprint): SearchResult {
-  const codePair = df.group_code ? `${df.group_code}-${df.carc} ${df.rarc}` : `CARC ${df.carc} RARC ${df.rarc}`;
+  const codePair = getDenialTitle(df);
   return {
     kind: 'denial',
     slug: getDenialSlug(df),
@@ -100,12 +101,16 @@ export function search(query: SearchQuery): SearchResponse {
   knowledgeBase.denial_fingerprints?.forEach((df) => {
     if (!df.publication.searchable) return;
     const dfSlug = getDenialSlug(df);
-    const searchForms = [
-      dfSlug,
-      `${df.carc}-${df.rarc}`.toLowerCase(),
-      `${df.group_code}-${df.carc} ${df.rarc}`.toLowerCase(),
-      `carc ${df.carc} rarc ${df.rarc}`.toLowerCase()
-    ];
+    const searchForms = [dfSlug];
+    if (df.rarc) {
+      searchForms.push(`${df.carc}-${df.rarc}`.toLowerCase());
+      if (df.group_code) searchForms.push(`${df.group_code}-${df.carc} ${df.rarc}`.toLowerCase());
+      searchForms.push(`carc ${df.carc} rarc ${df.rarc}`.toLowerCase());
+    } else {
+      searchForms.push(`${df.carc}`);
+      if (df.group_code) searchForms.push(`${df.group_code}-${df.carc}`.toLowerCase());
+      searchForms.push(`carc ${df.carc}`.toLowerCase());
+    }
     
     if (searchForms.some(f => f === q || f === normalizedQuery)) {
       addResult(mapDenialToResult(df), 1000);

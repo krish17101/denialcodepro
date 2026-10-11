@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight, Home, CheckCircle2, AlertTriangle, ShieldAlert, FileText, Info } from 'lucide-react';
 import { getDenialWorkflowBySlug } from '../../../lib/v3/search';
+import { getDenialTitle } from '../../../lib/v3/knowledge/data';
 import { EventTracker } from '../../components/v3/EventTracker';
 
 interface Props {
@@ -19,7 +20,7 @@ export function generateMetadata({ params }: Props): Metadata {
     };
   }
 
-  const codePair = workflow.group_code ? `${workflow.group_code}-${workflow.carc} ${workflow.rarc}` : `CARC ${workflow.carc} RARC ${workflow.rarc}`;
+  const codePair = getDenialTitle(workflow);
 
   return {
     title: `Denial Guide: ${codePair} — DenialCodePro`,
@@ -38,7 +39,7 @@ export default function DenialPage({ params }: Props) {
     notFound();
   }
 
-  const codePair = workflow.group_code ? `${workflow.group_code}-${workflow.carc} ${workflow.rarc}` : `CARC ${workflow.carc} RARC ${workflow.rarc}`;
+  const codePair = getDenialTitle(workflow);
 
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
@@ -198,7 +199,6 @@ export default function DenialPage({ params }: Props) {
       <div className="mt-10 border-t border-slate-200 pt-6 text-xs text-slate-500">
         <p>Source Evidence: {workflow.source_evidence}</p>
         <p>Last Verified: {workflow.last_verified}</p>
-        {workflow.update_trigger && <p>Update Trigger: {workflow.update_trigger}</p>}
       </div>
     </main>
   );

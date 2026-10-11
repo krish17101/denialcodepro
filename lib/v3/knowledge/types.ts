@@ -42,10 +42,10 @@ export interface ApprovedDenialFingerprint {
   record_id: string;
   record_type: 'Denial Fingerprint';
   scope: string;
-  group_code: string;
+  group_code: string | null;
   carc: string;
-  rarc: string;
-  rarc_type: string;
+  rarc: string | null;
+  rarc_type: string | null;
   pairing_status: string;
   evidence_grade: string;
   code_meaning: string;

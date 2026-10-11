@@ -127,7 +127,6 @@ export default function RemarkCodePage({ params }: Props) {
       <div className="mt-10 border-t border-slate-200 pt-6 text-xs text-slate-500">
         <p>Source Basis: {rarc.source_basis}</p>
         <p>Verified: {rarc.verified}</p>
-        {!rarc.publication.indexable && <p className="mt-2 text-amber-600 font-semibold">Internal QA Note: This record is reference-only and not indexable.</p>}
       </div>
     </main>
   );

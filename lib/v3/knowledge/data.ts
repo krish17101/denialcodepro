@@ -27,6 +27,13 @@ export function getDenialSlug(df: ApprovedDenialFingerprint) {
   return parts.join('-').toLowerCase();
 }
 
+export function getDenialTitle(df: ApprovedDenialFingerprint): string {
+  if (df.group_code) {
+    return df.rarc ? `${df.group_code}-${df.carc} ${df.rarc}` : `${df.group_code}-${df.carc}`;
+  }
+  return df.rarc ? `CARC ${df.carc} RARC ${df.rarc}` : `CARC ${df.carc}`;
+}
+
 export function getPayerSlug(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 }
