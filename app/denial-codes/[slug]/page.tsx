@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronRight, Home, FileWarning, Search } from 'lucide-react';
 import { getCarcBySlug } from '../../../lib/v3/search';
-import { knowledgeBase, getDenialSlug } from '../../../lib/v3/knowledge/data';
+import { knowledgeBase, getDenialSlug, getDenialTitle } from '../../../lib/v3/knowledge/data';
 import { EventTracker } from '../../components/v3/EventTracker';
 
 interface Props {
@@ -71,7 +71,7 @@ export default function DenialCodePage({ params }: Props) {
         {relatedGuides.length > 0 ? (
           <div className="grid gap-4">
             {relatedGuides.map(guide => {
-              const codePair = guide.group_code ? `${guide.group_code}-${guide.carc} ${guide.rarc}` : `CARC ${guide.carc} RARC ${guide.rarc}`;
+              const codePair = getDenialTitle(guide);
               return (
                 <Link 
                   key={guide.record_id}

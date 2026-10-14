@@ -27,11 +27,14 @@ export interface SearchResponse {
 
 // Convert Phase 2 Approved structures to Phase 1 SearchResult
 function mapCarcToResult(carc: ApprovedCarc): SearchResult {
+  const isCarc29 = carc.code === '29';
   return {
     kind: 'carc',
     slug: getCarcSlug(carc.code),
-    title: `CARC ${carc.code}`,
-    summary: carc.meaning,
+    title: isCarc29 ? 'CARC 29 — Reason Code Reference' : `CARC ${carc.code}`,
+    summary: isCarc29
+      ? 'Understand the timely-filing reason code. Open the CO-29 guide for the complete denial-resolution workflow.'
+      : carc.meaning,
     href: `/denial-codes/${getCarcSlug(carc.code)}`,
   };
 }
@@ -48,11 +51,14 @@ function mapRarcToResult(rarc: ApprovedRarc): SearchResult {
 
 function mapDenialToResult(df: ApprovedDenialFingerprint): SearchResult {
   const codePair = getDenialTitle(df);
+  const isCo29Guide = df.record_id === 'DF-037' || df.structured_guide?.guide_id === 'GUIDE-CO-29';
   return {
     kind: 'denial',
     slug: getDenialSlug(df),
-    title: `Denial Guide: ${codePair}`,
-    summary: df.practical_diagnosis || df.code_meaning,
+    title: isCo29Guide ? 'CO-29 — Denial Resolution Guide' : `Denial Guide: ${codePair}`,
+    summary: isCo29Guide
+      ? 'Step-by-step filing-deadline investigation, evidence collection, payer-specific guidance, and resolution options.'
+      : (df.practical_diagnosis || df.code_meaning),
     href: `/denial/${getDenialSlug(df)}`,
   };
 }

@@ -4912,6 +4912,643 @@
         "searchable": true,
         "indexable": true,
         "workflow_available": true
+      },
+      "structured_guide": {
+        "guide_id": "GUIDE-CO-29",
+        "guide_title": "CO-29 — Denial Resolution Guide",
+        "guide_subtitle": "Step-by-step filing-deadline investigation, evidence collection, payer-specific guidance, and resolution options.",
+        "quick_answer": {
+          "title": "Quick Answer: 3 Critical Questions to Resolve CO-29",
+          "questions": [
+            {
+              "question_number": 1,
+              "question": "Which deadline applies to this payer, plan, provider, and claim type?",
+              "summary": "Determine the governing rule: Original Medicare FFS (1 calendar year from DOS / Through date), commercial participating contracts (commonly 90–180 days), out-of-network rules, or verified secondary COB terms."
+            },
+            {
+              "question_number": 2,
+              "question": "What receipt date does the payer recognize, and what evidence supports it?",
+              "summary": "Audit EDI 277CA Loop 2200A DTP*050 and the complete STC composite (A1 receipt acknowledgment or A2 adjudication acceptance per payer companion guide), or payer portal receipt logs. Internal PM creation logs alone do not prove payer receipt."
+            },
+            {
+              "question_number": 3,
+              "question": "Was the claim late, or is there evidence of timely filing or an applicable exception?",
+              "summary": "If accepted timely, dispute with 277CA proof. If untimely, audit for qualifying statutory exceptions (42 CFR § 424.44) or contractual clauses before determining financial disposition."
+            }
+          ]
+        },
+        "code_explanation": {
+          "carc_code": "29",
+          "group_code": "CO",
+          "group_code_meaning": "Contractual Obligation (CO) indicates an adjustment resulting from a contract between the payer and participating provider, or an applicable regulatory fee schedule/mandate.",
+          "patient_billing_scope": "The assignment of Group Code CO reflects the contractual or statutory classification of the adjustment. It does not mean that every CO-29 determination creates an identical legal patient-billing consequence across all payer types. For participating providers under managed care contracts and under Original Medicare statutory provisions, writing off late-filed charges as provider liability is mandatory when the provider was at fault, and balance billing the beneficiary is prohibited. For non-participating providers and commercial plans without participating contractual balance-billing restrictions, financial responsibility is governed by specific state prompt-pay laws, network agreements, and consumer protection statutes.",
+          "what_code_establishes": [
+            "The payer's claims adjudication system applied Claim Adjustment Reason Code 29 (CARC 29) to adjust or deny the affected service line(s) or claim based on its determination that the filing limit was exceeded.",
+            "An adjudication decision was issued applying the timely filing adjustment to the affected service line(s) or claim charges, reducing or denying payment for those items in accordance with the payer's adjudication determination.",
+            "CO-29 shows that the payer applied the timely-filing adjustment; the code itself does not independently establish the actual claim receipt date or validate the payer's deadline calculation."
+          ],
+          "what_code_does_not_establish": [
+            "It does NOT independently prove the actual claim receipt date or establish that the payer's deadline calculation was correct; an 835 remittance reflects the payer's adjudication decision and payment date (per X12 RFI 2061), not independent evidentiary proof of when the transaction was received or accepted.",
+            "It does NOT establish that the provider made no timely submission attempt; earlier clearinghouse submissions may have been accepted or routed incorrectly.",
+            "It does NOT prove that the claim was never received; payer electronic gateway records (such as 277CA Loop 2200A DTP*050) may confirm timely receipt prior to adjudication system ingestion.",
+            "It does NOT establish that the claim is permanently uncollectible if a recognized coordination-of-benefits (COB), retroactive eligibility, or payer administrative exception applies.",
+            "It does NOT automatically grant permission to balance-bill the patient or establish patient financial responsibility."
+          ]
+        },
+        "initial_records_checklist": [
+          {
+            "record_type": "835 Electronic Remittance Advice (ERA) / Standard Paper Remittance (SPR)",
+            "purpose": "Identifies the exact claim control number (ICN/CCN), adjudication date, CARC 29 code, Group Code CO, and line-item denial allocations.",
+            "where_to_find": "Practice management (PM) system payment posting module or clearinghouse ERA archive."
+          },
+          {
+            "record_type": "Electronic 277CA Claim Acknowledgment Report",
+            "purpose": "Reports transaction-level status for the specific claim, including payer receipt date (Loop 2200A DTP*050 when payer is information source) and STC composite status (STC01-1 category code: A1 receipt acknowledgment, A2 acceptance into adjudication, or A3/other rejection). Serves as evidence of the specific transaction and status reported, interpreted alongside the payer companion guide.",
+            "where_to_find": "Clearinghouse portal under EDI Level 2 / Level 3 transaction acknowledgment archives."
+          },
+          {
+            "record_type": "Electronic 999 Implementation Acknowledgment",
+            "purpose": "Verifies that the 837 claim batch file was structurally syntactically compliant and translated by the receiving EDI gateway.",
+            "where_to_find": "Clearinghouse EDI gateway logs."
+          },
+          {
+            "record_type": "Practice Management (PM) Billing System Audit Log",
+            "purpose": "Chronicles initial charge entry date, claim generation batch number, original transmission attempt, and billing encounter history to help reconstruct transmission chronology.",
+            "where_to_find": "PM claim history, billing notes, or encounter audit trail."
+          },
+          {
+            "record_type": "Payer Participation Agreement & Provider Manual",
+            "purpose": "Establishes the contractually agreed timely filing window (e.g., 90, 180, or 365 days), secondary filing rules, and dispute filing deadlines.",
+            "where_to_find": "Provider contracting files or official payer portal provider manual."
+          },
+          {
+            "record_type": "Primary Payer Explanation of Benefits (if Secondary/COB Claim)",
+            "purpose": "Establishes primary payer adjudication/processing date and remittance date to evaluate secondary timely filing under payers recognizing primary EOP dates (such as Cigna), alongside the secondary payer's specific plan and contract rules.",
+            "where_to_find": "Patient account document repository or clearinghouse secondary claim attachments."
+          }
+        ],
+        "investigation_steps": [
+          {
+            "step_number": 1,
+            "title": "Establish Timeline Anchors",
+            "milestone": "Determine exact Date of Service, initial generation date, transmission date, and payer receipt date.",
+            "instructions": [
+              "Identify the Date of Service (DOS) from Loop 2400 DTP*472 (Box 24A on CMS-1500). For institutional span claims, establish the Statement Period From/Through dates from Loop 2300 DTP*434 (Box 6 on UB-04 / CMS-1450).",
+              "Extract the original submission timestamp and batch identifier from your practice management system and clearinghouse transmission logs (note that EDI 837 Header segment BHT04 records transaction set creation date and BHT05 records creation time, not transmission or receipt).",
+              "Locate the corresponding 277CA Claim Acknowledgment report. Verify the payer receipt date in Loop 2200A DTP*050 when the payer is the information source, and interpret the complete STC composite (STC01-1 category code, STC01-2 status code) and applicable payer companion guide for claim processing status.",
+              "Compare the verified receipt date against the payer's timely filing deadline window to determine whether initial submission was within the allowed period."
+            ],
+            "records_or_fields": [
+              {
+                "field": "Date of Service (DOS)",
+                "source_or_segment": "EDI 837 Loop 2400 DTP*472 (or Box 24A on CMS-1500)",
+                "what_to_verify": "Service-line date anchoring the professional filing clock."
+              },
+              {
+                "field": "Statement Period (From/Through)",
+                "source_or_segment": "EDI 837 Loop 2300 DTP*434 (or Box 6 on UB-04 / CMS-1450)",
+                "what_to_verify": "Statement Through date governs for span claims under CMS rules; do not equate statement Through date with discharge date in non-inpatient/interim contexts."
+              },
+              {
+                "field": "277CA Payer Receipt Date & Status",
+                "source_or_segment": "EDI 277CA Loop 2200A DTP*050 (Receipt Date) & STC composite (Status)",
+                "what_to_verify": "Loop 2200A DTP*050 reports payer receipt date when payer is information source; interpret complete STC composite in Loop 2200D (A1 = receipt acknowledgment, A2 = acceptance into adjudication, A3/other = rejection) against payer companion guide."
+              }
+            ]
+          },
+          {
+            "step_number": 2,
+            "title": "Determine Governing Filing Rule & Payer Category",
+            "milestone": "Identify whether the claim is governed by Original Medicare FFS, Medicare Advantage, Medicaid, or Commercial contract terms.",
+            "instructions": [
+              "Determine the exact payer category. Do not confuse Medicare Advantage (Part C managed care) with Original Medicare Fee-for-Service (Part A/B).",
+              "Verify provider network participation status (In-Network / Participating vs Out-of-Network).",
+              "Review the applicable contract timely-filing window (e.g., 90 days from DOS for participating commercial plans, 1 calendar year for Original Medicare FFS).",
+              "Check whether state prompt-pay statutes mandate a longer minimum filing window for commercial plans in your state."
+            ]
+          },
+          {
+            "step_number": 3,
+            "title": "Audit EDI Transmission Hierarchy",
+            "milestone": "Differentiate between syntax translation and claim-level acceptance.",
+            "instructions": [
+              "Inspect the 999 Implementation Acknowledgment. Confirm functional group acceptance via the AK9 segment (AK901 element: A = Accepted, E = Accepted with errors, R = Rejected). Note that AK901 is an acknowledgment status code, not a date field; translator logs record acknowledgment timestamps. Per X12 RFI 2099, a 999 verifies only syntax structure, not business acceptance or payer receipt date.",
+              "Inspect the 277CA Claim Acknowledgment (005010X214). Locate the specific claim in Loop 2200D and interpret the complete STC composite (STC01-1 Category Code, STC01-2 Status Code, STC01-3 Entity Code). In STC01-1, A1 indicates receipt acknowledgment, A2 indicates acceptance into adjudication, and A3 (or other applicable rejection category code) indicates the claim was rejected and will not be processed. Review the applicable payer companion guide for plan-specific status definitions.",
+              "If the 277CA confirms acceptance into adjudication (A2) or receipt acknowledgment (A1) with a qualifying payer receipt date prior to the deadline, it provides evidence of the transaction and status reported. Review the complete STC composite (STC01-1, STC01-2, STC01-3) and the payer companion guide to verify that the acknowledgment meets the payer's evidentiary requirements for timely submission.",
+              "If the 277CA shows rejection (such as category code A3 or other non-acceptance code), inspect the complete STC composite and payer companion guide to identify where and why the claim was rejected before evaluating recovery. Keep 999 functional-group syntax rejections distinct from 277CA claim-level status rejections."
+            ],
+            "records_or_fields": [
+              {
+                "field": "999 Functional Status",
+                "source_or_segment": "AK901 element",
+                "what_to_verify": "AK901 acknowledgment status code (A = Accepted, E = Accepted with errors, R = Rejected). Verifies syntax compliance; does not prove payer business receipt or establish receipt date."
+              },
+              {
+                "field": "277CA Claim Status",
+                "source_or_segment": "EDI 277CA Loop 2200D STC composite",
+                "what_to_verify": "STC01-1 category code (A1 = receipt acknowledgment, A2 = acceptance into adjudication, A3/other = rejection); interpret full STC composite and payer companion guide."
+              }
+            ]
+          },
+          {
+            "step_number": 4,
+            "title": "Evaluate Exception Criteria & Branching Decision",
+            "milestone": "Select the appropriate resolution path based on verified documentary evidence.",
+            "instructions": [
+              "If valid 277CA acceptance prior to deadline is verified: Route to Scenario 1 (Payer Review / Dispute with timely proof).",
+              "If clearinghouse rejection occurred prior to deadline: Route to Scenario 2 (Investigate, Correct & Evaluate Recovery).",
+              "If claim was waiting for primary payer EOB: Route to Scenario 3 (Secondary / COB calculation).",
+              "If claim is a corrected claim or response to an Additional Documentation Request (ADR): Route to Scenario 4 (Corrected claim or ADR response link).",
+              "If a statutory CMS or payer contractual exception applies: Route to Scenario 5 (Formal exception request)."
+            ]
+          }
+        ],
+        "timeline_and_dates": {
+          "general_rules": "Timely filing limits are strictly enforced deadlines measured from a legally defined starting event. In standard professional billing, the clock starts on the service-line Date of Service (Loop 2400 DTP*472). In institutional billing for span claims, the clock starts on the Statement Through Date (Loop 2300 DTP*434, Box 6). Under CMS rules, the Through date governs for span claims; do not equate statement Through date with discharge date in every context. In secondary billing, certain commercial payers with published policies (such as Cigna) calculate secondary timely filing from the processing date on the primary carrier's Explanation of Benefits (EOB/EOP). However, this rule is not universal across the industry, and state prompt-pay laws do not create a single standard secondary filing clock. For all other secondary claims, billers must verify the secondary payer's specific plan provisions, contract terms, provider manual, and governing deadline (some secondary plans enforce filing limits measured from the original Date of Service or specify distinct COB submission windows).",
+          "timeline_events": [
+            {
+              "event_name": "Date of Service (DOS)",
+              "field_or_source": "Loop 2400 DTP*472 (Box 24A on CMS-1500)",
+              "evidence_role": "Initial Clock Anchor",
+              "significance_notes": "Standard service-line starting point for professional timely filing deadlines (Loop 2400 DTP with qualifier 472).",
+              "applicable_scope": "Primary professional claims"
+            },
+            {
+              "event_name": "Statement Period (From/Through Date)",
+              "field_or_source": "Loop 2300 DTP*434 (Box 6 on UB-04 / CMS-1450)",
+              "evidence_role": "Institutional Span Clock Anchor",
+              "significance_notes": "Under CMS rules, the Statement Through date governs the filing clock for claims spanning multiple dates of service. Do not equate statement Through date with discharge date in every context (e.g., SNF, recurring outpatient, or interim billing).",
+              "applicable_scope": "Institutional claims with span dates"
+            },
+            {
+              "event_name": "Transaction-Set Creation Date & Time",
+              "field_or_source": "EDI 837 Header / BHT segment (BHT04 Date, BHT05 Time)",
+              "evidence_role": "Transaction Creation Timestamp",
+              "significance_notes": "BHT is a transaction-set header segment; BHT04 records the creation date and BHT05 records the creation time of the transaction set in the billing software, not the transmission or payer receipt timestamp. Actual electronic transmission and clearinghouse receipt must be verified through gateway communication logs and trace IDs, preserving the strict distinction between creation, transmission, and payer receipt.",
+              "applicable_scope": "Electronic 837 submissions"
+            },
+            {
+              "event_name": "Claim Creation Timestamp",
+              "field_or_source": "PM System Billing Log",
+              "evidence_role": "Internal Chronology",
+              "significance_notes": "Identified as internal billing preparation; does not establish payer receipt by itself, but helps reconstruct the electronic transmission chronology.",
+              "applicable_scope": "All claims"
+            },
+            {
+              "event_name": "999 Functional-Group Acknowledgment Status",
+              "field_or_source": "EDI 999 AK9 element (AK901)",
+              "evidence_role": "Syntax Verification Status",
+              "significance_notes": "AK901 reports the functional-group syntax acknowledgment code (A = Accepted, E = Accepted with errors, R = Rejected). AK9 is an acknowledgment code element, not a date field. Per X12 RFI 2099, a 999 verifies syntax structure only; it does not prove payer business receipt or establish a receipt date.",
+              "applicable_scope": "All electronic batches"
+            },
+            {
+              "event_name": "277CA Payer Receipt Date & Claim Status",
+              "field_or_source": "EDI 277CA Loop 2200A DTP*050 (Receipt Date) & Loop 2200D STC composite",
+              "evidence_role": "Payer Receipt & Adjudication Acceptance",
+              "significance_notes": "When the payer is the information source, Loop 2200A DTP with qualifier 050 (Date - Received) reports payer receipt date. In Loop 2200D, interpret the complete STC composite: STC01-1 code A1 represents receipt acknowledgment, A2 represents acceptance into adjudication, and A3 (or other applicable code) represents claim rejection. Consult the payer companion guide for specific STC definitions. A 277CA serves as evidence of the specific transaction and status it reports rather than universal proof of all payer requirements.",
+              "applicable_scope": "All electronic claims"
+            },
+            {
+              "event_name": "Replacement / Corrected Claim Transmission Date",
+              "field_or_source": "Loop 2300 CLM05-3 & REF*F8",
+              "evidence_role": "Adjustment Filing Anchor",
+              "significance_notes": "Records the transmission of a corrected claim (Frequency Code 7) linked to original ICN; governed by payer-specific corrected-claim submission windows.",
+              "applicable_scope": "Corrected claims"
+            },
+            {
+              "event_name": "Primary Adjudication / Processing Date",
+              "field_or_source": "Primary ERA 835 / EOB Processing Date",
+              "evidence_role": "COB Secondary Anchor",
+              "significance_notes": "Anchors the secondary timely filing window for Coordination of Benefits claims under payers whose published guidelines recognize primary EOB processing dates (such as Cigna). For all other secondary payers, verify the specific plan documents, contract terms, or original DOS filing limits. State prompt-pay laws do not establish a universal secondary filing clock. Not applicable to primary claims.",
+              "applicable_scope": "Secondary / COB claims only"
+            },
+            {
+              "event_name": "Remittance / Check Issue Date & Determination Notice Date",
+              "field_or_source": "EDI 835 BPR16 (Check/EFT Date) & Payer Determination Notice Date",
+              "evidence_role": "Post-Adjudication Appeal Anchor",
+              "significance_notes": "EDI 835 BPR16 records the check issue or EFT effective payment date, which is not a universal denial-determination date. Appeal and reconsideration deadlines are anchored to the payer's formal determination notice date, EOP date, or portal denial notice date as supported by payer rules.",
+              "applicable_scope": "All denied claims"
+            },
+            {
+              "event_name": "Dispute or Appeal Deadline",
+              "field_or_source": "Payer Contract / Provider Manual",
+              "evidence_role": "Escalation Deadline",
+              "significance_notes": "Payer-specific deadline to file a reconsideration or formal appeal (e.g., for Cigna, generally 180 calendar days from initial payment or denial notice, and 180 calendar days from last payment adjustment for adjusted claims, subject to state law and contract terms).",
+              "applicable_scope": "Disputed claims"
+            }
+          ],
+          "edi_distinction_notice": {
+            "ack_999_vs_277ca": "Official X12 interpretation (RFI 2099) establishes that a 999 Implementation Acknowledgment reports only the syntactical acceptance or rejection of a functional group against X12 syntax standards. It confirms syntax translation compliance, but does NOT indicate business acceptance or establish payer receipt date. In the 277CA (005010X214), transaction-level status is conveyed in the STC composite (such as in loops 2200B and 2200D), where STC01-1 indicates categories such as A1 (receipt acknowledgment), A2 (acceptance into adjudication), or A3/other (rejection), interpreted alongside STC01-2 and the payer companion guide. Payer receipt date is reported in Loop 2200A DTP*050 when the payer is the information source. Reconstructing the transmission timeline requires evaluating the complete acknowledgment chain.",
+            "internal_pm_dates_rule": "An internal practice management system creation timestamp or billing log alone does not establish payer receipt. However, internal audit logs and clearinghouse records help reconstruct the complete electronic submission chronology. Do not treat internal logs as universally accepted or universally rejected; they provide essential supporting corroboration when establishing transmission history."
+          }
+        },
+        "decision_outcomes": [
+          {
+            "outcome_type": "TIMELY_EVIDENCE_ESTABLISHED",
+            "title": "Timely Evidence Established (Payer Error)",
+            "criteria": "An electronic 277CA Claim Acknowledgment report confirms payer receipt acknowledgment (A1) or acceptance into adjudication (A2) prior to the deadline, or verifiable payer portal confirmation documentation exists.",
+            "recommended_action": "Submit through the payer's documented dispute or reconsideration channel with the 277CA acknowledgment report attached (highlighting Loop 2200A DTP*050 and the STC composite). Request reopening and prompt adjudication.",
+            "patient_billing_rules": "Patient billing is strictly prohibited. Under participating provider agreements and Medicare rules, provider must pursue payer resolution."
+          },
+          {
+            "outcome_type": "POSSIBLE_EXCEPTION_APPLIES",
+            "title": "Statutory or Contractual Exception Applies",
+            "criteria": "The claim qualifies under one of the 4 CMS statutory exceptions (administrative error, retroactive entitlement, Medicaid recoupment, or MA disenrollment) or an established commercial exception.",
+            "recommended_action": "Submit a formal exception request with mandatory corroborating government, agency, or court documentation within the applicable exception window.",
+            "patient_billing_rules": "Patient billing is strictly prohibited while exception determination is pending."
+          },
+          {
+            "outcome_type": "GENUINELY_LATE_CLAIM",
+            "title": "Genuinely Untimely Claim (Late Submission Confirmed)",
+            "criteria": "Initial submission was not completed prior to the deadline, clearinghouse rejections were not timely resolved, and no statutory or contractual exception applies under governing rules.",
+            "recommended_action": "Determine financial responsibility based on the governing program and provider agreement: (1) Commercial Participating Providers: Review the executed provider agreement and network manual to apply the required contractual adjustment and financial-responsibility terms. (2) Original Medicare Fee-for-Service: Apply statutory provider/beneficiary financial-liability rules under Section 1848(g)(4) of the Social Security Act and 42 CFR § 424.44; when untimely filing is provider fault, write off the charges as provider liability. (3) Non-Participating / Other Programs: Verify governing plan documents, state balance-billing and prompt-pay statutes, and consumer protection regulations before determining accounting disposition. Do not automatically bill the patient or apply a write-off without checking the governing rules.",
+            "patient_billing_rules": "Do not automatically bill the patient or write off charges without checking governing program rules. Under commercial participating provider agreements and Original Medicare FFS statutory provisions, provider-fault untimely claims cannot be balance-billed to the patient or beneficiary. For non-participating providers and other plan arrangements, patient liability depends on applicable state balance-billing laws, out-of-network statutory rules, and specific plan terms."
+          },
+          {
+            "outcome_type": "UNRESOLVED_EVIDENCE",
+            "title": "Unresolved Evidence (Missing Transmission Chain)",
+            "criteria": "Practice management system records show a batch was sent, but clearinghouse records are missing, inconclusive, or indicate an uncorrected front-end rejection.",
+            "recommended_action": "Open an urgent research ticket with your clearinghouse EDI support team to track the batch file trace number. Review payer rules and recovery options before determining financial disposition.",
+            "patient_billing_rules": "Do not transfer balance to patient. Exhaust clearinghouse EDI investigation before making final accounting disposition."
+          }
+        ],
+        "detailed_scenarios": [
+          {
+            "id": "scenario-timely-original",
+            "title": "Scenario 1: Timely Original Claim (Evidence Supports Timely Filing)",
+            "trigger_condition": "The payer issued CO-29 asserting late filing, but electronic clearinghouse records (277CA) or direct gateway logs provide evidence of timely receipt (Loop 2200A DTP*050) and acceptance (STC01-1 code A1 or A2) prior to the applicable deadline.",
+            "action_badge": "Payer Review / Claim Dispute",
+            "action_type": "PAYER_REVIEW_OR_DISPUTE",
+            "resolution_path": [
+              "Retrieve the original electronic 277CA report showing patient identifier, date of service, charge amount, and complete STC composite status (interpreting STC01-1 category codes such as A1 receipt acknowledgment or A2 acceptance into adjudication alongside the payer companion guide).",
+              "Identify the payer's documented dispute hierarchy: verify whether the payer provides a fast-track electronic reopening or dispute channel (e.g. portal claims dispute or informal inquiry) before initiating a formal administrative appeal.",
+              "Prepare the dispute referencing the original Claim Control Number (CCN/ICN) from the remittance.",
+              "Attach the complete 277CA report highlighting transaction timestamp, payer gateway receipt date, and STC composite status, and submit via the payer's documented dispute channel.",
+              "If the initial dispute is not resolved in accordance with contract prompt-pay timelines, escalate through the payer's formal administrative appeal process within governing appeal deadlines."
+            ],
+            "evidence_package": [
+              "Original 837 EDI claim file creation header (BHT segment with BHT04 date and BHT05 time).",
+              "Electronic clearinghouse 277CA Claim Acknowledgment report displaying accepted transaction status (STC01-1 code A1 or A2, interpreted with the payer companion guide).",
+              "Copy of the original claim form (CMS-1500 or UB-04).",
+              "Copy of the 835 remittance showing the erroneous CO-29 denial."
+            ],
+            "pitfalls_and_warnings": [
+              "Do NOT submit a new claim with frequency code 1. A new submission will trigger duplicate denial CO-18 or receive another CO-29 based on the current date.",
+              "Do not assume a formal multi-level appeal is the required first step; many commercial payers and MACs require initial dispute or reopening procedures before formal appeal escalation.",
+              "A 277CA provides evidence of the specific transaction and status it reports; do not confuse a 999 functional-group syntax acknowledgment with a 277CA claim-level status acknowledgment, and verify the complete STC composite against the payer companion guide."
+            ]
+          },
+          {
+            "id": "scenario-rejected-before-acceptance",
+            "title": "Scenario 2: Claim Rejected at Clearinghouse or Front-End Gateway",
+            "trigger_condition": "The claim was transmitted from your PM system prior to the deadline, but the clearinghouse or payer front-end gateway rejected the batch/claim (277CA rejection category such as A3 or 999 syntax rejection), and the rejection remained unadjudicated.",
+            "action_badge": "Investigate, Correct & Evaluate Recovery",
+            "action_type": "INVESTIGATE_CORRECT_RESUBMIT",
+            "resolution_path": [
+              "Establish where and why the rejection occurred by auditing the electronic rejection report (e.g., invalid member ID, missing taxonomy, inactive NPI, clearinghouse syntax error).",
+              "Correct the confirmed root-cause issue in the practice management system and master patient/provider record.",
+              "Preserve the complete transaction history: document the original submission timestamp, clearinghouse trace IDs, and rejection reason.",
+              "Determine the appropriate resubmission procedure: verify whether the payer's contract or state prompt-pay rules provide a resubmission grace period following an initial timely transmission attempt, or whether a documented payer gateway outage occurred.",
+              "If a qualifying exception or resubmission grace period applies, submit a formal dispute with complete clearinghouse trace history, original batch generation timestamps, and rejection resolution notes.",
+              "If no exception applies, no timely acceptance can be documented, and the filing limit has expired, determine financial responsibility under governing program rules: evaluate contractual adjustment requirements for commercial participating providers, statutory liability rules for Original Medicare FFS, or applicable state balance-billing and plan rules for non-participating providers. Do not automatically bill the patient or write off charges without verifying the governing rules."
+            ],
+            "evidence_package": [
+              "Original PM claim generation timestamp and batch transmission log.",
+              "Clearinghouse rejection report showing exact error code and timestamp.",
+              "Documented correction log in PM system.",
+              "Clearinghouse incident ticket or payer electronic gateway outage notification (if applicable)."
+            ],
+            "pitfalls_and_warnings": [
+              "A 277CA rejection report (e.g., STC01-1 Category Code A3) proves that the claim was not accepted into adjudication by the payer; it cannot be presented as proof of timely payer acceptance.",
+              "Do not automatically write off without investigating whether an EDI gateway outage or payer-specific resubmission grace period applies. Conversely, do not balance bill the patient if the late filing resulted from unworked provider billing errors under participating contracts."
+            ]
+          },
+          {
+            "id": "scenario-secondary-cob",
+            "title": "Scenario 3: Coordination of Benefits (COB) / Secondary Claim Delay",
+            "trigger_condition": "The secondary payer denied the claim under CO-29 based on the original date of service, because primary payer adjudication took several months.",
+            "action_badge": "Secondary / COB Reconsideration",
+            "action_type": "SECONDARY_COB",
+            "resolution_path": [
+              "Determine the secondary payer's specific timely filing rule and governing starting event for COB claims. While certain commercial payers with published policies (such as Cigna) calculate secondary timely filing from the processing date on the primary payer's Explanation of Benefits (EOB/EOP), this standard is not universal across all commercial payers or plans. State prompt-pay laws do not establish one universal secondary-claim filing clock. For all other situations, verify the secondary payer's own plan documents, executed provider agreement, and published manual to establish whether the secondary deadline runs from primary EOP processing date, primary check date, or original Date of Service.",
+              "Verify whether the secondary claim was submitted within the secondary payer's verified filing deadline following the governing starting event established by that payer's contract or policy.",
+              "Submit a formal dispute or reconsideration attaching the primary payer's 835 remittance / EOB showing the primary adjudication/processing date, payment breakdown, and check/remittance date.",
+              "Include a cover letter citing the primary adjudication date, the specific secondary claim submission date, and the governing provider manual or contract section establishing the secondary filing rule."
+            ],
+            "evidence_package": [
+              "Primary payer 835 Remittance Advice / EOB displaying adjudication/processing date, check date, and line-item payment/denial breakdown.",
+              "Secondary claim submission proof (such as 277CA report or clearinghouse confirmation) demonstrating timely filing under the secondary payer's governing rule.",
+              "Copy of the secondary payer's provider manual section or contract term establishing the secondary timely filing standard."
+            ],
+            "pitfalls_and_warnings": [
+              "Do not assume that all secondary payers calculate filing limits from the primary EOB date or that state prompt-pay statutes create a universal secondary window; always verify the secondary payer's specific contract terms and plan document.",
+              "Ensure the secondary claim includes complete primary payment data in EDI Loop 2320 (COB) and Loop 2330 (Other Payer). Stripping primary payment info triggers rejection."
+            ]
+          },
+          {
+            "id": "scenario-corrected-claim",
+            "title": "Scenario 4: Additional Information Request or Corrected Claim Denied as New Filing",
+            "trigger_condition": "The payer issued CO-29 following submission of a corrected claim or in response to an Additional Documentation Request (ADR), treating the transaction as an untimely new original claim.",
+            "action_badge": "Corrected Claim / Records Proof",
+            "action_type": "CORRECTED_OR_ADR_SUBMISSION",
+            "resolution_path": [
+              "Distinguish between Path A (Additional Information / ADR Request) and Path B (Corrected / Replacement Claim):",
+              "Path A — Request for Additional Information (ADR): If the payer requested medical records or documentation and denied the claim for late submission: Verify whether documentation was delivered within the specific deadline established by the payer's ADR notice, program rules, or contract terms (do not rely on generalized 30–45 day estimates; check the specific request letter and MAC/payer manual). Submit a claim dispute attaching documented proof of timely records delivery appropriate to the permitted submission channel (such as portal upload confirmation, esMD transaction ID, certified mail tracking, or secure fax transmission receipt) referencing the original timely claim ICN and ADR notice.",
+              "Path B — Corrected / Replacement Claim: If the provider corrected coding, charges, or patient data: Verify that the claim was submitted using Claim Frequency Code 7 (Replacement of Prior Claim) in Loop 2300 CLM05-3 / Box 22 and cited the original Claim Control Number (ICN/CCN) in Loop 2300 REF*F8.",
+              "Verify the governing corrected-claim deadline and rules: Review the specific payer's provider manual and contract terms to determine their replacement/corrected-claim deadline, governing starting event (e.g., initial remittance date vs. date of service), submission rules, and original claim reference requirements (such as Frequency Code 7 in Loop 2300 CLM05-3 and the original Claim Control Number/ICN in Loop 2300 REF*F8). Do not assume a standardized timeframe or starting event across payers.",
+              "Submit a formal reconsideration or appeal demonstrating that the initial claim was timely and the correction complied with replacement claim conventions."
+            ],
+            "evidence_package": [
+              "Original claim 277CA acceptance report establishing initial timely filing.",
+              "Original claim 835 remittance showing original ICN/CCN.",
+              "Copy of corrected claim showing Frequency Code 7 and original ICN reference in Box 22 / Loop 2300.",
+              "Documentation delivery confirmation appropriate to the submission channel (portal upload timestamp, esMD confirmation ID, certified mail tracking receipt, or verifiable fax transmission report)."
+            ],
+            "pitfalls_and_warnings": [
+              "Do not submit a records response as a replacement claim, and do not submit a replacement claim with Frequency Code 1 (Original).",
+              "A corrected claim must explicitly reference the original ICN; unlinked corrections are processed as brand-new claims subject to original DOS timely filing limits. Always confirm the specific payer's replacement claim rules and deadline rather than relying on generalized assumptions."
+            ]
+          },
+          {
+            "id": "scenario-potential-exception",
+            "title": "Scenario 5: Potential Statutory or Contractual Exception Applies",
+            "trigger_condition": "The filing deadline was missed due to circumstances beyond the provider's control qualifying under federal statutory exceptions (42 CFR § 424.44) for Original Medicare FFS or documented contractual exception clauses for commercial payers.",
+            "action_badge": "Formal Exception Request",
+            "action_type": "EXCEPTION_REQUEST",
+            "resolution_path": [
+              "Review the claim against the specific exception criteria: CMS statutory exceptions (42 CFR § 424.44) for Medicare FFS, or contract exception clauses for commercial payers.",
+              "Gather mandatory corroborating third-party records (government agency letters, Medicaid recoupment remittances, retroactive eligibility notices).",
+              "Verify that the exception request is submitted within the specific extension window and starting event defined for that exception under CMS IOM Pub. 100-04, Ch. 1, §§ 70.7.1–70.7.4 (or the commercial payer's contract terms).",
+              "Submit the formal exception package through the designated contractor/payer exception review channel."
+            ],
+            "evidence_package": [
+              "Official Social Security Administration / CMS retroactive entitlement notice.",
+              "State Medicaid recoupment remittance advice showing recoupment date.",
+              "Medicare Advantage plan retroactive disenrollment and recoupment notification.",
+              "Detailed timeline narrative and documented delivery receipt (portal confirmation, certified mail tracking, or contractor acknowledgment)."
+            ],
+            "pitfalls_and_warnings": [
+              "The filing-extension calculation and its triggering event depend on the specific CMS exception under CMS IOM Pub. 100-04, Ch. 1, §§ 70.7.1–70.7.4 and 42 CFR § 424.44 (for example, administrative error extensions are determined based on contractor guidelines under § 70.7.1, whereas retroactive Medicare entitlement under § 70.7.2, Medicaid recoupment under § 70.7.3, and MA disenrollment under § 70.7.4 calculate extension periods from specific notification or recoupment events). Missing the applicable extension window for the qualifying exception results in forfeiture of exception rights under Medicare regulations.",
+              "Staff turnover, software migration, or internal administrative oversight do NOT qualify as valid exceptions under Medicare or commercial rules."
+            ]
+          }
+        ],
+        "medicare_ffs_rules": {
+          "filing_deadline_rule": "Under Section 1814(a)(1) and Section 1842(b)(3)(B) of the Social Security Act, as amended by Section 6404 of the Affordable Care Act, claims for services furnished under Medicare Part A and Part B must be filed within 12 months (one calendar year) after the date of service.",
+          "date_convention_details": "For services furnished on any date within a calendar year, claims must be filed within 12 months after the date of service. For institutional claims spanning multiple dates of service, the 12-month period begins on the Statement Through Date (Loop 2300 DTP*434 / Box 6 on UB-04/CMS-1450). Under CMS rules, the Through date governs for span claims; do not equate statement Through date with discharge date in every context (such as SNF, home health, recurring outpatient, or interim billing where services continue without discharge).",
+          "distinction_from_medicare_advantage": "This statutory 12-month rule applies exclusively to Original Medicare Fee-for-Service (Part A and Part B) administered by Medicare Administrative Contractors (MACs). Medicare Advantage plans (Part C) are private managed care plans governed by their own provider agreements and CMS MA regulations; MA plans typically enforce filing limits between 90 days and 365 days specified in their provider manuals.",
+          "appeal_rights_limitation": "Under CMS Internet-Only Manual (IOM) Pub. 100-04, Medicare Claims Processing Manual, Chapter 1, Section 70.8.8, a denial for failure to file a claim timely is NOT considered an initial determination under Section 1869 of the Social Security Act. Consequently, an untimely filing denial carries NO formal provider appeal rights (Redetermination). Instead, the Medicare Administrative Contractor (MAC) conducts an informal review or reopening at the provider's request if verifiable evidence of timely filing (such as qualifying 277CA acceptance) or an authorized statutory exception under 42 CFR § 424.44 is submitted.",
+          "beneficiary_billing_restriction": "Under Section 1848(g)(4) of the Social Security Act and 42 CFR § 424.44, when a claim is denied for untimely filing and the failure to file timely was the fault of the physician or supplier, the provider is legally prohibited from charging the beneficiary. An Advance Beneficiary Notice of Noncoverage (ABN) cannot be used to shift financial liability for provider administrative delay to the beneficiary.",
+          "exceptions": [
+            {
+              "exception_number": 1,
+              "name": "Administrative Error by HHS or its Agents",
+              "authority": "42 CFR § 424.44(b)(1); CMS IOM Pub. 100-04, Ch. 1, § 70.7.1",
+              "qualifying_conditions": "The failure to file timely was caused by error or misrepresentation by an employee, contractor (MAC), or agent of the Department of Health and Human Services (HHS) performing Medicare functions and acting within their scope of authority. The extended filing deadline runs through the last day of the sixth calendar month following the month in which either the beneficiary or the provider/supplier received notification that the error or misrepresentation was corrected. Under CMS instructions (§ 70.7.1), extension requests submitted more than 4 years after the Date of Service will not be granted under any circumstances.",
+              "documentation_required": [
+                "Written communication or official records from CMS or the MAC acknowledging the administrative error, system failure, or incorrect guidance.",
+                "Proof that the provider submitted the claim or inquiry prior to the deadline and was obstructed by the contractor's documented error.",
+                "Claim submission through the last day of the sixth calendar month following the month of correction notice (subject to the absolute 4-year ceiling from DOS)."
+              ]
+            },
+            {
+              "exception_number": 2,
+              "name": "Retroactive Medicare Entitlement",
+              "authority": "42 CFR § 424.44(b)(2); CMS IOM Pub. 100-04, Ch. 1, § 70.7.2",
+              "qualifying_conditions": "The beneficiary was not entitled to Medicare at the time services were furnished, and subsequently received official notification of Medicare entitlement effective retroactively to or before the Date of Service. The extended filing deadline runs through the last day of the sixth calendar month following the month in which the beneficiary or provider/supplier received official notification of retroactive Medicare entitlement.",
+              "documentation_required": [
+                "Official Social Security Administration (SSA) or CMS notice establishing retroactive entitlement date.",
+                "Documentation showing the date the provider was first notified of Medicare eligibility.",
+                "Proof that the claim was submitted through the last day of the sixth calendar month following the month of notice."
+              ]
+            },
+            {
+              "exception_number": 3,
+              "name": "Retroactive Medicare Entitlement Involving State Medicaid Agency Recoupment",
+              "authority": "42 CFR § 424.44(b)(3); CMS IOM Pub. 100-04, Ch. 1, § 70.7.3",
+              "qualifying_conditions": "The beneficiary was entitled to Medicaid at the time services were furnished, but subsequently received retroactive Medicare entitlement, prompting the State Medicaid agency to recover (recoup) payments previously made to the provider 6 months or more after the Date of Service. The extended filing deadline runs through the last day of the sixth calendar month following the month in which the State Medicaid agency recouped the payment.",
+              "documentation_required": [
+                "State Medicaid remittance advice or official recoupment notice documenting the specific recovery of funds and date of recoupment.",
+                "Proof that Medicaid recoupment occurred 6 months or more after the Date of Service.",
+                "Proof that the Medicare claim was filed through the last day of the sixth calendar month following the month of Medicaid recoupment."
+              ]
+            },
+            {
+              "exception_number": 4,
+              "name": "Retroactive Disenrollment from Medicare Advantage or PACE",
+              "authority": "42 CFR § 424.44(b)(4); CMS IOM Pub. 100-04, Ch. 1, § 70.7.4",
+              "qualifying_conditions": "The beneficiary was enrolled in a Medicare Advantage (MA) plan or PACE organization at the time services were furnished, was subsequently retroactively disenrolled from the MA plan/PACE organization into Original Medicare FFS, and the MA plan or PACE organization recouped payment from the provider 6 months or more after the Date of Service. The extended filing deadline runs through the last day of the sixth calendar month following the month in which the MA plan or PACE organization recouped payment.",
+              "documentation_required": [
+                "Medicare Advantage plan / PACE recoupment notification letter or remittance advice showing recovery of payment and date of recoupment.",
+                "CMS notice verifying retroactive disenrollment to Original Medicare FFS.",
+                "Proof that the Original Medicare claim was filed through the last day of the sixth calendar month following the month of MA/PACE recoupment."
+              ]
+            }
+          ]
+        },
+        "commercial_payer_rules": {
+          "general_principles": "Commercial timely filing deadlines are determined by individual participating provider contracts, provider network manuals, and state prompt-pay legislation. In-network deadlines range widely (commonly 90 to 180 days from DOS), while out-of-network claims frequently have longer windows (often 180 to 365 days). Commercial contract terms legally supersede general guidelines; providers must verify their specific executed agreement. Payer rules from one commercial carrier (such as Cigna) must never be generalized to other commercial payers.",
+          "payers": [
+            {
+              "payer_name": "Cigna Healthcare",
+              "product_or_market": "Commercial Managed Care (HMO, PPO, POS, Open Access Plus)",
+              "participation_status": "In-Network / Participating Healthcare Professionals",
+              "claim_type": "Professional and Facility Claims",
+              "timely_filing_limit": "90 calendar days from the Date of Service for participating providers (or from the last date of service for consecutive days/hospital confinement, unless otherwise specified in a specific provider contract or state prompt-pay law); 180 calendar days from Date of Service for out-of-network providers.",
+              "secondary_claim_rule": "Under Cigna's published claim submission guidance, when Cigna is the secondary payer, timely filing is calculated from the processing date on the primary payer's Explanation of Benefits / Explanation of Payment (EOB/EOP). This rule is specific to Cigna and payers with comparable published policies; do not generalize it as a universal secondary filing standard for other commercial payers without checking their specific contracts.",
+              "appeal_limit": "Generally 180 calendar days from the date of the initial payment or denial notice (Explanation of Payment / EOP). For adjusted payments, appeals must be submitted within 180 calendar days from the date of the last payment adjustment notice. Always verify governing contract terms and state prompt-pay/dispute laws, as state regulations or individual contract amendments may alter appeal timeframes. Do not generalize Cigna appeal deadlines to other commercial payers.",
+              "effective_period": "Current Published Cigna Guidelines",
+              "exceptions_summary": "Exceptions considered for documented payer gateway technical issues, coordination of benefits delays with attached primary EOB showing processing date, or state-mandated prompt-pay filing extensions.",
+              "source_title": "Cigna HealthCare Claims Submission Guidelines & Appeals/Disputes Procedures",
+              "source_url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+              "verified_date": "2026-10-14"
+            }
+          ]
+        },
+        "inquiry_template": {
+          "title": "Adaptable Payer Claim Review, Dispute & Reopening Request — Proof of Timely Filing",
+          "context_use_case": "Adaptable template for claim dispute, informal review, MAC reopening, or formal reconsideration when electronic clearinghouse records (277CA) or payer portal logs prove the original claim was received or accepted prior to the payer's deadline.",
+          "subject_line": "CLAIM INQUIRY / DISPUTE / REOPENING: Proof of Timely Filing — Claim #[Claim Number / ICN] — Patient: [Patient Name]",
+          "template_body": "Date: [Date of Request]\n\nTo: [Payer Name]\nAttention: Claims Dispute / Informal Review / MAC Reopening / Provider Appeals Department\nAddress / Portal: [Payer Address or Portal Submission Route]\n\nRE: Request for Claim Review, Dispute Resolution, or Reopening — Untimely Filing Adjustment (CO-29)\nPatient Name: [Patient Name]\nPatient Date of Birth: [Patient DOB]\nSubscriber ID / Policy Number: [Subscriber ID]\nClaim Number / ICN: [Claim Number / ICN]\nDate(s) of Service: [Date of Service (DOS)]\nBilled Amount: $[Billed Amount]\nProvider Name: [Billing Provider Name]\nBilling NPI: [Billing Provider NPI]\nTax ID: [Billing Tax ID]\n\nDear Claims Department / Review Committee,\n\nWe are requesting review, dispute resolution, or reopening of the above-referenced claim, which was adjusted or denied under Claim Adjustment Reason Code 29 (CO-29: The time limit for filing has expired) on Remittance Date [Remittance Date].\n\nOur records demonstrate that this claim was timely submitted electronically and acknowledged prior to the applicable filing deadline of [Payer Filing Limit, e.g., 90 days / 365 days] from the governing anchor date ([Service Date / Statement Through Date / Primary EOB Date]).\n\nDOCUMENTARY PROOF OF TIMELY SUBMISSION:\n1. Date of Service / Statement Through Date: [Date of Service (DOS)]\n2. Applicable Filing Deadline: [Calculated Filing Deadline Date]\n3. Original Electronic Transmission Date: [Original Submission Date]\n4. Clearinghouse Batch Reference / Trace Number: [Batch ID / File ID]\n5. Electronic 277CA Claim Acknowledgment: Received on [277CA Receipt/Acceptance Date and Timestamp]\n6. Payer Gateway Status: STC Composite Status [e.g., STC01-1 Category Code A1 Receipt Acknowledgment / A2 Accepted into Adjudication, interpreted per Payer Companion Guide]\n\nAs substantiated by the attached electronic 277CA acknowledgment, the initial claim transaction was received and acknowledged prior to the expiration of the filing limit.\n\nBecause timely submission is supported by electronic gateway records, we respectfully request that you review the CO-29 determination, reopen the claim, and process payment in accordance with our participation agreement or governing fee schedule. (If your organization requires this request to be processed under formal reconsideration/appeal procedures, please accept this package as our formal submission).\n\nENCLOSURES ATTACHED:\n• Electronic 277CA Claim Acknowledgment Report (showing payer receipt date in Loop 2200A and STC composite status)\n• Original 837 EDI Transmission Summary & Batch Trace Header\n• Copy of Original Claim (CMS-1500 / UB-04)\n• Copy of Remittance Advice / EOP showing CO-29 adjustment\n\nThank you for your prompt attention to this matter.\n\nSincerely,\n\n[Author Name / Title]\n[Practice / Facility Name]\n[Contact Phone Number]\n[Contact Email / Fax]",
+          "placeholders": [
+            {
+              "token": "[Date of Request]",
+              "description": "Current date the dispute or review request is submitted."
+            },
+            {
+              "token": "[Payer Name]",
+              "description": "Legal name of the insurance carrier, health plan, or MAC."
+            },
+            {
+              "token": "[Patient Name]",
+              "description": "Full legal name of the patient as registered."
+            },
+            {
+              "token": "[Patient DOB]",
+              "description": "Date of birth of the patient."
+            },
+            {
+              "token": "[Subscriber ID]",
+              "description": "Member/subscriber policy or Medicare Beneficiary Identifier (MBI)."
+            },
+            {
+              "token": "[Claim Number / ICN]",
+              "description": "Original internal claim control number assigned on the 835 remittance."
+            },
+            {
+              "token": "[Date of Service (DOS)]",
+              "description": "Actual service date or statement period."
+            },
+            {
+              "token": "[Billed Amount]",
+              "description": "Total charge amount submitted on the claim."
+            },
+            {
+              "token": "[Billing Provider Name]",
+              "description": "Legal name of billing group or physician."
+            },
+            {
+              "token": "[Billing Provider NPI]",
+              "description": "10-digit National Provider Identifier."
+            },
+            {
+              "token": "[Remittance Date]",
+              "description": "Date of the 835 ERA containing the CO-29 denial."
+            },
+            {
+              "token": "[Payer Filing Limit]",
+              "description": "Governing timely filing window in days/months."
+            },
+            {
+              "token": "[Original Submission Date]",
+              "description": "Initial EDI transmission date."
+            },
+            {
+              "token": "[Batch ID / File ID]",
+              "description": "Clearinghouse batch or trace number."
+            },
+            {
+              "token": "[277CA Receipt/Acceptance Date and Timestamp]",
+              "description": "Electronic timestamp on the 277CA."
+            }
+          ]
+        },
+        "wrong_fix_warnings": [
+          {
+            "action_to_avoid": "Submitting Practice Management System Screen Prints Alone as Timely Filing Proof",
+            "why_it_fails": "Payers and Medicare Administrative Contractors generally reject internal billing screens, billing notes, and claim-generation timestamps as standalone proof because they establish only internal data entry, not delivery to or acceptance by the payer.",
+            "correct_alternative": "Provide the electronic 277CA Claim Acknowledgment report displaying the payer receipt date (Loop 2200A DTP*050) and STC status (such as A1 receipt acknowledgment or A2 adjudication acceptance interpreted per payer companion guide), using PM logs to corroborate transmission chronology."
+          },
+          {
+            "action_to_avoid": "Submitting a New Claim (Frequency Code 1) Following a CO-29 Denial",
+            "why_it_fails": "Submitting a new claim generates duplicate denial CARC 18 or receives another CO-29 denial based on the current submission date.",
+            "correct_alternative": "Follow the payer's documented dispute or reconsideration procedure referencing the original Claim Control Number (ICN/CCN), or submit a Corrected Claim with Frequency Code 7 linking to the original ICN."
+          },
+          {
+            "action_to_avoid": "Balance-Billing the Patient Under Group Code CO",
+            "why_it_fails": "Group Code CO signifies Contractual Obligation. Under participating provider contracts and federal Medicare regulations (42 CFR § 424.44), writing off late-filed charges as provider liability is mandatory when late filing is the provider's fault. Billing the patient violates contract terms and statutory requirements. For non-participating providers and other plan arrangements, financial responsibility must be evaluated under governing plan documents, state balance-billing statutes, and consumer protection laws rather than automatic assumptions.",
+            "correct_alternative": "Exhaust all payer dispute avenues using timely filing evidence or qualifying exceptions. If uncollectible under participating contracts or Medicare FFS, apply the required contractual adjustment or provider liability write-off. For other arrangements, verify governing statutory and contract rules before making financial disposition."
+          },
+          {
+            "action_to_avoid": "Attempting to Issue a Retroactive Advance Beneficiary Notice (ABN)",
+            "why_it_fails": "Under CMS guidelines, an ABN cannot be issued retroactively after services are performed, and an ABN cannot be used to shift financial liability for provider administrative delay.",
+            "correct_alternative": "ABNs apply only to statutory medical necessity or non-covered service exclusions, never to timely filing denials."
+          }
+        ],
+        "prevention_controls": [
+          {
+            "control_name": "Daily 24/48-Hour Clearinghouse Rejection Scrubbing",
+            "timing": "Daily (Every morning)",
+            "operational_action": "Audit clearinghouse dashboards daily for all claims in 'Pending', 'Unacknowledged', or 'Rejected' (such as 277CA STC category code A3 or front-end clearinghouse rejection) status. Resolve and resubmit front-end rejections within 48 hours of initial transmission."
+          },
+          {
+            "control_name": "Automated 30-Day Unadjudicated Claim Aging Alerts",
+            "timing": "Weekly",
+            "operational_action": "Configure PM system aging workflows to flag any claim with no 835 remittance within 30 days of transmission. Perform electronic 276/277 claim status inquiries to catch missing claims before filing deadlines lapse."
+          },
+          {
+            "control_name": "Payer-Specific Scrubber Rules by Filing Window",
+            "timing": "Real-Time at Charge Entry",
+            "operational_action": "Implement claim scrubber rules flagging claims approaching 50% of the payer's filing limit (e.g., flag at 45 days for Cigna 90-day plans; flag at 60 days for 120-day plans)."
+          },
+          {
+            "control_name": "Secondary Payer Queue Automation on Primary Payment Posting",
+            "timing": "Immediately upon 835 Posting",
+            "operational_action": "Ensure secondary claims auto-generate with attached primary remittance data within 5 business days of primary ERA posting to prevent secondary timely filing forfeitures."
+          }
+        ],
+        "final_resolution_checklist": [
+          "Verified whether the claim was acknowledged as received or accepted prior to deadline via electronic 277CA report (evaluating Loop 2200A DTP*050 and the STC composite).",
+          "Confirmed that the governing timely filing window was calculated from the correct anchor date (service-line DOS, institutional Through date, or primary EOB processing date where recognized by the secondary payer's published policy).",
+          "Audited for the 4 CMS statutory exceptions (if Original Medicare FFS) or contractual exception clauses (if commercial).",
+          "If disputing: Attached electronic 277CA acknowledgment report showing STC acceptance status (such as A1 receipt acknowledgment or A2 adjudication acceptance interpreted per payer companion guide) and original ICN/CCN reference.",
+          "If secondary: Attached complete primary payer 835 EOB highlighting primary adjudication/processing date and verified the secondary payer's specific plan policy, contract terms, and filing window.",
+          "If corrected claim: Transmitted with Claim Frequency Code 7 and original ICN in Loop 2300 REF*F8 in compliance with payer-specific replacement rules.",
+          "If uncollectible provider delay: Determined financial responsibility under governing program rules (processing contractual adjustment for participating commercial plans or statutory provider liability write-off for Original Medicare FFS, without balance-billing the beneficiary where prohibited).",
+          "Documented the root cause in billing logs and verified claim scrubber prevention controls."
+        ],
+        "sources_and_governance": {
+          "authoritative_sources": [
+            {
+              "authority": "Centers for Medicare & Medicaid Services (CMS)",
+              "title": "Medicare Claims Processing Manual, Pub. 100-04, Chapter 1, Section 70 (Timely Filing of Claims)",
+              "citation": "CMS IOM Pub. 100-04, Chapter 1, §§ 70.1–70.8.8",
+              "url": "https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/downloads/clm104c01.pdf",
+              "verified_date": "2026-10-14"
+            },
+            {
+              "authority": "Electronic Code of Federal Regulations",
+              "title": "42 CFR § 424.44 — Time Limits for Filing Claims",
+              "citation": "42 CFR § 424.44",
+              "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-424/subpart-C/section-424.44",
+              "verified_date": "2026-10-14"
+            },
+            {
+              "authority": "X12 / ASC X12 Standards",
+              "title": "Request for Interpretation RFI 2099 — 999 Confirming Claim Receipt",
+              "citation": "X12 RFI 2099",
+              "url": "https://x12.org/resources/requests-for-interpretation/rfi-2099-999-confirming-claim-receipt",
+              "verified_date": "2026-10-14"
+            },
+            {
+              "authority": "X12 / ASC X12 Standards",
+              "title": "Request for Interpretation RFI 2061 — Adjudication or Payment Date",
+              "citation": "X12 RFI 2061",
+              "url": "https://x12.org/resources/requests-for-interpretation/rfi-2061-adjudication-or-payment-date",
+              "verified_date": "2026-10-14"
+            },
+            {
+              "authority": "X12 / ASC X12 Standards",
+              "title": "Request for Interpretation RFI 1942 — Clarification STC01-1 in 277CA (005010X214)",
+              "citation": "X12 RFI 1942",
+              "url": "https://x12.org/resources/requests-for-interpretation/rfi-1942-clarification-stc01-1-277ca",
+              "verified_date": "2026-10-14"
+            },
+            {
+              "authority": "X12 / Washington Publishing Company",
+              "title": "Claim Adjustment Reason Codes (CARC) — Code 29 Official Definition",
+              "citation": "X12 CARC 29",
+              "url": "https://x12.org/codes/claim-adjustment-reason-codes",
+              "verified_date": "2026-10-14"
+            },
+            {
+              "authority": "Cigna Healthcare",
+              "title": "Cigna HealthCare Claims Submission Guidelines & Procedures",
+              "citation": "Cigna Provider Manual: Claims Submission",
+              "url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+              "verified_date": "2026-10-14"
+            },
+            {
+              "authority": "Cigna Healthcare",
+              "title": "Cigna HealthCare Appeals and Disputes Procedures",
+              "citation": "Cigna Provider Appeals & Disputes Policy",
+              "url": "https://www.cigna.com/health-care-providers/coverage-and-claims/appeals-disputes",
+              "verified_date": "2026-10-14"
+            }
+          ],
+          "scope_limitations": "This guide provides operational billing workflow guidance based on published CMS regulations, X12 standards, and official payer manuals. Payer participation contracts and state prompt-pay statutes take precedence over general guidelines. Payer rules from one commercial carrier (such as Cigna) must not be generalized to other commercial payers. This reference does not constitute legal, medical, or financial billing advice.",
+          "last_reviewed_date": "2026-10-14"
+        }
       }
     },
     {

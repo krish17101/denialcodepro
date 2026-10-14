@@ -63,8 +63,152 @@ export interface ApprovedDenialFingerprint {
   commercial_payer_branch: string;
   source_evidence: string;
   last_verified: string;
-  update_trigger: string;
+  update_trigger?: string;
   publication: PublicationPolicy;
+  structured_guide?: ComprehensiveDenialGuide;
+}
+
+export interface InvestigationStep {
+  step_number: number;
+  title: string;
+  milestone: string;
+  instructions: string[];
+  records_or_fields?: { field: string; source_or_segment?: string; what_to_verify: string }[];
+}
+
+export interface DetailedScenario {
+  id: string;
+  title: string;
+  trigger_condition: string;
+  action_badge: string;
+  action_type: 'PAYER_REVIEW_OR_DISPUTE' | 'INVESTIGATE_CORRECT_RESUBMIT' | 'SECONDARY_COB' | 'CORRECTED_OR_ADR_SUBMISSION' | 'EXCEPTION_REQUEST';
+  resolution_path: string[];
+  evidence_package: string[];
+  pitfalls_and_warnings?: string[];
+}
+
+export interface DecisionOutcome {
+  outcome_type: 'TIMELY_EVIDENCE_ESTABLISHED' | 'POSSIBLE_EXCEPTION_APPLIES' | 'GENUINELY_LATE_CLAIM' | 'UNRESOLVED_EVIDENCE';
+  title: string;
+  criteria: string;
+  recommended_action: string;
+  patient_billing_rules: string;
+}
+
+export interface TimelineEvent {
+  event_name: string;
+  field_or_source: string;
+  evidence_role: string;
+  significance_notes: string;
+  applicable_scope?: string;
+}
+
+export interface MedicareException {
+  exception_number: number;
+  name: string;
+  authority: string;
+  qualifying_conditions: string;
+  documentation_required: string[];
+}
+
+export interface CommercialPayerRule {
+  payer_name: string;
+  product_or_market: string;
+  participation_status: string;
+  claim_type: string;
+  timely_filing_limit: string;
+  secondary_claim_rule: string;
+  appeal_limit: string;
+  effective_period?: string;
+  exceptions_summary: string;
+  source_title: string;
+  source_url: string;
+  verified_date: string;
+}
+
+export interface PayerInquiryTemplate {
+  title: string;
+  context_use_case: string;
+  subject_line: string;
+  template_body: string;
+  placeholders: { token: string; description: string }[];
+}
+
+export interface QuickAnswerQuestion {
+  question_number: number;
+  question: string;
+  summary: string;
+}
+
+export interface QuickAnswer {
+  title: string;
+  questions: QuickAnswerQuestion[];
+}
+
+export interface ComprehensiveDenialGuide {
+  guide_id: string;
+  guide_title: string;
+  guide_subtitle: string;
+  quick_answer?: QuickAnswer;
+  code_explanation: {
+    carc_code: string;
+    group_code: string;
+    group_code_meaning: string;
+    patient_billing_scope: string;
+    what_code_establishes: string[];
+    what_code_does_not_establish: string[];
+  };
+  initial_records_checklist: {
+    record_type: string;
+    purpose: string;
+    where_to_find: string;
+  }[];
+  investigation_steps: InvestigationStep[];
+  timeline_and_dates: {
+    general_rules: string;
+    timeline_events: TimelineEvent[];
+    edi_distinction_notice: {
+      ack_999_vs_277ca: string;
+      internal_pm_dates_rule: string;
+    };
+  };
+  decision_outcomes: DecisionOutcome[];
+  detailed_scenarios: DetailedScenario[];
+  medicare_ffs_rules: {
+    filing_deadline_rule: string;
+    date_convention_details: string;
+    distinction_from_medicare_advantage: string;
+    appeal_rights_limitation: string;
+    beneficiary_billing_restriction: string;
+    exceptions: MedicareException[];
+  };
+  commercial_payer_rules: {
+    general_principles: string;
+    payers: CommercialPayerRule[];
+  };
+  inquiry_template: PayerInquiryTemplate;
+  wrong_fix_warnings: {
+    action_to_avoid: string;
+    why_it_fails: string;
+    correct_alternative: string;
+  }[];
+  prevention_controls: {
+    control_name: string;
+    timing: string;
+    operational_action: string;
+  }[];
+  final_resolution_checklist: string[];
+  sources_and_governance: {
+    authoritative_sources: {
+      authority: string;
+      title: string;
+      citation?: string;
+      url?: string;
+      verified_date: string;
+    }[];
+    scope_limitations: string;
+    last_reviewed_date: string;
+  };
 }
 
 export interface ApprovedPayerIntelligence {
