@@ -390,18 +390,18 @@
     ]
   },
   "commercial_payer_rules": {
-    "general_principles": "Commercial carriers enforce CARC 16 adjustments through automated claim scrubbers and clearinghouse edits. When commercial claims are adjusted under CO-16 on an 835 remittance, providers must generally submit a replacement claim (Claim Frequency Code 7 in Loop 2300 CLM05-3 referencing the original Claim Control Number in Loop 2300 REF*F8) rather than an appeal. Commercial contract terms legally supersede general guidelines; providers must verify their specific executed agreement.",
+    "general_principles": "Commercial carriers enforce CARC 16 adjustments through automated claim scrubbers, clearinghouse edits, and adjudication rules. Resolution paths depend on the submission facts: if the submitted claim omitted required information or contained incorrect data, correct the root-cause data and resubmit through the payer's required process (such as an electronic replacement claim with Claim Frequency Code 7 in Loop 2300 CLM05-3 referencing the original Claim Control Number in Loop 2300 REF*F8). If submitted data was accurate and the payer processed it incorrectly, request claim review or reprocessing, or pursue the applicable administrative dispute or appeal route with supporting 837 transaction proof. Billers must follow the specific payer participation contract, plan rules, and instructions.",
     "payers": [
       {
         "payer_name": "Cigna Healthcare",
         "product_or_market": "Commercial Managed Care (HMO, PPO, POS, Open Access Plus)",
-        "participation_status": "In-Network / Participating Healthcare Professionals",
+        "participation_status": "Participating & Out-of-Network Healthcare Professionals",
         "claim_type": "Professional and Facility Claims",
         "timely_filing_limit": "Original claim submissions: 90 calendar days from Date of Service for participating/in-network providers; 180 calendar days from Date of Service for out-of-network providers. Corrected/replacement claims: Must be submitted electronically with Claim Frequency Code 7 in Loop 2300 CLM05-3 and the original Claim Control Number in Loop 2300 REF*F8; submission deadlines for corrected claims are governed by specific provider contract terms, plan provisions, or state prompt-pay regulations (do not assume the 180-day appeal limit automatically applies; verify governing contract or policy). If Cigna requests additional information or claim resubmission, respond within the timeframe specified in the request notice.",
         "secondary_claim_rule": "For secondary claims, Cigna calculates timely filing from the primary payer's EOB/EOP processing date. Secondary submissions must include complete primary payment details in Loop 2320/2330.",
         "appeal_limit": "Provider disputes, reconsiderations, and appeals: 180 calendar days from the date of the initial Explanation of Payment (EOP) or denial notice. For adjusted claims with subsequent payment modifications, 180 calendar days from the last payment adjustment notice.",
         "effective_period": "Current Published Cigna Guidelines",
-        "exceptions_summary": "Exceptions considered for documented payer gateway technical outages, clearinghouse translation errors, or coordination of benefits delays with attached primary EOB.",
+        "exceptions_summary": "Technical outages, clearinghouse translation errors, and coordination of benefits delays are not automatic or guaranteed exceptions; rather, they represent extenuating circumstances that providers must document with objective submission evidence (such as clearinghouse transaction logs or primary EOB records) when requesting discretionary payer review or filing a dispute under applicable rules.",
         "source_title": "Cigna HealthCare Claims Submission Guidelines & Appeals/Disputes Procedures",
         "source_url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
         "verified_date": "2026-10-15"
