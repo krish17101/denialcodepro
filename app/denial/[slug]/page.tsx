@@ -34,12 +34,12 @@ export function generateMetadata({ params }: Props): Metadata {
     };
   }
 
-  const isCo29 = workflow.record_id === 'DF-037' || workflow.structured_guide?.guide_id === 'GUIDE-CO-29';
-  const pageTitle = isCo29
-    ? 'CO-29 — Denial Resolution Guide — DenialCodePro'
-    : `Denial Guide: ${getDenialTitle(workflow)} — DenialCodePro`;
-  const pageDescription = isCo29
-    ? 'Step-by-step filing-deadline investigation, evidence collection, payer-specific guidance, and resolution options.'
+  const guide = workflow.structured_guide;
+  const pageTitle = guide
+    ? guide.guide_title
+    : `Denial Guide: ${getDenialTitle(workflow)}`;
+  const pageDescription = guide
+    ? guide.guide_subtitle
     : (workflow.practical_diagnosis || workflow.code_meaning);
 
   return {
@@ -462,15 +462,21 @@ function RenderComprehensiveGuide({
         </div>
       </section>
 
-      {/* 7. Original Medicare FFS Rules & The 4 CMS Exceptions */}
+      {/* 7. Original Medicare FFS Rules & Policies */}
       <section id="medicare-ffs" className="scroll-mt-24">
         <h2 className="text-xl font-bold text-navy-800 flex items-center gap-2">
           <ShieldAlert className="h-5 w-5 text-indigo-600" />
-          6. Original Medicare Fee-for-Service Rules & The 4 CMS Statutory Exceptions
+          {guide.code_explanation.carc_code === '16'
+            ? '6. Original Medicare Fee-for-Service Rules & CMS Unprocessable Guidelines'
+            : '6. Original Medicare Fee-for-Service Rules & The 4 CMS Statutory Exceptions'}
         </h2>
         <div className="mt-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm space-y-4">
           <div>
-            <h3 className="text-sm font-bold text-navy-800">Standard 1-Year Filing Deadline</h3>
+            <h3 className="text-sm font-bold text-navy-800">
+              {guide.code_explanation.carc_code === '16'
+                ? 'Filing Deadline & Claim Resubmission Limits'
+                : 'Standard 1-Year Filing Deadline'}
+            </h3>
             <p className="mt-1 text-xs text-slate-600 leading-relaxed">{guide.medicare_ffs_rules.filing_deadline_rule}</p>
             <p className="mt-1 text-xs text-slate-600 leading-relaxed">{guide.medicare_ffs_rules.date_convention_details}</p>
           </div>
@@ -489,13 +495,17 @@ function RenderComprehensiveGuide({
 
           <div className="mt-4">
             <h3 className="text-sm font-bold text-navy-800 mb-2">
-              The Four CMS Statutory Exceptions (42 CFR § 424.44)
+              {guide.code_explanation.carc_code === '16'
+                ? 'CMS Unprocessable Claim Categories & Mandatory Standards (CMS IOM Pub. 100-04, Ch. 1 § 80)'
+                : 'The Four CMS Statutory Exceptions (42 CFR § 424.44)'}
             </h3>
             <div className="grid gap-3 sm:grid-cols-2">
               {guide.medicare_ffs_rules.exceptions.map((ex) => (
                 <div key={ex.exception_number} className="rounded-lg border border-slate-200 p-4">
                   <div className="text-xs font-bold text-indigo-700">
-                    Exception #{ex.exception_number}: {ex.name}
+                    {guide.code_explanation.carc_code === '16'
+                      ? `Category #${ex.exception_number}: ${ex.name}`
+                      : `Exception #${ex.exception_number}: ${ex.name}`}
                   </div>
                   <div className="text-[11px] font-mono text-slate-500 mt-0.5">{ex.authority}</div>
                   <p className="mt-2 text-xs text-slate-600 leading-relaxed">

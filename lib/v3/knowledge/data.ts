@@ -1,5 +1,6 @@
 import rawData from './v3_public_dataset.json';
 import { co29Guide } from './guides/co29';
+import { co16Guide } from './guides/co16';
 import {
   ApprovedKnowledgeBase,
   ApprovedCarc,
@@ -16,6 +17,12 @@ export const knowledgeBase = rawData as unknown as ApprovedKnowledgeBase;
 const df037 = knowledgeBase.denial_fingerprints?.find(df => df.record_id === 'DF-037' || df.carc === '29');
 if (df037) {
   df037.structured_guide = co29Guide;
+}
+
+// Attach tracked structured guide to DF-048 (CO-16)
+const df048 = knowledgeBase.denial_fingerprints?.find(df => df.record_id === 'DF-048' || (df.carc === '16' && !df.rarc));
+if (df048) {
+  df048.structured_guide = co16Guide;
 }
 
 export function getCarcSlug(code: string) {

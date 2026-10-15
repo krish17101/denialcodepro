@@ -81,14 +81,14 @@ export interface DetailedScenario {
   title: string;
   trigger_condition: string;
   action_badge: string;
-  action_type: 'PAYER_REVIEW_OR_DISPUTE' | 'INVESTIGATE_CORRECT_RESUBMIT' | 'SECONDARY_COB' | 'CORRECTED_OR_ADR_SUBMISSION' | 'EXCEPTION_REQUEST';
+  action_type: string;
   resolution_path: string[];
   evidence_package: string[];
   pitfalls_and_warnings?: string[];
 }
 
 export interface DecisionOutcome {
-  outcome_type: 'TIMELY_EVIDENCE_ESTABLISHED' | 'POSSIBLE_EXCEPTION_APPLIES' | 'GENUINELY_LATE_CLAIM' | 'UNRESOLVED_EVIDENCE';
+  outcome_type: string;
   title: string;
   criteria: string;
   recommended_action: string;
