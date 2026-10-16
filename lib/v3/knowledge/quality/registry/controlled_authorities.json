@@ -1,0 +1,42 @@
+[
+  {
+    "id": "CMS-PUB-100-04-CH1-SEC80",
+    "authority": "Centers for Medicare & Medicaid Services (CMS)",
+    "citation": "CMS IOM Pub. 100-04, Claims Processing Manual, Chapter 1, Section 80",
+    "title": "Handling Incomplete or Invalid Claims (Unprocessable Claims)",
+    "scope": "Original Medicare Fee-for-Service (Part A and Part B)",
+    "key_principle": "Claims returned as unprocessable (with RARC MA130) lack initial determination appeal rights under SSA § 1869; resubmission as a clean claim is required.",
+    "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+    "verified_date": "2026-10-15"
+  },
+  {
+    "id": "42-CFR-424-44",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "42 CFR § 424.44",
+    "title": "Basic conditions for Medicare payment: Time limits for filing claims",
+    "scope": "Original Medicare Fee-for-Service",
+    "key_principle": "Claims must be filed within 1 calendar year from Date of Service. Statutory exceptions are strictly limited to: (1) Administrative error by CMS/MAC; (2) Retroactive entitlement; (3) Retroactive entitlement involving State Medicaid; (4) Retroactive disenrollment from Medicare Advantage.",
+    "source_url": "https://www.ecfr.gov/current/title-42/section-424.44",
+    "verified_date": "2026-10-15"
+  },
+  {
+    "id": "SSA-1869",
+    "authority": "Social Security Administration / CMS",
+    "citation": "Social Security Act § 1869 [42 U.S.C. 1395ff]",
+    "title": "Determinations; Appeals",
+    "scope": "Medicare Initial Determinations & Administrative Review",
+    "key_principle": "Establishes 5-level Medicare appeals process for initial determinations. Does not apply to claims returned as unprocessable prior to initial determination.",
+    "source_url": "https://www.ssa.gov/OP_Home/ssact/title18/1869.htm",
+    "verified_date": "2026-10-15"
+  },
+  {
+    "id": "CIGNA-CLAIMS-GUIDELINES",
+    "authority": "Cigna Healthcare",
+    "citation": "Cigna HealthCare Claims Submission Guidelines & Appeals/Disputes Procedures",
+    "title": "Claims Submission and Dispute Procedures",
+    "scope": "Commercial Managed Care (HMO, PPO, POS, Open Access Plus)",
+    "key_principle": "Original claim timely filing: 90 days par / 180 days non-par. Corrected claims via EDI Frequency Code 7 with original ICN (Loop 2300 REF*F8) governed by provider contract. Provider dispute/appeal: 180 days from initial EOP.",
+    "source_url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+    "verified_date": "2026-10-15"
+  }
+]

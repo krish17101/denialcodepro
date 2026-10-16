@@ -1,0 +1,42 @@
+[
+  {
+    "code": "CO",
+    "name": "Contractual Obligations",
+    "official_meaning": "Adjustment resulting from joint provider-payer agreement or regulatory requirement (e.g. fee schedule discount, untimely filing write-off, or failure to obtain required authorization).",
+    "patient_liability_principles": "Prohibits balance billing the patient under provider contract or regulatory terms. However, does not unilaterally determine all patient liability without regard to statutory rules, executed contract terms, and notice requirements (e.g. ABN for Medicare FFS non-covered services).",
+    "source_url": "https://x12.org/codes/claim-adjustment-group-codes",
+    "verified_date": "2026-10-15"
+  },
+  {
+    "code": "PR",
+    "name": "Patient Responsibility",
+    "official_meaning": "Adjustment indicating an amount for which the patient is legally or financially responsible (e.g. deductible, coinsurance, copayment, or non-covered service where notice was properly provided).",
+    "patient_liability_principles": "Patient may be billed up to the indicated amount in accordance with applicable plan rules and state/federal billing regulations.",
+    "source_url": "https://x12.org/codes/claim-adjustment-group-codes",
+    "verified_date": "2026-10-15"
+  },
+  {
+    "code": "OA",
+    "name": "Other Adjustments",
+    "official_meaning": "Adjustment when no other group code applies, often used for coordination of benefits or tracking purposes.",
+    "patient_liability_principles": "Does not create patient liability unless accompanied by a qualifying PR adjustment.",
+    "source_url": "https://x12.org/codes/claim-adjustment-group-codes",
+    "verified_date": "2026-10-15"
+  },
+  {
+    "code": "PI",
+    "name": "Payer Initiated Reductions",
+    "official_meaning": "Adjustment resulting from payer medical policy or review decisions not governed by contractual agreement.",
+    "patient_liability_principles": "Patient liability depends on non-par balance billing regulations and applicable state/federal prompt pay or surprise billing laws.",
+    "source_url": "https://x12.org/codes/claim-adjustment-group-codes",
+    "verified_date": "2026-10-15"
+  },
+  {
+    "code": "CR",
+    "name": "Corrections and Reversals",
+    "official_meaning": "Adjustment modifying or reversing a previous claim adjudication.",
+    "patient_liability_principles": "Reverses previous allocation; liability depends on replacement claim or revised determination.",
+    "source_url": "https://x12.org/codes/claim-adjustment-group-codes",
+    "verified_date": "2026-10-15"
+  }
+]

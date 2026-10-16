@@ -1,0 +1,167 @@
+#!/usr/bin/env node
+
+/**
+ * DenialCodePro V3 — Source-Grounded Knowledge Quality Gate
+ * Validates the knowledge base, CARC/RARC registries, and operational guides.
+ * Exits 0 on success; exits 1 on blocking fatal failures.
+ */
+
+const path = require('path');
+const { KnowledgeQualityValidator } = require('./quality/validator');
+
+function run() {
+  console.log('===============================================================');
+  console.log('   DENIALCODEPRO V3 — SOURCE-GROUNDED KNOWLEDGE QUALITY GATE   ');
+  console.log('===============================================================\n');
+
+  const rootDir = path.resolve(__dirname, '..');
+  const qualityDir = path.join(rootDir, 'lib', 'v3', 'knowledge', 'quality');
+  const registryDir = path.join(qualityDir, 'registry');
+  const fixturesDir = path.join(qualityDir, 'fixtures');
+  const guidesDir = path.join(rootDir, 'lib', 'v3', 'knowledge', 'guides');
+  const datasetPath = path.join(rootDir, 'lib', 'v3', 'knowledge', 'v3_public_dataset.json');
+
+  const validator = new KnowledgeQualityValidator(registryDir);
+
+  // -------------------------------------------------------------------------
+  // PHASE 1: Regression Test Fixtures Suite
+  // -------------------------------------------------------------------------
+  console.log('PHASE 1: Executing Regression Test Fixtures Suite...');
+
+  const fixtureDefinitions = [
+    {
+      file: 'invalid-n382-cob.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'RARC_SEMANTIC_MISMATCH',
+      description: 'N382 incorrectly described as coordination of benefits'
+    },
+    {
+      file: 'invalid-n300-n301-cob.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'RARC_SEMANTIC_MISMATCH',
+      description: 'N300/N301 assigned to missing COB information'
+    },
+    {
+      file: 'invalid-m51-modifier.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'RARC_SEMANTIC_MISMATCH',
+      description: 'M51 treated as inherently indicating a modifier error'
+    },
+    {
+      file: 'invalid-commercial-deadlines.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'DEADLINE_SCOPE_MISMATCH',
+      description: 'Commercial appeal deadline presented as universal corrected-claim deadline'
+    },
+    {
+      file: 'invalid-universal-unprocessable.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'UNPROCESSABLE_SCOPE_OVERREACH',
+      description: 'Every CARC 16 adjustment incorrectly treated as an unprocessable return'
+    },
+    {
+      file: 'invalid-clearinghouse-835-conflation.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'REJECTION_REMITTANCE_CONFLATION',
+      description: 'Clearinghouse 277CA rejection conflated with an 835 adjudicated adjustment'
+    },
+    {
+      file: 'invalid-co-blanket-liability.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'GROUP_CODE_LIABILITY_OVERREACH',
+      description: 'Group Code CO asserted as automatically deciding all patient liability'
+    },
+    {
+      file: 'invalid-unverified-provenance.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'PROVENANCE_MISSING',
+      description: 'Guide claiming full verification despite missing source provenance'
+    },
+    {
+      file: 'invalid-unknown-rarc.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'CODE_NOT_FOUND',
+      description: 'Guide referencing unverified RARC N9999 missing from controlled registry'
+    },
+    {
+      file: 'valid-sample-guide.json',
+      expectedOutcome: 'SHOULD_PASS',
+      description: 'Valid, properly qualified denial-resolution guide fixture'
+    }
+  ];
+
+  let fixturesPassed = 0;
+
+  for (const def of fixtureDefinitions) {
+    const fullPath = path.join(fixturesDir, def.file);
+    const res = validator.testFixture(fullPath, def.expectedOutcome, def.expectedCode);
+
+    const icon = res.test_passed ? '✔ PASS' : '✖ FAIL';
+    console.log(`  [${icon}] ${def.file}`);
+    console.log(`         Test: ${def.description}`);
+    console.log(`         Result: ${res.notes}`);
+    if (res.test_passed) {
+      fixturesPassed++;
+    }
+  }
+
+  const allFixturesPassed = fixturesPassed === fixtureDefinitions.length;
+  console.log(`\n  Fixtures Summary: ${fixturesPassed}/${fixtureDefinitions.length} passed.\n`);
+
+  // -------------------------------------------------------------------------
+  // PHASE 2 & 3: Live Knowledge Base & Guides Validation
+  // -------------------------------------------------------------------------
+  console.log('PHASE 2 & 3: Validating Live Knowledge Base & Operational Guides...');
+  const datasetResult = validator.validateDataset(datasetPath, guidesDir);
+
+  console.log(`  Controlled Registries Coverage:`);
+  console.log(`    - Controlled CARCs registered: ${datasetResult.registry_carcs_count}`);
+  console.log(`    - Controlled RARCs registered: ${datasetResult.registry_rarcs_count}`);
+  console.log(`  Public Content References Validated:`);
+  console.log(`    - Unique CARCs referenced & checked: ${datasetResult.total_carcs_checked}`);
+  console.log(`    - Unique RARCs referenced & checked: ${datasetResult.total_rarcs_checked}`);
+  console.log(`    - Denial fingerprints checked: ${datasetResult.total_fingerprints_checked}`);
+  console.log(`    - Operational structured guides checked: ${datasetResult.total_guides_checked}`);
+  console.log(`    - Fatal issues detected: ${datasetResult.fatal_count}`);
+  console.log(`    - Warning issues detected: ${datasetResult.warning_count}\n`);
+
+  for (const guideRes of datasetResult.guide_results) {
+    const statusIcon = guideRes.status === 'PASSED' ? '✔ PASSED' : '✖ BLOCKED';
+    console.log(`  Guide [${guideRes.guide_id}] (${guideRes.title}): ${statusIcon}`);
+    if (guideRes.issues.length > 0) {
+      for (const issue of guideRes.issues) {
+        console.log(`    - [${issue.severity}] [${issue.rule}/${issue.code}] ${issue.message}`);
+      }
+    }
+  }
+
+  // Any dataset-level issues (desync, QA leaks, missing codes)
+  const nonGuideIssues = datasetResult.issues.filter(
+    i => !datasetResult.guide_results.some(gr => gr.issues.includes(i))
+  );
+
+  if (nonGuideIssues.length > 0) {
+    console.log('\n  Dataset Integrity Issues:');
+    for (const issue of nonGuideIssues) {
+      console.log(`    - [${issue.severity}] [${issue.rule}/${issue.code}] ${issue.message}`);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // FINAL VERDICT
+  // -------------------------------------------------------------------------
+  console.log('\n===============================================================');
+  const isOverallSuccess = allFixturesPassed && datasetResult.status === 'PASSED';
+
+  if (isOverallSuccess) {
+    console.log('  QUALITY GATE STATUS: PASSED (All checks & fixtures clean)');
+    console.log('===============================================================\n');
+    process.exit(0);
+  } else {
+    console.error('  QUALITY GATE STATUS: BLOCKED (Blocking validation failures found)');
+    console.error('===============================================================\n');
+    process.exit(1);
+  }
+}
+
+run();
