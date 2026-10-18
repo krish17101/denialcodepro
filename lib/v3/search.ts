@@ -29,19 +29,35 @@ export interface SearchResponse {
 function mapCarcToResult(carc: ApprovedCarc): SearchResult {
   const isCarc29 = carc.code === '29';
   const isCarc16 = carc.code === '16';
+  const isCarc18 = carc.code === '18';
+  const isCarc22 = carc.code === '22';
+  const isCarc197 = carc.code === '197';
+
+  let title = `CARC ${carc.code}`;
+  let summary = carc.meaning;
+
+  if (isCarc29) {
+    title = 'CARC 29 — Reason Code Reference';
+    summary = 'Understand the timely-filing reason code. Open the CO-29 guide for the complete denial-resolution workflow.';
+  } else if (isCarc16) {
+    title = 'CARC 16 — Reason Code Reference';
+    summary = 'Understand the missing/invalid information reason code. Open the CO-16 guide for the complete denial-resolution workflow.';
+  } else if (isCarc18) {
+    title = 'CARC 18 — Reason Code Reference';
+    summary = 'Understand the duplicate claim/service reason code. Open the CO-18 guide for the complete denial-resolution workflow.';
+  } else if (isCarc22) {
+    title = 'CARC 22 — Reason Code Reference';
+    summary = 'Understand the coordination of benefits reason code. Open the CO-22 guide for the complete denial-resolution workflow.';
+  } else if (isCarc197) {
+    title = 'CARC 197 — Reason Code Reference';
+    summary = 'Understand the missing precertification/authorization reason code. Open the CO-197 guide for the complete denial-resolution workflow.';
+  }
+
   return {
     kind: 'carc',
     slug: getCarcSlug(carc.code),
-    title: isCarc29
-      ? 'CARC 29 — Reason Code Reference'
-      : isCarc16
-        ? 'CARC 16 — Reason Code Reference'
-        : `CARC ${carc.code}`,
-    summary: isCarc29
-      ? 'Understand the timely-filing reason code. Open the CO-29 guide for the complete denial-resolution workflow.'
-      : isCarc16
-        ? 'Understand the missing/invalid information reason code. Open the CO-16 guide for the complete denial-resolution workflow.'
-        : carc.meaning,
+    title,
+    summary,
     href: `/denial-codes/${getCarcSlug(carc.code)}`,
   };
 }
@@ -126,6 +142,11 @@ export function search(query: SearchQuery): SearchResponse {
       searchForms.push(`${df.carc}-${df.rarc}`.toLowerCase());
       if (df.group_code) searchForms.push(`${df.group_code}-${df.carc} ${df.rarc}`.toLowerCase());
       searchForms.push(`carc ${df.carc} rarc ${df.rarc}`.toLowerCase());
+      if (df.structured_guide) {
+        searchForms.push(`${df.carc}`);
+        if (df.group_code) searchForms.push(`${df.group_code}-${df.carc}`.toLowerCase());
+        searchForms.push(`carc ${df.carc}`.toLowerCase());
+      }
     } else {
       searchForms.push(`${df.carc}`);
       if (df.group_code) searchForms.push(`${df.group_code}-${df.carc}`.toLowerCase());
@@ -194,6 +215,18 @@ export function search(query: SearchQuery): SearchResponse {
             const df042 = fingerprintsBySlug.get('co-197-n210');
             if (df042) addResult(mapDenialToResult(df042), 600);
           }
+          if (concept === 'duplicate' || concept === 'duplicate claim') {
+            const carc18 = carcsBySlug.get('18');
+            if (carc18) addResult(mapCarcToResult(carc18), 600);
+            const df035 = fingerprintsBySlug.get('co-18-m86');
+            if (df035) addResult(mapDenialToResult(df035), 600);
+          }
+          if (concept === 'coordination of benefits' || concept === 'cob') {
+            const carc22 = carcsBySlug.get('22');
+            if (carc22) addResult(mapCarcToResult(carc22), 600);
+            const df036 = fingerprintsBySlug.get('co-22');
+            if (df036) addResult(mapDenialToResult(df036), 600);
+          }
         }
         if (rule.startsWith('carc=')) {
           normCarc = rule.split('=')[1];
@@ -213,6 +246,21 @@ export function search(query: SearchQuery): SearchResponse {
       }
     }
   });
+
+  // 5.6 Direct concept triggers for comprehensive guides
+  const unhyphenatedQ = q.replace(/-/g, ' ');
+  if (unhyphenatedQ.includes('coordination of benefits') || q.includes('cob') || tokens.includes('cob')) {
+    const carc22 = carcsBySlug.get('22');
+    if (carc22) addResult(mapCarcToResult(carc22), 600);
+    const df036 = fingerprintsBySlug.get('co-22');
+    if (df036) addResult(mapDenialToResult(df036), 600);
+  }
+  if (unhyphenatedQ.includes('duplicate') || unhyphenatedQ.includes('duplicate claim')) {
+    const carc18 = carcsBySlug.get('18');
+    if (carc18) addResult(mapCarcToResult(carc18), 600);
+    const df035 = fingerprintsBySlug.get('co-18') || fingerprintsBySlug.get('co-18-m86');
+    if (df035) addResult(mapDenialToResult(df035), 600);
+  }
 
   // 6. Controlled synonym / broader keyword match
   // Synonyms handling
@@ -235,7 +283,12 @@ export function search(query: SearchQuery): SearchResponse {
   const keywordSearch = (text: string) => {
     if (!text) return false;
     const t = text.toLowerCase();
-    return searchTerms.some(term => t.includes(term));
+    const tNorm = t.replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ');
+    return searchTerms.some(term => {
+      if (t.includes(term)) return true;
+      const termNorm = term.replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ');
+      return tNorm.includes(termNorm);
+    });
   };
 
   knowledgeBase.denial_fingerprints?.forEach((df) => {

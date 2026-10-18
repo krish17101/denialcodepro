@@ -1,0 +1,644 @@
+{
+  "guide_id": "FIXTURE-INVALID-CO22-MODEL-COB-OVERREACH",
+  "guide_title": "CO-22 — Denial Resolution Guide",
+  "guide_subtitle": "Step-by-step coordination of benefits (COB) investigation, Medicare Secondary Payer (MSP) compliance, Loop 2320/2330 cross-adjudication mapping, and payer sequencing resolution.",
+  "quick_answer": {
+    "title": "Quick Answer: 3 Critical Questions to Resolve CO-22",
+    "questions": [
+      {
+        "question_number": 1,
+        "question": "Which health plan is legally primary under statutory MSP rules or governing state/ERISA COB provisions?",
+        "summary": "The NAIC Model Regulation #120 is a federal mandate binding all commercial payers under federal law, and Medicare is always secondary whenever other coverage exists."
+      },
+      {
+        "question_number": 2,
+        "question": "Has the primary plan already adjudicated the service, and was the primary 835 remittance data accurately transmitted in Loop 2320/2330?",
+        "summary": "If the billed payer is legitimately secondary, a CO-22 denial usually signals that the secondary claim was submitted without required primary payer adjudication data. Under HIPAA 837 transaction standards, secondary electronic claims must transmit complete primary claim-level adjustments (Loop 2320 CAS), primary paid amounts (Loop 2320 AMT01=D), primary payer identification (Loop 2330A NM1), and line-level adjustments (Loop 2430 SVD/CAS). Check whether companion remark codes such as RARC N4 ('Missing/incomplete/invalid prior insurance carrier EOB') or MA64 ('Prior-payer payment information is required before this claim can be processed') accompany the adjustment; note that neither remark universally accompanies CARC 22."
+      },
+      {
+        "question_number": 3,
+        "question": "Is the denial caused by stale member COB records requiring an updated coordination questionnaire?",
+        "summary": "Commercial payers frequently issue automated CO-22 denials on an annual basis when their records indicate a member may have dual coverage. When the payer's enrollment engine flags a missing annual COB update, the payer will freeze claim payment until the subscriber contacts the plan or completes an online COB questionnaire verifying whether other coverage exists. In these scenarios, the provider must coordinate with the patient to complete the payer's required coordination update."
+      }
+    ]
+  },
+  "code_explanation": {
+    "carc_code": "22",
+    "group_code": "CO",
+    "group_code_meaning": "Contractual Obligation (CO) indicates an adjustment resulting from a contract between the payer and participating provider, or an applicable fee schedule/regulatory mandate.",
+    "patient_billing_scope": "Group Code CO (Contractual Obligation) assigned to CARC 22 reflects an adjustment where the payer asserts that another health plan or insurer holds primary responsibility. Under in-network participating provider agreements and Medicare rules, a provider cannot immediately balance-bill the patient for the unpaid balance upon receiving a CO-22 denial. The CO adjustment indicates an unresolved coordination-of-benefits workflow, not an established patient liability. Patient billing is only permissible if and when the primary or secondary payer adjudicates the claim and officially assigns patient responsibility under Group Code PR (such as deductibles, copayments, or coinsurance). If a commercial payer denies coverage because the member refuses or fails to cooperate with an annual COB questionnaire after documented provider outreach, the provider must review the governing in-network contract and state balance-billing regulations before pursuing any patient balance.",
+    "what_code_establishes": [
+      "The payer's adjudication system determined that based on current enrollment records, coordination-of-benefits data, or statutory rules, another payer holds primary or prior financial responsibility for the claim.",
+      "An adjustment was applied because the claim was either submitted to the wrong payer as primary, or submitted to a secondary payer without required primary adjudication details.",
+      "Under X12 EDI standards, the transaction requires proper cross-payer coordination, complete primary remittance data, or member coordination updates before secondary benefits can be determined.",
+      "If accompanied by RARC N4 or MA64, the secondary payer specifically identifies missing prior carrier EOB or prior-payer payment details (neither remark code universally accompanies CARC 22)."
+    ],
+    "what_code_does_not_establish": [
+      "It does NOT establish that the patient's care is non-covered or medically unnecessary; CARC 22 is strictly a payer sequencing and coordination determination.",
+      "It does NOT establish that the provider will not be reimbursed; reimbursement is recoverable upon submitting to the proper primary payer or submitting a compliant secondary claim with Loop 2320 primary payment data.",
+      "It does NOT authorize immediate balance billing to the patient under Group Code CO; patient liability is restricted to amounts adjudicated under Group Code PR on a final Explanation of Benefits.",
+      "It does NOT constitute a final denial if conditional payment rules apply under Medicare Secondary Payer regulations (42 CFR § 411.52) for un-adjudicated liability/workers' compensation claims (conditional payments do not apply to commercial health plan disputes).",
+      "It does NOT establish that Medicare is always secondary; Medicare is statutory primary if employer size thresholds are not met (<20 employees for Working Aged, <100 employees for Disability), after the 30-month ESRD coordination period ends, or when coordinating with retiree or Medigap coverage.",
+      "It does NOT mean the patient was uninsured on the Date of Service; it indicates that multiple potential coverage sources require chronological alignment."
+    ]
+  },
+  "initial_records_checklist": [
+    {
+      "record_type": "835 Electronic Remittance Advice (ERA) / Standard Paper Remittance",
+      "purpose": "Identifies the exact CARC 22 adjustment, affected service lines, and any companion remark codes such as N4 (missing prior carrier EOB) or MA64 (prior-payer payment required), which may accompany secondary claim adjustments but are not present on all CARC 22 remittances.",
+      "where_to_find": "Practice management (PM) payment posting module or clearinghouse ERA repository."
+    },
+    {
+      "record_type": "Primary Payer 835 ERA or Explanation of Benefits (EOB)",
+      "purpose": "Confirms the primary payer's allowed amount, paid amount, contractual adjustment, patient deductible/copay/coinsurance (PR), and Claim Control Number (ICN).",
+      "where_to_find": "PM payment history, primary payer provider portal, or clearinghouse remittance archive."
+    },
+    {
+      "record_type": "Patient Insurance Cards (Front and Back)",
+      "purpose": "Verifies exact policy numbers, group numbers, subscriber names, payer IDs, and claims submission addresses for all active health plans.",
+      "where_to_find": "PM document management repository or EHR patient registration scan file."
+    },
+    {
+      "record_type": "Real-Time 270/271 Eligibility & Benefit Responses",
+      "purpose": "Verifies active coverage dates, subscriber relationship, and coordination-of-benefits flags on the exact Date of Service.",
+      "where_to_find": "Clearinghouse eligibility portal or PM insurance verification log."
+    },
+    {
+      "record_type": "Completed Medicare Secondary Payer (MSP) Questionnaire",
+      "purpose": "Provides legally documented answers regarding employment status, employer size, retirement dates, ESRD coordination, and accident/liability involvement.",
+      "where_to_find": "Patient intake documentation repository or EHR administrative section."
+    },
+    {
+      "record_type": "Submitted 837 Electronic Secondary Claim File",
+      "purpose": "Inspects Loop 2320 (Other Subscriber Info, Primary CAS, Primary AMT) and Loop 2330 (Other Payer Name) to verify if primary data was accurately mapped.",
+      "where_to_find": "Clearinghouse claim inspector or raw EDI 837 batch archive."
+    }
+  ],
+  "investigation_steps": [
+    {
+      "step_number": 1,
+      "title": "Establish Authoritative Payer Sequencing (State COB / ERISA Rules & Medicare MSP Criteria)",
+      "milestone": "Determine with legal certainty which insurance plan is primary and which is secondary for the Date of Service.",
+      "instructions": [
+        "Audit patient demographics and coverage profiles to identify all active insurance policies on the Date of Service.",
+        "For commercial coverage, apply governing state coordination regulations (frequently patterned on NAIC Model Regulation #120) or governing ERISA Summary Plan Descriptions: (a) Subscriber vs. Dependent: the plan covering the patient as an employee/subscriber is primary over a plan covering the patient as a dependent; (b) Dependent Children (Birthday Rule): the plan of the parent whose birthday (month and day) falls earlier in the calendar year is primary; (c) Active vs. Inactive: coverage from active employment is primary over retiree or COBRA coverage. Note that NAIC Model #120 is a model regulation subject to state adoption and ERISA plan terms, not a universal federal statute.",
+        "If Medicare is involved, apply statutory Medicare Secondary Payer (MSP) rules under 42 U.S.C. § 1395y(b) and 42 CFR Part 411: (a) Working Aged: Employer Group Health Plan (EGHP) is primary if employer has 20 or more employees; if employer has fewer than 20 employees, Medicare is legally PRIMARY; (b) Disability: Large Group Health Plan (LGHP) is primary if employer has 100 or more employees; if employer has fewer than 100 employees, Medicare is legally PRIMARY; (c) End-Stage Renal Disease (ESRD): EGHP is primary during the statutory 30-month coordination period, after which Medicare becomes legally PRIMARY regardless of employer size; (d) Retiree / Medigap: Medicare is legally PRIMARY over retiree group health plans or Medicare Supplement (Medigap) policies; (e) Workers' Comp / No-Fault / Liability: non-Medicare insurance is primary for accident-related care.",
+        "Identify whether the claim was mistakenly billed to the secondary payer as primary, or if the primary payer has already adjudicated the claim."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Payer Sequencing Determination",
+          "source_or_segment": "State COB Rules / ERISA SPD / 42 U.S.C. § 1395y(b) & MSP Questionnaire",
+          "what_to_verify": "Identifies legal order of liability (Primary vs. Secondary vs. Tertiary) based on statutory, regulatory, and contractual criteria."
+        },
+        {
+          "field": "Employer Size & Employment Status",
+          "source_or_segment": "MSP Questionnaire / Patient Registration",
+          "what_to_verify": "Verifies employer employee threshold (20+ for Working Aged; 100+ for Disability; <20 or <100 where Medicare is primary) to determine Medicare primary vs secondary status."
+        }
+      ]
+    },
+    {
+      "step_number": 2,
+      "title": "Audit Primary Payer Adjudication and Remittance Data (Loop 2320/2330)",
+      "milestone": "Verify whether complete primary adjudication details were extracted and transmitted on the secondary claim.",
+      "instructions": [
+        "If the primary payer has not yet processed the claim: Submit the claim immediately to the proper primary payer as an original submission.",
+        "If the primary payer has already processed the claim: Obtain the complete 835 ERA or paper Explanation of Benefits from the primary payer.",
+        "Inspect the raw 837 electronic secondary claim file to verify that primary adjudication elements were mapped into Loop 2320 and Loop 2330: (a) Loop 2320 SBR (Other Subscriber Information); (b) Loop 2320 CAS (Claim-Level Adjustments with CARC, Group Code, and dollar amount from primary EOB); (c) Loop 2320 AMT (Primary Payer Paid Amount with AMT01='D'); (d) Loop 2330A NM1 (Other Payer Name and Payer ID); (e) Loop 2430 SVD & CAS (Line-Level Primary Payment and Adjustments).",
+        "If primary data was omitted or corrupted during clearinghouse translation, correct the secondary claim mapping and resubmit electronically."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Primary Payer Paid Amount",
+          "source_or_segment": "EDI 837 Loop 2320 AMT02 (AMT01='D')",
+          "what_to_verify": "Must match the exact total payment disbursed by the primary payer on the primary 835 remittance."
+        },
+        {
+          "field": "Primary Claim Adjustment Reason & Group Codes",
+          "source_or_segment": "EDI 837 Loop 2320 CAS segments",
+          "what_to_verify": "Must mirror the exact CARC and Group Code (CO, PR, OA, PI) amounts adjudicated by the primary payer."
+        },
+        {
+          "field": "Other Payer Identification",
+          "source_or_segment": "EDI 837 Loop 2330A NM109 (NM108='PI')",
+          "what_to_verify": "Must contain the valid electronic Payer ID of the primary insurance carrier."
+        }
+      ]
+    },
+    {
+      "step_number": 3,
+      "title": "Investigate Member COB Questionnaire Status & Coordination Blocks",
+      "milestone": "Determine whether the denial is driven by an un-updated annual COB questionnaire in the payer's enrollment system.",
+      "instructions": [
+        "Call the denying payer's provider services line or inspect the payer portal to check member COB status.",
+        "Ask the payer representative: 'Is this claim denied because the member has not completed their annual coordination of benefits questionnaire, or because you have active primary insurance on file?'",
+        "If the payer has an active primary policy on file: Obtain the name, policy number, and effective dates of the other insurance recorded in the payer's system. Cross-reference with patient records to verify if the policy is active or terminated.",
+        "If the member's annual COB questionnaire is outdated: Contact the patient/subscriber immediately. Instruct the patient to contact their health plan's member services number (or log into their member portal) to complete the COB update.",
+        "Offer to facilitate a three-way call between the patient, provider office, and the insurance carrier to expedite the COB record update and obtain a reference number."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Payer Member COB Flag / Survey Status",
+          "source_or_segment": "Payer Provider Portal / Representative Call Log",
+          "what_to_verify": "Confirms whether the member's coordination status is active, expired, or locked pending questionnaire submission."
+        },
+        {
+          "field": "Other Insurance Active Dates in Payer System",
+          "source_or_segment": "Payer Eligibility File / Representative Confirmation",
+          "what_to_verify": "Verifies whether the alleged primary policy was active on the Date of Service or terminated prior to care."
+        }
+      ]
+    },
+    {
+      "step_number": 4,
+      "title": "Evaluate Terminated Prior Coverage and Generate Proof of Termination",
+      "milestone": "Document coverage termination when the payer's records erroneously show inactive prior coverage as primary.",
+      "instructions": [
+        "If the payer asserts another plan is primary, but the patient confirms that coverage was cancelled or terminated prior to the Date of Service: Obtain an official Certificate of Creditable Coverage (COCC) or termination letter from the prior carrier.",
+        "If a termination letter is unavailable, obtain a real-time 271 eligibility response or letter from the prior employer showing the exact termination date.",
+        "Submit the proof of termination along with a formal claim reconsideration request to the denying payer's COB / Eligibility Update department.",
+        "Request that the payer update their member coordination records and reprocess the claim as primary."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Coverage Termination Date",
+          "source_or_segment": "Certificate of Creditable Coverage (COCC) / Prior Payer 271",
+          "what_to_verify": "Demonstrates that prior coverage ended before the Date of Service, disproving primary liability."
+        },
+        {
+          "field": "Formal COB Update Request",
+          "source_or_segment": "Provider Written Inquiry / Portal Dispute Submission",
+          "what_to_verify": "Documents formal transmission of termination evidence to update payer database records."
+        }
+      ]
+    }
+  ],
+  "timeline_and_dates": {
+    "general_rules": "Coordination of benefits workflows involve linked, dependent timelines across multiple payers. For secondary claims, the timely filing clock does not start on the Date of Service; rather, under standard industry rules and managed care contracts, secondary timely filing is calculated from the date of the primary payer's Explanation of Benefits (EOB) or 835 Electronic Remittance Advice. Providers typically have 90 to 180 calendar days from the primary EOB processing date to submit a secondary claim with full cross-adjudication data. When filing a dispute or redetermination on an erroneous CO-22 denial, providers must act within the applicable appeal window (120 days for Medicare FFS redeterminations under SSA § 1869; 180 days for standard commercial payer appeals).",
+    "timeline_events": [
+      {
+        "event_name": "Date of Service (DOS)",
+        "field_or_source": "EDI 837 Loop 2400 DTP03 (DTP01=472)",
+        "evidence_role": "Anchor Date",
+        "significance_notes": "Benchmark date for patient coverage eligibility, policy active spans, and primary timely filing."
+      },
+      {
+        "event_name": "Primary Claim Submission Date",
+        "field_or_source": "EDI 837 Loop 2300 BHT04 / 277CA acceptance",
+        "evidence_role": "Primary Timely Filing Proof",
+        "significance_notes": "Proves timely submission to the primary payer within initial filing limits."
+      },
+      {
+        "event_name": "Primary 835 Remittance / EOB Processing Date",
+        "field_or_source": "EDI 835 Loop 2100 CLP / BPR16 of primary payer",
+        "evidence_role": "Secondary Filing Clock Trigger",
+        "significance_notes": "Triggers the secondary claim timely filing window; secondary claims submitted within contract limits from this date are protected from timely filing denials."
+      },
+      {
+        "event_name": "Secondary Claim Submission Date",
+        "field_or_source": "EDI 837 Loop 2300 BHT04 of secondary submission",
+        "evidence_role": "Secondary Transmission Proof",
+        "significance_notes": "Proves timely submission of secondary claim following primary adjudication."
+      },
+      {
+        "event_name": "Secondary 835 ERA CO-22 Denial Date",
+        "field_or_source": "EDI 835 Loop 2100 CLP / BPR16 of secondary payer",
+        "evidence_role": "Appeal / Dispute Clock Trigger",
+        "significance_notes": "Starts the provider dispute/appeal clock (typically 120 days for Medicare redetermination, 180 days for commercial plans)."
+      }
+    ],
+    "edi_distinction_notice": {
+      "ack_999_vs_277ca": "A 999 Functional Acknowledgment confirms syntax and electronic envelope integrity at the clearinghouse or payer EDI gateway. A 277CA Claim Acknowledgment confirms whether the claim passed front-end syntactical edits prior to adjudication. Neither transaction represents an 835 ERA claim adjudication. Front-end 277CA rejections (such as missing secondary subscriber data) occur prior to payer adjudication and must never be confused with an adjudicated CARC 22 adjustment reported on an 835 Electronic Remittance Advice. Un-ingested 277CA rejections cannot be appealed through provider claims dispute processes; they must be corrected and retransmitted.",
+      "internal_pm_dates_rule": "Practice management billing dates, automated statement generation dates, and internal rebill queue dates must not be confused with the electronic claim transmission date or payer adjudication date. For secondary claims, timely filing windows are governed by the primary payer's remittance date."
+    }
+  },
+  "decision_outcomes": [
+    {
+      "outcome_type": "PRIMARY_PAYER_BILLED_SECONDARY",
+      "title": "Claim Inadvertently Billed to Secondary Payer First",
+      "criteria": "Investigation confirms that the billed payer is legitimately secondary under NAIC or Medicare MSP rules, and the claim was submitted to the secondary payer without prior adjudication by the true primary insurer.",
+      "recommended_action": "Submit the original claim immediately to the proper primary insurance carrier. Retain proof of timely filing to the secondary payer. Upon receiving the primary payer's 835 ERA, submit a compliant electronic secondary claim to the secondary payer with primary payment and adjustment data mapped into Loop 2320 and Loop 2330.",
+      "patient_billing_rules": "Strictly prohibited from balance-billing the patient. Patient liability cannot be determined until both primary and secondary coverages have completed adjudication."
+    },
+    {
+      "outcome_type": "MISSING_PRIMARY_ADJUDICATION_DATA",
+      "title": "Secondary Claim Submitted Without Required Primary Remittance (Loop 2320/2330)",
+      "criteria": "The primary claim was properly adjudicated, but the secondary claim was transmitted missing primary claim-level adjustments (CAS), primary paid amount (AMT01=D), or companion remark codes (N4 / MA64).",
+      "recommended_action": "Update the practice management system with the complete primary 835 remittance data. Re-transmit an electronic secondary claim (837 Professional or Institutional) ensuring Loop 2320 (SBR, CAS, AMT) and Loop 2330 (NM1) are completely populated with primary payment and contractual adjustment details.",
+      "patient_billing_rules": "Do not bill the patient. The adjustment is an electronic data formatting defect between payers that must be resolved through compliant secondary billing."
+    },
+    {
+      "outcome_type": "MEMBER_COB_UPDATE_HOLD",
+      "title": "Commercial Payer Withholding Payment Pending Member COB Questionnaire",
+      "criteria": "The billed payer is legitimately primary or secondary, but the payer's enrollment system has placed a hold on claims pending the member's annual coordination-of-benefits update or confirmation of dual coverage.",
+      "recommended_action": "Contact the patient/subscriber immediately. Provide the payer's member services telephone number, portal URL, and specific claim reference. Coordinate a three-way call if necessary to ensure the member updates their coordination record. Once the payer confirms the COB record is updated, request electronic reprocessing of the held claim.",
+      "patient_billing_rules": "Do not bill the patient while coordinating the update. Only if the patient repeatedly refuses to complete the required questionnaire after documented written outreach, and if permitted by governing provider contract and state balance-billing regulations, may the provider consider alternative billing action."
+    },
+    {
+      "outcome_type": "TERMINATED_OTHER_COVERAGE",
+      "title": "Payer Database Erroneously Lists Inactive Coverage as Primary",
+      "criteria": "The denying payer asserts another policy is primary, but documentation confirms that the other policy was terminated prior to the Date of Service.",
+      "recommended_action": "Obtain a Certificate of Creditable Coverage (COCC), termination letter from the prior insurer, or real-time 271 eligibility transaction showing the termination date. Submit a formal reconsideration or claim dispute to the denying payer's eligibility/COB department enclosing proof of termination, and request reprocessing as primary.",
+      "patient_billing_rules": "Do not bill the patient. The denial is an administrative eligibility mismatch that must be resolved with the payer using proof of coverage termination."
+    },
+    {
+      "outcome_type": "MEDICARE_CONDITIONAL_PAYMENT",
+      "title": "Medicare Secondary Payer — Conditional Payment Workflow (42 CFR § 411.52)",
+      "criteria": "Medicare is secondary to a liability, no-fault, or workers' compensation insurer under 42 U.S.C. § 1395y(b)(2), but the primary liability/no-fault payer has not paid within 120 calendar days or has contested liability, and the beneficiary has not received payment. (Note: Conditional payment provisions are statutory Medicare MSP remedies under 42 CFR § 411.52 and do not apply to commercial health plan coordination).",
+      "recommended_action": "Submit a conditional payment request to the Medicare Administrative Contractor (MAC) under 42 CFR § 411.52. Submit the claim with appropriate MSP condition codes (such as Condition Code 02 or 08), enclosing documentation of primary payer non-payment or dispute. Medicare will make a conditional payment subject to recovery upon settlement.",
+      "patient_billing_rules": "Strictly prohibited from billing the beneficiary under Medicare statutory assignment rules (Social Security Act § 1842(b)(3)(B)(ii))."
+    }
+  ],
+  "detailed_scenarios": [
+    {
+      "id": "SCENARIO-CO22-01",
+      "title": "Commercial Dual Coverage — Pediatric Claim Denied Under Birthday Rule Mismatch",
+      "trigger_condition": "CARC 22 received on a pediatric dependent claim submitted to Mother's insurance plan as primary, but Father's plan is legally primary under governing state Birthday Rule coordination provisions.",
+      "action_badge": "Sequencing Correction / Resubmission",
+      "action_type": "Re-Sequence and Bill Proper Primary",
+      "resolution_path": [
+        "Audit patient registration and obtain the dates of birth (month and day) for both parents.",
+        "Apply governing state coordination regulations (patterned on the NAIC Birthday Rule): The plan of the parent whose birthday falls earlier in the calendar year (month and day) is primary for dependent children (subject to court custody decrees or ERISA plan terms). (Note: The year of birth is irrelevant).",
+        "If parents are divorced or separated, check whether a court custody decree or child support order specifically assigns health insurance responsibility, which supersedes the Birthday Rule.",
+        "If Father's plan is legally primary: Submit the claim immediately to Father's insurance carrier as the original primary claim.",
+        "Upon receipt of Father's 835 remittance advice, submit a secondary claim to Mother's insurance carrier with full primary adjudication data mapped into Loop 2320 and Loop 2330.",
+        "Update the practice management master patient index to designate Father's insurance as primary and Mother's as secondary for all future encounters."
+      ],
+      "evidence_package": [
+        "Copies of insurance cards for both parents.",
+        "Parent birth date records documenting month and day.",
+        "Court divorce decree or custody agreement (if applicable).",
+        "Primary payer 835 ERA showing primary adjudication."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not assume the parent accompanying the child to the appointment is the primary insured; governing state/ERISA Birthday Rules govern regardless of which parent brought the child.",
+        "Do not bill the parents while re-sequencing the claim between commercial carriers."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO22-02",
+      "title": "Medicare Secondary Payer (MSP) Working Aged Coordination (42 U.S.C. § 1395y(b))",
+      "trigger_condition": "CARC 22 received from Medicare FFS asserting that the beneficiary is covered under an Employer Group Health Plan (EGHP) through active employment.",
+      "action_badge": "MSP Verification & Primary Billing",
+      "action_type": "Bill EGHP First or Update BCRC",
+      "resolution_path": [
+        "Review the completed CMS Medicare Secondary Payer (MSP) Questionnaire obtained from the patient at intake.",
+        "Verify employment status and employer size: (a) If beneficiary (or spouse) is actively working for an employer with 20 or more employees, the EGHP is legally primary under 42 U.S.C. § 1395y(b)(1)(A)(i); (b) If the employer has fewer than 20 employees, Medicare is legally PRIMARY. Do not bill the EGHP as primary when the employer has fewer than 20 employees.",
+        "If EGHP is primary: Submit the claim to the employer's commercial health plan first. Upon receiving the primary EOB, submit an electronic secondary claim to Medicare (or allow automated crossover) with primary payment data in Loop 2320.",
+        "If beneficiary is retired and employer coverage has terminated: Contact the CMS Benefits Coordination & Recovery Center (BCRC) at 1-855-798-2627. Facilitate an update to the Medicare Common Working File (CWF) to reflect retirement date.",
+        "Once BCRC confirms CWF record update, resubmit the clean claim to the Medicare MAC for primary payment."
+      ],
+      "evidence_package": [
+        "Completed CMS MSP Questionnaire signed by the beneficiary.",
+        "Employer letter or retirement document verifying retirement date and termination of active group coverage.",
+        "BCRC coordination update confirmation reference number.",
+        "Commercial EGHP primary 835 ERA (if secondary billing)."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not bill Medicare as primary for a working beneficiary in a 20+ employee company without first obtaining a primary EGHP denial or payment.",
+        "Do not attempt to bill the Medicare beneficiary for amounts adjusted under CARC 22; Medicare assignment rules strictly forbid balance billing."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO22-03",
+      "title": "Secondary Electronic Claim Denied for Missing Loop 2320 Data (RARC N4 / MA64)",
+      "trigger_condition": "CARC 22 accompanied by companion RARC N4 ('Missing/incomplete/invalid prior insurance carrier EOB') or MA64 ('Prior-payer payment information is required before this claim can be processed') received from secondary payer (neither remark universally accompanies CARC 22).",
+      "action_badge": "EDI Mapping Correction",
+      "action_type": "Correct 837 Loop 2320 and Resubmit",
+      "resolution_path": [
+        "Extract the raw 837 EDI claim file transmitted to the secondary payer from your clearinghouse archive.",
+        "Inspect Loop 2320 (Other Subscriber Information) and Loop 2330A (Other Payer Name).",
+        "Confirm whether the primary payer's paid amount (Loop 2320 AMT01='D'), primary contractual adjustments (Loop 2320 CAS), and primary patient responsibility (Loop 2320 CAS with Group Code PR) were transmitted.",
+        "In your practice management software, open the secondary billing module. Ensure that the primary 835 remittance advice is electronically cross-posted or manually keyed with all line-item CARC/RARC allocations.",
+        "Re-generate and transmit an electronic 837 secondary claim to the clearinghouse. Verify on the subsequent 277CA that the claim passed Level 2 and Level 3 COB syntax edits."
+      ],
+      "evidence_package": [
+        "Primary payer 835 ERA showing exact payment, contractual adjustment, and patient liability amounts.",
+        "Corrected EDI 837 segment extract showing populated Loop 2320 (SBR, CAS, AMT) and Loop 2330 (NM1).",
+        "Clearinghouse 277CA claim acknowledgment confirming acceptance."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not mail paper CMS-1500 or UB-04 claims with attached paper EOBs to payers that mandate electronic 837 COB transactions; paper claims will be rejected as non-compliant.",
+        "Ensure primary CAS segment amounts mathematically balance: Billed Charges minus Paid Amount must equal total Claim Adjustments."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO22-04",
+      "title": "Commercial Payer Withholding Payment for Annual Member COB Questionnaire",
+      "trigger_condition": "CARC 22 received on a routine commercial claim where the member has no secondary insurance, but the payer requires an annual update confirming absence of other coverage.",
+      "action_badge": "Patient Outreach / Payer Coordination",
+      "action_type": "Facilitate Member Questionnaire Completion",
+      "resolution_path": [
+        "Call the payer's provider services department to confirm that the denial was triggered solely by a missing annual coordination of benefits survey.",
+        "Contact the patient by telephone, secure patient portal message, and mail. Explain that their insurance carrier has paused claim processing until the member completes their routine annual COB questionnaire.",
+        "Provide the patient with the payer's member services telephone number, website address, and claim reference number.",
+        "Offer to initiate a three-way call between the patient, provider billing representative, and the health plan's customer service to complete the questionnaire immediately over the telephone.",
+        "Obtain a call reference number from the payer representative confirming that the COB update has been processed.",
+        "Request that the representative re-open and reprocess the claim for immediate adjudication, or re-transmit the claim electronically."
+      ],
+      "evidence_package": [
+        "Payer call log noting date, representative name, and confirmation that member COB hold was released.",
+        "Documentation of patient outreach attempts (phone logs, portal messages).",
+        "Payer re-adjudication confirmation or electronic 277CA acknowledgment."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not send the patient a collection letter or balance bill while coordinating the routine questionnaire update.",
+        "Document all patient communication thoroughly to satisfy contract requirements if the member subsequently defaults on cooperation."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO22-05",
+      "title": "Third-Party Liability / Workers' Compensation Non-Payment (Medicare MSP Conditional Payment)",
+      "trigger_condition": "CARC 22 received from Medicare FFS when billing care resulting from an automobile accident, slip-and-fall, or work-related injury where the primary third-party liability or workers' comp insurer has not disbursed payment within 120 days.",
+      "action_badge": "MSP Conditional Payment",
+      "action_type": "Request Medicare Conditional Payment",
+      "resolution_path": [
+        "Verify that a claim was timely filed with the primary workers' compensation, automobile, or liability insurance carrier.",
+        "Determine whether 120 calendar days have elapsed since the claim was filed with the primary liability insurer, or if the primary insurer has formally contested or denied liability in writing.",
+        "Under 42 CFR § 411.52 (Medicare Secondary Payer), if the liability insurer has not paid within 120 days, the provider may submit a conditional payment request to the Medicare Administrative Contractor (MAC). (Note: Conditional payments are strictly a Medicare statutory remedy under 42 U.S.C. § 1395y(b)(2)(B) and do not apply to commercial payer COB disputes).",
+        "Prepare the Medicare claim: Include Condition Code 02 (Condition is employment-related) or Condition Code 08 (Beneficiary would not provide information concerning other insurance) as appropriate, or submit with proof of liability contest/non-payment.",
+        "Submit the claim to the MAC. Medicare will make a conditional payment to the provider, and CMS's recovery contractor will seek reimbursement from the primary liability settlement under 42 U.S.C. § 1395y(b)(2)(B)."
+      ],
+      "evidence_package": [
+        "Proof of timely claim filing to primary liability or workers' compensation carrier.",
+        "Written denial or contest notice from the liability carrier, or proof that 120 days have elapsed without payment.",
+        "Completed CMS MSP questionnaire detailing accident circumstances.",
+        "Medicare claim extract showing conditional payment billing indicators."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not bill the Medicare beneficiary while waiting for liability settlements or workers' compensation adjudications; 42 U.S.C. § 1395y(b) protects beneficiaries from provider collection actions.",
+        "Ensure the provider does not retain double reimbursement if both Medicare conditional payment and a subsequent liability settlement are disbursed."
+      ]
+    }
+  ],
+  "medicare_ffs_rules": {
+    "filing_deadline_rule": "Under 42 CFR § 424.44, Original Medicare Fee-for-Service claims must be filed within 1 calendar year (12 months) from the Date of Service. When Medicare is the secondary payer under 42 U.S.C. § 1395y(b), the secondary claim must still be submitted within this statutory 1 calendar year filing limit. If primary payer processing causes delays that push submission beyond the 1 calendar year limit, the provider must demonstrate that the delay qualifies under a specific statutory exception under 42 CFR § 424.44(b) or submit within the allowable exception window. For formal redetermination appeals disputing an erroneous MSP denial on an adjudicated claim, the appeal must be filed within 120 calendar days from receipt of the 835 remittance advice under Social Security Act § 1869.",
+    "date_convention_details": "For institutional claims (Part A) involving inpatient stays or multi-day episodes, the timely filing limit is calculated from the 'Through' date of service under CMS IOM Pub. 100-04, Ch. 1, § 70. For professional services (Part B), the limit is calculated from the individual line-item Date of Service.",
+    "distinction_from_medicare_advantage": "Original Medicare Fee-for-Service MSP compliance is governed strictly by federal statutes (42 U.S.C. § 1395y(b)), federal regulations (42 CFR Part 411), and the CMS Benefits Coordination & Recovery Center (BCRC), which maintains authoritative primary/secondary records in the Common Working File (CWF). Medicare Advantage (Part C) plans manage coordination of benefits under private managed care contract guidelines and commercial claims editing rules, which require plan-specific appeals within 60 calendar days.",
+    "appeal_rights_limitation": "A CARC 22 adjustment reported on an adjudicated 835 Electronic Remittance Advice represents an initial determination under Social Security Act § 1869, affording 5-level Medicare appeal rights (beginning with Level 1 Redetermination by the MAC within 120 days). By contrast, claims returned as unprocessable under CMS IOM Pub. 100-04, Ch. 1, § 80 (bearing RARC MA130) lack an initial determination and carry no statutory appeal rights; unprocessable claims must be corrected and resubmitted clean within the statutory 1-year filing limit.",
+    "beneficiary_billing_restriction": "Under Medicare statutory assignment rules (Social Security Act § 1842(b)(3)(B)(ii)) and Medicare participating provider agreements, providers are strictly prohibited from billing Medicare beneficiaries for balances adjusted under Group Code CO with CARC 22. Beneficiaries cannot be billed for MSP coordination delays or un-submitted primary claims. Patient liability is restricted solely to deductible, coinsurance, or copayment amounts formally adjudicated under Group Code PR after both primary and secondary claims have been processed.",
+    "exceptions": [
+      {
+        "exception_number": 1,
+        "name": "Administrative Error by CMS or its Contractors (§ 424.44(b)(1))",
+        "authority": "42 CFR § 424.44(b)(1); CMS IOM Pub. 100-04, Ch. 1, § 70.7.1",
+        "qualifying_conditions": "Failure to timely submit or resolve an MSP claim resulted from an error, misdirection, or delay by CMS, a Medicare Administrative Contractor (MAC), the BCRC, or another HHS agent.",
+        "documentation_required": [
+          "Written communication or official logs from CMS, BCRC, or MAC acknowledging incorrect coordination records or processing error.",
+          "Clearinghouse transmission logs proving timely submission attempts prior to contractor error.",
+          "Detailed chronological timeline tracking the contractor's erroneous coordination data."
+        ]
+      },
+      {
+        "exception_number": 2,
+        "name": "Retroactive Medicare Entitlement (§ 424.44(b)(2))",
+        "authority": "42 CFR § 424.44(b)(2); CMS IOM Pub. 100-04, Ch. 1, § 70.7.2",
+        "qualifying_conditions": "The beneficiary received retroactive Medicare entitlement from the Social Security Administration, altering primary/secondary coordination after the Date of Service.",
+        "documentation_required": [
+          "Official SSA award letter documenting retroactive entitlement effective date.",
+          "Documentation showing timely initial billing to commercial insurance or other payer.",
+          "Clean claim submitted to Medicare within 6 calendar months following the month of official entitlement notice."
+        ]
+      },
+      {
+        "exception_number": 3,
+        "name": "Retroactive Medicare Entitlement Involving State Medicaid Agency (§ 424.44(b)(3))",
+        "authority": "42 CFR § 424.44(b)(3); CMS IOM Pub. 100-04, Ch. 1, § 70.7.3",
+        "qualifying_conditions": "A state Medicaid agency recouped payment from a provider due to retroactive Medicare entitlement, requiring Medicare billing outside normal filing limits.",
+        "documentation_required": [
+          "State Medicaid recoupment notice or remittance showing reversal of payment.",
+          "Proof of original timely submission to Medicaid.",
+          "Claim submitted to Medicare within 6 calendar months of the Medicaid recoupment date."
+        ]
+      },
+      {
+        "exception_number": 4,
+        "name": "Retroactive Disenrollment from Medicare Advantage (§ 424.44(b)(4))",
+        "authority": "42 CFR § 424.44(b)(4); CMS IOM Pub. 100-04, Ch. 1, § 70.7.4",
+        "qualifying_conditions": "A beneficiary was retroactively disenrolled from a Medicare Advantage plan and restored to Original Medicare FFS, requiring FFS billing after MA claim processing.",
+        "documentation_required": [
+          "Medicare Advantage plan disenrollment letter or recoupment remittance.",
+          "Proof of timely initial claim submission to the Medicare Advantage plan.",
+          "Clean claim submitted to the MAC within 6 calendar months following the MA recoupment or notice."
+        ]
+      }
+    ]
+  },
+  "commercial_payer_rules": {
+    "general_principles": "Commercial health plans enforce coordination of benefits through state-adopted insurance regulations (many modeled on NAIC Model Regulation #120), self-funded ERISA plan terms, and contract-specific coordination provisions. NAIC Model #120 is a model regulation, not a federal statute; its provisions apply to the extent adopted by state law or incorporated into commercial policies. Resolution paths depend strictly on the submission facts: if the claim was billed to the secondary payer as primary, bill the true primary insurer first; upon receiving the primary 835 remittance, transmit an electronic secondary claim with Loop 2320/2330 cross-adjudication data. If the primary claim was already processed, verify that all primary CAS adjustment and AMT paid segments were populated accurately before resubmitting. If the denial was triggered by an annual member COB survey hold, facilitate patient contact with the plan's member services department to complete the questionnaire. Billers must follow specific provider contract terms, prompt-pay regulations, and payer appeal rules.",
+    "payers": [
+      {
+        "payer_name": "Cigna Healthcare",
+        "product_or_market": "Commercial Managed Care (HMO, PPO, POS, Open Access Plus)",
+        "participation_status": "Participating & Out-of-Network Healthcare Professionals",
+        "claim_type": "Professional and Facility Claims",
+        "timely_filing_limit": "Original primary claim submissions: 90 calendar days from Date of Service for participating/in-network providers; 180 calendar days from Date of Service for out-of-network providers. Secondary claim submissions: Timely filing for secondary claims is calculated from the primary payer's EOB/EOP processing date (do not assume the 180-day appeal limit automatically applies; verify governing contract or policy). Electronic secondary submissions must include complete primary payment details in Loop 2320 and Loop 2330. If Cigna requests additional COB or prior-payer EOB details, respond within the timeframe specified in the request notice.",
+        "secondary_claim_rule": "For secondary claims, Cigna calculates timely filing from the primary payer's EOB processing date. Secondary submissions must include complete primary payment details in Loop 2320/2330.",
+        "appeal_limit": "Provider disputes, reconsiderations, and appeals: 180 calendar days from the date of the initial Explanation of Payment (EOP) or denial notice. For adjusted claims with subsequent payment modifications, 180 calendar days from the last payment adjustment notice.",
+        "effective_period": "Current Published Cigna Guidelines",
+        "exceptions_summary": "Coordination of benefits delays, primary payer adjudication delays, and clearinghouse cross-posting errors are not automatic or guaranteed exceptions; rather, they represent extenuating circumstances that providers must document with objective submission evidence (such as primary EOB processing dates and electronic transmission logs) when requesting discretionary payer review or filing a dispute under applicable rules.",
+        "source_title": "Cigna HealthCare Claims Submission Guidelines & Appeals/Disputes Procedures",
+        "source_url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+        "verified_date": "2026-10-15"
+      }
+    ]
+  },
+  "inquiry_template": {
+    "title": "Adaptable Payer Coordination of Benefits & Secondary Adjudication Review Request",
+    "context_use_case": "Adaptable template for claim dispute, informal review, or secondary claim submission when electronic transaction records demonstrate that primary adjudication has occurred, that required primary EOB data has been submitted, or that alleged prior coverage was terminated.",
+    "subject_line": "COB REVIEW / SECONDARY RE-ADJUDICATION: CARC 22 Resolution — Claim #[Claim Number / ICN] — Patient: [Patient Name]",
+    "template_body": "Date: [Date of Request]\n\nTo: [Payer Name]\nAttention: Coordination of Benefits (COB) / Secondary Claims / Provider Appeals Department\nAddress / Portal: [Payer Address or Portal Submission Route]\n\nRE: Request for Claim Review / Secondary Adjudication — Coordination of Benefits Adjustment (CO-22)\nPatient Name: [Patient Name]\nPatient Date of Birth: [Patient DOB]\nSubscriber ID / Policy Number: [Subscriber ID]\nClaim Number / ICN: [Claim Number / ICN]\nDate(s) of Service: [Date of Service (DOS)]\nBilled Amount: $[Billed Amount]\nBilling Provider Name: [Billing Provider Name]\nBilling NPI: [Billing Provider NPI]\nTax ID: [Billing Tax ID]\n\nDear Claims Department,\n\nWe are requesting formal review and re-adjudication of the above-referenced claim, which was adjusted or denied under Claim Adjustment Reason Code 22 (CO-22: This care may be covered by another payer per coordination of benefits) on Remittance Date [Remittance Date][OPTIONAL: , citing Remittance Advice Remark Code N4 / MA64].\n\nINVESTIGATION & SUBMISSION AUDIT FINDINGS:\nUpon auditing our electronic billing records, clearinghouse 837 transaction sets, and patient coverage profiles, we have established the following facts regarding this transaction:\n\n[SELECT ONE OPTION BELOW]:\n[OPTION A — SUBMISSION OF COMPLETE PRIMARY ADJUDICATION DATA]:\nThe primary payer has fully adjudicated this claim. We are enclosing the complete primary Explanation of Benefits / 835 Electronic Remittance Advice. Electronic transaction records confirm that primary adjudication data was transmitted in the secondary 837 transaction:\n• Primary Payer Name & ID: [Primary Payer Name / Payer ID]\n• Primary Claim Control Number (ICN): [Primary Payer ICN]\n• Primary Adjudication Date: [Primary Remittance Date]\n• Primary Allowed Amount: $[Primary Allowed Amount] | Primary Paid Amount: $[Primary Paid Amount]\n• Primary Patient Responsibility (Group Code PR): $[Primary PR Amount]\nBecause primary adjudication is complete and full cross-adjudication data is provided, we respectfully request that you process this secondary claim and determine secondary benefit payment.\n\n[OPTION B — PROOF OF TERMINATION OF ALLEGED OTHER COVERAGE]:\nYour system indicates that [Alleged Primary Payer Name] is primary for this patient. However, our records and enclosed documentation confirm that this coverage was terminated prior to the Date of Service:\n• Terminated Policy Number: [Terminated Policy ID]\n• Official Coverage Termination Date: [Termination Date]\nEnclosed is a copy of the Certificate of Creditable Coverage (COCC) / termination confirmation letter from the prior carrier. We request that you update your member COB records to reflect that your plan is primary, and re-adjudicate this claim accordingly.\n\n[OPTION C — CONFIRMATION OF MEMBER COB QUESTIONNAIRE COMPLETION]:\nThe subscriber contacted your member services department on [Date Member Contacted Payer] under Call Reference Number [Call Reference Number] and successfully updated their annual coordination of benefits questionnaire, verifying that no other commercial coverage exists. We respectfully request that you release the administrative hold and process this claim for payment.\n\nENCLOSURES ATTACHED:\n• Copy of Remittance Advice showing CO-22 adjustment\n• Primary Payer 835 Electronic Remittance Advice / Paper EOB\n• Certificate of Creditable Coverage / Policy Termination Letter (if applicable)\n• Completed CMS MSP Questionnaire / Patient Insurance Cards\n\nThank you for your prompt attention to resolving this coordination of benefits claim.\n\nSincerely,\n\n[Author Name / Title]\n[Practice / Facility Name]\n[Contact Phone Number]\n[Contact Email / Fax]",
+    "placeholders": [
+      {
+        "token": "[Date of Request]",
+        "description": "Current date the review or dispute request is submitted."
+      },
+      {
+        "token": "[Payer Name]",
+        "description": "Legal name of the insurance carrier, health plan, or MAC."
+      },
+      {
+        "token": "[Patient Name]",
+        "description": "Full legal name of the patient as registered."
+      },
+      {
+        "token": "[Patient DOB]",
+        "description": "Date of birth of the patient."
+      },
+      {
+        "token": "[Subscriber ID]",
+        "description": "Member/subscriber policy or Medicare Beneficiary Identifier (MBI)."
+      },
+      {
+        "token": "[Claim Number / ICN]",
+        "description": "Unique claim control number assigned to the denied transaction on the 835 ERA."
+      },
+      {
+        "token": "[Date of Service (DOS)]",
+        "description": "Actual date the service was rendered."
+      },
+      {
+        "token": "[Billed Amount]",
+        "description": "Total charge amount submitted on the claim."
+      },
+      {
+        "token": "[Billing Provider Name]",
+        "description": "Legal name of the billing organization or practice."
+      },
+      {
+        "token": "[Billing Provider NPI]",
+        "description": "10-digit National Provider Identifier of billing entity."
+      },
+      {
+        "token": "[Billing Tax ID]",
+        "description": "Federal Tax Identification Number (EIN) of billing entity."
+      },
+      {
+        "token": "[Remittance Date]",
+        "description": "Date of the 835 ERA containing the CO-22 denial."
+      },
+      {
+        "token": "[Primary Payer Name / Payer ID]",
+        "description": "Legal name and EDI Payer ID of the primary insurance carrier."
+      },
+      {
+        "token": "[Primary Payer ICN]",
+        "description": "Claim control number assigned by the primary payer."
+      },
+      {
+        "token": "[Primary Remittance Date]",
+        "description": "Processing date of the primary payer's EOB."
+      },
+      {
+        "token": "[Primary Allowed Amount]",
+        "description": "Total allowable charge determined by the primary payer."
+      },
+      {
+        "token": "[Primary Paid Amount]",
+        "description": "Total dollar amount disbursed by the primary payer."
+      },
+      {
+        "token": "[Primary PR Amount]",
+        "description": "Total patient responsibility assigned under Group Code PR by primary payer."
+      }
+    ]
+  },
+  "wrong_fix_warnings": [
+    {
+      "action_to_avoid": "Immediately sending a patient balance bill or collection notice upon receiving a CO-22 denial without completing the coordination workflow.",
+      "why_it_fails": "Under Group Code CO and in-network provider contracts, balance-billing a patient for an unresolved coordination-of-benefits adjustment is a contractual violation and may violate state balance-billing laws. Patient liability cannot be determined until primary and secondary coverages are properly adjudicated.",
+      "correct_alternative": "Review coverage documents to establish primary/secondary sequencing. Submit to the true primary carrier first, or obtain proof of coverage termination to update the secondary payer's records."
+    },
+    {
+      "action_to_avoid": "Repeatedly re-submitting the exact same secondary claim electronically without mapping primary adjudication data into Loop 2320 and Loop 2330.",
+      "why_it_fails": "Secondary claims intake scrubbers automatically check for primary payment and adjustment segments (AMT01=D, CAS). If these segments are empty, the clearinghouse or payer EDI engine will continuously reject or deny the claim under CARC 22.",
+      "correct_alternative": "Post the primary 835 remittance data into your practice management system, ensure Loop 2320 CAS and AMT segments are populated, and transmit a compliant 837 secondary claim."
+    },
+    {
+      "action_to_avoid": "Guessing payer sequencing based on which card the patient presented first, or assuming Medicare is always secondary, rather than applying authoritative state COB / ERISA plan terms and statutory Medicare MSP criteria.",
+      "why_it_fails": "Patient perception of primary coverage often conflicts with statutory rules (e.g., assuming Medicare is primary when an active employer EGHP with 20+ employees covers the patient, or conversely assuming Medicare is always secondary even when an employer has fewer than 20 employees or during retiree coverage). Submitting in reverse order results in double denials and timely filing forfeiture.",
+      "correct_alternative": "Execute a formal Medicare Secondary Payer (MSP) questionnaire at intake and apply governing state/ERISA rules (Subscriber vs. Dependent, Birthday Rule, Active vs. Retiree) and MSP statutory thresholds (<20 vs 20+ employees; <100 vs 100+ employees; 30-month ESRD coordination period)."
+    },
+    {
+      "action_to_avoid": "Submitting paper secondary claims with paper EOB attachments to commercial payers that mandate electronic 837 transaction sets.",
+      "why_it_fails": "Major national payers (including Cigna, UHC, Aetna, and BCBS) reject paper secondary submissions from participating providers, resulting in un-ingested mail delays and timely filing expiration.",
+      "correct_alternative": "Utilize compliant electronic 837 COB transaction sets with primary claim-level and line-level adjustments mapped into standard loops."
+    }
+  ],
+  "prevention_controls": [
+    {
+      "control_name": "Front-End Real-Time Eligibility & COB Discovery (270/271)",
+      "timing": "Pre-Service Registration / Scheduling",
+      "operational_action": "Execute real-time electronic 270/271 eligibility inquiries at patient intake. Configure registration software to flag patients with dual coverage and automatically prompt staff to verify primary/secondary sequencing before scheduling care."
+    },
+    {
+      "control_name": "Mandatory Intake MSP & COB Questionnaire Protocol",
+      "timing": "Patient Check-In / Intake",
+      "operational_action": "Require all Medicare beneficiaries to complete a CMS-compliant Medicare Secondary Payer (MSP) questionnaire, and require all commercial dual-coverage patients to complete an annual coordination worksheet verifying active employment, employer size, and policyholder dates of birth."
+    },
+    {
+      "control_name": "Electronic 837 Secondary Claim Mapping Scrubber",
+      "timing": "Pre-Transmission Secondary Claim Generation",
+      "operational_action": "Configure clearinghouse claim scrubbers to block outgoing secondary claims if Loop 2320 (SBR, CAS, AMT) or Loop 2330 (NM1) lack primary payment data, primary claim control numbers, or primary CARC/Group Code line allocations."
+    }
+  ],
+  "final_resolution_checklist": [
+    "Confirm authoritative payer sequencing using governing state COB rules / ERISA plan documents (NAIC Model #120 framework) or statutory Medicare MSP criteria (42 U.S.C. § 1395y(b)), ensuring employer size thresholds (<20 vs 20+; <100 vs 100+) and ESRD 30-month coordination spans are accurately applied.",
+    "If the claim was erroneously billed to the secondary payer first, submit an original claim to the true primary insurer.",
+    "If the primary claim has already been adjudicated, verify that the complete primary 835 ERA was received and posted.",
+    "Verify that the electronic secondary claim file contains complete primary adjudication details in Loop 2320 (SBR, CAS, AMT) and Loop 2330 (NM1).",
+    "If the denial was triggered by an annual member COB questionnaire hold, coordinate with the patient to update their coordination record with the health plan.",
+    "If the payer lists terminated coverage as primary, obtain and submit a Certificate of Creditable Coverage (COCC) or termination letter.",
+    "Ensure that no balance billing was directed to the patient under Group Code CO, and that patient liability reflects only Group Code PR from a final Explanation of Benefits."
+  ],
+  "sources_and_governance": {
+    "authoritative_sources": [
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 Claim Adjustment Reason Codes (CARC) — Code 22",
+        "citation": "CARC Code 22",
+        "url": "https://x12.org/codes/claim-adjustment-reason-codes",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 Remittance Advice Remark Codes (RARC) — Code N4",
+        "citation": "RARC Code N4",
+        "url": "https://x12.org/codes/remittance-advice-remark-codes",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 Remittance Advice Remark Codes (RARC) — Code MA64",
+        "citation": "RARC Code MA64",
+        "url": "https://x12.org/codes/remittance-advice-remark-codes",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Social Security Administration / CMS",
+        "title": "Social Security Act § 1862(b) [42 U.S.C. § 1395y(b)] — Medicare as Secondary Payer",
+        "citation": "42 U.S.C. § 1395y(b)",
+        "url": "https://www.ssa.gov/OP_Home/ssact/title18/1862.htm",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Electronic Code of Federal Regulations (eCFR)",
+        "title": "42 CFR Part 411 — Exclusions from Medicare and Limitations on Medicare Payment",
+        "citation": "42 CFR Part 411",
+        "url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-411",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Electronic Code of Federal Regulations (eCFR)",
+        "title": "42 CFR § 424.44 — Basic conditions for Medicare payment: Time limits for filing claims",
+        "citation": "42 CFR § 424.44",
+        "url": "https://www.ecfr.gov/current/title-42/section-424.44",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Centers for Medicare & Medicaid Services (CMS)",
+        "title": "CMS IOM Pub. 100-05, Medicare Secondary Payer (MSP) Manual",
+        "citation": "CMS Pub. 100-05",
+        "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/msp105c01.pdf",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "National Association of Insurance Commissioners (NAIC)",
+        "title": "Coordination of Benefits Model Regulation (Model #120)",
+        "citation": "NAIC Model Regulation #120",
+        "url": "https://content.naic.org/sites/default/files/inline-files/MDL-120.pdf",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Cigna Healthcare",
+        "title": "Cigna HealthCare Claims Submission Guidelines & Appeals/Disputes Procedures",
+        "citation": "Cigna Provider Manual — Coordination of Benefits",
+        "url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+        "verified_date": "2026-10-18"
+      }
+    ],
+    "scope_limitations": "This guide provides operational workflows for resolving CARC 22 coordination of benefits adjustments under X12 standards, federal Medicare Secondary Payer statutes, and commercial payer contracts. It does not constitute legal or formal coverage advice. Specific state insurance department coordination regulations, self-funded ERISA plan documents, and individual managed care participating agreements supersede these general workflows.",
+    "last_reviewed_date": "2026-10-18"
+  }
+}

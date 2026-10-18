@@ -1,0 +1,184 @@
+{
+  "guide_id": "FIXTURE-INVALID-CARC18-BLANKET-LIABILITY",
+  "guide_title": "CARC 18 (OA / CO-18) — Duplicate Claim Resolution Guide",
+  "guide_subtitle": "Step-by-step duplicate claim investigation, X12 Group Code OA/CO rules, RARC M86 same-day service limitations, replacement claim logic, and payer resolution workflows.",
+  "quick_answer": {
+    "title": "Quick Answer: 3 Critical Questions to Resolve CARC 18",
+    "questions": [
+      {
+        "question_number": 1,
+        "question": "Is the transaction an unadjudicated true duplicate submission, or a legitimate distinct service performed on the same date?",
+        "summary": "Under official X12 standards, CARC 18 is designated for use with Group Code OA except where state workers' comp requires CO."
+      },
+      {
+        "question_number": 2,
+        "question": "Was the claim intended as a corrected/replacement claim that was misfiled with Claim Frequency Code 1 instead of 7?",
+        "summary": "A frequent administrative cause of false duplicate denials is submitting an amended claim as an original submission rather than a replacement claim."
+      },
+      {
+        "question_number": 3,
+        "question": "Does Remittance Advice Remark Code M86 accompany the denial, signaling a same-or-similar frequency limitation?",
+        "summary": "When CARC 18 is paired with RARC M86, the payer is specifically enforcing a same-or-similar medical policy."
+      }
+    ]
+  },
+  "code_explanation": {
+    "carc_code": "18",
+    "group_code": "OA / CO",
+    "group_code_meaning": "Under official X12 standards, CARC 18 is designated for use with Group Code OA (Other Adjustments), except where state workers' compensation regulations require Group Code CO (Contractual Obligations).",
+    "patient_billing_scope": "Under official X12 standards, CARC 18 is designated for Group Code OA (Other Adjustment), which represents an administrative adjustment that carries zero patient liability. Group Code OA or CO carries zero patient liability across all claims.",
+    "what_code_establishes": [
+      "The payer's claims processing system identified matching line-item elements already processed.",
+      "An adjustment was applied because automated adjudication prevents duplicate disbursements."
+    ],
+    "what_code_does_not_establish": [
+      "It does NOT establish fraudulent or improper billing intent.",
+      "It does NOT establish that a second medically necessary procedure was not performed."
+    ]
+  },
+  "initial_records_checklist": [
+    {
+      "record_type": "835 Electronic Remittance Advice (ERA) / Standard Paper Remittance (SPR)",
+      "purpose": "Identifies the exact CARC 18 code and affected line items.",
+      "where_to_find": "Practice management system."
+    }
+  ],
+  "investigation_steps": [
+    {
+      "step_number": 1,
+      "title": "Cross-Reference Prior Adjudicated Claim History and Remittance Records",
+      "milestone": "Locate the previously processed claim and determine its adjudication status.",
+      "instructions": [
+        "Search PM system for identical patient, date of service, and procedure code."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Payer Claim Control Number (ICN/DCN)",
+          "source_or_segment": "EDI 835 Loop 2100 CLP07",
+          "what_to_verify": "Identifies original claim number."
+        }
+      ]
+    }
+  ],
+  "timeline_and_dates": {
+    "general_rules": "Under 42 CFR § 424.44, Original Medicare FFS claims must be filed within 1 calendar year from DOS.",
+    "timeline_events": [
+      {
+        "event_name": "Date of Service (DOS)",
+        "field_or_source": "EDI 837 Loop 2400 DTP03",
+        "evidence_role": "Anchor Date",
+        "significance_notes": "Establishes reference date."
+      }
+    ],
+    "edi_distinction_notice": {
+      "ack_999_vs_277ca": "Front-end 277CA rejections occur prior to payer adjudication and must never be confused with an adjudicated CARC 18 adjustment reported on an 835 Electronic Remittance Advice.",
+      "internal_pm_dates_rule": "PM dates are not claim dates."
+    }
+  },
+  "decision_outcomes": [
+    {
+      "outcome_type": "TRUE_DUPLICATE_REBILL",
+      "title": "True Duplicate Submission",
+      "criteria": "Exact duplicate submitted.",
+      "recommended_action": "Void duplicate charge.",
+      "patient_billing_rules": "Do not bill patient."
+    }
+  ],
+  "detailed_scenarios": [
+    {
+      "id": "SCENARIO-CO18-01",
+      "title": "Automated Batch Rebill During Lag",
+      "trigger_condition": "CARC 18 received on rebill.",
+      "action_badge": "Void Duplicate",
+      "action_type": "Reconcile",
+      "resolution_path": [
+        "Verify original claim paid and void duplicate."
+      ],
+      "evidence_package": [
+        "Original ERA."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not rebill."
+      ]
+    }
+  ],
+  "medicare_ffs_rules": {
+    "filing_deadline_rule": "Under 42 CFR § 424.44, Original Medicare Fee-for-Service claims must be filed within 1 calendar year from Date of Service.",
+    "date_convention_details": "Calculated from Through date.",
+    "distinction_from_medicare_advantage": "FFS uses CWF edits; MA uses commercial scrubbers.",
+    "appeal_rights_limitation": "CARC 18 on 835 has 120-day appeal rights; unprocessable claims under CMS IOM Pub. 100-04 Ch. 1 § 80 (with MA130) lack appeal rights.",
+    "beneficiary_billing_restriction": "Prohibited under Medicare assignment rules.",
+    "exceptions": [
+      {
+        "exception_number": 1,
+        "name": "Administrative Error by CMS or its Contractors (§ 424.44(b)(1))",
+        "authority": "42 CFR § 424.44(b)(1); CMS IOM Pub. 100-04, Ch. 1, § 70.7.1",
+        "qualifying_conditions": "Error by CMS.",
+        "documentation_required": [
+          "Written correspondence."
+        ]
+      }
+    ]
+  },
+  "commercial_payer_rules": {
+    "general_principles": "Resolution paths depend on the submission facts: if data error, resubmit; if payer error, dispute.",
+    "payers": [
+      {
+        "payer_name": "Cigna Healthcare",
+        "product_or_market": "Commercial Managed Care",
+        "participation_status": "Participating Healthcare Professionals",
+        "claim_type": "Professional",
+        "timely_filing_limit": "90 calendar days from DOS for participating providers. Replacement claims governed by contract (do not assume appeal limit applies).",
+        "secondary_claim_rule": "From primary EOB date.",
+        "appeal_limit": "180 calendar days from EOP.",
+        "effective_period": "Current",
+        "exceptions_summary": "Extenuating circumstances are not automatic or guaranteed exceptions.",
+        "source_title": "Cigna Guidelines",
+        "source_url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+        "verified_date": "2026-10-15"
+      }
+    ]
+  },
+  "inquiry_template": {
+    "title": "Review Request",
+    "context_use_case": "Review duplicate claim.",
+    "subject_line": "Review",
+    "template_body": "Review body",
+    "placeholders": [
+      {
+        "token": "[Token]",
+        "description": "Desc"
+      }
+    ]
+  },
+  "wrong_fix_warnings": [
+    {
+      "action_to_avoid": "Appending Modifier 59 indiscriminately.",
+      "why_it_fails": "Audit trigger.",
+      "correct_alternative": "Check records."
+    }
+  ],
+  "prevention_controls": [
+    {
+      "control_name": "Front-end scrubber",
+      "timing": "Pre-submission",
+      "operational_action": "Check duplicates."
+    }
+  ],
+  "final_resolution_checklist": [
+    "Verify primary claim."
+  ],
+  "sources_and_governance": {
+    "authoritative_sources": [
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 CARC 18",
+        "citation": "CARC Code 18",
+        "url": "https://x12.org/codes/claim-adjustment-reason-codes",
+        "verified_date": "2026-10-18"
+      }
+    ],
+    "scope_limitations": "Informational only.",
+    "last_reviewed_date": "2026-10-18"
+  }
+}

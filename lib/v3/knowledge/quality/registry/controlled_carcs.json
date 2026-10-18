@@ -169,13 +169,13 @@
   },
   {
     "code": "18",
-    "official_meaning": "The payer treated the claim/service as an exact duplicate.",
+    "official_meaning": "Exact duplicate claim/service.",
     "status": "Current",
     "category": "Duplicate",
     "source_url": "https://x12.org/codes/claim-adjustment-reason-codes",
-    "verified_date": "2026-10-15",
+    "verified_date": "2026-10-18",
     "usage_rules": [
-      "Exact duplicate claim/service"
+      "Exact duplicate claim/service (Use only with Group Code OA except where state workers' compensation regulations require CO)"
     ],
     "requires_non_alert_rarc": false,
     "prohibits_initial_attachments": false

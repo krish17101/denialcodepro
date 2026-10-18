@@ -210,6 +210,151 @@ function validateScopeSensitivity(guide) {
     }
   }
 
+  // =========================================================================
+  // 5. CARC 18 Group Code Validation (OA Standard vs CO Exception)
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '18') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+    const explanationText = (
+      (guide.code_explanation.group_code_meaning || '') + ' ' +
+      (guide.code_explanation.patient_billing_scope || '')
+    ).toLowerCase();
+
+    // Must not state or imply that CO is the universal, standard, or exclusive group code
+    const assertsUniversalCO =
+      rawGuideText.includes('carc 18 is universally assigned group code co') ||
+      rawGuideText.includes('carc 18 always uses group code co') ||
+      rawGuideText.includes('group code co is the standard group code for carc 18') ||
+      rawGuideText.includes('universal group code co for carc 18') ||
+      (guide.code_explanation.group_code === 'CO' && !explanationText.includes('oa') && !explanationText.includes('other adjustment'));
+
+    if (assertsUniversalCO) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'CARC_18_GROUP_CODE_OVERREACH',
+        severity: 'FATAL',
+        message: 'CARC 18 is officially designated by X12 for use with Group Code OA ("Use only with Group Code OA except where state workers\' compensation regulations require CO"). The guide must not assert Group Code CO as the universal or standard group code, and must teach OA as the X12 standard with CO as the workers\' comp/remittance exception.',
+        location: 'code_explanation.group_code'
+      });
+    }
+
+    // Must not make a blanket claim of zero patient liability merely because an adjustment uses OA or CO
+    // (per X12 RFI 2814, Group Code OA does not provide clear direction on adjustment liability on its own)
+    const assertsBlanketZeroLiability =
+      rawGuideText.includes('oa carries zero patient liability') ||
+      rawGuideText.includes('group code oa carries zero patient liability') ||
+      rawGuideText.includes('adjustment that carries zero patient liability') ||
+      rawGuideText.includes('oa or co carries zero patient liability') ||
+      rawGuideText.includes('group code oa or co carries zero patient liability') ||
+      rawGuideText.includes('group code oa automatically carries zero patient liability') ||
+      rawGuideText.includes('group code oa universally establishes zero patient liability');
+
+    if (assertsBlanketZeroLiability) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'CARC_18_PATIENT_LIABILITY_OVERREACH',
+        severity: 'FATAL',
+        message: 'Under official X12 standards and X12 RFI 2814, Group Code OA indicates an adjustment occurred but does not provide clear direction on adjustment liability on its own. The guide must not assert a blanket claim of zero patient liability merely because an adjustment uses OA or CO. Determining financial responsibility requires evaluating the group code, complete ERA, and original claim adjudication outcome together with applicable payer, contractual, program, and legal rules.',
+        location: 'code_explanation.patient_billing_scope'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 6. COB Model Rules & Medicare MSP Validation
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '22') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    // Check if NAIC Model #120 is asserted as universal federal law/statute
+    const assertsNAICFederalLaw =
+      rawGuideText.includes('naic model regulation #120 is a federal mandate') ||
+      rawGuideText.includes('naic model rules are federal law') ||
+      rawGuideText.includes('federal naic mandate') ||
+      rawGuideText.includes('naic is universally required by federal law') ||
+      rawGuideText.includes('naic model regulation #120 is a federal statute') ||
+      rawGuideText.includes('binding all commercial payers under federal law');
+
+    // Check if Medicare is asserted as always/universally secondary in affirmative guidance sections
+    const quickAnswerText = JSON.stringify(guide.quick_answer || {}).toLowerCase();
+    const stepsText = JSON.stringify(guide.investigation_steps || []).toLowerCase();
+    const explanationAffirmative = JSON.stringify(guide.code_explanation.what_code_establishes || []).toLowerCase();
+
+    const assertsMedicareAlwaysSecondary =
+      quickAnswerText.includes('medicare is always secondary') ||
+      quickAnswerText.includes('medicare is universally secondary') ||
+      quickAnswerText.includes('medicare is never primary when other coverage exists') ||
+      stepsText.includes('medicare is always secondary') ||
+      stepsText.includes('medicare is universally secondary') ||
+      explanationAffirmative.includes('medicare is always secondary');
+
+    if (assertsNAICFederalLaw || assertsMedicareAlwaysSecondary) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'COB_MODEL_RULE_OVERREACH',
+        severity: 'FATAL',
+        message: 'NAIC Model #120 is a model state regulation subject to state adoption and ERISA plan terms, not a universal federal mandate. Furthermore, under statutory Medicare Secondary Payer (MSP) rules (42 U.S.C. § 1395y(b)), Medicare is legally primary for small employers (<20 or <100 employees), after the 30-month ESRD coordination period, or when coordinating with retiree or Medigap coverage. The guide must not claim NAIC is federal law or that Medicare is always secondary.',
+        location: 'quick_answer_or_investigation_steps'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 7. Emergency Protection Scoping (EMTALA vs No Surprises Act)
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    // Check if EMTALA is asserted as a commercial reimbursement mandate
+    const assertsEMTALACommercialOverride =
+      rawGuideText.includes('emtala requires commercial health plans to pay') ||
+      rawGuideText.includes('emtala mandates commercial reimbursement') ||
+      rawGuideText.includes('commercial health plans are legally mandated to pay and reimburse hospital claims under emtala') ||
+      rawGuideText.includes('commercial health plans must pay under emtala') ||
+      rawGuideText.includes('emtala overrides all commercial payer authorization denials');
+
+    // Check if No Surprises Act prior-auth prohibitions are overgeneralized to elective care
+    const assertsNoSurprisesActElective =
+      rawGuideText.includes('no surprises act prohibits prior authorization for elective') ||
+      rawGuideText.includes('no surprises act bans prior authorization for all medical procedures') ||
+      rawGuideText.includes('elective care is exempt from prior authorization under the no surprises act');
+
+    if (assertsEMTALACommercialOverride || assertsNoSurprisesActElective) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'EMERGENCY_PROTECTION_OVERREACH',
+        severity: 'FATAL',
+        message: 'EMTALA (42 U.S.C. § 1395dd) imposes hospital screening and stabilization obligations; it is not a commercial health plan reimbursement mandate. Furthermore, No Surprises Act prior-authorization prohibitions (45 CFR § 149.110) apply strictly to emergency services and cannot be overgeneralized to elective care.',
+        location: 'quick_answer_or_investigation_steps'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 8. Retrospective Authorization Scope Validation
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    // Check if 24-72h retro-auth is asserted as a standard universal rule for all care/elective care
+    const assertsUniversalRetroAuth =
+      rawGuideText.includes('providers universally have 24 to 72 hours for retrospective authorization on all services') ||
+      rawGuideText.includes('standard 24 to 72 hour retrospective authorization applies to all elective procedures') ||
+      rawGuideText.includes('retrospective authorization is standard for all services within 72 hours') ||
+      rawGuideText.includes('all payers must grant retrospective authorization if submitted within 24 to 72 hours for all services') ||
+      rawGuideText.includes('all payers must grant retrospective authorization if submitted within 72 hours');
+
+    if (assertsUniversalRetroAuth) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'RETRO_AUTH_SCOPE_OVERREACH',
+        severity: 'FATAL',
+        message: 'Retrospective authorization windows (e.g. 24-72 hours) are plan-specific policies applicable primarily to unplanned urgent or emergency hospital admissions. Elective scheduled services generally disallow retrospective authorization. The guide must not assert 24-72h retro-auth as a universal or standard rule for all care.',
+        location: 'timeline_and_dates_or_steps'
+      });
+    }
+  }
+
   return issues;
 }
 

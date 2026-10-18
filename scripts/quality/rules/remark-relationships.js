@@ -60,6 +60,28 @@ function validateRemarkRelationships(guide, controlledRarcs) {
     }
   }
 
+  // 3. Alert RARC Conflation Check (e.g. Alert RARC treated as diagnostic cause or appeal guarantee)
+  const guideTextLower = JSON.stringify(guide).toLowerCase();
+  const alertConflated =
+    guideTextLower.includes('n210 is the diagnostic root cause') ||
+    guideTextLower.includes('n210 is the diagnostic reason') ||
+    guideTextLower.includes('rarc n210 proves the denial was erroneous') ||
+    guideTextLower.includes('n210 proves the denial was erroneous') ||
+    guideTextLower.includes('rarc n210 guarantees appeal success') ||
+    guideTextLower.includes('guaranteeing appeal success') ||
+    guideTextLower.includes('n210 establishes that authorization was approved') ||
+    guideTextLower.includes('n210 means the payer made an error');
+
+  if (alertConflated) {
+    issues.push({
+      rule: 'remark-relationships',
+      code: 'ALERT_RARC_CONFLATION',
+      severity: 'FATAL',
+      message: 'An informational Alert RARC (such as N210) is conflated with a substantive diagnostic cause, or claimed to prove an error or guarantee appeal success. Alert RARCs merely communicate rights or administrative status.',
+      location: 'quick_answer_or_wrong_fix_warnings'
+    });
+  }
+
   return issues;
 }
 

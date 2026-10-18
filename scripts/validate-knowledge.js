@@ -84,6 +84,42 @@ function run() {
       description: 'Guide referencing unverified RARC N9999 missing from controlled registry'
     },
     {
+      file: 'invalid-carc18-universal-co.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'CARC_18_GROUP_CODE_OVERREACH',
+      description: 'CARC 18 duplicate denial asserting Group Code CO is universal or omitting OA standard'
+    },
+    {
+      file: 'invalid-carc18-blanket-liability.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'CARC_18_PATIENT_LIABILITY_OVERREACH',
+      description: 'CARC 18 asserting blanket zero patient liability merely because adjustment uses OA or CO'
+    },
+    {
+      file: 'invalid-co22-model-cob-overreach.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'COB_MODEL_RULE_OVERREACH',
+      description: 'NAIC Model #120 asserted as federal mandate or Medicare asserted as always secondary'
+    },
+    {
+      file: 'invalid-co197-emergency-overreach.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'EMERGENCY_PROTECTION_OVERREACH',
+      description: 'EMTALA asserted as universal reimbursement mandate or No Surprises Act overgeneralized to elective care'
+    },
+    {
+      file: 'invalid-co197-retro-auth-overreach.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'RETRO_AUTH_SCOPE_OVERREACH',
+      description: 'Retrospective authorization 24-72h window asserted as universal rule for all care/elective procedures'
+    },
+    {
+      file: 'invalid-alert-rarc-cause.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'ALERT_RARC_CONFLATION',
+      description: 'Informational Alert RARC treated as substantive diagnostic cause or appeal guarantee'
+    },
+    {
       file: 'valid-sample-guide.json',
       expectedOutcome: 'SHOULD_PASS',
       description: 'Valid, properly qualified denial-resolution guide fixture'

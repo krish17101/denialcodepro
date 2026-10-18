@@ -38,5 +38,95 @@
     "key_principle": "Original claim timely filing: 90 days par / 180 days non-par. Corrected claims via EDI Frequency Code 7 with original ICN (Loop 2300 REF*F8) governed by provider contract. Provider dispute/appeal: 180 days from initial EOP.",
     "source_url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
     "verified_date": "2026-10-15"
+  },
+  {
+    "id": "CMS-PUB-100-04-CH1-SEC120",
+    "authority": "Centers for Medicare & Medicaid Services (CMS)",
+    "citation": "CMS IOM Pub. 100-04, Claims Processing Manual, Chapter 1, Section 120",
+    "title": "Duplicate Claims Processing",
+    "scope": "Original Medicare Fee-for-Service",
+    "key_principle": "Standardizes duplicate checking logic across line-item and claim-level submissions; exact duplicates are adjusted under CARC 18 without appeal rights unless billed as distinct services with qualifying modifiers.",
+    "source_url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "42-USC-1395Y-B",
+    "authority": "Social Security Administration / CMS",
+    "citation": "Social Security Act § 1862(b) [42 U.S.C. § 1395y(b)]",
+    "title": "Medicare as Secondary Payer (MSP)",
+    "scope": "Medicare Secondary Payer Statutory Rules",
+    "key_principle": "Federal statute establishing order of liability. Medicare is secondary to EGHP for Working Aged (20+ employees), Disability (100+ employees), and 30-month ESRD coordination period. Medicare is primary for small employers (<20 or <100 employees) or after ESRD coordination period.",
+    "source_url": "https://www.ssa.gov/OP_Home/ssact/title18/1862.htm",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "42-CFR-PART-411",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "42 CFR Part 411",
+    "title": "Exclusions from Medicare and Limitations on Medicare Payment",
+    "scope": "Medicare Secondary Payer Regulations",
+    "key_principle": "Governs employer size thresholds, conditional payment authorization (§ 411.52), and recovery actions when primary non-Medicare payers fail to pay promptly.",
+    "source_url": "https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-411",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "NAIC-MODEL-120",
+    "authority": "National Association of Insurance Commissioners (NAIC)",
+    "citation": "NAIC Coordination of Benefits Model Regulation (Model #120)",
+    "title": "Coordination of Benefits Model Regulation",
+    "scope": "Model Guidelines for State Commercial Insurance Regulation",
+    "key_principle": "Establishes model priority rules (Subscriber vs Dependent, Birthday Rule, Active vs Retiree/COBRA) widely adopted by state insurance departments. Operates as model state guidance, subject to state statutory variations and ERISA self-funded plan terms.",
+    "source_url": "https://content.naic.org/sites/default/files/inline-files/MDL-120.pdf",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "EMTALA-42-USC-1395DD",
+    "authority": "United States Code",
+    "citation": "42 U.S.C. § 1395dd",
+    "title": "Emergency Medical Treatment and Labor Act (EMTALA)",
+    "scope": "Medicare-Participating Hospitals with Dedicated Emergency Departments",
+    "key_principle": "Mandates hospitals to provide an appropriate medical screening examination and stabilizing treatment for emergency medical conditions regardless of ability to pay. Applies to hospital obligations, not as a universal health plan claims reimbursement override.",
+    "source_url": "https://www.law.cornell.edu/uscode/text/42/1395dd",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "NO-SURPRISES-ACT-45-CFR-149-110",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "45 CFR § 149.110",
+    "title": "Preventing Surprise Medical Bills for Emergency Services",
+    "scope": "Group Health Plans and Health Insurance Issuers",
+    "key_principle": "Prohibits group health plans and health insurance issuers from requiring prior authorization for emergency services, and restricts beneficiary cost-sharing for out-of-network emergency care to in-network benefit levels.",
+    "source_url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-B/part-149/subpart-B/section-149.110",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "X12-RFI-2814",
+    "authority": "X12 Accredited Standards Committee",
+    "citation": "X12 RFI 2814",
+    "title": "835 Compliance: Sending OA to Noncontracted Providers",
+    "scope": "Electronic Remittance Advice (835) / Group Code OA",
+    "key_principle": "Group Code OA does not provide clear direction on adjustment liability on its own; liability determination requires evaluating the group code, complete ERA, and original claim adjudication outcome under governing contracts and rules.",
+    "source_url": "https://x12.org/resources/requests-for-interpretation/rfi-2814-835-compliance-sending-oa-noncontracted-providers",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "SSA-1882",
+    "authority": "Social Security Administration / CMS",
+    "citation": "Social Security Act § 1882 [42 U.S.C. § 1395ss]",
+    "title": "Certification of Medicare Supplemental Health Insurance Policies (Medigap)",
+    "scope": "Medicare Supplement (Medigap) Insurance",
+    "key_principle": "Medigap policies are standardized private supplemental insurance products specifically designed to cover Medicare cost-sharing; Medigap is strictly supplemental, always pays secondary to Medicare, and is never primary.",
+    "source_url": "https://www.ssa.gov/OP_Home/ssact/title18/1882.htm",
+    "verified_date": "2026-10-18"
+  },
+  {
+    "id": "42-CFR-411-170",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "42 CFR § 411.170",
+    "title": "Medicare Secondary Payer: Current employment status",
+    "scope": "Medicare Secondary Payer Regulations",
+    "key_principle": "Statutory Medicare Secondary Payer working-aged provisions apply only to coverage based on current employment status; Medicare is legally primary over commercial retiree group health coverage.",
+    "source_url": "https://www.ecfr.gov/current/title-42/section-411.170",
+    "verified_date": "2026-10-18"
   }
 ]
