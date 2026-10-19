@@ -128,5 +128,105 @@
     "key_principle": "Statutory Medicare Secondary Payer working-aged provisions apply only to coverage based on current employment status; Medicare is legally primary over commercial retiree group health coverage.",
     "source_url": "https://www.ecfr.gov/current/title-42/section-411.170",
     "verified_date": "2026-10-18"
+  },
+  {
+    "id": "CMS-OPD-PA-FAQ",
+    "authority": "Centers for Medicare & Medicaid Services (CMS)",
+    "citation": "CMS Hospital Outpatient Department (OPD) Prior Authorization Program FAQs (Nov 14, 2024; Questions 28, 53–57; 42 CFR §§ 419.80–419.83)",
+    "title": "Hospital Outpatient Department (OPD) Prior Authorization Frequently Asked Questions",
+    "scope": "Original Medicare Fee-for-Service Hospital Outpatient Department (OPD) Services (Type of Bill 13X)",
+    "key_principle": "If a hospital bypasses the prior authorization process, an ABN is not appropriate and the hospital may not charge the beneficiary (Q55). Under Q53, when prior authorization was requested and non-affirmed based on lack of medical necessity, the hospital must issue the Advance Beneficiary Notice of Noncoverage (ABN) to the beneficiary in advance and submit the claim appending modifier GA. Under Q57, for procedures ordinarily considered cosmetic that may be medically necessary for the patient's specific condition, the hospital must issue an advance ABN if denial is anticipated and submit the claim appending modifier GA. For statutorily excluded cosmetic services, issuing an ABN is voluntary, and the claim is submitted appending modifier GX (Q56).",
+    "source_url": "https://www.cms.gov/files/document/opd-frequently-asked-questions.pdf",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "CMS-ABN-FORM-CMS-R-131",
+    "authority": "Centers for Medicare & Medicaid Services (CMS)",
+    "citation": "CMS IOM Pub. 100-04, Medicare Claims Processing Manual, Chapter 30, Section 50",
+    "title": "Form CMS-R-131 Advance Beneficiary Notice of Noncoverage (ABN)",
+    "scope": "Original Medicare Fee-for-Service (Part A and Part B)",
+    "key_principle": "Issued to Medicare FFS beneficiaries before furnishing items or services when Medicare is expected to deny payment based on statutory benefit exclusions (e.g., medical necessity under SSA § 1862(a)(1)). An ABN is not a generic authorization waiver and cannot be used to bill beneficiaries when required prior authorization was bypassed.",
+    "source_url": "https://www.cms.gov/medicare/forms-notices/beneficiary-notices-initiative/ffs-abn",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "NO-SURPRISES-ACT-45-CFR-149-420",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "45 CFR § 149.420",
+    "title": "No Surprises Act — Requirements for notice and consent for certain nonparticipating providers and facilities",
+    "scope": "Nonparticipating (Out-of-Network) Providers and Facilities at Participating Facilities",
+    "key_principle": "Establishes strict notice-and-consent requirements permitting certain nonparticipating providers to balance-bill patients for non-emergency services at participating facilities. Does not apply to in-network participating providers and cannot be used as a generic waiver to bypass plan prior-authorization requirements or shift contractual write-offs to patients.",
+    "source_url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-B/part-149/section-149.420",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "CFR-42-422-113-MA-EMERGENCY",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "42 CFR § 422.113",
+    "title": "Special rules for ambulance services, emergency and urgently needed services, and maintenance and post-stabilization care services",
+    "scope": "Medicare Advantage (Part C) Plans",
+    "key_principle": "Medicare Advantage organizations are prohibited under 42 CFR § 422.113(b)(2) from requiring prior authorization for emergency or urgently needed services, and member cost-sharing for emergency care cannot exceed Original Medicare levels. The federal No Surprises Act does not apply to Medicare Advantage.",
+    "source_url": "https://www.ecfr.gov/current/title-42/section-422.113",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "CFR-42-405-942-MEDICARE-REDETERMINATION",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "42 CFR § 405.942",
+    "title": "Time frame for filing a request for a redetermination",
+    "scope": "Original Medicare Fee-for-Service (Part A and Part B)",
+    "key_principle": "A request for a redetermination must be filed within 120 calendar days from the date of receipt of the notice of initial determination. The date of receipt is legally presumed to be 5 calendar days after the date on the notice unless there is evidence showing otherwise.",
+    "source_url": "https://www.ecfr.gov/current/title-42/section-405.942",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "X12-RFI-2061-BPR16-DATE",
+    "authority": "X12 Accredited Standards Committee",
+    "citation": "X12 RFI 2061",
+    "title": "835 BPR16 Check Issue or EFT Effective Date Definition",
+    "scope": "Electronic Remittance Advice (835) BPR Segment",
+    "key_principle": "BPR16 represents the date payment was ordered/sent (check date or EFT effective date), not the claim adjudication date or formal denial notice date. It does not universally trigger provider appeal deadlines, which run from receipt of the initial determination or adverse benefit notice under program-specific rules.",
+    "source_url": "https://x12.org/resources/requests-for-interpretation/rfi-2061",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "CMS-OPD-OPERATIONAL-GUIDE",
+    "authority": "Centers for Medicare & Medicaid Services (CMS)",
+    "citation": "CMS Hospital Outpatient Department (OPD) Prior Authorization Operational Guide",
+    "title": "Hospital Outpatient Department (OPD) Prior Authorization Process Operational Guide",
+    "scope": "Original Medicare Fee-for-Service Hospital Outpatient Departments",
+    "key_principle": "Prior authorization provisional affirmations issued by Medicare Administrative Contractors (MACs) under the OPD Prior Authorization program are generally valid for 120 calendar days from the date of the affirmation decision. Prior authorization validity periods are program- and payer-specific, not uniform across healthcare.",
+    "source_url": "https://www.cms.gov/files/document/opd-operational-guide.pdf",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "CFR-42-422-582-MA-RECONSIDERATION",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "42 CFR § 422.582",
+    "title": "Request for a standard reconsideration",
+    "scope": "Medicare Advantage (Part C) Organization Determinations",
+    "key_principle": "An enrollee, appointed representative, or noncontracted provider (with a Waiver of Liability) may file a standard reconsideration request within 60 calendar days after the date of receipt of the written organization determination notice. Receipt is legally presumed to occur 5 calendar days after the notice date unless evidence shows otherwise. Contracted in-network providers follow contractual provider dispute resolution processes.",
+    "source_url": "https://www.ecfr.gov/current/title-42/section-422.582",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "CFR-29-2560-503-1-ERISA-APPEALS",
+    "authority": "Electronic Code of Federal Regulations (eCFR)",
+    "citation": "29 CFR § 2560.503-1",
+    "title": "Claims procedure for employee benefit plans",
+    "scope": "ERISA Covered Group Health Plans",
+    "key_principle": "Establishes a minimum of 180 calendar days for a covered claimant to appeal an adverse benefit determination under group health plan rules. An assignment of benefits alone does not universally designate a provider as an authorized representative; provider representation depends on assignment terms, plan authorized-representative procedures (29 CFR § 2560.503-1(b)(4)), plan provisions, and governing law. It does not establish a universal deadline for an in-network provider's independent contractual claim dispute, which is governed by provider network agreements and state prompt-pay rules.",
+    "source_url": "https://www.ecfr.gov/current/title-29/section-2560.503-1",
+    "verified_date": "2026-10-19"
+  },
+  {
+    "id": "DOL-EBSA-CLAIMS-PROCEDURE-GUIDANCE",
+    "authority": "U.S. Department of Labor (DOL) Employee Benefits Security Administration (EBSA)",
+    "citation": "DOL EBSA Benefit Claims Procedure Regulation FAQs (29 CFR § 2560.503-1(b)(4))",
+    "title": "Benefit Claims Procedure Regulation FAQs",
+    "scope": "ERISA Covered Group Health Plans and Authorized Representatives",
+    "key_principle": "An assignment of benefits (AOB) alone does not universally designate a healthcare provider as an authorized representative entitled to pursue an administrative appeal on the claimant's behalf under 29 CFR § 2560.503-1. Whether a provider may represent a claimant depends on the specific assignment terms, the plan's authorized-representative procedures established pursuant to § 2560.503-1(b)(4), plan terms (including valid anti-assignment clauses), and governing law.",
+    "source_url": "https://www.dol.gov/agencies/ebsa/about-ebsa/our-activities/resource-center/publications/group-health-and-disability-plans-benefit-claims-procedure-regulation",
+    "verified_date": "2026-10-19"
   }
 ]

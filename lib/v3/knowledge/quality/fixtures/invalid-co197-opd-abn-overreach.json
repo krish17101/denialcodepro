@@ -1,0 +1,692 @@
+{
+  "guide_id": "FIXTURE-INVALID-CO197-OPD-ABN-OVERREACH",
+  "guide_title": "CO-197 — Denial Resolution Guide",
+  "guide_subtitle": "Step-by-step prior authorization investigation, RARC N210 appeal rights navigation, emergency care protections under No Surprises Act / EMTALA, and retro-authorization workflows.",
+  "quick_answer": {
+    "title": "Quick Answer: 3 Critical Questions to Resolve CO-197",
+    "questions": [
+      {
+        "question_number": 1,
+        "question": "Was a valid authorization obtained prior to service, and was the authorization number accurately transmitted in Loop 2300 REF*G1?",
+        "summary": "CARC 197 indicates that required precertification, prior authorization, notification, or pre-treatment review was absent on the submitted claim. Audit your internal utilization management records first: if a valid authorization was obtained but omitted or mistyped on the claim, submit an electronic replacement claim (Claim Frequency Code 7 in Loop 2300 CLM05-3) populating Loop 2300 REF*G1 with the exact authorization number, rather than filing an administrative appeal."
+      },
+      {
+        "question_number": 2,
+        "question": "Was the care rendered for an emergency medical condition protected under program-specific federal coverage rules?",
+        "summary": "Protections against prior-authorization requirements for emergency care depend strictly on the applicable coverage program: for commercial group and individual health plans, the federal No Surprises Act (45 CFR § 149.110) prohibits health plans from requiring prior authorization for emergency screening and stabilization services; for Medicare Advantage (Part C), federal regulations under 42 CFR § 422.113 prohibit MA organizations from requiring prior authorization for emergency and urgently needed services (the No Surprises Act does not govern Medicare Advantage); for Original Medicare FFS Hospital Outpatient Department (OPD) services, emergency services furnished in an emergency department setting are excluded from prior authorization when billed with revenue code 045x or HCPCS modifier ET (CMS OPD FAQ Q13). Under EMTALA (42 U.S.C. § 1395dd), Medicare-participating hospitals have an operational obligation to provide emergency screening and stabilizing treatment regardless of authorization; EMTALA governs hospital duties rather than acting as a universal health plan reimbursement mandate. CARC 197 can still be reported on emergency-related encounters if non-emergency services were billed concurrently, if required program indicators were omitted, or if post-stabilization requirements were not satisfied."
+      },
+      {
+        "question_number": 3,
+        "question": "Does Remittance Advice Remark Code N210 accompany the denial, and what is its operational function?",
+        "summary": "RARC N210 is an official X12 Alert code stating: 'Alert: You may appeal this decision.' It is strictly an informational Alert confirming that the decision is appealable. It is NOT a diagnostic root cause, does not explain why authorization was absent, does not establish that an authorization existed, and does not guarantee appeal success. To overturn the denial, providers must furnish substantive evidence: proof of an approved pre-service authorization voucher, proof of statutory emergency protections under the applicable program (such as 45 CFR § 149.110 for commercial plans or 42 CFR § 422.113 for Medicare Advantage), or clinical records satisfying retrospective medical necessity."
+      }
+    ]
+  },
+  "code_explanation": {
+    "carc_code": "197",
+    "group_code": "CO",
+    "group_code_meaning": "Contractual Obligation (CO) indicates an adjustment resulting from a contract between the payer and participating provider, or an applicable fee schedule/regulatory mandate.",
+    "patient_billing_scope": "Under Medicare OPD rules, if a hospital bypasses the prior authorization process, an ABN is appropriate to charge the beneficiary, and an ABN is universally required for every CO-197 denial.",
+    "what_code_establishes": [
+      "The payer's claims processing system determined that the billed service, procedure, admission, or diagnostic test required precertification, prior authorization, or pre-treatment notification under plan medical policy.",
+      "The submitted claim either lacked a valid authorization tracking number in the designated electronic claim segment (Loop 2300 REF*G1 or Box 23 of CMS-1500), or the transmitted authorization did not match an approved record in the payer's utilization management system.",
+      "Under X12 EDI standards, the service line or claim is adjusted because utilization management pre-requisites were not validated at the time of claim adjudication.",
+      "If accompanied by RARC N210, the payer officially alerts the provider that administrative or clinical appeal rights are available to contest the adverse determination (N210 is an informational Alert, not a diagnostic explanation)."
+    ],
+    "what_code_does_not_establish": [
+      "It does NOT establish that the care was medically unnecessary or clinically inappropriate; CARC 197 is strictly an administrative and utilization management compliance adjustment.",
+      "It does NOT establish that authorization was never obtained; frequent root causes include typographical errors in Loop 2300 REF*G1, rendering NPI mismatches, or authorized procedure code variations resulting from intraoperative findings.",
+      "It does NOT authorize balance billing the patient based solely on the denial code, Group Code CO, or a generic authorization waiver; patient liability is determined by program regulations, network contracts, statutory protections, and specific valid notice requirements (e.g., under CMS OPD rules, bypassing required authorization strictly prohibits issuing an ABN or charging the beneficiary per CMS OPD FAQ Q55).",
+      "It does NOT establish that prior authorization was legally required if the care met statutory emergency criteria under the applicable coverage program: commercial group/individual plans cannot require prior authorization for qualifying emergency services under the No Surprises Act (45 CFR § 149.110); Medicare Advantage organizations are prohibited from requiring prior authorization for emergency or urgently needed services under 42 CFR § 422.113 (the No Surprises Act does not govern Medicare Advantage); and Original Medicare OPD services do not require prior authorization when furnished in an emergency department and billed with revenue code 045x or modifier ET (CMS OPD FAQ Q13). However, CARC 197 is NOT categorically barred from all emergency-related claims: it may legitimately appear if non-emergency services were billed concurrently, if mandatory program indicators were omitted, or if post-stabilization criteria were not satisfied. Place of Service 20 or 23, emergency revenue codes, or emergency diagnoses alone do not conclusively establish statutory protection without meeting program criteria. Hospital EMTALA screening and stabilization duties (42 U.S.C. § 1395dd) govern hospital operational obligations and do not create an independent reimbursement mandate for commercial health plans.",
+      "RARC N210 does NOT establish that an authorization exists, explain the clinical or administrative root cause of the denial, or guarantee appeal success; it is strictly an informational Alert confirming that the adverse determination is appealable."
+    ]
+  },
+  "initial_records_checklist": [
+    {
+      "record_type": "835 Electronic Remittance Advice (ERA) / Standard Paper Remittance",
+      "purpose": "Identifies the exact CARC 197 code, affected line items, denial amounts, and companion remark codes such as N210 (appeal alert) or M62 (missing/invalid treatment authorization code).",
+      "where_to_find": "Practice management (PM) payment posting module or clearinghouse ERA archive."
+    },
+    {
+      "record_type": "Prior Authorization Approval Letter / Utilization Management Confirmation",
+      "purpose": "Verifies the exact authorization tracking number, approved CPT/HCPCS codes, approved date span, authorized units, authorized facility, and authorized rendering NPI.",
+      "where_to_find": "PM authorization tracking module, EHR document repository, or payer utilization management portal."
+    },
+    {
+      "record_type": "Submitted 837 Electronic Claim File Extract",
+      "purpose": "Audits Loop 2300 REF*G1 (Prior Authorization Number), Loop 2310B NM109 (Rendering Provider NPI), and Loop 2400 SV1 (Billed Procedure Codes) to detect transmission discrepancies.",
+      "where_to_find": "Clearinghouse claim inspector, PM raw 837 batch archive, or claim history log."
+    },
+    {
+      "record_type": "Emergency Department Intake & Clinical Progress Notes",
+      "purpose": "Proves an emergency medical condition or immediate clinical necessity for emergency services protected from health plan prior-authorization requirements under the No Surprises Act (45 CFR § 149.110) and furnished pursuant to hospital EMTALA screening and stabilization duties (42 U.S.C. § 1395dd).",
+      "where_to_find": "EHR emergency department encounter records, physician emergency assessment, and admission orders."
+    },
+    {
+      "record_type": "Operative Reports & Pathology Documentation",
+      "purpose": "Demonstrates unexpected intraoperative findings justifying a surgical procedure code conversion (e.g., planned laparoscopic procedure converted to open surgery).",
+      "where_to_find": "EHR operative report module or surgical pathology database."
+    },
+    {
+      "record_type": "Payer Prior Authorization Code List on Date of Service",
+      "purpose": "Verifies whether the billed CPT/HCPCS code was officially listed on the payer's published prior authorization pre-requisite list at the time care was scheduled and rendered.",
+      "where_to_find": "Payer provider portal medical management policy archive or published pre-certification code list."
+    }
+  ],
+  "investigation_steps": [
+    {
+      "step_number": 1,
+      "title": "Audit Prior Authorization Approval Records Against Transmitted 837 Data",
+      "milestone": "Determine whether an authorization was obtained and whether data transmitted in Loop 2300 REF*G1 matched the approval voucher.",
+      "instructions": [
+        "Locate the prior authorization approval letter or portal confirmation voucher in your utilization management system.",
+        "Compare the approved authorization tracking number against the electronic claim extract: check Loop 2300, segment REF02 where REF01='G1' (Prior Authorization) on 837 Professional/Institutional claims (or Box 23 of CMS-1500).",
+        "Verify whether the authorization number was omitted, truncated, or mistyped (e.g., transposition of characters, missing leading zeros, or invalid prefixes).",
+        "Cross-reference the approved CPT/HCPCS codes, approved units, authorized rendering provider NPI (Loop 2310B), and authorized service facility against the billed claim lines.",
+        "If a valid authorization exists and covers the billed services, the denial is an administrative data discrepancy resolvable through an electronic replacement claim (using Claim Frequency Code 7 in Loop 2300 CLM05-3 for professional claims, or the appropriate bill frequency code in Type of Bill FL 04 for institutional claims, with original ICN in Loop 2300 REF*F8) or through the payer's designated claim correction route."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Prior Authorization Tracking Number",
+          "source_or_segment": "EDI 837 Loop 2300 REF02 (REF01='G1')",
+          "what_to_verify": "Must match the exact alphanumeric string issued on the payer's authorization approval letter."
+        },
+        {
+          "field": "Authorized Rendering Provider NPI",
+          "source_or_segment": "EDI 837 Loop 2310B NM109",
+          "what_to_verify": "Must match the specific physician or group NPI authorized on the approval notice."
+        },
+        {
+          "field": "Approved Service Date Span",
+          "source_or_segment": "Authorization Approval Letter vs Loop 2400 DTP03",
+          "what_to_verify": "Confirm that the actual Date of Service falls strictly within the authorized effective date window."
+        }
+      ]
+    },
+    {
+      "step_number": 2,
+      "title": "Evaluate Coverage-Specific Emergency Protections (Commercial No Surprises Act, Medicare Advantage § 422.113 & Medicare OPD)",
+      "milestone": "Determine whether the care was rendered in an emergency setting protected from prior authorization under the applicable program authority.",
+      "instructions": [
+        "Audit the patient encounter records, admission source, and place of service (e.g., POS 20 for Urgent Care, POS 23 for Emergency Room, or inpatient admission via ER). Do not treat POS 20, POS 23, an emergency-related diagnosis, or a revenue code alone as conclusive proof that all billed services qualify for statutory protection; verify that the encounter satisfies the specific program's definition of an emergency medical condition and required claim coding elements.",
+        "Apply program-specific statutory protections: For commercial group and individual health plans, verify protections under the No Surprises Act (45 CFR § 149.110), which prohibits health plans from requiring prior authorization for emergency screening and stabilization services. For Medicare Advantage (Part C), apply 42 CFR § 422.113(b)(2), which prohibits MA organizations from requiring prior authorization for emergency and urgently needed services (the No Surprises Act does not govern Medicare Advantage). For Original Medicare FFS Hospital Outpatient Department (OPD) services, under CMS OPD FAQ Q13, emergency services furnished in an emergency department setting on Type of Bill 13X are excluded from prior-authorization requirements when billed with revenue code 045x or HCPCS modifier ET.",
+        "Evaluate hospital operational obligations under EMTALA (42 U.S.C. § 1395dd): Medicare-participating hospitals have a federal duty to provide medical screening and stabilizing treatment to emergency patients without delay or prior authorization inquiry. EMTALA establishes hospital duties rather than an independent commercial health plan reimbursement mandate.",
+        "Check whether required claim indicators were properly submitted: for institutional claims, verify Type of Bill 0111/0131 with Emergency Revenue Codes (0450–0459) and modifier ET where applicable; for professional claims, verify emergency diagnosis codes (ICD-10 Chapter XVIII) and Place of Service 23.",
+        "If an emergency service was denied under CO-197, prepare an administrative dispute or reconsideration citing the specific program authority (45 CFR § 149.110 for commercial, 42 CFR § 422.113 for Medicare Advantage, or CMS OPD FAQ Q13 for Medicare FFS), enclosing emergency department clinical notes, triage records, and physician orders."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Emergency Place of Service / Revenue Code / Modifier",
+          "source_or_segment": "EDI 837 Loop 2300 CLM05-1 (POS 23), Loop 2400 SV201 (Rev Code 0450), or Loop 2400 SV1 (Modifier ET)",
+          "what_to_verify": "Identifies emergency care reported with program-specific claim indicators."
+        },
+        {
+          "field": "Physician Emergency Assessment & Vital Signs",
+          "source_or_segment": "EHR Emergency Department Clinical Note",
+          "what_to_verify": "Documents acute symptoms satisfying the prudent layperson emergency medical condition standard."
+        }
+      ]
+    },
+    {
+      "step_number": 3,
+      "title": "Investigate Intraoperative Procedural Conversions and Medical Necessity Changes",
+      "milestone": "Identify whether authorized procedures were modified during surgery due to intraoperative findings.",
+      "instructions": [
+        "Review the operative report to verify if the surgeon encountered unexpected pathology, acute anatomical variations, or complications requiring procedural modification (e.g., planned diagnostic laparoscopy converted to open resection, or additional biopsy/excision).",
+        "Check the payer's post-service / intraoperative modification policy: some commercial health plans allow providers to submit an amended authorization request or clinical documentation within plan-specific timeframes (e.g., within the timeframe or next business day established in the payer's provider manual for urgent conversions). Billers must verify the governing payer's specific policy terms.",
+        "If the payer's policy allows retro-authorization for intraoperative changes, submit an urgent retroactive modification request through the payer's utilization management portal.",
+        "If retrospective authorization is rejected or unavailable, prepare a clinical appeal enclosing the complete operative report, pre-operative authorization voucher, and a physician cover letter detailing why the procedure was clinically necessary."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Operative Description of Intraoperative Findings",
+          "source_or_segment": "EHR Operative Report",
+          "what_to_verify": "Detailed clinical narrative explaining why the scheduled procedure was modified or expanded."
+        },
+        {
+          "field": "Pre-Operative Authorization Approval Voucher",
+          "source_or_segment": "Utilization Management Confirmation",
+          "what_to_verify": "Demonstrates that the provider acted in good faith by obtaining pre-service approval for the scheduled procedure."
+        }
+      ]
+    },
+    {
+      "step_number": 4,
+      "title": "Navigate Plan-Specific Retroactive Authorization Windows for Urgent Admissions & P2P Timelines",
+      "milestone": "Determine whether a retroactive authorization or peer-to-peer physician discussion can be initiated within plan deadlines.",
+      "instructions": [
+        "Check the payer's provider manual for published retroactive authorization policies. Note that retrospective authorization is not a standard universal rule for elective care (elective services lacking pre-auth are generally ineligible for retro-auth). However, for unplanned urgent or emergency hospital direct admissions, many commercial and Medicare Advantage plans allow retrospective review if requested within plan-specific notification windows (e.g., within the specific timeframe or next business day established by the governing payer's contract and utilization management manual). Billers must verify the applicable payer's exact notification rules rather than relying on an assumed general window.",
+        "If within the allowed retrospective window, submit an expedited retrospective authorization request through the payer's portal with full clinical admission notes.",
+        "If pre-service authorization was omitted on an elective service and retrospective submission is closed: Identify whether the payer offers a Peer-to-Peer (P2P) clinical discussion window (review the denial remittance or adverse determination notice for the specific timeframe established by the plan's medical management policy).",
+        "Schedule an urgent peer-to-peer discussion between the treating physician and the payer's medical director to present clinical necessity.",
+        "If peer-to-peer review is unavailable or unsuccessful, initiate a formal Level 1 provider appeal enclosing complete clinical records proving medical necessity."
+      ],
+      "records_or_fields": [
+        {
+          "field": "Payer Retroactive Authorization Deadline",
+          "source_or_segment": "Payer Provider Manual / UM Guidelines",
+          "what_to_verify": "Confirms specific timeframe or business-day deadline defined by the governing payer to file retroactive authorization or admission notification."
+        },
+        {
+          "field": "Peer-to-Peer Review Request Window",
+          "source_or_segment": "835 Remittance Date / Adverse Determination Notice",
+          "what_to_verify": "Verifies available days from denial notice to conduct peer-to-peer clinical conference."
+        }
+      ]
+    }
+  ],
+  "timeline_and_dates": {
+    "general_rules": "Prior authorization workflows operate on strict pre-service, concurrent, and post-service chronological milestones. Pre-service authorization validity periods are not uniform; they are determined by each payer's specific approval voucher and medical policy (e.g., CMS Hospital OPD prior authorization affirmations are generally valid for 120 calendar days from the date of affirmation under the CMS OPD Operational Guide, whereas commercial authorization validity spans vary widely by insurer, contract, and clinical specialty). Billers must inspect the explicit approval date span rather than assuming a generic validity window. When appealing an adjudicated CARC 197 denial, appeal deadlines and trigger events depend strictly on the governing coverage program: for Original Medicare FFS, under 42 CFR § 405.942 and Social Security Act § 1869, a Level 1 Redetermination appeal must be filed within 120 calendar days from the date the provider receives the notice of initial determination (with receipt legally presumed to occur 5 calendar days after the notice date unless evidence proves otherwise); for Medicare Advantage, under 42 CFR § 422.582, standard Part C appeals must be filed within 60 calendar days from the date of the organization determination notice; for commercial health plans, provider appeal deadlines are established by network contracts, plan benefit documents (such as ERISA 29 CFR § 2560.503-1, which provides up to 180 calendar days for adverse clinical benefit decisions), and state prompt-pay rules.",
+    "timeline_events": [
+      {
+        "event_name": "Pre-Service Authorization Request Date",
+        "field_or_source": "Payer UM Portal Submission Timestamp",
+        "evidence_role": "Pre-Service Good Faith Proof",
+        "significance_notes": "Proves provider submitted authorization request prior to rendering elective service."
+      },
+      {
+        "event_name": "Authorization Approval Date & Effective Span",
+        "field_or_source": "Payer Authorization Approval Letter",
+        "evidence_role": "Coverage Window Anchor",
+        "significance_notes": "Defines the exact date range during which services must be rendered to be covered under the approved tracking number."
+      },
+      {
+        "event_name": "Date of Service (DOS) / Admission Date",
+        "field_or_source": "EDI 837 Loop 2400 DTP03 or Loop 2300 DTP03",
+        "evidence_role": "Encounter Anchor Date",
+        "significance_notes": "Must fall strictly within the authorized effective date span to prevent false authorization expiration denials."
+      },
+      {
+        "event_name": "Plan-Specific Urgent Admission Notification Window",
+        "field_or_source": "Payer Provider Manual Guidelines",
+        "evidence_role": "Urgent Care Notification Window",
+        "significance_notes": "Critical plan-specific window following emergency or urgent admission during which provider must notify payer to preserve retro-authorization rights. Does not apply universally to elective outpatient services."
+      },
+      {
+        "event_name": "Remittance Advice Issue Date vs. Initial Determination Notice Date",
+        "field_or_source": "EDI 835 BPR16 (Check/EFT Issue Date) / Loop 2100 CLP vs. Initial Determination Notice Date",
+        "evidence_role": "Appeal Clock Trigger",
+        "significance_notes": "X12 RFI 2061 clarifies that BPR16 represents the date payment was ordered/sent or check date, not the claim adjudication date or formal denial notice date. For appeal filing deadlines, billers must distinguish the remittance issue date, the formal initial determination notice date, and receipt evidence. For Original Medicare FFS, the 120-day redetermination clock runs from receipt of the initial determination notice (presumed 5 calendar days after the notice date per 42 CFR § 405.942). For Medicare Advantage, the 60-day appeal clock runs from the organization determination notice date (42 CFR § 422.582). For commercial plans, contractual or ERISA appeal clocks (commonly 180 days) run from receipt of the adverse benefit determination."
+      }
+    ],
+    "edi_distinction_notice": {
+      "ack_999_vs_277ca": "A 999 Functional Acknowledgment confirms syntax and electronic envelope integrity at the clearinghouse or payer EDI gateway. A 277CA Claim Acknowledgment confirms whether the claim passed front-end syntactical edits prior to adjudication. Neither transaction represents an 835 ERA claim adjudication. Front-end 277CA rejections (such as missing authorization code syntax) occur prior to payer adjudication and must never be confused with an adjudicated CARC 197 adjustment reported on an 835 Electronic Remittance Advice. Un-ingested 277CA rejections cannot be appealed through provider claims dispute processes; they must be corrected and retransmitted.",
+      "internal_pm_dates_rule": "Practice management authorization entry dates and internal scheduling dates must not be confused with the payer's formal authorization effective dates or electronic claim transmission date. Payer claims adjudication engines evaluate the approved date span on file in the utilization management system, not internal clinic scheduling timestamps."
+    }
+  },
+  "decision_outcomes": [
+    {
+      "outcome_type": "VALID_AUTH_DATA_MISMATCH",
+      "title": "Valid Authorization Obtained — Omitted or Mistyped on Electronic Claim",
+      "criteria": "Investigation confirms that a valid, approved prior authorization was on file covering the Date of Service, CPT codes, and rendering NPI, but Loop 2300 REF*G1 was blank, truncated, or contained a typographical error.",
+      "recommended_action": "Do not file a formal clinical appeal when the issue is an administrative data omission. If permitted by the payer and claim type, transmit an electronic replacement claim (using Claim Frequency Code 7 in Loop 2300 CLM05-3 for professional claims or the appropriate frequency digit in Type of Bill for institutional claims, referencing the original ICN in Loop 2300 REF*F8) populating Loop 2300 REF*G1 with the exact authorization number; otherwise, submit an administrative corrected claim through the payer's designated portal or claims review channel.",
+      "patient_billing_rules": "Strictly prohibited from billing the patient. The denial is an electronic billing data omission that must be resolved through a replacement or corrected claim."
+    },
+    {
+      "outcome_type": "EMERGENCY_CARE_EXEMPTION",
+      "title": "Emergency Medical Condition — Protected Under Coverage-Specific Federal Rules",
+      "criteria": "The denied service was rendered for an acute emergency medical condition protected against prior authorization under applicable program rules (commercial No Surprises Act 45 CFR § 149.110, Medicare Advantage 42 CFR § 422.113, or Original Medicare OPD FAQ Q13), supported by clinical records meeting the prudent layperson standard and hospital EMTALA screening and stabilization obligations (42 U.S.C. § 1395dd).",
+      "recommended_action": "Submit an administrative dispute or reconsideration citing the applicable statutory authority (45 CFR § 149.110 for commercial plans, 42 CFR § 422.113 for Medicare Advantage, or CMS OPD FAQ Q13 for Medicare FFS). Enclose emergency department progress notes, triage records, and physician orders. (Do not apply the No Surprises Act to Medicare Advantage; cite 42 CFR § 422.113 instead).",
+      "patient_billing_rules": "Strictly prohibited from balance-billing the patient under Group Code CO. For commercial plans under the No Surprises Act and Medicare Advantage under 42 CFR § 422.113, patient financial liability for emergency care is limited to in-network cost-sharing amounts adjudicated under Group Code PR."
+    },
+    {
+      "outcome_type": "INTRAOPERATIVE_CODE_CONVERSION",
+      "title": "Authorized Procedure Modified Due to Unexpected Intraoperative Findings",
+      "criteria": "Prior authorization was approved for a planned procedure, but intraoperative clinical findings required the surgeon to convert or expand the surgical intervention, resulting in a billed CPT code differing from the authorized code.",
+      "recommended_action": "Submit an urgent retroactive authorization amendment through the payer portal if within allowable post-op windows. If portal submission is closed, file a formal clinical appeal enclosing the complete operative report, pre-operative authorization letter, and an operative summary letter from the surgeon explaining why the conversion was medically mandatory.",
+      "patient_billing_rules": "Do not bill the patient. The adjustment reflects an intraoperative clinical evolution governed by provider contractual appeal mechanisms."
+    },
+    {
+      "outcome_type": "RETROACTIVE_AUTH_ELIGIBLE",
+      "title": "Unplanned Urgent Inpatient Admission Eligible for Retrospective Authorization Under Plan Rules",
+      "criteria": "Care was rendered on an urgent unplanned inpatient or emergency basis without pre-service authorization, but satisfies the payer's published retrospective authorization criteria and notification deadlines under governing plan rules.",
+      "recommended_action": "Immediately submit a retrospective authorization request through the payer's utilization management portal with complete clinical documentation, admission orders, and clinical indications for urgent care. Once authorization is granted, submit an electronic replacement claim or follow the payer's claim reprocessing instructions.",
+      "patient_billing_rules": "Do not bill the patient while retroactive authorization review is underway."
+    },
+    {
+      "outcome_type": "ELECTIVE_AUTH_OMISSION_APPEAL",
+      "title": "Elective Service Rendered Without Authorization — Peer-to-Peer / Clinical Appeal",
+      "criteria": "An elective procedure was performed without obtaining required pre-service authorization, and retrospective authorization is denied or unavailable under plan rules.",
+      "recommended_action": "Initiate an urgent Peer-to-Peer (P2P) clinical conference between the treating physician and the payer's medical director. If P2P review is unavailable, file a formal Level 1 clinical appeal demonstrating that the service was medically necessary, complied with clinical criteria, and met all coverage indications. If the appeal is upheld as a contractual denial, write off the balance under Group Code CO.",
+      "patient_billing_rules": "Under standard in-network participating contracts and Group Code CO, the provider bears the contractual obligation to secure prior authorization and cannot balance-bill the patient for an administrative authorization omission. Generic authorization waivers cannot override contractual in-network write-offs, and 45 CFR § 149.420 notice-and-consent applies strictly to out-of-network providers at participating facilities, not in-network prior-authorization omissions. In Medicare OPD services, bypassing the prior-authorization process strictly prohibits issuing an ABN or charging the beneficiary (CMS OPD FAQ Q55). Absent specific contractually or statutorily authorized pre-service agreements, the balance must be absorbed as a provider write-off."
+    }
+  ],
+  "detailed_scenarios": [
+    {
+      "id": "SCENARIO-CO197-01",
+      "title": "Authorization Number Omitted or Typographical Error in EDI 837 Loop 2300 REF*G1",
+      "trigger_condition": "CARC 197 received on an elective surgical or imaging claim where the provider possessed an active authorization approval, but the authorization number was missing or mistyped in the claim file.",
+      "action_badge": "EDI Data Correction / Replacement",
+      "action_type": "Submit Replacement Claim or Correction with REF*G1",
+      "resolution_path": [
+        "Retrieve the payer's prior authorization approval letter from the utilization management archive.",
+        "Inspect the raw 837 claim data extract in Loop 2300, segment REF (with REF01='G1'). Confirm that the field was either blank or contained a typographical discrepancy.",
+        "Verify in the practice management system that the authorization tracking number is correctly entered in the authorization field associated with the encounter.",
+        "Generate an electronic replacement claim with Claim Frequency Code 7 in Loop 2300 CLM05-3 for professional claims (or bill frequency digit 7 in Type of Bill for institutional claims) populating Loop 2300 REF*F8 with the original Payer Claim Control Number (ICN/DCN), or submit a corrected claim through the payer's designated portal or electronic clearinghouse process.",
+        "Verify that Loop 2300 REF*G1 contains the exact alphanumeric authorization number, and transmit electronically.",
+        "Monitor the subsequent 835 remittance advice to confirm that the claim re-adjudicates for payment."
+      ],
+      "evidence_package": [
+        "Payer prior authorization approval voucher showing approved tracking number, dates, and codes.",
+        "Corrected EDI 837 transaction extract showing populated Loop 2300 REF*G1.",
+        "Clearinghouse 277CA acknowledgment verifying acceptance of replacement claim."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not file a formal clinical appeal when the root cause is an electronic data omission; an electronic replacement or corrected claim resolves the issue within standard adjudication cycles unless the payer specifically mandates an administrative reconsideration.",
+        "Ensure no extra spaces, dashes, or invalid special characters are included in Loop 2300 REF*G1 unless explicitly mandated by the payer."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO197-02",
+      "title": "Emergency Department Encounter Denied for Precertification (Coverage-Specific Dispute)",
+      "trigger_condition": "CARC 197 received on an emergency room visit, emergency inpatient admission, or urgent stabilizing surgery rendered through the emergency department.",
+      "action_badge": "Statutory Exemption / Reconsideration",
+      "action_type": "Dispute Under Program-Specific Authority",
+      "resolution_path": [
+        "Audit the medical record to confirm that the patient presented with an acute emergency medical condition satisfying the prudent layperson standard. Verify whether non-emergency elective services were billed concurrently or if post-stabilization care occurred.",
+        "Identify the applicable governing coverage program: (a) for commercial group/individual plans, cite the No Surprises Act (45 CFR § 149.110); (b) for Medicare Advantage (Part C), cite 42 CFR § 422.113 (do NOT cite the No Surprises Act for Medicare Advantage); (c) for Original Medicare FFS Hospital Outpatient Department (OPD) claims on Type of Bill 13X, cite CMS OPD FAQ Q13 verifying that emergency services were billed with revenue code 045x or HCPCS modifier ET.",
+        "Recognize that Place of Service 20, POS 23, emergency revenue codes, or emergency diagnoses alone do not conclusively establish statutory protection; the clinical record must demonstrate that services met emergency screening and stabilization criteria, furnished in accordance with hospital EMTALA obligations (42 U.S.C. § 1395dd).",
+        "Prepare an administrative dispute or reconsideration citing the specific statutory authority and enclosing emergency department triage notes, physician clinical assessment, vital signs, and admission orders.",
+        "Submit the package to the payer's designated dispute or reconsideration route requesting removal of the CO-197 adjustment and re-adjudication at the appropriate emergency benefit level."
+      ],
+      "evidence_package": [
+        "Emergency department triage records, vital signs, and nursing intake documentation.",
+        "Physician emergency clinical assessment detailing acute symptoms meeting the prudent layperson standard.",
+        "Emergency admission or treatment order signed by the attending physician.",
+        "Dispute or reconsideration letter citing the applicable coverage authority (45 CFR § 149.110 for commercial, 42 CFR § 422.113 for Medicare Advantage, or CMS OPD FAQ Q13 for Medicare OPD) and supporting EMTALA records (42 U.S.C. § 1395dd)."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not assume every claim originating in an emergency department is categorically exempt from CARC 197 or uncorrectable: CARC 197 may legitimately appear if non-emergency elective procedures were billed concurrently, if required program indicators (such as Medicare OPD modifier ET or revenue code 045x) were omitted, or if care involved post-stabilization services after the patient was stabilized. Audit the claim lines before concluding the denial violates emergency protections.",
+        "Do not balance-bill the patient under Group Code CO for denied emergency services: for commercial plans under the No Surprises Act and Medicare Advantage under 42 CFR § 422.113, patient financial responsibility is strictly limited to in-network cost-sharing amounts adjudicated under Group Code PR."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO197-03",
+      "title": "Surgical Procedure Code Conversion Due to Unexpected Intraoperative Findings",
+      "trigger_condition": "CARC 197 received on a surgical claim where authorization was approved for CPT Code A (e.g., diagnostic laparoscopy), but the operative findings required conversion to CPT Code B (e.g., open resection).",
+      "action_badge": "Clinical Appeal / Retro Modification",
+      "action_type": "Appeal with Operative Findings",
+      "resolution_path": [
+        "Audit the operative report and pathology results to document why the planned, authorized procedure was modified or expanded intraoperatively.",
+        "Check whether the payer provides a retrospective modification window through their online utilization management portal. If active, submit an amended authorization request with the operative report.",
+        "If portal amendment is unavailable, prepare a formal Level 1 provider clinical appeal.",
+        "Include: (a) Pre-operative authorization letter for the scheduled procedure; (b) Complete operative report with detailed surgeon narrative explaining intraoperative necessity for conversion; (c) Pathology reports confirming the surgical findings; (d) Signed letter from the operating surgeon.",
+        "Request that the medical director grant retroactive authorization based on unavoidable clinical necessity and reprocess the claim for payment."
+      ],
+      "evidence_package": [
+        "Original prior authorization approval letter for scheduled procedure.",
+        "Complete operative report detailing intraoperative anatomical findings.",
+        "Pathology report confirming tissue diagnosis.",
+        "Surgeon medical necessity statement detailing clinical rationale for conversion."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not bill the original unperformed procedure code simply because it was authorized; claims must accurately reflect the services actually rendered.",
+        "Do not bill the patient under Group Code CO while the clinical appeal is pending."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO197-04",
+      "title": "Unplanned Urgent Inpatient Admission within Payer-Specific Notification Window",
+      "trigger_condition": "CARC 197 received on an unplanned urgent hospital admission because admission notification was received after the patient was admitted, but within the payer's published retrospective notification window.",
+      "action_badge": "Retrospective Authorization Submission",
+      "action_type": "Submit Retro-Auth with Clinical Records",
+      "resolution_path": [
+        "Review hospital admission records to verify the exact admission date and time, and determine when admission notification was transmitted to the payer.",
+        "Verify the governing payer's specific retrospective authorization and admission notification policy: payer policies and contract terms strictly dictate admission notification deadlines (elective scheduled procedures generally disallow retrospective authorization entirely). Billers must verify the applicable payer's utilization management manual and contract terms rather than relying on an assumed general timeframe.",
+        "If notification was transmitted within the window but rejected due to processing lag: Obtain clearinghouse electronic transmission logs or payer portal confirmation receipts proving timely notification.",
+        "If notification was delayed due to weekend admission, unconscious patient status, or incomplete insurance identification at triage: Submit a retrospective authorization appeal documenting extenuating circumstances under plan guidelines.",
+        "Once retroactive approval is issued, submit an electronic replacement claim referencing the approved authorization number."
+      ],
+      "evidence_package": [
+        "Hospital admission face sheet and emergency department intake log.",
+        "Portal submission confirmation receipt or electronic fax transmission log showing timely notification attempt.",
+        "Inpatient clinical progress notes demonstrating severity of illness and intensity of service (InterQual or MCG criteria).",
+        "Retroactive authorization approval voucher."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not delay submitting retrospective authorization; retrospective windows expire rapidly and failure to submit within plan deadlines results in un-appealable timely filing denials.",
+        "Ensure inpatient clinical documentation satisfies commercial medical necessity guidelines (such as MCG or InterQual)."
+      ]
+    },
+    {
+      "id": "SCENARIO-CO197-05",
+      "title": "Authorized Service Rescheduled Past Approval Date Span Due to Scheduling Delay",
+      "trigger_condition": "CARC 197 received on an authorized outpatient procedure or high-tech imaging service because the actual Date of Service occurred 5 days after the authorization's expiration date.",
+      "action_badge": "Date Span Extension / Peer-to-Peer",
+      "action_type": "Request Date Span Extension or Appeal",
+      "resolution_path": [
+        "Review clinical scheduling history to document why the service was postponed (e.g., patient acute illness, physician emergency surgery, or facility equipment maintenance).",
+        "Contact the payer's utilization management department immediately. Inquire whether the authorization date span can be administratively extended based on documented clinical postponement.",
+        "If administrative extension is declined: Request an expedited Peer-to-Peer (P2P) clinical discussion between the ordering physician and the payer medical director.",
+        "In the P2P discussion, explain that clinical indications remained unchanged and that care was delayed due to medical necessity reasons (e.g., patient had upper respiratory infection delaying elective surgery).",
+        "If the medical director grants the extension, obtain an updated authorization approval letter and submit an electronic replacement claim.",
+        "If P2P is unavailable, submit a formal clinical appeal enclosing the original approval, postponement documentation, and medical records."
+      ],
+      "evidence_package": [
+        "Original authorization approval voucher showing initial date span.",
+        "Clinical progress note documenting reason for postponement (e.g., acute illness, fever).",
+        "Updated scheduling log and procedure report.",
+        "Payer written date-span extension confirmation or appeal letter."
+      ],
+      "pitfalls_and_warnings": [
+        "Do not perform services under an expired authorization without contacting the payer prior to service to extend the approval window.",
+        "Do not alter the Date of Service on the claim to match the expired authorization span; falsifying dates of service constitutes healthcare fraud."
+      ]
+    }
+  ],
+  "medicare_ffs_rules": {
+    "filing_deadline_rule": "Under 42 CFR § 424.44, Original Medicare Fee-for-Service claims must be filed within 1 calendar year (12 months) from the Date of Service. When resolving an initial determination with a CARC 197 prior authorization adjustment, any corrected claim or formal Level 1 Redetermination appeal must be filed within statutory limits under Social Security Act § 1869 and 42 CFR § 405.942: redetermination requests must be filed with the Medicare Administrative Contractor (MAC) within 120 calendar days from the date of receipt of the notice of initial determination (with receipt legally presumed to occur 5 calendar days after the notice date unless evidence proves otherwise).",
+    "date_convention_details": "For institutional claims (Part A) involving inpatient stays or multi-day episodes, the timely filing limit is calculated from the 'Through' date of service under CMS IOM Pub. 100-04, Ch. 1, § 70. For professional services (Part B), the limit is calculated from the individual line-item Date of Service.",
+    "distinction_from_medicare_advantage": "Original Medicare Fee-for-Service enforces prior authorization requirements only for a strictly defined, nationally designated list of outpatient hospital department services (e.g., blepharoplasty, rhinoplasty, panniculectomy, vein ablation, cervical spinal fusion under CMS Prior Authorization Program) and repetitive scheduled non-emergent ambulance transports, with an explicit emergency exclusion under CMS OPD FAQ Q13 for emergency services billed on Type of Bill 13X with modifier ET or revenue code 045x. In sharp contrast, Medicare Advantage (Part C) plans manage extensive, proprietary prior authorization lists encompassing inpatient admissions, advanced diagnostic imaging, specialty pharmaceuticals, physical therapy, and surgical procedures governed by private commercial utilization management rules. However, under 42 CFR § 422.113(b)(2), Medicare Advantage organizations are expressly prohibited by federal regulation from requiring prior authorization for emergency or urgently needed services (the federal No Surprises Act, 45 CFR § 149.110, does NOT apply to Medicare Advantage Part C). Furthermore, Medicare Advantage appeals are governed by 42 CFR § 422.582, requiring standard Part C organization determination reconsideration appeals to be filed within 60 calendar days from the date of the notice, rather than the 120-day timeframe from receipt under Medicare FFS.",
+    "appeal_rights_limitation": "A CARC 197 adjustment reported on an adjudicated 835 Electronic Remittance Advice represents an initial determination under Social Security Act § 1869, affording standard 5-level Medicare appeal rights. RARC N210 serves as an official Remittance Advice Remark Code Alert confirming that statutory appeal rights exist. By contrast, claims returned as unprocessable under CMS IOM Pub. 100-04, Ch. 1, § 80 (bearing RARC MA130) lack an initial determination and carry no appeal rights; unprocessable claims must be corrected and resubmitted clean within the statutory 1-year filing limit.",
+    "beneficiary_billing_restriction": "Under Medicare statutory assignment rules (Social Security Act § 1842(b)(3)(B)(ii)), participating provider agreements, and program regulations, providers cannot bill Medicare beneficiaries for balances adjusted under Group Code CO with CARC 197 based solely on an administrative authorization omission. An ABN (Form CMS-R-131) is NOT universally required or applicable to every CARC 197 denial. For services subject to the CMS Hospital Outpatient Department (OPD) Prior Authorization program (42 CFR §§ 419.80–419.83), CMS explicitly instructs that emergency services provided in an emergency department setting on Type of Bill 13X are excluded from prior-authorization requirements when billed with HCPCS modifier ET or revenue code 045x (CMS OPD FAQ Q13). If a hospital bypasses the applicable prior authorization process for elective non-emergency services, an ABN is not appropriate and the hospital may not charge the beneficiary (CMS OPD FAQ Q55). In contrast, CMS OPD FAQs distinguish valid advance notice and billing actions across specific scenarios: under CMS OPD FAQ Q53, if the hospital requested prior authorization for an applicable service and received a non-affirmed determination based on lack of medical necessity under SSA § 1862(a)(1), the hospital must issue the ABN to the beneficiary in advance if the patient chooses to proceed and submit the claim appending modifier GA; under CMS OPD FAQ Q57, if an applicable service is ordinarily considered cosmetic but may be medically reasonable and necessary for the patient's specific condition, the hospital must issue the ABN to the beneficiary in advance if Medicare denial is anticipated and submit the claim appending modifier GA; for purely cosmetic services statutorily excluded under SSA § 1862(a)(10), issuing an ABN is voluntary, and the claim is submitted appending modifier GX per CMS OPD FAQ Q56. This specific hospital OPD prior-authorization policy must not be generalized to all Medicare services without supporting statutory authority.",
+    "exceptions": [
+      {
+        "exception_number": 1,
+        "name": "Administrative Error by CMS or its Contractors (§ 424.44(b)(1))",
+        "authority": "42 CFR § 424.44(b)(1); CMS IOM Pub. 100-04, Ch. 1, § 70.7.1",
+        "qualifying_conditions": "Failure to timely submit or resolve a prior authorization claim resulted from an error, misdirection, or delay by CMS, a Medicare Administrative Contractor (MAC), or an HHS agent.",
+        "documentation_required": [
+          "Written communication or official logs from CMS or MAC acknowledging prior authorization portal outage or processing error.",
+          "Clearinghouse transmission logs proving timely submission attempts prior to contractor error.",
+          "Detailed chronological timeline tracking the contractor's system failure."
+        ]
+      },
+      {
+        "exception_number": 2,
+        "name": "Retroactive Medicare Entitlement (§ 424.44(b)(2))",
+        "authority": "42 CFR § 424.44(b)(2); CMS IOM Pub. 100-04, Ch. 1, § 70.7.2",
+        "qualifying_conditions": "The beneficiary received retroactive Medicare entitlement from the Social Security Administration, preventing the provider from knowing Medicare prior authorization rules applied prior to care.",
+        "documentation_required": [
+          "Official SSA award letter documenting retroactive entitlement effective date.",
+          "Documentation showing initial billing to another payer or patient prior to notification.",
+          "Clean claim submitted to Medicare within 6 calendar months following the month of official entitlement notice."
+        ]
+      },
+      {
+        "exception_number": 3,
+        "name": "Retroactive Medicare Entitlement Involving State Medicaid Agency (§ 424.44(b)(3))",
+        "authority": "42 CFR § 424.44(b)(3); CMS IOM Pub. 100-04, Ch. 1, § 70.7.3",
+        "qualifying_conditions": "A state Medicaid agency recouped payment from a provider due to retroactive Medicare entitlement, requiring Medicare billing outside normal filing limits.",
+        "documentation_required": [
+          "State Medicaid recoupment notice or remittance showing reversal of payment.",
+          "Proof of original timely submission to Medicaid.",
+          "Claim submitted to Medicare within 6 calendar months of the Medicaid recoupment date."
+        ]
+      },
+      {
+        "exception_number": 4,
+        "name": "Retroactive Disenrollment from Medicare Advantage (§ 424.44(b)(4))",
+        "authority": "42 CFR § 424.44(b)(4); CMS IOM Pub. 100-04, Ch. 1, § 70.7.4",
+        "qualifying_conditions": "A beneficiary was retroactively disenrolled from a Medicare Advantage plan and restored to Original Medicare FFS, requiring FFS billing after MA claim processing.",
+        "documentation_required": [
+          "Medicare Advantage plan disenrollment letter or recoupment remittance.",
+          "Proof of timely initial claim submission to the Medicare Advantage plan.",
+          "Clean claim submitted to the MAC within 6 calendar months following the MA recoupment or notice."
+        ]
+      }
+    ]
+  },
+  "commercial_payer_rules": {
+    "general_principles": "Commercial health plans and Medicare Advantage (MA) organizations operate under rules distinct from Original Medicare FFS, enforcing prior authorization mandates through utilization management criteria, clinical coverage guidelines, and network contracts. Billers must consult the specific governing plan documents (such as the Evidence of Coverage), provider participation agreements, plan authorization policies, provider network status, state surprise-billing statutes, and federal balance-billing regulations. Under standard in-network participating contracts, the provider is obligated to secure required pre-service authorization, and failure to do so generally results in a provider contractual write-off that cannot be shifted to the member via generic waivers. However, resolution paths and liability depend strictly on the facts: if authorization was approved but omitted or mistyped, submit an electronic replacement claim with Claim Frequency Code 7 in Loop 2300 CLM05-3 populating Loop 2300 REF*G1; if care involved an emergency medical condition, billers must distinguish the No Surprises Act's health plan prior-authorization prohibitions for qualifying emergency services (45 CFR § 149.110) from EMTALA's operational hospital screening and stabilization obligations (42 U.S.C. § 1395dd), recognizing that EMTALA governs hospital duties rather than independently requiring a commercial payer to reimburse a claim or resolving a CO-197 denial; for unauthorized services, the payer-resolution workflow must center on applicable coverage rules, authorization policy, clinical claim evidence, and the proper review, dispute, or appeal route (or timely retrospective review windows for urgent direct admissions where contractually permitted). Billers should not assume that every CARC 197 adjustment automatically mandates a write-off without evaluating facts, nor that any generic waiver permits balance billing.",
+    "payers": [
+      {
+        "payer_name": "Cigna Healthcare",
+        "product_or_market": "Commercial Managed Care (HMO, PPO, POS, Open Access Plus)",
+        "participation_status": "Participating & Out-of-Network Healthcare Professionals",
+        "claim_type": "Professional and Facility Claims",
+        "timely_filing_limit": "Original claim submissions: 90 calendar days from Date of Service for participating/in-network providers; 180 calendar days from Date of Service for out-of-network providers. Replacement/corrected claims: Must be submitted electronically with Claim Frequency Code 7 in Loop 2300 CLM05-3 and the original Claim Control Number in Loop 2300 REF*F8; submission deadlines for corrected claims are governed by specific provider contract terms, plan provisions, or state prompt-pay regulations (do not assume the 180-day appeal limit automatically applies; verify governing contract or policy). If Cigna requests additional clinical documentation to review authorization necessity, respond within the timeframe specified in the request notice.",
+        "secondary_claim_rule": "For secondary claims, Cigna calculates timely filing from the primary payer's EOB processing date. Secondary submissions must include complete primary payment details in Loop 2320/2330.",
+        "appeal_limit": "Provider disputes, reconsiderations, and appeals: 180 calendar days from the date of the initial Explanation of Payment (EOP) or denial notice. For adjusted claims with subsequent payment modifications, 180 calendar days from the last payment adjustment notice.",
+        "effective_period": "Current Published Cigna Guidelines",
+        "exceptions_summary": "Emergency admissions, intraoperative clinical conversions, and portal submission outages are not automatic or guaranteed exceptions; rather, they represent extenuating circumstances that providers must document with objective clinical evidence (such as emergency room triage records, operative reports, or electronic confirmation logs) when requesting discretionary payer review or filing a dispute under applicable rules.",
+        "source_title": "Cigna HealthCare Claims Submission Guidelines & Appeals/Disputes Procedures",
+        "source_url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+        "verified_date": "2026-10-15"
+      }
+    ]
+  },
+  "inquiry_template": {
+    "title": "Adaptable Payer Prior Authorization Review & Clinical Reconsideration Request",
+    "context_use_case": "Adaptable template for claim dispute, informal review, or corrected claim submission when electronic transaction records demonstrate that valid authorization was approved, that emergency care was protected from prior-auth mandates under coverage-specific statutory authorities (Commercial No Surprises Act 45 CFR § 149.110, Medicare Advantage 42 CFR § 422.113, or Medicare OPD FAQ Q13, furnished pursuant to EMTALA duties), or that intraoperative findings justified procedure conversion.",
+    "subject_line": "PRIOR AUTHORIZATION REVIEW: CARC 197 Resolution — Claim #[Claim Number / ICN] — Patient: [Patient Name]",
+    "template_body": "Date: [Date of Request]\n\nTo: [Payer Name]\nAttention: Utilization Management / Clinical Appeals / Provider Disputes Department\nAddress / Portal: [Payer Address or Portal Submission Route]\n\nRE: Request for Prior Authorization Review & Re-Adjudication — CARC 197 / RARC N210\nPatient Name: [Patient Name]\nPatient Date of Birth: [Patient DOB]\nSubscriber ID / Policy Number: [Subscriber ID]\nClaim Number / ICN: [Claim Number / ICN]\nDate(s) of Service: [Date of Service (DOS)]\nBilled Procedure Code(s): [Billed Procedure Code(s) and Modifiers]\nBilled Amount: $[Billed Amount]\nBilling Provider Name: [Billing Provider Name]\nBilling NPI: [Billing Provider NPI]\nRendering Provider Name: [Rendering Provider Name]\nRendering NPI: [Rendering Provider NPI]\nTax ID: [Billing Tax ID]\n\nDear Utilization Management & Appeals Committee,\n\nWe are requesting formal review and re-adjudication of the above-referenced claim, which was adjusted or denied under Claim Adjustment Reason Code 197 (CO-197: Precertification/authorization/notification/pre-treatment absent) on Remittance Date [Remittance Date], accompanied by Remittance Advice Remark Code N210 (Alert: You may appeal this decision).\n\nINVESTIGATION & CLINICAL AUDIT FINDINGS:\nUpon auditing our utilization management records, electronic claim transmission sets, and clinical encounter documentation, we have established the following facts regarding this transaction:\n\n[SELECT ONE OPTION BELOW]:\n[OPTION A — PROOF OF VALID PRIOR AUTHORIZATION ON FILE (REPLACEMENT / CORRECTED CLAIM)]:\nPrior authorization was obtained and active for the Date of Service. The authorization details are as follows:\n• Authorization Tracking Number: [Authorization Tracking Number]\n• Approved Date Span: [Approved Date Span] | Approved Procedure Code(s): [Approved Procedure Code(s)]\n• Approved Rendering NPI: [Approved Rendering NPI]\nDue to an administrative data mapping omission, the tracking number was omitted or mistyped on the original transmission. We have submitted an electronic replacement claim (using Claim Frequency Code 7 in Loop 2300 CLM05-3 for professional claims or the appropriate Type of Bill frequency digit for institutional claims, with original ICN in Loop 2300 REF*F8) or administrative corrected claim with Loop 2300 REF*G1 populated with the valid authorization number. Enclosed is a copy of the official authorization approval voucher. We request immediate re-adjudication and payment.\n\n[OPTION B1 — COMMERCIAL NO SURPRISES ACT EMERGENCY EXEMPTION (45 CFR § 149.110)]:\nThe billed services were rendered in an emergency facility setting for an acute emergency medical condition:\n• Emergency Presentation: Patient presented via [Emergency Department / Ambulance] with [Acute Symptoms / Condition].\n• Statutory Protection: Under the federal No Surprises Act (45 CFR § 149.110), group health plans and health insurance issuers are legally prohibited from requiring prior authorization for emergency services (screening and stabilization). Hospital screening and stabilizing care was provided in accordance with federal EMTALA obligations (42 U.S.C. § 1395dd).\nEnclosed are emergency triage notes, physician clinical assessment, and emergency admission orders. We request that you remove the CO-197 adjustment and reprocess this claim at the in-network emergency benefit level.\n\n[OPTION B2 — MEDICARE ADVANTAGE EMERGENCY / URGENTLY NEEDED SERVICES (42 CFR § 422.113)]:\nThe billed services were rendered to a Medicare Advantage enrollee for an emergency medical condition or urgently needed care:\n• Clinical Presentation: Patient required immediate screening, stabilization, or urgent care for [Acute Symptoms / Condition].\n• Regulatory Mandate: Under 42 CFR § 422.113(b)(2), Medicare Advantage organizations are expressly prohibited from requiring prior authorization for emergency or urgently needed services (the No Surprises Act does not govern Medicare Advantage). Member financial liability cannot exceed standard Medicare cost sharing.\nEnclosed are emergency department clinical notes, diagnostic evaluations, and physician orders. We request immediate removal of the CO-197 adjustment and re-adjudication of the claim.\n\n[OPTION B3 — MEDICARE FFS HOSPITAL OPD EMERGENCY EXCLUSION (CMS OPD FAQ Q13)]:\nThe billed outpatient hospital department services were rendered on an emergency basis:\n• Encounter Details: Emergency services were furnished in an emergency department setting on Type of Bill 13X.\n• Program Exclusion: Under CMS Hospital Outpatient Department (OPD) Prior Authorization FAQs (Q13), emergency services billed with HCPCS modifier ET or Emergency Revenue Code 045x are explicitly excluded from prior-authorization requirements.\nEnclosed are medical records and claim documentation verifying the emergency encounter. We request that the claim be reprocessed for payment without prior-authorization penalty.\n\n[OPTION C — INTRAOPERATIVE PROCEDURE CONVERSION / CLINICAL MEDICAL NECESSITY]:\nPrior authorization was approved under Tracking Number [Authorization Tracking Number] for [Scheduled Procedure Code]. However, upon surgical exploration, unexpected intraoperative findings required the operating surgeon to convert or expand the procedure to [Billed Procedure Code(s)]:\n• Clinical Justification: [Briefly explain surgical findings, e.g., extensive adhesions / acute hemorrhage / pathology requiring open conversion].\nEnclosed is the complete operative report and pathology documentation. We respectfully request that you grant retroactive authorization based on unavoidable intraoperative necessity and release payment.\n\nENCLOSURES ATTACHED:\n• Copy of Remittance Advice showing CO-197 adjustment and RARC N210\n• Prior Authorization Approval Voucher / Confirmation Letter (if applicable)\n• Complete Operative Report / Emergency Department Clinical Notes\n• Electronic 837 Claim Extract / Replacement Claim Reference\n\nThank you for your prompt attention to resolving this prior authorization review.\n\nSincerely,\n\n[Author Name / Title]\n[Practice / Facility Name]\n[Contact Phone Number]\n[Contact Email / Fax]",
+    "placeholders": [
+      {
+        "token": "[Date of Request]",
+        "description": "Current date the review or appeal request is submitted."
+      },
+      {
+        "token": "[Payer Name]",
+        "description": "Legal name of the insurance carrier, health plan, or MAC."
+      },
+      {
+        "token": "[Patient Name]",
+        "description": "Full legal name of the patient as registered."
+      },
+      {
+        "token": "[Patient DOB]",
+        "description": "Date of birth of the patient."
+      },
+      {
+        "token": "[Subscriber ID]",
+        "description": "Member/subscriber policy or Medicare Beneficiary Identifier (MBI)."
+      },
+      {
+        "token": "[Claim Number / ICN]",
+        "description": "Unique claim control number assigned to the denied transaction on the 835 ERA."
+      },
+      {
+        "token": "[Date of Service (DOS)]",
+        "description": "Actual date the service was rendered."
+      },
+      {
+        "token": "[Billed Procedure Code(s) and Modifiers]",
+        "description": "CPT/HCPCS codes and any appended modifiers."
+      },
+      {
+        "token": "[Billed Amount]",
+        "description": "Total charge amount submitted on the claim."
+      },
+      {
+        "token": "[Billing Provider Name]",
+        "description": "Legal name of the billing organization or practice."
+      },
+      {
+        "token": "[Billing Provider NPI]",
+        "description": "10-digit National Provider Identifier of billing entity."
+      },
+      {
+        "token": "[Rendering Provider Name]",
+        "description": "Name of the physician or clinician who rendered the care."
+      },
+      {
+        "token": "[Rendering Provider NPI]",
+        "description": "10-digit NPI of the individual rendering provider."
+      },
+      {
+        "token": "[Billing Tax ID]",
+        "description": "Federal Tax Identification Number (EIN) of billing entity."
+      },
+      {
+        "token": "[Remittance Date]",
+        "description": "Date of the 835 ERA containing the CO-197 denial."
+      },
+      {
+        "token": "[Authorization Tracking Number]",
+        "description": "Alphanumeric authorization approval number issued by the payer."
+      },
+      {
+        "token": "[Approved Date Span]",
+        "description": "Effective start and end dates on the authorization approval."
+      },
+      {
+        "token": "[Approved Procedure Code(s)]",
+        "description": "CPT/HCPCS codes explicitly approved on the authorization."
+      },
+      {
+        "token": "[Approved Rendering NPI]",
+        "description": "10-digit NPI of the provider authorized to perform the service."
+      }
+    ]
+  },
+  "wrong_fix_warnings": [
+    {
+      "action_to_avoid": "Interpreting Remittance Advice Remark Code N210 as substantive proof that an authorization was approved or that the denial was erroneous.",
+      "why_it_fails": "RARC N210 is an informational Alert code defined by X12 as 'Alert: You may appeal this decision.' It does NOT signify that an authorization existed in the payer's database, does NOT identify the underlying clinical deficiency, and does NOT guarantee appeal success. Relying on N210 as proof of authorization without submitting the actual approval voucher or clinical records will result in an immediate appeal dismissal.",
+      "correct_alternative": "Locate the actual utilization management approval letter or portal voucher. If authorization was never obtained, evaluate emergency exemptions or prepare a clinical appeal demonstrating retrospective medical necessity."
+    },
+    {
+      "action_to_avoid": "Immediately balance-billing the patient under Group Code CO for an un-authorized service by relying on generic authorization waivers or misapplying ABN / No Surprises Act rules.",
+      "why_it_fails": "In-network participating provider contracts place the obligation to secure prior authorization on the provider, and Group Code CO reflects an administrative/contractual adjustment. Generic authorization waivers cannot override in-network participation agreements. Under 45 CFR § 149.420, No Surprises Act notice-and-consent applies strictly to nonparticipating providers at participating facilities, not in-network prior-authorization omissions. In Original Medicare FFS OPD programs, CMS explicitly prohibits issuing an ABN or charging the beneficiary when the hospital bypassed prior authorization (CMS OPD FAQ Q55).",
+      "correct_alternative": "Audit the claim for electronic transmission errors (Loop 2300 REF*G1), evaluate statutory emergency exemptions under 45 CFR § 149.110, or pursue plan-authorized retrospective review, peer-to-peer discussions, or clinical appeals. If contractual appeals are exhausted without statutory or contractual authorization to bill the patient, write off the balance under applicable contract rules."
+    },
+    {
+      "action_to_avoid": "Submitting a formal clinical appeal when a valid authorization was already obtained but omitted or mistyped on the electronic 837 claim.",
+      "why_it_fails": "Appeals departments have 30 to 60-day review cycles. Submitting an administrative typographical correction through the appeals queue causes months of unnecessary payment delay and administrative overhead.",
+      "correct_alternative": "Generate and transmit an electronic replacement claim (Claim Frequency Code 7 in Loop 2300 CLM05-3) populating Loop 2300 REF*G1 with the valid authorization number."
+    },
+    {
+      "action_to_avoid": "Failing to challenge CO-197 denials on emergency care under coverage-specific statutory protections (Commercial NSA, Medicare Advantage § 422.113, or Medicare OPD FAQ Q13), or overgeneralizing emergency protections to elective care.",
+      "why_it_fails": "Payer claims intake engines automatically apply prior authorization edits based on CPT codes without evaluating emergency place of service, revenue codes, or clinical indicators. Writing off emergency care under CO-197 forfeits legitimate revenue protected under federal law (45 CFR § 149.110 for commercial plans, 42 CFR § 422.113 for Medicare Advantage, or CMS OPD FAQ Q13 for Medicare FFS). Conversely, citing emergency protections for scheduled elective care will result in immediate denial.",
+      "correct_alternative": "Submit an administrative reconsideration citing the applicable coverage authority (No Surprises Act 45 CFR § 149.110 for commercial, 42 CFR § 422.113 for Medicare Advantage, or CMS OPD FAQ Q13 with modifier ET/rev code 045x for Medicare OPD), supported by emergency triage and physician records meeting the prudent layperson standard and hospital EMTALA stabilization duties (42 U.S.C. § 1395dd). For elective care, obtain authorization pre-service."
+    }
+  ],
+  "prevention_controls": [
+    {
+      "control_name": "Pre-Service Electronic Prior Authorization Verification & Rule Engine",
+      "timing": "Pre-Service Scheduling (3 to 14 Days Prior to Service)",
+      "operational_action": "Integrate electronic prior authorization (ePA) software within the EHR/PM workflow to automatically cross-reference scheduled CPT codes against payer pre-authorization lists, initiating authorization requests immediately upon order creation."
+    },
+    {
+      "control_name": "Automated 837 Claim Scrubber for Authorization Validation (Loop 2300 REF*G1)",
+      "timing": "Pre-Transmission Claim Scrubbing",
+      "operational_action": "Configure clearinghouse claim scrubbers to block outgoing claims containing procedures flagged as requiring authorization unless Loop 2300 REF*G1 contains an active, valid authorization number matching the approved date span."
+    },
+    {
+      "control_name": "Emergency & Urgent Admission Retrospective Notification Protocol (Plan-Specific Rules)",
+      "timing": "Post-Admission Inpatient / Urgent Care",
+      "operational_action": "Establish a dedicated hospital utilization review protocol ensuring all unplanned or emergency admissions are electronically notified to commercial and Medicare Advantage payers within the specific timeframe specified in each payer's contract or provider manual (e.g., next business day or within required notification hours) to preserve retrospective review rights."
+    }
+  ],
+  "final_resolution_checklist": [
+    "Verify whether a valid prior authorization approval letter or portal voucher exists covering the Date of Service, billed CPT codes, and rendering NPI.",
+    "If authorization was obtained, verify that the exact tracking number was transmitted in Loop 2300 REF*G1 (or Box 23 of CMS-1500), and resubmit as an electronic replacement claim (using Frequency Code 7 in Loop 2300 CLM05-3 for professional claims or the appropriate Type of Bill frequency digit for institutional claims) or administrative corrected claim if omitted or mistyped.",
+    "If the care was rendered for an acute emergency medical condition, assert program-specific prior-authorization protections under the applicable statutory authority (45 CFR § 149.110 for commercial plans, 42 CFR § 422.113 for Medicare Advantage, or CMS OPD FAQ Q13 for Medicare OPD) supported by hospital EMTALA clinical documentation (42 U.S.C. § 1395dd).",
+    "If the service was an unplanned urgent admission, verify whether submission falls within the payer's published retrospective authorization window (recognizing elective services generally disallow retro-auth).",
+    "If the procedure code was converted due to intraoperative findings, submit an operative report and clinical appeal detailing medical necessity.",
+    "Confirm that patient financial liability is evaluated in strict accordance with governing plan documents, provider network contracts, and applicable program rules (e.g., verifying that for Medicare OPD services where prior authorization was bypassed, no ABN was issued and no charges were billed to the beneficiary per CMS OPD FAQ Q55, and that 45 CFR § 149.420 notice-and-consent is not misapplied to in-network prior-authorization omissions).",
+    "If filing a clinical appeal, substantiate medical necessity using objective clinical records and recognize that RARC N210 confirms appeal rights but is strictly an Alert, not a diagnostic cause or guarantee of success, and does not substitute for clinical evidence."
+  ],
+  "sources_and_governance": {
+    "authoritative_sources": [
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 Claim Adjustment Reason Codes (CARC) — Code 197",
+        "citation": "CARC Code 197",
+        "url": "https://x12.org/codes/claim-adjustment-reason-codes",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 Remittance Advice Remark Codes (RARC) — Code N210",
+        "citation": "RARC Code N210",
+        "url": "https://x12.org/codes/remittance-advice-remark-codes",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 Remittance Advice Remark Codes (RARC) — Code M62",
+        "citation": "RARC Code M62",
+        "url": "https://x12.org/codes/remittance-advice-remark-codes",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "United States Code",
+        "title": "Emergency Medical Treatment and Labor Act (EMTALA) [42 U.S.C. § 1395dd]",
+        "citation": "42 U.S.C. § 1395dd",
+        "url": "https://www.law.cornell.edu/uscode/text/42/1395dd",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Electronic Code of Federal Regulations (eCFR)",
+        "title": "No Surprises Act — 45 CFR § 149.110 (Preventing surprise medical bills for emergency services)",
+        "citation": "45 CFR § 149.110",
+        "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-B/part-149/subpart-B/section-149.110",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Electronic Code of Federal Regulations (eCFR)",
+        "title": "42 CFR § 424.44 — Basic conditions for Medicare payment: Time limits for filing claims",
+        "citation": "42 CFR § 424.44",
+        "url": "https://www.ecfr.gov/current/title-42/section-424.44",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Centers for Medicare & Medicaid Services (CMS)",
+        "title": "CMS Prior Authorization and Pre-Claim Review Initiatives",
+        "citation": "CMS Prior Authorization Program Guidelines",
+        "url": "https://www.cms.gov/medicare/payment/fee-for-service-providers/prior-authorization-and-pre-claim-review-initiatives",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Cigna Healthcare",
+        "title": "Cigna HealthCare Claims Submission Guidelines & Appeals/Disputes Procedures",
+        "citation": "Cigna Provider Manual — Prior Authorization Policies",
+        "url": "https://www.cigna.com/health-care-providers/coverage-and-claims/submit-claims",
+        "verified_date": "2026-10-18"
+      },
+      {
+        "authority": "Centers for Medicare & Medicaid Services (CMS)",
+        "title": "Hospital Outpatient Department (OPD) Prior Authorization Frequently Asked Questions",
+        "citation": "CMS OPD Prior Authorization FAQs (Nov 14, 2024; Questions 28, 53–57; 42 CFR §§ 419.80–419.83)",
+        "url": "https://www.cms.gov/files/document/opd-frequently-asked-questions.pdf",
+        "verified_date": "2026-10-19"
+      },
+      {
+        "authority": "Centers for Medicare & Medicaid Services (CMS)",
+        "title": "Form CMS-R-131 Advance Beneficiary Notice of Noncoverage (ABN)",
+        "citation": "CMS IOM Pub. 100-04, Medicare Claims Processing Manual, Chapter 30, Section 50",
+        "url": "https://www.cms.gov/medicare/forms-notices/beneficiary-notices-initiative/ffs-abn",
+        "verified_date": "2026-10-19"
+      },
+      {
+        "authority": "Electronic Code of Federal Regulations (eCFR)",
+        "title": "No Surprises Act — 45 CFR § 149.420 (Requirements for notice and consent for certain nonparticipating providers and facilities)",
+        "citation": "45 CFR § 149.420",
+        "url": "https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-B/part-149/section-149.420",
+        "verified_date": "2026-10-19"
+      },
+      {
+        "authority": "Electronic Code of Federal Regulations (eCFR)",
+        "title": "42 CFR § 422.113 — Special rules for ambulance services, emergency and urgently needed services, and maintenance and post-stabilization care services",
+        "citation": "42 CFR § 422.113",
+        "url": "https://www.ecfr.gov/current/title-42/section-422.113",
+        "verified_date": "2026-10-19"
+      },
+      {
+        "authority": "Electronic Code of Federal Regulations (eCFR)",
+        "title": "42 CFR § 405.942 — Time frame for filing a request for a redetermination",
+        "citation": "42 CFR § 405.942",
+        "url": "https://www.ecfr.gov/current/title-42/section-405.942",
+        "verified_date": "2026-10-19"
+      },
+      {
+        "authority": "X12 Accredited Standards Committee",
+        "title": "X12 RFI 2061 — 835 BPR16 Check Issue or EFT Effective Date Definition",
+        "citation": "X12 RFI 2061",
+        "url": "https://x12.org/resources/requests-for-interpretation/rfi-2061",
+        "verified_date": "2026-10-19"
+      },
+      {
+        "authority": "Centers for Medicare & Medicaid Services (CMS)",
+        "title": "CMS Hospital Outpatient Department (OPD) Prior Authorization Operational Guide",
+        "citation": "CMS OPD Prior Authorization Operational Guide (120-Day Affirmation Validity)",
+        "url": "https://www.cms.gov/files/document/opd-operational-guide.pdf",
+        "verified_date": "2026-10-19"
+      }
+    ],
+    "scope_limitations": "This guide provides operational workflows for resolving CARC 197 prior authorization adjustments under X12 standards, federal emergency statutes (EMTALA / No Surprises Act), Original Medicare FFS rules, and commercial payer contracts. It does not constitute legal or clinical utilization review advice. Specific state prior authorization reform laws (such as gold-carding statutes), self-funded ERISA plan provisions, and individual health plan prior authorization lists supersede these general workflows.",
+    "last_reviewed_date": "2026-10-19"
+  }
+}

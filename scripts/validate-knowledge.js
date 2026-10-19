@@ -120,6 +120,72 @@ function run() {
       description: 'Informational Alert RARC treated as substantive diagnostic cause or appeal guarantee'
     },
     {
+      file: 'invalid-co197-nsa-waiver-overreach.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'NO_SURPRISES_ACT_WAIVER_OVERREACH',
+      description: 'No Surprises Act 45 CFR § 149.420 notice-and-consent misapplied as in-network prior-auth waiver'
+    },
+    {
+      file: 'invalid-co197-ma-nsa-conflation.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'MA_NSA_CONFLATION',
+      description: 'Medicare Advantage emergency protections conflated with federal No Surprises Act instead of 42 CFR § 422.113'
+    },
+    {
+      file: 'invalid-co197-emergency-impossible.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'CARC_197_EMERGENCY_IMPOSSIBLE_OVERREACH',
+      description: 'CARC 197 asserted as impossible or categorically banned from all emergency claims'
+    },
+    {
+      file: 'invalid-bpr16-appeal-trigger.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'BPR16_UNIVERSAL_APPEAL_TRIGGER',
+      description: 'BPR16 asserted as universal denial date or universal appeal trigger'
+    },
+    {
+      file: 'invalid-universal-auth-validity.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'UNIVERSAL_AUTH_VALIDITY_OVERREACH',
+      description: 'Prior authorization validity span asserted as universal 60 to 180 days across healthcare'
+    },
+    {
+      file: 'invalid-universal-p2p-window.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'UNIVERSAL_P2P_WINDOW_OVERREACH',
+      description: 'Peer-to-peer clinical discussion window asserted as universal 5 to 14 days across all payers'
+    },
+    {
+      file: 'invalid-emergency-indicator-overreach.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'EMERGENCY_INDICATOR_OVERREACH',
+      description: 'POS 20/23 or emergency diagnosis codes asserted as conclusively proving prior-auth exemption'
+    },
+    {
+      file: 'invalid-co197-opd-abn-overreach.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'CMS_OPD_ABN_OVERREACH',
+      description: 'Bypassing Medicare OPD prior auth asserted as permitting ABN issuance or charging the patient'
+    },
+    {
+      file: 'invalid-ma-appeal-notice-date.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'MA_APPEAL_RECEIPT_SCOPE_OVERREACH',
+      description: 'Medicare Advantage reconsideration asserted as universally due 60 days from notice date without receipt presumption'
+    },
+    {
+      file: 'invalid-erisa-provider-deadline.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'ERISA_APPEAL_SCOPE_OVERREACH',
+      description: 'ERISA claimant appeal period asserted as a universal provider payment-dispute deadline'
+    },
+    {
+      file: 'invalid-erisa-aob-representation.json',
+      expectedOutcome: 'SHOULD_FAIL',
+      expectedCode: 'ERISA_AOB_REPRESENTATION_OVERREACH',
+      description: 'Assignment of benefits asserted as automatically authorizing every provider to appeal for the claimant under ERISA'
+    },
+    {
       file: 'valid-sample-guide.json',
       expectedOutcome: 'SHOULD_PASS',
       description: 'Valid, properly qualified denial-resolution guide fixture'

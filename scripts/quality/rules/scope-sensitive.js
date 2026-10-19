@@ -305,12 +305,16 @@ function validateScopeSensitivity(guide) {
   if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
     const rawGuideText = JSON.stringify(guide).toLowerCase();
 
-    // Check if EMTALA is asserted as a commercial reimbursement mandate
+    // Check if EMTALA is asserted as a commercial reimbursement mandate or prior-auth restriction on health plans
     const assertsEMTALACommercialOverride =
       rawGuideText.includes('emtala requires commercial health plans to pay') ||
       rawGuideText.includes('emtala mandates commercial reimbursement') ||
       rawGuideText.includes('commercial health plans are legally mandated to pay and reimburse hospital claims under emtala') ||
       rawGuideText.includes('commercial health plans must pay under emtala') ||
+      rawGuideText.includes('under emtala (42 u.s.c. § 1395dd) and the federal no surprises act (45 cfr § 149.110), emergency screening') ||
+      rawGuideText.includes('exempt from prior authorization under emtala and the no surprises act') ||
+      rawGuideText.includes('emtala prohibits prior authorization') ||
+      rawGuideText.includes('emtala prohibits health plans from requiring prior authorization') ||
       rawGuideText.includes('emtala overrides all commercial payer authorization denials');
 
     // Check if No Surprises Act prior-auth prohibitions are overgeneralized to elective care
@@ -351,6 +355,286 @@ function validateScopeSensitivity(guide) {
         severity: 'FATAL',
         message: 'Retrospective authorization windows (e.g. 24-72 hours) are plan-specific policies applicable primarily to unplanned urgent or emergency hospital admissions. Elective scheduled services generally disallow retrospective authorization. The guide must not assert 24-72h retro-auth as a universal or standard rule for all care.',
         location: 'timeline_and_dates_or_steps'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 9. No Surprises Act Notice-and-Consent (45 CFR § 149.420) Scoping
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    // Check if 45 CFR § 149.420 notice and consent is misapplied to in-network providers or generic prior-auth waivers
+    const assertsNSAInNetworkWaiver =
+      rawGuideText.includes('complying with federal balance-billing rules under the no surprises act (45 cfr § 149.420)') ||
+      rawGuideText.includes('waiver complying with the no surprises act (45 cfr § 149.420)') ||
+      rawGuideText.includes('compliant no surprises act advance financial liability notice') ||
+      rawGuideText.includes('no surprises act (45 cfr § 149.420) allows in-network') ||
+      rawGuideText.includes('in-network providers can bill under 45 cfr § 149.420') ||
+      rawGuideText.includes('in-network providers cannot bill the patient unless a valid, signed advance waiver (such as an abn or compliant no surprises act');
+
+    if (assertsNSAInNetworkWaiver) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'NO_SURPRISES_ACT_WAIVER_OVERREACH',
+        severity: 'FATAL',
+        message: 'Under 45 CFR § 149.420, No Surprises Act notice and consent applies strictly to nonparticipating (out-of-network) providers and facilities furnishing certain non-emergency items at participating facilities. It does not apply to in-network providers and cannot be used as a generic waiver to bypass plan prior-authorization requirements or shift contractual write-offs to patients.',
+        location: 'patient_billing_scope_or_decision_outcomes'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 10. CMS Hospital Outpatient Department (OPD) Prior Auth & ABN Scoping
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    // Check if guide claims an ABN can be issued or patient billed when bypassing CMS OPD prior authorization,
+    // or claims an ABN is universally required for every CO-197 denial,
+    // or conflates ABN notice issuance with claim modifier submission.
+    const assertsBypassOPDABN =
+      rawGuideText.includes("for a provider's failure to obtain mandatory prior authorization unless a valid, signed advance beneficiary notice") ||
+      rawGuideText.includes('billing the patient for an un-authorized service is strictly prohibited unless a valid, signed advance waiver was executed prior to rendering care. for original medicare ffs, an advance beneficiary notice of noncoverage (form cms-r-131) is required') ||
+      rawGuideText.includes('an abn is universally required for every co-197') ||
+      rawGuideText.includes('an abn is universally required for every carc 197') ||
+      rawGuideText.includes('issuance of an abn with modifier ga') ||
+      rawGuideText.includes('an abn with modifier ga must be executed') ||
+      rawGuideText.includes('voluntary abn with modifier gx') ||
+      (rawGuideText.includes('bypasses the prior authorization') && rawGuideText.includes('abn is appropriate'));
+
+    if (assertsBypassOPDABN) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'CMS_OPD_ABN_OVERREACH',
+        severity: 'FATAL',
+        message: 'Under CMS Hospital Outpatient Department (OPD) Prior Authorization FAQs (Nov 14, 2024, Q55) and 42 CFR §§ 419.80–419.83, when a hospital bypasses the prior-authorization process, an ABN is NOT appropriate and the hospital may not charge the beneficiary. Under Q53, when prior authorization was requested and non-affirmed on medical necessity grounds, the hospital must issue the ABN to the beneficiary in advance and submit the claim appending modifier GA; under Q57, for ordinarily cosmetic procedures that may be medically necessary for a specific condition, the hospital must issue an advance ABN if denial is anticipated and submit the claim appending modifier GA; for statutorily excluded cosmetic care (Q56), issuing an ABN is voluntary and the claim is submitted appending modifier GX. The guide must not assert that an ABN is universally required for all CO-197 denials, conflate Q53 and Q57, or claim that bypassing prior auth permits ABN billing.',
+        location: 'patient_billing_scope_or_medicare_ffs_rules'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 11. Medicare Advantage vs No Surprises Act Emergency Scoping
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    const assertsMANSA =
+      rawGuideText.includes('medicare advantage under the no surprises act') ||
+      rawGuideText.includes('medicare advantage plans are governed by the no surprises act') ||
+      rawGuideText.includes('under the no surprises act (45 cfr § 149.110), medicare advantage') ||
+      rawGuideText.includes('no surprises act protects medicare advantage') ||
+      rawGuideText.includes('no surprises act (45 cfr § 149.110) applies to medicare advantage') ||
+      rawGuideText.includes('no surprises act applies to medicare advantage');
+
+    if (assertsMANSA) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'MA_NSA_CONFLATION',
+        severity: 'FATAL',
+        message: 'The guide conflates Medicare Advantage with the No Surprises Act. Medicare Advantage prior-authorization emergency protections are governed by 42 CFR § 422.113, not the federal No Surprises Act (45 CFR § 149.110).',
+        location: 'quick_answer_or_investigation_steps'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 12. CARC 197 on Emergency Claims Categorical Ban Overreach
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    const assertsEmergencyImpossible =
+      rawGuideText.includes('carc 197 can never appear on an emergency claim') ||
+      rawGuideText.includes('carc 197 can never be reported on emergency') ||
+      rawGuideText.includes('carc 197 is impossible on emergency claims') ||
+      rawGuideText.includes('carc 197 never legitimately appears on emergency claims') ||
+      rawGuideText.includes('emergency claims can never receive carc 197');
+
+    if (assertsEmergencyImpossible) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'CARC_197_EMERGENCY_IMPOSSIBLE_OVERREACH',
+        severity: 'FATAL',
+        message: 'The guide asserts that CARC 197 can never legitimately appear on an emergency claim. CARC 197 can legitimately appear on emergency claims if non-emergency services were billed concurrently, if required program indicators (such as Medicare OPD modifier ET or revenue code 045x) were omitted, or if post-stabilization criteria were not satisfied.',
+        location: 'code_explanation_or_scenarios'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 13. BPR16 Universal Appeal Trigger Overreach
+  // =========================================================================
+  if (guide.timeline_and_dates) {
+    const rawGuideText = JSON.stringify(guide.timeline_and_dates).toLowerCase();
+
+    const assertsBPR16UniversalTrigger =
+      rawGuideText.includes('bpr16 is the universal denial date') ||
+      rawGuideText.includes('bpr16 universally triggers provider appeal') ||
+      rawGuideText.includes('bpr16 is the universal appeal trigger') ||
+      rawGuideText.includes('bpr16 check date universally starts the appeal clock') ||
+      rawGuideText.includes('bpr16 universally starts the appeal window');
+
+    if (assertsBPR16UniversalTrigger) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'BPR16_UNIVERSAL_APPEAL_TRIGGER',
+        severity: 'FATAL',
+        message: 'Under X12 RFI 2061, BPR16 defines the check issue or EFT effective date, not the claim adjudication date or initial determination notice date. BPR16 is not the universal denial date or appeal trigger; appeal deadlines run from receipt of the initial determination notice (presumed 5 days after notice date per 42 CFR § 405.942 for Medicare FFS, 60 days from organization determination notice per 42 CFR § 422.582 for MA, or contractual/ERISA dates for commercial).',
+        location: 'timeline_and_dates.timeline_events'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 14. Universal Authorization Validity Span Overreach
+  // =========================================================================
+  if (guide.timeline_and_dates) {
+    const rawGuideText = JSON.stringify(guide.timeline_and_dates).toLowerCase();
+
+    const assertsUniversalAuthValidity =
+      rawGuideText.includes('prior authorizations universally remain valid for 60 to 180 days') ||
+      rawGuideText.includes('authorizations universally have a 60 to 180 day validity span') ||
+      rawGuideText.includes('standard 60 to 180 day authorization validity span applies to all payers') ||
+      rawGuideText.includes('universal 60 to 180 day authorization validity');
+
+    if (assertsUniversalAuthValidity) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'UNIVERSAL_AUTH_VALIDITY_OVERREACH',
+        severity: 'FATAL',
+        message: 'The guide asserts a universal 60 to 180 day authorization validity window. Prior authorization validity periods are not uniform; they are determined by each payer specific approval letter and policy (e.g. CMS OPD affirmations are valid for 120 days under the CMS OPD Operational Guide, while commercial spans vary by insurer and clinical specialty).',
+        location: 'timeline_and_dates.general_rules'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 15. Universal Peer-to-Peer Window Overreach
+  // =========================================================================
+  if (guide.investigation_steps || guide.detailed_scenarios) {
+    const rawGuideText = (JSON.stringify(guide.investigation_steps || []) + ' ' + JSON.stringify(guide.detailed_scenarios || [])).toLowerCase();
+
+    const assertsUniversalP2PWindow =
+      rawGuideText.includes('universal 5 to 14 day peer-to-peer') ||
+      rawGuideText.includes('peer-to-peer review must universally be requested within 5 to 14 days') ||
+      rawGuideText.includes('standard 5 to 14 day peer-to-peer window applies to all payers') ||
+      rawGuideText.includes('all payers provide a standard 5 to 14 day p2p window');
+
+    if (assertsUniversalP2PWindow) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'UNIVERSAL_P2P_WINDOW_OVERREACH',
+        severity: 'FATAL',
+        message: 'The guide asserts a universal 5 to 14 day peer-to-peer review window. P2P windows are strictly plan-specific and determined by individual payer medical management policies and adverse determination notices.',
+        location: 'investigation_steps'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 16. Emergency Indicator Exemption Overreach
+  // =========================================================================
+  if (guide.code_explanation && guide.code_explanation.carc_code === '197') {
+    const rawGuideText = JSON.stringify(guide).toLowerCase();
+
+    const assertsIndicatorOverreach =
+      rawGuideText.includes('place of service 20 or emergency diagnosis codes alone conclusively prove') ||
+      rawGuideText.includes('pos 20 alone conclusively establishes exemption from prior authorization') ||
+      rawGuideText.includes('billing pos 20 or pos 23 conclusively exempts all claim lines from prior authorization') ||
+      rawGuideText.includes('emergency diagnosis codes alone conclusively establish exemption from prior authorization') ||
+      rawGuideText.includes('pos 20 or emergency diagnosis alone conclusively establishes exemption');
+
+    if (assertsIndicatorOverreach) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'EMERGENCY_INDICATOR_OVERREACH',
+        severity: 'FATAL',
+        message: 'The guide asserts that POS 20, POS 23, emergency revenue codes, or emergency diagnoses alone conclusively establish prior-authorization exemption. Clinical records must demonstrate an emergency medical condition meeting the prudent layperson standard and program-specific criteria, as non-emergency elective services billed concurrently or post-stabilization care may still require authorization.',
+        location: 'code_explanation_or_investigation_steps'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 17. Medicare Advantage Appeal Notice Date vs Receipt & Scope Check
+  // =========================================================================
+  if (guide.timeline_and_dates || guide.medicare_ffs_rules) {
+    const rawGuideText = (JSON.stringify(guide.timeline_and_dates || {}) + ' ' + JSON.stringify(guide.medicare_ffs_rules || {})).toLowerCase();
+
+    const assertsMANoticeDateOnly =
+      rawGuideText.includes('60 calendar days from the date of the organization determination notice') ||
+      rawGuideText.includes('60-day appeal clock runs from the organization determination notice date') ||
+      rawGuideText.includes('appeals must be filed within 60 calendar days from the date of the notice') ||
+      rawGuideText.includes('medicare advantage appeals are universally due within 60 days from the notice date') ||
+      rawGuideText.includes('all medicare advantage provider payment disputes must be filed within 60 days of notice') ||
+      rawGuideText.includes('reconsideration is universally due 60 days from the notice date without receipt presumption');
+
+    if (assertsMANoticeDateOnly) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'MA_APPEAL_RECEIPT_SCOPE_OVERREACH',
+        severity: 'FATAL',
+        message: 'Under 42 CFR § 422.582, Medicare Advantage reconsideration requests are due within 60 calendar days after receipt of the written organization determination notice (with receipt legally presumed 5 calendar days after the notice date unless evidence shows otherwise). The guide must not assert a universal 60-day deadline from the notice date alone without the receipt presumption, nor describe § 422.582 as a universal deadline for contracted provider payment disputes (which follow contractual dispute processes).',
+        location: 'timeline_and_dates_or_medicare_ffs_rules'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 18. Commercial ERISA 180-Day Claimant Scope vs Provider Contractual Dispute
+  // =========================================================================
+  if (guide.timeline_and_dates || guide.commercial_payer_rules) {
+    const rawGuideText = (JSON.stringify(guide.timeline_and_dates || {}) + ' ' + JSON.stringify(guide.commercial_payer_rules || {})).toLowerCase();
+
+    const assertsERISAUniversalProviderDeadline =
+      rawGuideText.includes('erisa 180-day appeal deadline universally governs all provider payment disputes') ||
+      rawGuideText.includes('erisa 29 cfr § 2560.503-1 universally establishes a 180-day deadline for provider contractual disputes') ||
+      rawGuideText.includes('erisa provides a universal 180-day deadline for provider payment disputes') ||
+      rawGuideText.includes('all commercial provider payment disputes have a 180-day deadline under erisa') ||
+      rawGuideText.includes('erisa appeal deadline universally applies to provider payment disputes') ||
+      rawGuideText.includes('erisa 180-day deadline applies to all provider disputes') ||
+      rawGuideText.includes('erisa claimant appeal period is a universal provider payment-dispute deadline') ||
+      rawGuideText.includes('universal 180-day provider appeal deadline under erisa');
+
+    if (assertsERISAUniversalProviderDeadline) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'ERISA_APPEAL_SCOPE_OVERREACH',
+        severity: 'FATAL',
+        message: 'Under 29 CFR § 2560.503-1, ERISA establishes a minimum 180-day appeal period for qualifying benefit plan claimants appealing adverse benefit determinations. It must not be presented as a universal deadline for an in-network provider\'s independent contractual payment dispute, which is governed by provider network agreements, plan administrative dispute manuals, and state prompt-pay rules.',
+        location: 'timeline_and_dates_or_commercial_rules'
+      });
+    }
+  }
+
+  // =========================================================================
+  // 19. ERISA Assignment of Benefits vs Authorized Representative Scope
+  // =========================================================================
+  if (guide.timeline_and_dates || guide.commercial_payer_rules) {
+    const rawGuideText = (JSON.stringify(guide.timeline_and_dates || {}) + ' ' + JSON.stringify(guide.commercial_payer_rules || {})).toLowerCase();
+
+    const assertsAOBUniversalRepresentation =
+      rawGuideText.includes('assignment of benefits automatically authorizes every provider to appeal') ||
+      rawGuideText.includes('assignment of benefits automatically makes every provider an authorized representative') ||
+      rawGuideText.includes('assignment of benefits alone universally makes a provider an authorized representative') ||
+      rawGuideText.includes('an assignment of benefits automatically entitles any provider to pursue an erisa appeal') ||
+      rawGuideText.includes('holding an assignment of benefits automatically designates the provider as the claimant\'s authorized representative') ||
+      rawGuideText.includes('an assignment of benefits universally entitles a provider to appeal for the claimant') ||
+      rawGuideText.includes('any provider holding an assignment of benefits can automatically appeal as the claimant') ||
+      rawGuideText.includes('an assignment of benefits automatically authorizes the provider to appeal') ||
+      rawGuideText.includes('assignment of benefits automatically authorizes the provider to pursue an erisa appeal') ||
+      rawGuideText.includes('an assignment of benefits automatically authorizes a provider to pursue the claimant\'s erisa appeal');
+
+    if (assertsAOBUniversalRepresentation) {
+      issues.push({
+        rule: 'scope-sensitive',
+        code: 'ERISA_AOB_REPRESENTATION_OVERREACH',
+        severity: 'FATAL',
+        message: 'Under 29 CFR § 2560.503-1 and Department of Labor guidance, an assignment of benefits (AOB) alone does not universally make a provider an authorized representative entitled to pursue an ERISA appeal for the claimant. Whether a provider can act on a claimant\'s behalf depends on the specific assignment terms, the plan\'s authorized-representative procedures established pursuant to 29 CFR § 2560.503-1(b)(4), plan terms (including enforceable anti-assignment provisions), and governing law. Furthermore, an in-network provider\'s independent contractual claim dispute is distinct from a claimant\'s ERISA benefit appeal.',
+        location: 'timeline_and_dates_or_commercial_rules'
       });
     }
   }
