@@ -3,7 +3,7 @@ import { LegalLayout } from '../components/LegalLayout';
 export const metadata = {
   title: 'Terms of Service | DenialCode Pro',
   description:
-    'Terms of Service for using DenialCode Pro, a free informational reference directory for medical billing codes and revenue cycle management.',
+    'Terms of Service for using DenialCode Pro, an educational website with original claim-investigation guides.',
 };
 
 export default function TermsPage() {
@@ -18,7 +18,7 @@ export default function TermsPage() {
 
       <Section title="Use of the Site">
         <p>
-          The data provided on this directory is for personal and internal
+          The educational material provided on this website is for personal and internal
           business use to assist with medical revenue cycle management (RCM)
           troubleshooting. You agree not to use the Website for any unlawful
           purpose or in any way that could damage, disable, overburden, or
@@ -29,9 +29,7 @@ export default function TermsPage() {
       <Section title="Intellectual Property">
         <p>
           The original content, features, and functionality of the Website
-          are owned by DenialCode Pro. The underlying medical codes (CARC, RARC,
-          Status Codes) are maintained by their respective regulatory bodies
-          (e.g., X12, CMS).
+          are owned by DenialCode Pro. Third-party materials and linked resources remain subject to their owners’ rights. Links do not grant permission to reproduce those materials.
         </p>
       </Section>
     </LegalLayout>

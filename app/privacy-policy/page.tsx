@@ -1,78 +1,38 @@
 import { LegalLayout } from '../components/LegalLayout';
 
 export const metadata = {
-  title: 'Privacy Policy | DenialCode Pro',
-  description:
-    'Privacy Policy for DenialCode Pro, including log files, cookies, Google AdSense, and the DoubleClick DART cookie disclosure.',
+  title: 'Privacy Policy',
+  description: 'How DenialCodePro handles website feedback, search URLs, and technical information.',
+  alternates: { canonical: '/privacy-policy' },
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <LegalLayout title="Privacy Policy">
-      <Section title="Overview">
-        <p>
-          This Privacy Policy describes how your personal information is
-          collected, used, and shared when you visit DenialCode Pro.
-        </p>
+      <Section title="Website information and patient privacy">
+        <p>DenialCodePro provides medical-billing educational information. Do not submit patient names, member or claim numbers, medical records, or other sensitive information through search or feedback.</p>
       </Section>
-
-      <Section title="Log Files and Cookies">
-        <p>
-          Like many other Web sites, DenialCode Pro makes use of log files and
-          cookies. The information inside the log files includes internet
-          protocol (IP) addresses, browser type, Internet Service Provider
-          (ISP), date/time stamp, referring/exit pages, and number of clicks
-          to analyze trends and administer the site.
-        </p>
+      <Section title="Search and technical records">
+        <p>Search terms appear in the search page URL. They can therefore appear in browser history and technical request logs. Use code identifiers or general topics, not patient information.</p>
+        <p>Website delivery involves technical request information, such as an IP address and requested URL. The hosting provider processes requests to serve and protect the site. Contact us with questions about the processing of your information.</p>
       </Section>
-
-      <Section title="Google AdSense and the DoubleClick DART Cookie">
-        <ul className="ml-5 list-disc space-y-1.5">
-          <li>
-            Google, as a third-party vendor, uses cookies to serve ads on our
-            site.
-          </li>
-          <li>
-            Google&apos;s use of the DART cookie enables it to serve ads to our
-            users based on their visit to our site and other sites on the
-            Internet.
-          </li>
-          <li>
-            Users may opt out of the use of the DART cookie by visiting the
-            Google ad and content network privacy policy at the following URL:{' '}
-            <span className="font-medium">
-              http://www.google.com/privacy_ads.html
-            </span>
-          </li>
-        </ul>
+      <Section title="Feedback and email">
+        <p>Where the feedback form is enabled, your name, email address, and message are sent through Web3Forms so we can receive and respond to website feedback. If you email us directly, your email provider and ours process that correspondence.</p>
+        <p>Send only the information needed to describe a website problem. To ask about or request deletion of a message you sent, contact <a href="mailto:denialcodepro@gmail.com" className="underline">denialcodepro@gmail.com</a>. Do not send patient documents to establish your request.</p>
       </Section>
-
-      <Section title="Third-Party Advertisers">
-        <p>
-          We use third-party advertising companies to serve ads when you visit
-          our Website. These companies may use aggregated information (not
-          including your name, address, email address, or telephone number)
-          about your visits to this and other Web sites in order to provide
-          advertisements about goods and services of interest to you.
-        </p>
+      <Section title="Analytics and advertising">
+        <p>This release does not load Google Analytics or Google AdSense through the application. If advertising or analytics is enabled later, this notice and the applicable consent controls must be updated before those services are activated.</p>
+      </Section>
+      <Section title="Evidence checklist">
+        <p>The evidence checklist uses categorical selections in the current page. Its application code does not save those selections to browser storage or submit them to a server. This does not eliminate the technical requests needed to load the website.</p>
+      </Section>
+      <Section title="External sources and questions">
+        <p>Links to sources take you to websites with their own privacy practices. For questions about this website or your feedback, email <a href="mailto:denialcodepro@gmail.com" className="underline">denialcodepro@gmail.com</a>.</p>
       </Section>
     </LegalLayout>
   );
 }
 
-function Section({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-      <h2 className="text-lg font-bold text-navy-800">{title}</h2>
-      <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-600">
-        {children}
-      </div>
-    </div>
-  );
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"><h2 className="text-lg font-bold text-navy-800">{title}</h2><div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-600">{children}</div></section>;
 }

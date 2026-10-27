@@ -5,9 +5,9 @@ const footerLinks = [
   {
     title: 'Browse',
     links: [
-      { href: '/denial-codes', label: 'Denial Codes (CARC)' },
-      { href: '/remark-codes', label: 'Remark Codes (RARC)' },
-      { href: '/guides', label: 'Denial Guides' },
+      { href: '/tools/evidence-checklist', label: 'Evidence checklist' },
+      { href: '/search', label: 'Find a guide' },
+      { href: '/guides', label: 'Investigation guides' },
     ],
   },
   {
@@ -44,8 +44,8 @@ export function SiteFooter() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
-              Reference information for U.S. medical billing denial codes.
-              Built for billers, not algorithms.
+              Practical investigation guides for U.S. medical billers.
+              Start with the evidence and keep missing facts visible.
             </p>
             <a
               href="mailto:denialcodepro@gmail.com"

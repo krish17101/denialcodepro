@@ -25,7 +25,7 @@ export function SearchBox() {
   };
 
   return (
-    <form onSubmit={handleSubmit} role="search" aria-label="Search denial codes">
+    <form onSubmit={handleSubmit} role="search" aria-label="Search investigation guides">
       <div className="relative flex items-center">
         <Search
           aria-hidden
@@ -37,10 +37,12 @@ export function SearchBox() {
           name="q"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          placeholder="Search a denial code, remark code, denial message, or problem"
-          aria-label="Search a denial code, remark code, denial message, or problem"
+          placeholder="Search a topic: evidence, correction, deadline"
+          aria-label="Search a topic: evidence, correction, deadline"
           autoComplete="off"
           spellCheck={false}
+          aria-describedby="search-privacy"
+          maxLength={180}
           className="w-full rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-32 text-base text-slate-900 shadow-xl outline-none ring-navy-400 transition placeholder:text-slate-400 focus:border-navy-400 focus:ring-2 sm:pl-14 sm:pr-36"
         />
         <button
@@ -51,6 +53,7 @@ export function SearchBox() {
           <span className="hidden sm:inline">Search</span>
         </button>
       </div>
+      <p id="search-privacy" className="mt-3 text-sm text-slate-400">Search general billing topics only. Do not enter names, member numbers, or patient information; searches appear in the page URL.</p>
     </form>
   );
 }

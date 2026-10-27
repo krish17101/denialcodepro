@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
  * Root layout — V3.
  *
  * Preserves:
- *  - GA4 Analytics component (G-QL011FYKSR — initialized once here only)
+ *  - Analytics integration point (disabled pending consent/privacy review)
  *  - metadataBase pointing to https://denialcodepro.com
  *  - SiteHeader, SiteFooter, FeedbackForm
  *  - Inter font
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: '%s — DenialCodePro',
   },
   description:
-    'Reference information for U.S. medical billing denial codes. Search a denial code, remark code, or denial combination.',
+    'Original claim-investigation guides and an evidence checklist for U.S. medical billers.',
   openGraph: {
     siteName: 'DenialCodePro',
     type: 'website',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   // Robots default — individual pages may override
   robots: {
-    index: true,
+    index: false, // Preview candidate: enable indexing only after release review.
     follow: true,
   },
 };
@@ -57,11 +57,7 @@ export default function RootLayout({
           <FeedbackForm />
           <SiteFooter />
         </div>
-        {/*
-          Analytics — GA4 G-QL011FYKSR.
-          Initialized here and ONLY here. Do not add a second gtag script
-          anywhere else in the application.
-        */}
+        {/* Analytics remains disabled in this release candidate. */}
         <Analytics />
       </body>
     </html>

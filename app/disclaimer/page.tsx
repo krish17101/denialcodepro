@@ -4,7 +4,7 @@ import { LegalLayout } from '../components/LegalLayout';
 export const metadata = {
   title: 'Medical & Billing Disclaimer | DenialCode Pro',
   description:
-    'Medical billing disclaimer for DenialCode Pro. This directory provides reference information only and does not constitute official legal, medical, or financial billing advice.',
+    'Medical billing disclaimer for DenialCode Pro. This website provides educational information only and does not constitute official legal, medical, or financial billing advice.',
 };
 
 export default function DisclaimerPage() {
@@ -23,10 +23,7 @@ export default function DisclaimerPage() {
 
       <Section title="Accuracy & Reliability">
         <p>
-          While we strive to keep the database updated using official
-          government and payer resources, healthcare billing regulations and
-          codes (including CARC, RARC, and Claim Status Codes) change
-          frequently. DenialCode Pro makes no representations or warranties of
+          Applicable billing rules can change. Confirm the current authority and scope before relying on a rule for a real claim. DenialCode Pro makes no representations or warranties of
           any kind, express or implied, about the completeness, accuracy,
           reliability, or suitability of the information contained on the
           Website. Any reliance you place on such information is strictly at

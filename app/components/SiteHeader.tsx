@@ -6,10 +6,9 @@ import { useState } from 'react';
 import { Menu, X, ShieldPlus } from 'lucide-react';
 
 const navLinks = [
-  { href: '/search', label: 'Search' },
-  { href: '/denial-codes', label: 'Denial Codes' },
-  { href: '/remark-codes', label: 'Remark Codes' },
-  { href: '/guides', label: 'Guides' },
+  { href: '/guides', label: 'Investigation guides' },
+  { href: '/tools/evidence-checklist', label: 'Evidence checklist' },
+  { href: '/search', label: 'Find a guide' },
   { href: '/about', label: 'About' },
 ];
 
