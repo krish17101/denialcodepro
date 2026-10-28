@@ -2,7 +2,8 @@ import { AlertTriangle } from 'lucide-react';
 import { LegalLayout } from '../components/LegalLayout';
 
 export const metadata = {
-  title: 'Medical & Billing Disclaimer | DenialCode Pro',
+  title: 'Billing Disclaimer',
+  alternates: { canonical: '/disclaimer' },
   description:
     'Medical billing disclaimer for DenialCode Pro. This website provides educational information only and does not constitute official legal, medical, or financial billing advice.',
 };

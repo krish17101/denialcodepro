@@ -1,8 +1,14 @@
 import Link from 'next/link';
 import { publicGuides } from '../../../lib/public/guides';
-/** Server-rendered search of the explicitly published original guides only. */
+import { isCodeQuery, searchGuides } from '../../../lib/public/search';
 export function SearchResults({query}:{query:string}) {
- const terms=query.toLowerCase().split(/\s+/).filter(Boolean);
- const results=terms.length?publicGuides.filter(g=>terms.some(t=>(g.title+' '+g.summary+' '+g.firstCheck).toLowerCase().includes(t))):publicGuides;
- return <section><p className="mb-5 text-sm text-slate-600">Search covers the original investigation guides in this release, not the code-reference library. Do not enter patient information.</p>{results.length?<ul className="space-y-4">{results.map(g=><li key={g.slug} className="rounded-xl border border-slate-200 bg-white p-5"><Link className="font-bold text-navy-800 underline" href={`/guides/${g.slug}`}>{g.title}</Link><p className="mt-2 text-slate-600">{g.summary}</p></li>)}</ul>:<p>No guide matches that topic. <Link href="/guides" className="underline">Browse the available guides</Link> or <Link href="/tools/evidence-checklist" className="underline">start an evidence checklist</Link>.</p>}</section>;
+ const results = searchGuides(query);
+ const fallback = results.length === 0;
+ return <section aria-labelledby="results-heading">
+  <h2 id="results-heading" className="text-2xl font-bold text-navy-800">{!query ? 'Browse the available guides' : isCodeQuery(query) ? 'Code lookup is not available yet' : fallback ? 'No matching guide found' : `Guides related to “${query}”`}</h2>
+  <p className="mb-5 mt-3 text-sm leading-relaxed text-slate-600">{isCodeQuery(query) ? 'This preview does not include code-specific explanations. The guides below are general starting points, not an interpretation of that code.' : fallback && query ? 'We do not have a guide matching that search. These starting points may help you work out what to check next.' : 'Search covers the original guides published here. A matching topic does not establish which rule applies to your claim.'}</p>
+  {fallback && query && <h3 className="mb-3 font-semibold text-navy-800">Suggested starting points</h3>}
+  <ul className="space-y-4">{(fallback ? publicGuides : results).map(g=><li key={g.slug} className="rounded-xl border border-slate-200 bg-white p-5"><Link className="font-bold text-navy-800 underline" href={`/guides/${g.slug}`}>{g.title}</Link><p className="mt-2 text-slate-600">{g.summary}</p></li>)}</ul>
+  <p className="mt-6 text-slate-600">Not sure where to start? <Link href="/tools/evidence-checklist" className="font-semibold text-navy-700 underline">Build an evidence checklist</Link>.</p>
+ </section>;
 }

@@ -14,7 +14,7 @@ const footerLinks = [
     title: 'Reference',
     links: [
       { href: '/sources', label: 'Sources' },
-      { href: '/methodology', label: 'Methodology' },
+      { href: '/methodology', label: 'Editorial approach' },
       { href: '/about', label: 'About' },
     ],
   },
@@ -23,7 +23,7 @@ const footerLinks = [
     links: [
       { href: '/privacy-policy', label: 'Privacy Policy' },
       { href: '/terms', label: 'Terms of Service' },
-      { href: '/disclaimer', label: 'Medical Disclaimer' },
+      { href: '/disclaimer', label: 'Billing Disclaimer' },
     ],
   },
 ];

@@ -51,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:p-4 focus:text-navy-900">Skip to main content</a>
         <div className="flex min-h-screen flex-col bg-slate-50">
           <SiteHeader />
           <div className="flex-1">{children}</div>

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Menu, X, ShieldPlus } from 'lucide-react';
 
 const navLinks = [
@@ -15,9 +15,11 @@ const navLinks = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header onKeyDown={e => { if (e.key === 'Escape' && open) { setOpen(false); toggleRef.current?.focus(); } }} className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5">
@@ -55,8 +57,10 @@ export function SiteHeader() {
 
         {/* Mobile toggle */}
         <button
+          ref={toggleRef}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-lg p-2 text-slate-600 hover:bg-slate-100 md:hidden"
+          className="inline-flex items-center justify-center min-h-[44px] min-w-[44px] rounded-lg p-2 text-slate-600 hover:bg-slate-100 md:hidden"
           aria-label={open ? 'Close navigation' : 'Open navigation'}
           aria-expanded={open}
         >
@@ -65,8 +69,9 @@ export function SiteHeader() {
       </div>
 
       {/* Mobile nav */}
-      {open && (
-        <nav
+      <nav
+          id="mobile-navigation"
+          hidden={!open}
           aria-label="Mobile navigation"
           className="border-t border-slate-200 bg-white md:hidden"
         >
@@ -94,7 +99,6 @@ export function SiteHeader() {
             })}
           </div>
         </nav>
-      )}
     </header>
   );
 }

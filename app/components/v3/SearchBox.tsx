@@ -1,59 +1,28 @@
 'use client';
-
-import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { useId, useRef, useState } from 'react';
 import { Search } from 'lucide-react';
+import { isCodeQuery, searchGuides, suggestedTopics } from '../../../lib/public/search';
 
-/**
- * Homepage search box.
- * Navigates to /search?q=<query> on submit.
- * Does NOT perform inline search — all search logic lives in /search.
- */
-export function SearchBox() {
-  const [value, setValue] = useState('');
-  const router = useRouter();
+/** Suggestions are matched only against the published original guides. */
+export function SearchBox({ initialQuery = '' }: { initialQuery?: string }) {
+  const [value, setValue] = useState(initialQuery);
+  const id = useId();
   const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const q = value.trim();
-    if (!q) {
-      inputRef.current?.focus();
-      return;
-    }
-    router.push(`/search?q=${encodeURIComponent(q)}`);
-  };
-
-  return (
-    <form onSubmit={handleSubmit} role="search" aria-label="Search investigation guides">
-      <div className="relative flex items-center">
-        <Search
-          aria-hidden
-          className="pointer-events-none absolute left-4 h-5 w-5 text-slate-400 sm:left-5"
-        />
-        <input
-          ref={inputRef}
-          type="search"
-          name="q"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder="Search a topic: evidence, correction, deadline"
-          aria-label="Search a topic: evidence, correction, deadline"
-          autoComplete="off"
-          spellCheck={false}
-          aria-describedby="search-privacy"
-          maxLength={180}
-          className="w-full rounded-2xl border border-slate-200 bg-white py-4 pl-12 pr-32 text-base text-slate-900 shadow-xl outline-none ring-navy-400 transition placeholder:text-slate-400 focus:border-navy-400 focus:ring-2 sm:pl-14 sm:pr-36"
-        />
-        <button
-          type="submit"
-          className="absolute right-2 inline-flex items-center gap-1.5 rounded-xl bg-navy-800 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-navy-900 active:scale-95 sm:px-5"
-        >
-          <Search className="h-4 w-4" />
-          <span className="hidden sm:inline">Search</span>
-        </button>
+  const privacyId = `${id}-search-privacy`;
+  const q = value.trim();
+  const suggestions = q.length >= 2 ? searchGuides(q).slice(0, 3) : [];
+  return <div className="rounded-2xl border border-slate-200 bg-white p-5 text-slate-900 shadow-sm sm:p-6">
+    <form action="/search" method="get" role="search" aria-label="Search billing guides" onSubmit={e => { if (!q) { e.preventDefault(); inputRef.current?.focus(); } }}>
+      <label htmlFor={id} className="mb-3 block font-semibold text-navy-800">What do you need help with?</label>
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <input id={id} ref={inputRef} type="search" name="q" value={value} onChange={e => setValue(e.target.value)} placeholder="Try corrected claim or appeal deadline" autoComplete="off" spellCheck={false} aria-describedby={privacyId} maxLength={180} className="min-w-0 flex-1 rounded-lg border border-slate-400 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500" />
+        <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-lg bg-navy-800 px-5 py-3 font-semibold text-white hover:bg-navy-900"><Search aria-hidden="true" className="h-4 w-4" />Search</button>
       </div>
-      <p id="search-privacy" className="mt-3 text-sm text-slate-400">Search general billing topics only. Do not enter names, member numbers, or patient information; searches appear in the page URL.</p>
+      <p id={privacyId} className="mt-3 text-sm leading-relaxed text-slate-600">Use general billing topics only. Do not enter patient names, member numbers, or other patient information. Submitted searches appear in the page URL.</p>
     </form>
-  );
+    {!q && <div className="mt-4 flex flex-wrap items-center gap-2"><span className="text-sm text-slate-600">Try:</span>{suggestedTopics.map(topic => <Link key={topic} href={`/search?q=${encodeURIComponent(topic)}`} className="rounded-full bg-slate-100 px-3 py-2 text-sm font-medium text-navy-800 hover:bg-slate-200">{topic}</Link>)}</div>}
+    <p role="status" className="mt-4 text-sm text-slate-600">{q.length < 2 ? 'Search the guides available on this website.' : isCodeQuery(q) ? 'Code-specific lookup is not available in this preview. Try a billing topic instead.' : suggestions.length ? `${suggestions.length} suggested ${suggestions.length === 1 ? 'guide' : 'guides'}` : 'No matching guide yet. Try correction, rejection, or deadline.'}</p>
+    {suggestions.length > 0 && <ul aria-label="Suggested guides" className="mt-2 divide-y divide-slate-200">{suggestions.map(g => <li key={g.slug}><Link href={`/guides/${g.slug}`} className="block rounded-lg py-3 text-sm font-semibold text-navy-800 underline underline-offset-4 hover:text-emerald-800">{g.title}</Link></li>)}</ul>}
+  </div>;
 }
