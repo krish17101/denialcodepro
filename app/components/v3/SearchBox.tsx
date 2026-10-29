@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useId, useRef, useState } from 'react';
+import { useId, useState } from 'react';
 import { Search } from 'lucide-react';
 import { isCodeQuery, searchGuides, suggestedTopics } from '../../../lib/public/search';
 
@@ -8,15 +8,14 @@ import { isCodeQuery, searchGuides, suggestedTopics } from '../../../lib/public/
 export function SearchBox({ initialQuery = '' }: { initialQuery?: string }) {
   const [value, setValue] = useState(initialQuery);
   const id = useId();
-  const inputRef = useRef<HTMLInputElement>(null);
   const privacyId = `${id}-search-privacy`;
   const q = value.trim();
   const suggestions = q.length >= 2 ? searchGuides(q).slice(0, 3) : [];
   return <div className="rounded-2xl border border-slate-200 bg-white p-5 text-slate-900 shadow-sm sm:p-6">
-    <form action="/search" method="get" role="search" aria-label="Search billing guides" onSubmit={e => { if (!q) { e.preventDefault(); inputRef.current?.focus(); } }}>
+    <form action="/search" method="get" role="search" aria-label="Search billing guides">
       <label htmlFor={id} className="mb-3 block font-semibold text-navy-800">What do you need help with?</label>
       <div className="flex flex-col gap-3 sm:flex-row">
-        <input id={id} ref={inputRef} type="search" name="q" value={value} onChange={e => setValue(e.target.value)} placeholder="Try corrected claim or appeal deadline" autoComplete="off" spellCheck={false} aria-describedby={privacyId} maxLength={180} className="min-w-0 flex-1 rounded-lg border border-slate-400 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500" />
+        <input id={id} type="search" name="q" value={value} onChange={e => setValue(e.target.value)} placeholder="Try corrected claim or appeal deadline" autoComplete="off" spellCheck={false} aria-describedby={privacyId} maxLength={180} className="min-w-0 flex-1 rounded-lg border border-slate-400 bg-white px-4 py-3 text-base text-slate-900 placeholder:text-slate-500" />
         <button type="submit" className="inline-flex items-center justify-center gap-2 rounded-lg bg-navy-800 px-5 py-3 font-semibold text-white hover:bg-navy-900"><Search aria-hidden="true" className="h-4 w-4" />Search</button>
       </div>
       <p id={privacyId} className="mt-3 text-sm leading-relaxed text-slate-600">Use general billing topics only. Do not enter patient names, member numbers, or other patient information. Submitted searches appear in the page URL.</p>
