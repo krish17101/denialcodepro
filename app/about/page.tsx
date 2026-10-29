@@ -1,5 +1,5 @@
 import Link from 'next/link';
-export const metadata = { title: 'About DenialCodePro', description: 'Why we are building practical, easy-to-follow resources for U.S. medical billers.', alternates: { canonical: '/about' } };
+export const metadata = { title: 'About', description: 'Why we are building practical, easy-to-follow resources for U.S. medical billers.', alternates: { canonical: '/about' } };
 export default function AboutPage() {
   return <main id="main-content" tabIndex={-1} className="mx-auto max-w-3xl space-y-8 px-5 py-12">
     <h1 className="text-3xl font-bold text-navy-800">About DenialCodePro</h1>
