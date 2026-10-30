@@ -1,32 +1,124 @@
 /** Original editorial workflows. No official code descriptions or proprietary tables. */
 export type PublicGuide = {
  slug: string; title: string; summary: string; firstCheck: string;
- sections: { title: string; paragraphs: string[] }[];
+ updatedOn?: string; sourcesCheckedOn?: string; scopeNote?: string;
+ sections: { title: string; paragraphs: string[]; sourceUrls?: string[] }[];
  branches: { finding: string; action: string; keep: string }[];
  examples: { title: string; facts: string; reasoning: string; action: string }[];
  sourceLinks: { title: string; url: string; scope: string }[];
 };
 export const publicGuides: PublicGuide[] = [
  {
-  slug: 'find-the-claim-response', title: 'Work out which claim response needs attention',
-  summary: 'Compare the claim you sent with the response you received before deciding what to change.',
-  firstCheck: 'Identify who issued the response, which submission it refers to, and whether it concerns the whole claim or a service line.',
-  sections: [
-   {title:'Build a short evidence trail',paragraphs:['Start with the outbound claim, the clearinghouse or payer response, and the original billing record in your approved work system. Record their identifiers and dates separately. A screenshot of the billing screen may not show what was transmitted or what the receiver processed.','For each document, note its author, event, and claim or line reference. Distinguish sending a file, receiving a file, accepting a claim for processing, and issuing a payment decision. Do not assume the latest message describes every earlier submission. These are recommended investigation distinctions, not a replacement for the applicable transaction guide.']},
-   {title:'Ask a question that resolves the missing fact',paragraphs:['If the record is unclear, ask: “Which submission and line does this message refer to? What was received, and what specific field or requirement caused this response?” Request a reference number or written explanation you can retain.','Do not send another unchanged claim simply to see what happens. First establish the status and the appropriate route with the receiver. If a deadline may be approaching, escalate the uncertainty promptly; waiting for clarification should not be assumed to extend the time available.']},
-   {title:'Finish the investigation',paragraphs:['Compare the next response with the disputed fact, not only the payment total. A corrected identifier or accepted transmission does not by itself establish that the claim was paid correctly. Retain the before-and-after evidence and document what remains unresolved.','To reduce repeats, consider a team checklist that records the original submission, receiver acknowledgement, and final decision separately. Use only records your organization is authorized to access and retain.']}
+  "slug": "find-the-claim-response",
+  "title": "Work out which claim response needs attention",
+  "summary": "Find out whether the message reports a submission problem, a processing status, or a payment decision. Then choose the right investigation.",
+  "firstCheck": "Open the actual response, not just the account status. Match its sender and claim reference to the submission you sent. Read whether it identifies a rejection, a pending item, or a decision on a particular claim or line.",
+  "updatedOn": "30 October 2026",
+  "sourcesCheckedOn": "30 October 2026",
+  "scopeNote": "The steps below are editorial investigation recommendations. The CMS facts are labeled for Original Medicare fee-for-service; other payers need their own instructions. This page does not interpret an adjustment code, establish a deadline or appeal right, or authorize patient billing.",
+  "branches": [
+    {
+      "finding": "You cannot match the response to a submission, or two responses conflict.",
+      "action": "Ask the sender which submission and claim or line the message describes. Compare the references, dates and service details in your approved system. If the records still conflict, ask the clearinghouse or payer to trace the specific submission before choosing a correction.",
+      "keep": "Both responses, outbound submission references, the conflicting details and the trace or contact reference."
+    },
+    {
+      "finding": "The response identifies a submission error or rejection.",
+      "action": "Find the exact field or requirement cited. Compare the saved outbound claim with the documented service and the receiver’s instructions. Correct only a confirmed error, then follow that receiver’s submission method. If the reported data is accurate or the message is vague, request clarification rather than changing a value to get past the edit.",
+      "keep": "Full rejection message, original claim, evidence for any correction, applicable instructions and the next acknowledgment."
+    },
+    {
+      "finding": "You have an acknowledgment or a pending status, but no matching payment decision.",
+      "action": "Find out what the acknowledgment actually accepted. Check the payer’s current claim status and any request for information. Ask what remains outstanding, who must act and which timing rule applies. Do not treat acceptance as payment approval or send another unchanged claim merely because payment has not appeared.",
+      "keep": "Acknowledgment, current status and retrieval date, any information request, response evidence and follow-up owner."
+    },
+    {
+      "finding": "A remittance or decision identifies the affected claim or service line.",
+      "action": "Read the full explanation for that item and compare the reported claim with the source record. A documented reporting error points toward the payer’s correction process; accurate data with a disputed decision calls for investigating the applicable review route. Confirm who may request it and the governing deadline before acting.",
+      "keep": "Item-level decision, reported data, supporting records, dated payer rule and the requirements for the selected route."
+    },
+    {
+      "finding": "The outbound claim and the payer’s received record show different values.",
+      "action": "First confirm they are the same submission and the same field. Ask the clearinghouse or payer to trace the difference. Once its cause is established, confirm who must correct it and how. Do not alter an accurate source record to match an unexplained received value.",
+      "keep": "Source record, saved outbound version, received version and trace findings. These are comparison records, not automatic proof of payer error."
+    }
   ],
-  branches:[
-   {finding:'The response cannot be linked confidently to a submission.',action:'Obtain the receiver’s claim or transaction reference and reconcile it before choosing a correction.',keep:'Original response, submission reference, and clarification record.'},
-   {finding:'The received value differs from the documented outbound value.',action:'Investigate the transmission or processing discrepancy. Ask which correction method applies after the discrepancy is confirmed.',keep:'Documented source value, outbound value, received value, and timestamps.'},
-   {finding:'The values agree, but the decision is disputed.',action:'Identify the rule or rationale and the review route available to the relevant party. Do not invent a data change.',keep:'Decision notice, dated rule, supporting and contradictory evidence.'}
+  "sections": [
+    {
+      "title": "1. Build a record of this submission",
+      "paragraphs": [
+        "In your organization’s approved system, record the payer and product, sender of each response, submission reference, payer claim reference if available, service dates, and affected line or item. Keep the submitted version of the claim beside the response. A current billing screen may show edits made after transmission.",
+        "Label each date by its event: service, sending, acknowledgment, notice or receipt. Do not collapse them into one “claim date.” Keep patient details out of this website’s search and contact messages. If a deadline may be close, escalate the uncertainty promptly; do not assume a phone inquiry extends it."
+      ]
+    },
+    {
+      "title": "2. Know what the Medicare response tells you",
+      "paragraphs": [
+        "For Original Medicare fee-for-service, CMS describes submission checks followed by coverage and payment checks. Passing an earlier check does not establish the result of the later ones. The response needs to be read for the actual error or decision, rather than treating “sent” as “approved.”"
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/medicare/coding-billing/electronic-billing/electronic-healthcare-claims"
+      ]
+    },
+    {
+      "title": "3. Look up status when the outcome is missing",
+      "paragraphs": [
+        "For Medicare Administrative Contractor claims, CMS lists provider portals, telephone status systems and electronic claim-status inquiries as options; direct data entry is available to some providers. Use a supported channel to locate the claim. For another payer, confirm its own status process.",
+        "Useful questions are: “Can you locate this submission? What stage is it at? Is an action required from us? Which written instruction and deadline apply?” If the payer cannot locate it, reconcile routing and transmission evidence with the submitter before deciding whether a new submission is appropriate."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/medicare/coding-billing/electronic-billing/claim-status-request-response"
+      ]
+    },
+    {
+      "title": "4. Read the affected item, not just the payment total",
+      "paragraphs": [
+        "CMS explains that a Medicare remittance can contain decisions for several claims, with information at claim or service-line level and adjustments at provider level. Find the item being investigated before connecting a message or amount to it. A difference in the total deposit does not, on its own, identify that item’s problem."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/medicare/coding-billing/electronic-billing/health-care-payment-remittance-advice"
+      ]
+    },
+    {
+      "title": "5. Close the loop after taking action",
+      "paragraphs": [
+        "Check that the next response refers to the intended submission and addresses the problem you investigated. Keep the original, any supported change, the chosen process and the outcome together. Acceptance of a corrected submission is a checkpoint, not a promised payment.",
+        "To reduce repeat work, give each unresolved case an owner and a follow-up date based on the applicable instructions. Track transmission problems separately from disputed payment decisions. If the same discrepancy recurs, have the responsible billing or system team examine its cause before changing an entire queue."
+      ]
+    }
   ],
-  examples:[
-   {title:'Fictional example: two messages, different submissions',facts:'A biller sees a recent rejection and an older remittance in the same account.',reasoning:'Their presence in one account does not show that they describe the same submission.',action:'Match references and dates first. Retain both messages; choose a route only after the actual affected submission is identified.'},
-   {title:'Fictional example: a value changed in transit',facts:'The billing record and saved outbound claim agree, but the payer’s received image shows a different value.',reasoning:'The discrepancy needs investigation before changing the clinical or billing source record.',action:'Request a processing/transmission review with the compared records. This may establish the cause; it does not promise payment.'}
+  "examples": [
+    {
+      "title": "Fictional example: a rejection and a remittance on one account",
+      "facts": "An account contains a Monday remittance for one service date and a Tuesday rejection for a different submission. The dashboard gives the account one overall status.",
+      "reasoning": "The dashboard label is not enough to identify which submission needs attention. The dates and references point to two separate items.",
+      "action": "Match each message to its own outbound claim. Investigate the Tuesday rejection’s stated problem and follow its receiver’s instructions if an error is confirmed. Review the Monday decision separately only if there is a dispute. Keep both records; this example establishes no payment or appeal entitlement."
+    },
+    {
+      "title": "Fictional example: an accepted file with no decision found",
+      "facts": "The clearinghouse shows a file as accepted. The biller has not found a payer decision for one claim in that file.",
+      "reasoning": "The label does not establish what the payer accepted or whether it decided that claim. A missing decision is a reason to trace status, not evidence of a denial.",
+      "action": "Retrieve the claim-specific response and check payer status using the correct reference. If it is pending, identify outstanding requests and follow-up instructions. If it cannot be found, reconcile routing with the clearinghouse. Preserve the acceptance message, status result and trace record before choosing a submission route."
+    }
   ],
-  sourceLinks:[{title:'CMS: Electronic Billing & EDI Transactions',url:'https://www.cms.gov/medicare/coding-billing/electronic-billing',scope:'Official Medicare electronic-billing reference hub. Use the applicable program and transaction guidance; this editorial checklist does not supply segment locators.'}]
- },
+  "sourceLinks": [
+    {
+      "title": "CMS: Electronic Health Care Claims",
+      "url": "https://www.cms.gov/medicare/coding-billing/electronic-billing/electronic-healthcare-claims",
+      "scope": "Original Medicare FFS. Locator: “How Electronic Claims Submission Works.” Page modified 25 August 2026; checked 30 October 2026. Supports the distinction between submission checks and later coverage/payment checks, not a universal correction procedure."
+    },
+    {
+      "title": "CMS: Claim Status Request and Response",
+      "url": "https://www.cms.gov/medicare/coding-billing/electronic-billing/claim-status-request-response",
+      "scope": "Medicare Administrative Contractor status inquiries. Locator: opening list of provider options. Page modified 10 September 2024; checked 30 October 2026. Does not set a follow-up interval or establish receipt of a particular claim."
+    },
+    {
+      "title": "CMS: Health Care Payment and Remittance Advice",
+      "url": "https://www.cms.gov/medicare/coding-billing/electronic-billing/health-care-payment-remittance-advice",
+      "scope": "Medicare remittance information. Locator: “Electronic Remit Advice (ERA) and Standard Paper Remit (SPR),” opening paragraphs. Page modified 10 September 2024; checked 30 October 2026. Supports item-level investigation; does not determine this reader’s payment or patient liability."
+    }
+  ]
+},
  {
   slug:'choose-a-correction-or-review',title:'Should you correct the claim or ask for a review?',
   summary:'Separate an actual reporting error from a disputed decision on accurately reported information.',
