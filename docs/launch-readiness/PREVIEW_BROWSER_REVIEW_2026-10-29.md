@@ -72,3 +72,13 @@ Deployment `f2fe51779d70bae6dc9e4c2cfe42e69b80a61b10` had reported Vercel succes
 B05 retest: entered `pancakes`, submitted with Enter, observed “No matching guide found”; cleared the field, pressed Enter, observed URL `/search?q=` and “Browse the available guides,” with all three guide links. **PASSED.** The previous unmatched result no longer remained. Evidence screenshot: `evidence/search-retest-2026-10-30.jpg`.
 
 Final result across the ten defined interactive cases: **10 passed after one fix** (nine on 29 October; B05 retested on 30 October). These were not all rerun on 30 October. The 13-route walkthrough remains dated 29 October. No new application changes were needed for this retest. Remaining checks above stay NOT RUN; this result does not approve mobile behavior, code-content rights, public release or AdSense.
+
+### 30 October 2026 — mobile and print follow-up
+
+Opened the deployed checklist, generated its default unknown-facts result, and clicked the actual Print checklist button. The browser accessibility tree and screenshot continued to show the application; no print dialog, page preview or PDF was exposed. Result: print-button interaction EXECUTED; printed-output validation BLOCKED, not passed. No physical print job was requested.
+
+The documented browser API still exposes no viewport resizing, mobile emulation or print-media/PDF capability. Mobile layout/menu/touch tests remain BLOCKED in this environment. No hidden browser methods, alternative browser process or synthetic DOM resizing was used to manufacture a mobile pass.
+
+Source inspection confirmed responsive navigation classes, a 44px minimum menu-toggle target, stacked-to-two-column checklist layout, window.print() handler, and print rules hiding form controls, header and footer. These are implementation observations, not rendering tests. Potential follow-up: inspect whether the checklist's md:grid-cols-2 remains active at the selected print-page width and leaves a narrow result column; no printed defect was confirmed here.
+
+No application or deployment changes were made in this follow-up. Desktop findings remain valid within their original scope. To finish the outstanding checks, use a browser/device testing environment that exposes phone-sized viewports and print preview; this report does not claim that available tooling completed them.

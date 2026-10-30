@@ -17,7 +17,7 @@ export function EvidenceChecklist() {
     </form>
     <section aria-live="polite" aria-atomic="true" className="rounded-xl border border-slate-200 bg-white p-6">
       <h2 className="text-xl font-bold text-navy-800">Your investigation checklist</h2>
-      {result ? <><ol className="mt-4 list-decimal space-y-4 pl-5 text-slate-700">{result.map(step => <li key={step}>{step}</li>)}</ol><button type="button" className="mt-5 rounded-lg border border-slate-300 px-4 py-2 print:hidden" onClick={() => window.print()}>Print checklist</button></> : <p className="mt-4 text-slate-600">Choose your answers and build a checklist. Unknown is a valid answer. Changing an answer clears the previous result.</p>}
+      {result ? <><ol className="mt-4 list-decimal space-y-4 pl-5 text-slate-700">{result.map(step => <li key={step}>{step}</li>)}</ol></> : <p className="mt-4 text-slate-600">Choose your answers and build a checklist. Unknown is a valid answer. Changing an answer clears the previous result.</p>}
     </section>
   </div>;
 }
