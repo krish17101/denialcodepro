@@ -120,26 +120,124 @@ export const publicGuides: PublicGuide[] = [
   ]
 },
  {
-  slug:'choose-a-correction-or-review',title:'Should you correct the claim or ask for a review?',
-  summary:'Separate an actual reporting error from a disputed decision on accurately reported information.',
-  firstCheck:'Compare the reported information with the documented source record. Establish what, if anything, is actually wrong.',
-  sections:[
-   {title:'Describe the finding before naming the process',paragraphs:['Write one sentence identifying the discrepancy or disputed decision. For example: “The transmitted value differs from the approved record,” or “The reported value is accurate, but the payer applied a rule whose scope is disputed.” If neither statement can be supported, gather evidence first.','A correction, replacement, new submission, processing inquiry, reconsideration, and formal appeal can have different requirements. Terminology and availability depend on the payer, program, claim status, and requesting party. Confirm the actual process; these labels are not interchangeable instructions.']},
-   {title:'Confirm the route and its requirements',paragraphs:['Ask the payer which channel applies, how the submission should link to the original claim, who may request it, and what notice or rule governs timing. Keep the answer and its source with the case. A customer-service explanation should be checked against the applicable written requirement where a consequential conflict remains.','Do not change a diagnosis, service, date, or units simply because the change might improve payment. A coding question belongs with appropriately qualified staff and the documented service. Do not infer patient liability from the existence of an adjustment.']},
-   {title:'Check the result and prevent a repeat',paragraphs:['Preserve the original information, the evidence supporting any change, the selected route, required attachments, submission contents, and receipt evidence. After the next response, confirm whether it addresses the disputed fact. A new response can raise a different issue that needs its own investigation.','For recurring problems, distinguish a source-data issue from a transmission mapping or payer-processing issue before changing your workflow. Review a small sample of affected cases rather than assuming the same cause across an entire queue.']}
+  "slug": "choose-a-correction-or-review",
+  "title": "Should you correct the claim or ask for a review?",
+  "summary": "Check whether the submitted information is wrong, the processing is wrong, or you disagree with a decision. Each finding needs a different response.",
+  "firstCheck": "Put the submitted claim, the response and the documented service side by side. Write down the exact value or decision you dispute. Also establish whether the receiver returned the claim, is still processing it, or issued a decision.",
+  "updatedOn": "31 October 2026",
+  "sourcesCheckedOn": "31 October 2026",
+  "scopeNote": "These are investigation recommendations, with Medicare FFS rules labeled separately. Do not change accurate data to seek payment. Confirm the applicable deadline promptly: a Medicare reopening request does not pause the appeal clock (see the Medicare section below). This guide does not determine appeal eligibility or patient liability.",
+  "branches": [
+    {
+      "finding": "The claim was returned or rejected before a decision on the disputed service.",
+      "action": "Read the actual error and compare the submitted value with the source record. If an error is confirmed, follow the receiver’s return/correction instructions. Ask whether the original claim remains in its system and which submission method applies. If the data is accurate or the stage is unclear, request clarification before treating the message as an appealable denial.",
+      "keep": "The original submission, full response, confirmed error or open question, receiver instructions and any new receipt record."
+    },
+    {
+      "finding": "The claim contains a documented reporting error.",
+      "action": "Have the responsible billing or coding staff validate the correct value against the service record. Then establish the payer’s correction route for this claim’s current status. Confirm how to identify the original claim and what information to include. Do not guess a replacement indicator or change an unrelated field.",
+      "keep": "The original and corrected values, evidence supporting the change, applicable payer instructions and the submitted version."
+    },
+    {
+      "finding": "The submitted data is accurate, but there is evidence of a processing discrepancy.",
+      "action": "Show the payer the specific difference between the submitted record and its processing or received record. Ask for the appropriate processing inquiry or correction. Confirm whether a separate formal review must be filed to protect an available right; do not assume a service ticket substitutes for it.",
+      "keep": "Matched claim references, comparison records, the disputed processing detail, ticket number and any separate review requirements."
+    },
+    {
+      "finding": "The data is accurate and you dispute a coverage, policy or payment decision.",
+      "action": "Obtain the stated rationale and the rule that applies to this product, service and date. Identify the review route available to the requester, its submission channel, deadline trigger and required evidence. Address why the rule or its application is disputed. Repeating an unchanged claim does not explain that dispute.",
+      "keep": "Decision notice, applicable policy or contract passage, evidence supporting and weakening the argument, and any required representative authorization."
+    },
+    {
+      "finding": "You cannot establish the error, claim status or available route.",
+      "action": "Make a short list of the missing facts and ask the receiver to resolve them. Assign a follow-up owner. Escalate promptly if a deadline may be approaching or instructions conflict. Do not fill the gap with an invented correction, assumed appeal right or estimated filing period.",
+      "keep": "Unanswered questions, notices and event dates, conflicting instructions and contact attempts."
+    }
   ],
-  branches:[
-   {finding:'A supported reporting discrepancy is confirmed.',action:'Validate the correct value, then use the applicable payer correction process. Confirm linkage and submission requirements.',keep:'Original and supported corrected values; governing instructions; submission evidence.'},
-   {finding:'Reported data is accurate and a processing discrepancy is identified.',action:'Ask for the appropriate processing review and establish any separate deadline or escalation route.',keep:'Accurate claim, received record, disputed processing detail, reference number.'},
-   {finding:'The decision is disputed under a policy or benefit rule.',action:'Establish whether a reconsideration, appeal, or provider dispute is available to the requester and what evidence it requires.',keep:'Decision, applicable rule/version, standing or authorization where required, and supporting records.'},
-   {finding:'The facts or applicable route are unknown.',action:'Seek clarification without inventing a correction. Escalate a potentially approaching deadline.',keep:'Open questions, notices and dates, contact attempts, and unresolved conflicts.'}
+  "sections": [
+    {
+      "title": "1. Name the problem before choosing a form",
+      "paragraphs": [
+        "Use a specific statement: “The submitted service date differs from the signed record,” “The payer received a different value,” or “The cited policy appears to address a different setting.” Treat each as a hypothesis until the records support it. A balance on the account is not enough to choose a remedy.",
+        "A correction changes supported claim information. A processing inquiry asks what happened to the information received. A formal review challenges a decision through an established process. Payers may use labels such as replacement, reconsideration or appeal differently; confirm the procedure behind the label. These descriptions organize your investigation, not prescribe a transaction."
+      ]
+    },
+    {
+      "title": "2. If Medicare returned the claim as unprocessable",
+      "paragraphs": [
+        "For incomplete or invalid information handled under Medicare Claims Processing Manual Chapter 1, sections 80.3.1–80.3.2, an unprocessable return is not a denial carrying appeal rights. The supported correction channel depends on how it was returned. Confirm that classification; some edits have different instructions. Do not classify every remittance message as an appealable decision."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf"
+      ]
+    },
+    {
+      "title": "3. If a Medicare claim needs a clerical correction",
+      "paragraphs": [
+        "CMS separates minor-error corrections from appeals. Chapter 34 describes reopenings and also permits eligible Part A providers to continue using adjusted claims. Ask the MAC which route fits the error and claim type; not every correction requires the same method.",
+        "A Medicare reopening request does not pause the time to request an appeal. Confirm any separate action promptly. Do not assume a reopening will be granted or use it as a substitute for an unavailable appeal."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/downloads/clm104c34.pdf"
+      ]
+    },
+    {
+      "title": "4. If you are considering a Medicare redetermination",
+      "paragraphs": [
+        "CMS describes redetermination as review of an initial claim determination by MAC staff who did not make that determination. First establish an appealable determination and that the requester is a proper party or representative. Use the applicable MAC instructions and supporting evidence; a telephone inquiry alone is not the written redetermination request described by CMS.",
+        "These Medicare FFS distinctions do not establish the process for Medicare Advantage, Medicaid, a commercial plan, or a contracted provider dispute. For those cases, obtain the instructions for the actual product and requesting party. A member appeal page is not enough to establish a provider’s contractual dispute process."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/medicare/appeals-grievances/fee-for-service/first-level-appeal-redetermination-medicare-contractor"
+      ]
+    },
+    {
+      "title": "5. Confirm the route, timing and evidence before sending",
+      "paragraphs": [
+        "Ask: Which process applies to this claim and issue? Who can submit it? What identifies the original claim? Which channel and attachments are required? What event starts the deadline, how is it counted, and where is that requirement written? Keep the answer with its source. If a phone answer conflicts with written instructions, preserve both and escalate the conflict.",
+        "Keep sending evidence separate from receipt evidence. Do not assume an inquiry, correction or informal review extends another deadline. Use your organization’s approved system for case details; do not put patient information into this website’s search or contact messages."
+      ]
+    },
+    {
+      "title": "6. Verify the result and reduce repeat work",
+      "paragraphs": [
+        "Check whether the response addresses the intended claim, field or policy dispute. A received submission is not a promise of payment. If the next response raises a new issue, record it separately instead of repeatedly sending the same request.",
+        "For recurring problems, identify who owns the cause: source documentation, billing entry, transmission mapping or payer processing. Use confirmed cases to improve that part of the process. Preserve both versions and the reason for any change rather than erasing the original record."
+      ]
+    }
   ],
-  examples:[
-   {title:'Fictional example: a documented data-entry mistake',facts:'An approved billing record differs from the claim value sent to the payer.',reasoning:'There is evidence of a reporting discrepancy, but the right replacement method is still payer-dependent.',action:'Validate the documented value, confirm the correction channel and linkage, and preserve both versions. No payment outcome is assumed.'},
-   {title:'Fictional example: accurate data, disputed policy',facts:'The record and claim agree, but staff believe the cited policy does not cover this setting.',reasoning:'Changing accurate data would not resolve the applicability question.',action:'Obtain the dated policy and decision rationale, then confirm the available review route and evidence requirements.'}
+  "examples": [
+    {
+      "title": "Fictional example: a documented date-entry error",
+      "facts": "The saved submitted claim has a service date that differs from the signed service record. The response identifies that date as a problem.",
+      "reasoning": "The comparison supports a reporting error, but does not establish whether to send a new claim, a replacement or another correction request. The claim’s processing status still matters.",
+      "action": "Validate the date with the responsible staff, confirm status and the receiver’s correction instructions, and keep the original and corrected versions. If the records conflict, resolve that conflict first. A corrected date does not establish coverage or guarantee payment."
+    },
+    {
+      "title": "Fictional example: accurate data, disputed policy scope",
+      "facts": "A claim and service record agree. The decision cites a policy, but the available version appears to describe a different setting.",
+      "reasoning": "This supports investigating the policy’s applicability; it does not prove the payer is wrong or justify changing accurate data.",
+      "action": "Retrieve the policy version effective for the service and the decision rationale. If the mismatch is confirmed, establish the requester’s available review process and timing, then submit the relevant argument and evidence. If the policy does apply, reassess the case rather than repeating the same unsupported dispute."
+    }
   ],
-  sourceLinks:[{title:'CMS: Original Medicare fee-for-service appeals',url:'https://www.cms.gov/medicare/appeals-grievances/fee-for-service',scope:'Program-specific authority hub. Do not transfer Medicare FFS appeal processes to Medicare Advantage, Medicaid, or commercial provider disputes.'}]
- },
+  "sourceLinks": [
+    {
+      "title": "CMS: Incomplete or invalid claims — Chapter 1 (PDF)",
+      "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+      "scope": "Medicare FFS; sections 80.3.1–80.3.2, PDF pages 217–219. Section revisions 1588 and 4388; chapter cover revision 13725 (10 April 2026). Checked 31 October 2026. Supports the unprocessable-return distinction; specific edit exceptions and submission instructions still matter."
+    },
+    {
+      "title": "CMS: Reopenings — Chapter 34 (PDF)",
+      "url": "https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/downloads/clm104c34.pdf",
+      "scope": "Medicare FFS; sections 10, 10.4 and 10.4.1, PDF pages 3 and 5–6. Cover revision 4219 (25 January 2019). Checked 31 October 2026. Supports the correction/appeal distinction and clock warning; not a guarantee of reopening."
+    },
+    {
+      "title": "CMS: First-level appeal — redetermination",
+      "url": "https://www.cms.gov/medicare/appeals-grievances/fee-for-service/first-level-appeal-redetermination-medicare-contractor",
+      "scope": "Original Medicare FFS; opening paragraph, Requesting a Redetermination, and Dismissal of a Redetermination Request. Page modified 10 March 2026; checked 31 October 2026. Supports requester and process distinctions; this guide does not calculate a case-specific deadline."
+    }
+  ]
+},
  {
   slug:'build-a-deadline-evidence-record',title:'Check the rule before calculating a claim deadline',
   summary:'Record the rule, triggering event, and counting method instead of guessing a universal filing or appeal period.',
