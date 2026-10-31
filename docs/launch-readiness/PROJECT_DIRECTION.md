@@ -80,3 +80,7 @@ A guessed CMS general web-policy URL was inaccessible during this check; it was 
 Removed the custom Print checklist button; retained native browser printing. Added First check, Choose your next step, Examples, and Sources and limits anchor links to all three guides. No billing assertions or research dossiers changed.
 
 Executed: npm run build (exit 0); npm run test:launch (25 passed); node scripts/test-public-search.js (21 passed); python scripts/audit-built-pages.py (13 pages plus sitemap/robots passed, including anchor existence); npm run typecheck (exit 0). Publication-boundary checks remain separate from legal/factual approval. This checkpoint is preview implementation, not a live release.
+
+## Guide content checkpoint — 30–31 October 2026
+
+Completed the claim-response guide refinement: five conditional routes, two fictional scenarios, three directly inspected CMS references with adjacent links and scope/locator notes. Build, types, 21 search and 25 checklist/regression tests passed; generated-page and publication-boundary audits passed. Five targeted desktop browser checks passed on 31 October. All 144 research files (71 dossiers) and the other two guide records were preserved. See CLAIM_RESPONSE_GUIDE_REVIEW_2026-10-30.md for evidence, the corrected preservation-comparison path error and remaining limits. Next bounded content task is the correction-versus-review guide.
