@@ -2,6 +2,7 @@
 export type PublicGuide = {
  slug: string; title: string; summary: string; firstCheck: string;
  updatedOn?: string; sourcesCheckedOn?: string; scopeNote?: string;
+ recordFields?: { field: string; check: string }[];
  sections: { title: string; paragraphs: string[]; sourceUrls?: string[] }[];
  branches: { finding: string; action: string; keep: string }[];
  examples: { title: string; facts: string; reasoning: string; action: string }[];
@@ -239,24 +240,154 @@ export const publicGuides: PublicGuide[] = [
   ]
 },
  {
-  slug:'build-a-deadline-evidence-record',title:'Check the rule before calculating a claim deadline',
-  summary:'Record the rule, triggering event, and counting method instead of guessing a universal filing or appeal period.',
-  firstCheck:'Identify which action is due, who is taking it, and which payer, program, contract, or notice governs that action.',
-  sections:[
-   {title:'Keep the clocks separate',paragraphs:['Create a separate entry for initial filing, claim correction, review, or appeal where those actions have distinct requirements. Do not reuse one date or time period simply because the same claim is involved. Record whether the source refers to service, discharge, submission, receipt, notice, or another event.','This is a recommended evidence worksheet, not a deadline calculator. It intentionally supplies no default number of days. If the governing rule is unclear, obtain qualified help promptly rather than treating an estimated date as reliable.']},
-   {title:'Complete the evidence record',paragraphs:['For each action, record: the requesting party; applicable payer/product and setting; source title and exact section; effective period; triggering event; evidence of that event; time unit; counting convention; any supported exception; and the person who checked the calculation. Record uncertainties explicitly.','Keep proof of sending separate from proof of receipt or acceptance. Ask what the applicable rule requires and which record establishes it. A conversation, corrected submission, or request for review should not be assumed to restart or pause a clock.']},
-   {title:'Resolve conflicts before relying on a date',paragraphs:['If a notice, provider manual, and phone answer disagree, preserve all three. Check whether they cover the same product, requesting party, action, and effective period. Seek clarification of the conflict instead of choosing the most generous period.','For internal prevention, assign an owner to each unresolved timing question, keep the source with the recorded date, and recheck when the payer or process changes. Use your organization’s approved systems for real claim details.']}
+  "slug": "build-a-deadline-evidence-record",
+  "title": "Check the rule before calculating a claim deadline",
+  "summary": "Identify the action, the rule and the event that starts the clock. Keep the evidence with the date so another biller can check it.",
+  "firstCheck": "Name the action that is due: initial claim filing, correction, a particular review or appeal, or a response to an information request. Identify who is acting and the payer/product. Then find the written requirement for that exact process.",
+  "updatedOn": "31 October 2026",
+  "sourcesCheckedOn": "31 October 2026",
+  "scopeNote": "This is an investigation checklist, not a deadline calculator. It supplies no default filing period or extension. If time may be short, escalate promptly rather than waiting to finish the checklist. Medicare examples below do not set deadlines for other payers or establish that an appeal is available.",
+  "branches": [
+    {
+      "finding": "The action, applicable rule and starting event are confirmed.",
+      "action": "Record the time unit and counting instructions, calculate the date and have a second person check it against the source. Confirm the correct recipient, submission channel and what counts as timely filing. Preserve receipt evidence after sending.",
+      "keep": "Exact rule and effective period, trigger evidence, calculation, reviewer and submission/receipt records."
+    },
+    {
+      "finding": "You have the rule but cannot establish the starting event.",
+      "action": "Find the notice, delivery or portal record relevant to that event. Check whether the rule uses actual receipt, a receipt presumption, service, discharge or another event. Keep competing dates visible and request clarification; do not choose whichever gives more time.",
+      "keep": "Notice date, available delivery or receipt evidence, source of each date and any unresolved discrepancy."
+    },
+    {
+      "finding": "Two instructions give different deadlines or counting methods.",
+      "action": "Compare their payer/product, requester, action, claim setting and effective period. If both appear applicable, ask the payer or appropriate specialist to resolve the conflict in writing. Escalate potential time pressure immediately; a pending question is not an assumed extension.",
+      "keep": "Both passages, scope comparison, contact record and the unresolved timing risk."
+    },
+    {
+      "finding": "The deadline appears to have passed.",
+      "action": "Recheck the rule, event and calculation promptly. Then determine whether that exact process permits an exception, a late-filing request or another review route for this requester. Preserve evidence explaining the delay and follow the applicable instructions if a route exists. Do not promise an extension, assume an appeal, or change a date to make the case appear timely.",
+      "keep": "Original timeline, evidence supporting or weakening the exception, controlling instructions and the resulting decision."
+    },
+    {
+      "finding": "You are switching from an inquiry or correction to another process.",
+      "action": "Create a separate deadline record for the new action. Confirm its own trigger and any effect of the earlier request under the actual rule. Do not treat a phone call, service ticket or corrected claim as automatically pausing or restarting another clock.",
+      "keep": "Each process and source separately, all notices, earlier requests and evidence of receipt."
+    }
   ],
-  branches:[
-   {finding:'The action, controlling rule, and trigger are established.',action:'Calculate using that rule, verify the arithmetic and counting convention, and retain the source and trigger evidence.',keep:'Source section/version, trigger record, calculation, and reviewer.'},
-   {finding:'The rule is known but the triggering event is uncertain.',action:'Obtain evidence of the relevant event; do not substitute a convenient date.',keep:'Notice envelope/portal history or other relevant receipt evidence, with limitations.'},
-   {finding:'Sources conflict or requester rights are unclear.',action:'Escalate promptly to the appropriate payer contact or specialist. Keep uncertainty visible and do not assume an extension.',keep:'Conflicting passages, scope comparison, contact record, and pending questions.'}
+  "recordFields": [
+    {
+      "field": "Action and requester",
+      "check": "Identify the precise filing or review step and who can take it. A member appeal and a provider dispute may be different processes."
+    },
+    {
+      "field": "Applicable coverage",
+      "check": "Record payer, product, program, relevant jurisdiction and claim setting. Confirm the instruction covers this case."
+    },
+    {
+      "field": "Controlling source",
+      "check": "Keep its title, URL or document, exact section and effective period. A search snippet or remembered deadline is not the rule."
+    },
+    {
+      "field": "Starting event",
+      "check": "Name the trigger and evidence for it. Record service, notice, sending and receipt dates separately; identify any applicable receipt presumption."
+    },
+    {
+      "field": "Counting method",
+      "check": "Record the stated unit, start/end treatment, calendar or business days, and any supported weekend/holiday rule. Check months and years as written rather than substituting a fixed day count."
+    },
+    {
+      "field": "Submission requirements",
+      "check": "Confirm recipient, channel, required contents and whether sending or receipt governs. Keep evidence linking the submission to this action."
+    },
+    {
+      "field": "Exceptions and uncertainty",
+      "check": "Record the actual exception criteria and supporting facts, or mark them unresolved. An exception request is not an approval."
+    },
+    {
+      "field": "Calculation and follow-up",
+      "check": "Keep the arithmetic, checked date, reviewer and follow-up owner. Set an internal target separately from the governing deadline."
+    }
   ],
-  examples:[
-   {title:'Fictional example: a print date and a received date',facts:'A notice shows one date; the office records receiving it later.',reasoning:'Neither date can be selected without identifying the triggering event in the governing rule.',action:'Retain both records and verify the rule before calculating. The example establishes no specific appeal period.'},
-   {title:'Fictional example: member and provider processes',facts:'A biller finds a member appeal page while handling a contracted provider payment dispute.',reasoning:'The page may concern a different requesting party and action.',action:'Find the applicable provider process and authority. Do not copy the member deadline into the case worksheet.'}
+  "sections": [
+    {
+      "title": "1. Keep the filing and review records separate",
+      "paragraphs": [
+        "A claim can be involved in more than one process. Create a separate entry for each action rather than attaching one “deadline” to the entire account. If you do not yet know whether the response is a return, a processing status or a decision, establish that before selecting a review period.",
+        "Use the checklist below in your approved work system. These are recommended investigation fields, not a universal list of documents a payer requires. Do not enter patient details in this website’s search or contact messages."
+      ]
+    },
+    {
+      "title": "2. Check what the receipt evidence actually proves",
+      "paragraphs": [
+        "For Medicare FFS initial filing, Chapter 1 ties the receipt date to the appropriate claims-processing contractor and the submission requirements. A biller should therefore check the receiver and claim reference, rather than assuming an internal “sent” timestamp establishes timely filing. Initial-filing exceptions are addressed separately in section 70.7.",
+        "As an investigation step, compare the saved submission, acknowledgment, payer record and any delivery information. Note missing links. A record may establish only one event; do not treat it as proof of every later stage."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf"
+      ]
+    },
+    {
+      "title": "3. Check the counting rule for this review",
+      "paragraphs": [
+        "For Medicare FFS redeterminations, Chapter 29 addresses notice receipt, delivery allowances and weekend or nonwork-day treatment. Those instructions belong to that review process. Do not apply them automatically to initial claim filing or another payer’s dispute.",
+        "When calculating any deadline, show the rule used beside the arithmetic. If the source says months or calendar years, do not replace it with a remembered number of days. If the counting convention is missing, flag the date as unconfirmed and seek clarification."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c29.pdf"
+      ]
+    },
+    {
+      "title": "4. Investigate an exception without assuming it applies",
+      "paragraphs": [
+        "CMS distinguishes beneficiary and provider/supplier good-cause considerations for late Medicare redeterminations. Provider extensions are not routinely granted. An exception needs the applicable criteria and case evidence; a general statement that “Medicare allows late appeals” is not enough.",
+        "For an initial-filing problem, return to the initial-filing authority instead of borrowing an appeal exception. If official guidance, a notice and a phone answer conflict, preserve the conflict for the responsible reviewer. Do not present a favorable interpretation as an approved extension."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c29.pdf"
+      ]
+    },
+    {
+      "title": "5. Do not assume another request stops the clock",
+      "paragraphs": [
+        "CMS Chapter 34 states that requesting a Medicare reopening does not pause the appeal filing period. Keep any available appeal deadline separate while investigating a reopening. This warning does not mean every claim decision is appealable.",
+        "For other processes, identify the actual authority for any pause, restart or extension. After taking action, match the receipt record to the submitted request and track the next response. Review unresolved timing questions at handoff so they do not disappear when a different biller takes over."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/downloads/clm104c34.pdf"
+      ]
+    }
   ],
-  sourceLinks:[{title:'CMS: Original Medicare fee-for-service appeals',url:'https://www.cms.gov/medicare/appeals-grievances/fee-for-service',scope:'One official program reference. The appropriate authority for another payer or provider dispute must be established separately.'}]
- }
+  "examples": [
+    {
+      "title": "Fictional example: the notice and office log show different dates",
+      "facts": "A notice is dated Monday; the office log records delivery on Thursday. Staff have not yet identified the rule governing the requested review.",
+      "reasoning": "The dates describe different events. Neither can be chosen merely because it produces a later deadline. A receipt presumption or evidence rule may also matter.",
+      "action": "Identify the process and rule, retain the notice and delivery record, and establish the required trigger before calculating. If time may be short, escalate now. The example sets no filing period and does not establish eligibility for review."
+    },
+    {
+      "title": "Fictional example: a processing ticket is still open",
+      "facts": "The office opened a payer service ticket after a decision and has now found a possible formal review route. No written instruction says the ticket pauses that review period.",
+      "reasoning": "A ticket and a formal review are separate actions. The office has not established an extension or even confirmed who may request the review.",
+      "action": "Confirm eligibility, trigger, recipient and deadline promptly, and determine the required action under that rule. Keep the ticket history separately. If the period appears expired, investigate the applicable late-filing route without assuming one exists."
+    }
+  ],
+  "sourceLinks": [
+    {
+      "title": "CMS: Initial claim filing — Chapter 1 (PDF)",
+      "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c01.pdf",
+      "scope": "Medicare FFS; sections 70.2–70.3 and 70.7, PDF pages 184–188 and 190–191. Cover revision 13725, issued 10 April 2026. Checked 31 October 2026. Receipt/submission and initial-filing exceptions; not a universal appeal rule."
+    },
+    {
+      "title": "CMS: Appeal timing — Chapter 29 (PDF)",
+      "url": "https://www.cms.gov/regulations-and-guidance/guidance/manuals/downloads/clm104c29.pdf",
+      "scope": "Medicare FFS; sections 240–240.3, PDF pages 15–18. Cover revision 12423, issued 20 December 2023; relevant section revision 4278. Checked 31 October 2026. Redetermination counting and good-cause distinctions; other processes require their own authority."
+    },
+    {
+      "title": "CMS: Reopening and appeal clocks — Chapter 34 (PDF)",
+      "url": "https://www.cms.gov/Regulations-and-Guidance/Guidance/Manuals/downloads/clm104c34.pdf",
+      "scope": "Medicare FFS; section 10, PDF page 3. Cover revision 4219, 25 January 2019; section revision 3568. Checked 31 October 2026. Supports the reopening clock warning, not appeal eligibility or an extension."
+    }
+  ]
+}
 ];
 export const getPublicGuide = (slug:string) => publicGuides.find(g=>g.slug===slug);
