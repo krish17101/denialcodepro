@@ -1,0 +1,82 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> nextjs@0.1.0 typecheck
+> tsc --noEmit
+
+PASS / headings, landmarks, IDs, internal links and metadata
+PASS /_not-found headings, landmarks, IDs, internal links and metadata
+PASS /about headings, landmarks, IDs, internal links and metadata
+PASS /contact headings, landmarks, IDs, internal links and metadata
+PASS /disclaimer headings, landmarks, IDs, internal links and metadata
+PASS /guides headings, landmarks, IDs, internal links and metadata
+PASS /guides/build-a-deadline-evidence-record headings, landmarks, IDs, internal links and metadata
+PASS /guides/choose-a-correction-or-review headings, landmarks, IDs, internal links and metadata
+PASS /guides/find-the-claim-response headings, landmarks, IDs, internal links and metadata
+PASS /methodology headings, landmarks, IDs, internal links and metadata
+PASS /privacy-policy headings, landmarks, IDs, internal links and metadata
+PASS /sources headings, landmarks, IDs, internal links and metadata
+PASS /terms headings, landmarks, IDs, internal links and metadata
+PASS /tools/evidence-checklist headings, landmarks, IDs, internal links and metadata
+{"pages_passed": 14, "failed": 0, "scope": "All generated HTML pages. Dynamic search separately covered by server-rendered tests; no live HTTP or browser claims."}
+PASS robots/noindex compatibility and exact sitemap route coverage
+PASS exact approved route-entry set
+PASS public dependency graph excludes held knowledge
+PASS built routes exclude held code and payer paths
+PASS sample held official descriptions absent from HTML, RSC and JS
+PASS three original guide pages generated
+Inspected 109 build artifacts; sentinel scan is sampled, dependency graph is the broader boundary.
+{"passed":5,"failed":0,"reachableModules":28,"scope":"Publication boundary and archival integrity; not copyright or factual verification"}
+
+PASS ranking: appeal deadline
+PASS ranking: corrected claim
+PASS ranking: clearinghouse rejection
+PASS ranking: ERA
+PASS ranking: late filing
+PASS ranking: replacement
+PASS code is not a guide match: CO-29
+PASS code is not a guide match: carc 16
+PASS code is not a guide match: N123
+PASS code is not a guide match: 96
+PASS case and whitespace
+PASS empty query
+PASS unrelated query
+PASS stop words alone
+PASS query length bounded
+PASS unmatched suggestions labeled honestly
+PASS code query has scope notice
+PASS empty search browses guides
+PASS query escaped in rendered output
+PASS search retains query and uses GET
+PASS suggestions never leave published guides
+{"passed":21,"failed":0,"scope":"Search ranking, scope, escaping and server-rendered controls; not browser interaction tests"}
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> nextjs@0.1.0 test:launch
+> node scripts/test-launch-readiness.js
+
+PASS unknown/unknown/unknown
+PASS unknown/unknown/discrepancy
+PASS unknown/unknown/accurate
+PASS unknown/known/unknown
+PASS unknown/known/discrepancy
+PASS unknown/known/accurate
+PASS front/unknown/unknown
+PASS front/unknown/discrepancy
+PASS front/unknown/accurate
+PASS front/known/unknown
+PASS front/known/discrepancy
+PASS front/known/accurate
+PASS adjudicated/unknown/unknown
+PASS adjudicated/unknown/discrepancy
+PASS adjudicated/unknown/accurate
+PASS adjudicated/known/unknown
+PASS adjudicated/known/discrepancy
+PASS adjudicated/known/accurate
+PASS analytics disabled
+PASS raw query not sent in search event
+PASS search disclosure and length cap
+PASS feedback processor and patient warning visible
+PASS privacy reflects ad-free candidate
+PASS tool avoids storage and network submission
+PASS changing selections invalidates stale result
+{"passed":25,"failed":0,"scope":"18 decision cases and 7 release-candidate regression checks; not source or legal verification"}

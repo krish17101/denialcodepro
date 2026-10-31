@@ -94,3 +94,11 @@ Completed correction-versus-review refinement with three directly inspected CMS 
 Completed the third planned guide refinement: five conditional deadline routes, an eight-field on-page record, five explanation sections, two fictional examples and three scoped CMS references. No default deadline, calculator, patient-data input or download was added. Build/types, 21 search cases, 25 checklist/regression cases, 13-page audit and five publication-boundary checks passed, with timing/scope detailed in DEADLINE_GUIDE_REVIEW_2026-10-31.md. Five targeted desktop browser checks passed after successful preview deployment. All 144 research files and the other two guide data records were preserved.
 
 Next stage is release readiness, not bulk page production: mobile-device testing, actual operator/contact/privacy facts, contact delivery verification, legacy-route disposition and a concrete live indexing/release plan. Mobile and independent expert review remain outstanding; no AdSense, legal or public-release approval is implied.
+
+## Contact and release checkpoint — 31 October 2026
+
+Added a dedicated Contact page, footer navigation and sitemap entry using the existing feedback address. Build/types, 14-page audit, five publication-boundary checks, 21 search cases and 25 checklist/regression checks passed. Six local HTTP cases passed after recovering an unavailable test server; four targeted deployed desktop checks passed. Research hash comparison preserved all 144 files / 71 dossiers. See RELEASE_CHECKPOINT_2026-10-31.md for commands, evidence, the server recovery and limits.
+
+Prepared a 318-path disposition proposal from the identified main baseline (311 code URL identities, six sitemap static paths, one additional directory). This is not a live crawl or official code inventory. Proposed removal behavior is a genuine 404 where there is no equivalent replacement; production approval remains pending.
+
+Next concrete dependencies: supported mobile-device test, confirmed publishable operator identity, mailbox delivery and actual privacy/retention facts. Root noindex still needs a separate production-context release change after approval; preview remains noindex. No live merge, ads or paid license accepted.
