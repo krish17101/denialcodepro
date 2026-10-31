@@ -84,3 +84,7 @@ Executed: npm run build (exit 0); npm run test:launch (25 passed); node scripts/
 ## Guide content checkpoint — 30–31 October 2026
 
 Completed the claim-response guide refinement: five conditional routes, two fictional scenarios, three directly inspected CMS references with adjacent links and scope/locator notes. Build, types, 21 search and 25 checklist/regression tests passed; generated-page and publication-boundary audits passed. Five targeted desktop browser checks passed on 31 October. All 144 research files (71 dossiers) and the other two guide records were preserved. See CLAIM_RESPONSE_GUIDE_REVIEW_2026-10-30.md for evidence, the corrected preservation-comparison path error and remaining limits. Next bounded content task is the correction-versus-review guide.
+
+## Correction guide checkpoint — 31 October 2026
+
+Completed correction-versus-review refinement with three directly inspected CMS sources, five conditional routes, six investigation sections and two fictional examples. Medicare unprocessable returns, clerical corrections and redetermination are distinguished, with a visible clock warning. Build/types, 21 search tests, 25 checklist/regression tests, 13-page audit and five boundary checks passed. Four targeted desktop browser checks passed after successful preview deployment. Other guide records and all 144 research files were preserved. See CORRECTION_GUIDE_REVIEW_2026-10-31.md. Next content task: deadline-evidence guide. Mobile, professional review and live-release dependencies remain open.
