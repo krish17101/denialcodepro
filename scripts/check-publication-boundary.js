@@ -9,7 +9,7 @@ const walk = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isD
 const relative = p => path.relative(root,p).replaceAll('\\','/');
 let count=0;
 function test(name,fn){fn();count++;console.log('PASS '+name);}
-const allowed=['app/page.tsx','app/about/page.tsx','app/disclaimer/page.tsx','app/guides/page.tsx','app/guides/[slug]/page.tsx','app/methodology/page.tsx','app/privacy-policy/page.tsx','app/search/page.tsx','app/sources/page.tsx','app/terms/page.tsx','app/tools/evidence-checklist/page.tsx'];
+const allowed=['app/page.tsx','app/about/page.tsx','app/contact/page.tsx','app/disclaimer/page.tsx','app/guides/page.tsx','app/guides/[slug]/page.tsx','app/methodology/page.tsx','app/privacy-policy/page.tsx','app/search/page.tsx','app/sources/page.tsx','app/terms/page.tsx','app/tools/evidence-checklist/page.tsx'];
 const entries=walk(path.join(root,'app')).filter(p=>/\/(page|route)\.[jt]sx?$/.test(p));
 test('exact approved route-entry set',()=>assert.deepEqual(entries.map(relative).sort(),allowed.sort()));
 const seen=new Set();

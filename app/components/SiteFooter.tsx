@@ -16,6 +16,7 @@ const footerLinks = [
       { href: '/sources', label: 'Sources' },
       { href: '/methodology', label: 'Editorial approach' },
       { href: '/about', label: 'About' },
+      { href: '/contact', label: 'Contact' },
     ],
   },
   {
