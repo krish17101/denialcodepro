@@ -88,3 +88,9 @@ Completed the claim-response guide refinement: five conditional routes, two fict
 ## Correction guide checkpoint — 31 October 2026
 
 Completed correction-versus-review refinement with three directly inspected CMS sources, five conditional routes, six investigation sections and two fictional examples. Medicare unprocessable returns, clerical corrections and redetermination are distinguished, with a visible clock warning. Build/types, 21 search tests, 25 checklist/regression tests, 13-page audit and five boundary checks passed. Four targeted desktop browser checks passed after successful preview deployment. Other guide records and all 144 research files were preserved. See CORRECTION_GUIDE_REVIEW_2026-10-31.md. Next content task: deadline-evidence guide. Mobile, professional review and live-release dependencies remain open.
+
+## Deadline guide checkpoint — 31 October 2026
+
+Completed the third planned guide refinement: five conditional deadline routes, an eight-field on-page record, five explanation sections, two fictional examples and three scoped CMS references. No default deadline, calculator, patient-data input or download was added. Build/types, 21 search cases, 25 checklist/regression cases, 13-page audit and five publication-boundary checks passed, with timing/scope detailed in DEADLINE_GUIDE_REVIEW_2026-10-31.md. Five targeted desktop browser checks passed after successful preview deployment. All 144 research files and the other two guide data records were preserved.
+
+Next stage is release readiness, not bulk page production: mobile-device testing, actual operator/contact/privacy facts, contact delivery verification, legacy-route disposition and a concrete live indexing/release plan. Mobile and independent expert review remain outstanding; no AdSense, legal or public-release approval is implied.
