@@ -1,53 +1,9 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { AlertCircle, ArrowRight } from 'lucide-react';
-import { getGuideBySlug } from '../../../lib/v3/search';
-
-interface Props {
-  params: { slug: string };
-}
-
-export function generateMetadata({ params }: Props): Metadata {
-  return {
-    title: `Guide: ${params.slug} — DenialCodePro`,
-    description: 'Denial resolution workflow guide for U.S. medical billers.',
-    robots: { index: false },
-  };
-}
-
-export default function GuidePage({ params }: Props) {
-  const guide = getGuideBySlug(params.slug);
-  const displaySlug = decodeURIComponent(params.slug);
-
-  if (guide === null) {
-    return (
-      <main className="mx-auto w-full max-w-4xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <h1 className="text-2xl font-bold tracking-tight text-navy-800 sm:text-3xl">
-            {displaySlug}
-          </h1>
-          <p className="mt-2 text-sm text-slate-500">Denial resolution guide</p>
-        </div>
-
-        <div className="mt-6 flex items-start gap-4 rounded-2xl border border-amber-200 bg-amber-50 p-6">
-          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
-          <p className="text-sm leading-relaxed text-amber-800">
-            This guide is being researched and will be published once verified.
-          </p>
-        </div>
-
-        <div className="mt-6">
-          <Link
-            href="/guides"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-navy-700 shadow-sm transition hover:bg-slate-50"
-          >
-            Browse all guides
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-      </main>
-    );
-  }
-
-  return null;
-}
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { publicGuides, getPublicGuide } from '../../../lib/public/guides';
+type Props = {params: Promise<{slug:string}>};
+export const dynamicParams = false;
+export function generateStaticParams(){return publicGuides.map(g=>({slug:g.slug}));}
+export async function generateMetadata({params}:Props):Promise<Metadata>{const {slug}=await params;const g=getPublicGuide(slug);if(!g)return {title:'Guide not found',robots:{index:false}};return {title:g.title,description:g.summary,alternates:{canonical:`/guides/${g.slug}`}};}
+export default async function GuidePage({params}:Props){const {slug}=await params;const g=getPublicGuide(slug);if(!g)notFound();return <main id="main-content" tabIndex={-1} className="mx-auto max-w-4xl px-5 py-12"><Link href="/guides" className="text-sm font-semibold text-navy-700 underline">All investigation guides</Link><h1 className="mt-5 text-3xl font-bold leading-tight text-navy-800 sm:text-4xl">{g.title}</h1><p className="mt-4 text-lg text-slate-600">{g.summary}</p><p className="mt-3 text-sm text-slate-500">Original editorial workflow · Updated {g.updatedOn ?? '27 October 2026'} · Fictional examples</p><nav aria-label="On this page" className="mt-6 flex flex-wrap gap-4 text-sm font-semibold text-navy-700"><a href="#first-check" className="underline">First check</a><a href="#next-steps" className="underline">Choose your next step</a>{g.recordFields?.length ? <a href="#deadline-record" className="underline">Deadline record</a> : null}<a href="#examples" className="underline">Examples</a><a href="#sources" className="underline">Sources and limits</a></nav><section id="first-check" className="scroll-mt-24 mt-7 rounded-xl border border-emerald-200 bg-emerald-50 p-6"><h2 className="font-bold text-emerald-900">What to check first</h2><p className="mt-2 text-emerald-900">{g.firstCheck}</p><p className="mt-4 text-sm text-emerald-900">{g.scopeNote ?? 'This guide recommends investigation steps. It does not establish a payer requirement, deadline, appeal right, or permission to bill a patient.'}</p></section><section id="next-steps" className="scroll-mt-24 mt-9"><h2 className="text-2xl font-bold text-navy-800">Match the finding to a next step</h2><div className="mt-5 space-y-4">{g.branches.map(b=><article key={b.finding} className="rounded-xl border border-slate-200 bg-white p-6"><h3 className="font-bold text-navy-800">If: {b.finding}</h3><p className="mt-3 text-slate-700"><strong>Then:</strong> {b.action}</p><p className="mt-3 text-sm text-slate-600"><strong>Keep:</strong> {b.keep}</p></article>)}</div></section>{g.sections.map(s=><section className="mt-9" key={s.title}><h2 className="text-2xl font-bold text-navy-800">{s.title}</h2>{s.paragraphs.map(p=><p className="mt-4 leading-relaxed text-slate-700" key={p}>{p}</p>)}{s.sourceUrls?.map(url => <p className="mt-3 text-sm" key={url}><a href={url} className="font-semibold text-navy-700 underline">Source: {g.sourceLinks.find(ref => ref.url === url)?.title}</a></p>)}</section>)}{g.recordFields?.length ? <section id="deadline-record" className="scroll-mt-24 mt-9"><h2 className="text-2xl font-bold text-navy-800">Build your deadline record</h2><p className="mt-3 text-slate-600">Use these checks in your approved work system. This page does not collect case information or calculate a deadline.</p><dl className="mt-5 divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">{g.recordFields.map(row => <div key={row.field} className="grid gap-2 p-5 sm:grid-cols-[12rem_1fr]"><dt className="font-semibold text-navy-800">{row.field}</dt><dd className="leading-relaxed text-slate-700">{row.check}</dd></div>)}</dl></section> : null}<section id="examples" className="scroll-mt-24 mt-9"><h2 className="text-2xl font-bold text-navy-800">Work through an example</h2>{g.examples.map(e=><article className="mt-5 rounded-xl border border-slate-200 bg-white p-6" key={e.title}><h3 className="font-bold text-navy-800">{e.title}</h3><p className="mt-3 text-slate-700"><strong>Facts:</strong> {e.facts}</p><p className="mt-3 text-slate-700"><strong>Reasoning:</strong> {e.reasoning}</p><p className="mt-3 text-slate-700"><strong>Conditional action:</strong> {e.action}</p></article>)}</section><section id="sources" className="scroll-mt-24 mt-9 border-t border-slate-200 pt-7"><h2 className="text-xl font-bold text-navy-800">Official references and limitations</h2><p className="mt-3 text-sm text-slate-600">The linked references help locate applicable authority; they do not prescribe every editorial step above. Source pages checked {g.sourcesCheckedOn ?? '27 October 2026'}. Confirm the controlling requirement for the actual claim.</p><ul className="mt-4 space-y-4">{g.sourceLinks.map(s=><li key={s.url}><a href={s.url} className="font-semibold text-navy-700 underline">{s.title}</a><p className="mt-1 text-sm text-slate-600">{s.scope}</p></li>)}</ul><Link href="/tools/evidence-checklist" className="mt-7 inline-block rounded-lg bg-navy-800 px-5 py-3 font-semibold text-white">Build your evidence checklist</Link></section></main>}

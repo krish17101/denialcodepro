@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
  * Root layout — V3.
  *
  * Preserves:
- *  - GA4 Analytics component (G-QL011FYKSR — initialized once here only)
+ *  - Analytics integration point (disabled pending consent/privacy review)
  *  - metadataBase pointing to https://denialcodepro.com
  *  - SiteHeader, SiteFooter, FeedbackForm
  *  - Inter font
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: '%s — DenialCodePro',
   },
   description:
-    'Reference information for U.S. medical billing denial codes. Search a denial code, remark code, or denial combination.',
+    'Original claim-investigation guides and an evidence checklist for U.S. medical billers.',
   openGraph: {
     siteName: 'DenialCodePro',
     type: 'website',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   // Robots default — individual pages may override
   robots: {
-    index: true,
+    index: false, // Preview candidate: enable indexing only after release review.
     follow: true,
   },
 };
@@ -51,17 +51,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:p-4 focus:text-navy-900">Skip to main content</a>
         <div className="flex min-h-screen flex-col bg-slate-50">
           <SiteHeader />
           <div className="flex-1">{children}</div>
           <FeedbackForm />
           <SiteFooter />
         </div>
-        {/*
-          Analytics — GA4 G-QL011FYKSR.
-          Initialized here and ONLY here. Do not add a second gtag script
-          anywhere else in the application.
-        */}
+        {/* Analytics remains disabled in this release candidate. */}
         <Analytics />
       </body>
     </html>

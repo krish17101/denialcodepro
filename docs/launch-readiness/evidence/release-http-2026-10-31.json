@@ -1,0 +1,49 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "scope": "local Next production server HTTP responses; not deployed HTTP/mobile/email tests",
+  "results": [
+    {
+      "path": "/contact",
+      "status": 200,
+      "expected": 200,
+      "body_check": true,
+      "noindex_present": true
+    },
+    {
+      "path": "/code/1",
+      "status": 404,
+      "expected": 404,
+      "body_check": true,
+      "noindex_present": true
+    },
+    {
+      "path": "/adjustment-codes",
+      "status": 404,
+      "expected": 404,
+      "body_check": true,
+      "noindex_present": true
+    },
+    {
+      "path": "/denial-codes",
+      "status": 404,
+      "expected": 404,
+      "body_check": true,
+      "noindex_present": true
+    },
+    {
+      "path": "/guides/not-a-published-guide",
+      "status": 404,
+      "expected": 404,
+      "body_check": true,
+      "noindex_present": true
+    },
+    {
+      "path": "/search?q=deadline",
+      "status": 200,
+      "expected": 200,
+      "body_check": true,
+      "noindex_present": true
+    }
+  ]
+}
