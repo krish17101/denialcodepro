@@ -108,3 +108,9 @@ Next concrete dependencies: supported mobile-device test, confirmed publishable 
 Prepared an inactive, explicit indexing gate for approved Vercel production builds; previews stay noindex even if the approval flag is present. No hosted flag or live setting was changed. Twelve policy cases, two rendered-build audits (14 pages each), 322 production-fixture HTTP cases, six preview-fixture HTTP cases, two negative controls and publication-boundary/type checks passed. All 144 research files / 71 dossiers remained identical. Historical search/checklist tests were not rerun or counted as new results. See INDEXING_RELEASE_CHECK_2026-11-01.md and evidence logs.
 
 The prior hardcoded-noindex release issue now has a tested configuration mechanism, but activation still requires an approved production build and verification of actual domain/headers. Owner identity, mailbox delivery, email retention and mobile testing remain open; do not invent them or treat this checkpoint as launch/AdSense approval.
+
+## Deployed keyboard checkpoint — 1 November 2026
+
+Six targeted desktop keyboard cases passed on the deployed preview: search-to-button focus, suggestion activation, checklist selection/tab order, build, stale-result invalidation and reset. Homepage and checklist retained noindex; measured focus outlines were visible. No defect was found and no application change or repeat build was necessary. See KEYBOARD_PREVIEW_REVIEW_2026-11-01.md and screenshot for exact coverage and remaining limits.
+
+Stop repeating unchanged green checks. The next useful milestone needs actual mobile testing or closure of operator/mailbox/privacy facts and the content/URL release decision. These cannot be inferred from a working desktop preview.
