@@ -1,0 +1,38 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "base": "http://127.0.0.1:3017",
+  "mode": "preview",
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/guides/build-a-deadline-evidence-record",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/search?q=deadline",
+      "status": 200,
+      "noindex": true
+    },
+    {
+      "path": "/code/1",
+      "status": 404,
+      "noindex": true
+    },
+    {
+      "path": "/guides/not-a-published-guide",
+      "status": 404,
+      "noindex": true
+    }
+  ]
+}

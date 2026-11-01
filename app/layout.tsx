@@ -5,6 +5,7 @@ import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
 import { FeedbackForm } from './components/FeedbackForm';
 import { Analytics } from './components/Analytics';
+import { publicIndexingEnabled } from '../lib/public/indexing';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -38,7 +39,11 @@ export const metadata: Metadata = {
   },
   // Robots default — individual pages may override
   robots: {
-    index: false, // Preview candidate: enable indexing only after release review.
+    index: publicIndexingEnabled({
+      DENIALCODEPRO_INDEXING_APPROVED: process.env.DENIALCODEPRO_INDEXING_APPROVED,
+      VERCEL_ENV: process.env.VERCEL_ENV,
+      VERCEL_TARGET_ENV: process.env.VERCEL_TARGET_ENV,
+    }),
     follow: true,
   },
 };

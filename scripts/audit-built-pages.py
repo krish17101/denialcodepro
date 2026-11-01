@@ -3,12 +3,17 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import json
+import argparse
+
+parser=argparse.ArgumentParser()
+parser.add_argument('--indexing', choices=['preview','production'], default='preview')
+args=parser.parse_args()
 
 root=Path(__file__).resolve().parents[1]
 base=root/'.next/server/app'
 class Page(HTMLParser):
     def __init__(self):
-        super().__init__();self.ids=[];self.links=[];self.h1=0;self.main=0;self.canonical=None;self.robots=None;self.title=False;self.in_title=False;self.title_text="";self.description=None
+        super().__init__();self.ids=[];self.links=[];self.h1=0;self.main=0;self.canonical=None;self.robots=[];self.title=False;self.in_title=False;self.title_text="";self.description=None
     def handle_starttag(self,tag,attrs):
         d=dict(attrs)
         if d.get('id'):self.ids.append(d['id'])
@@ -18,7 +23,7 @@ class Page(HTMLParser):
         if tag=='title':self.title=True;self.in_title=True
         if tag=='meta' and d.get('name')=='description':self.description=d.get('content','')
         if tag=='link' and d.get('rel')=='canonical':self.canonical=d.get('href')
-        if tag=='meta' and d.get('name')=='robots':self.robots=d.get('content','')
+        if tag=='meta' and d.get('name') in ('robots','googlebot'):self.robots.append(d.get('content',''))
     def handle_data(self,data):
         if self.in_title:self.title_text+=data
     def handle_endtag(self,tag):
@@ -33,7 +38,12 @@ for route,file in sorted(pages.items()):
     assert p.h1==1,(route,'h1',p.h1);assert p.main==1,(route,'main',p.main)
     assert 'main-content' in p.ids,(route,'skip target')
     assert len(p.ids)==len(set(p.ids)),(route,'duplicate IDs')
-    assert p.title and p.robots and 'noindex' in p.robots,(route,'preview metadata')
+    tokens={t.strip().lower() for rule in p.robots for t in rule.split(',')}
+    assert p.title and p.robots,(route,'missing title/robots')
+    if args.indexing=='preview' or route=='/_not-found':
+        assert 'noindex' in tokens or 'none' in tokens,(route,'required noindex missing')
+    else:
+        assert 'index' in tokens and not tokens.intersection({'noindex','none'}),(route,'production indexing blocked')
     if route!='/_not-found':assert p.canonical=='https://denialcodepro.com'+('' if route=='/' else route) or (route=='/' and p.canonical=='https://denialcodepro.com/'),(route,p.canonical)
     if route!='/_not-found':
         assert p.title_text not in titles,(route,'duplicate title');titles.add(p.title_text)

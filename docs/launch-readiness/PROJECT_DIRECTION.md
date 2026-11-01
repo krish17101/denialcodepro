@@ -102,3 +102,9 @@ Added a dedicated Contact page, footer navigation and sitemap entry using the ex
 Prepared a 318-path disposition proposal from the identified main baseline (311 code URL identities, six sitemap static paths, one additional directory). This is not a live crawl or official code inventory. Proposed removal behavior is a genuine 404 where there is no equivalent replacement; production approval remains pending.
 
 Next concrete dependencies: supported mobile-device test, confirmed publishable operator identity, mailbox delivery and actual privacy/retention facts. Root noindex still needs a separate production-context release change after approval; preview remains noindex. No live merge, ads or paid license accepted.
+
+## Indexing safeguard checkpoint — 1 November 2026
+
+Prepared an inactive, explicit indexing gate for approved Vercel production builds; previews stay noindex even if the approval flag is present. No hosted flag or live setting was changed. Twelve policy cases, two rendered-build audits (14 pages each), 322 production-fixture HTTP cases, six preview-fixture HTTP cases, two negative controls and publication-boundary/type checks passed. All 144 research files / 71 dossiers remained identical. Historical search/checklist tests were not rerun or counted as new results. See INDEXING_RELEASE_CHECK_2026-11-01.md and evidence logs.
+
+The prior hardcoded-noindex release issue now has a tested configuration mechanism, but activation still requires an approved production build and verification of actual domain/headers. Owner identity, mailbox delivery, email retention and mobile testing remain open; do not invent them or treat this checkpoint as launch/AdSense approval.
