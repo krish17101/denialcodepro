@@ -136,3 +136,7 @@ Prepared Netlify-aware indexing and npm build lifecycle checks in the preview br
 ## Launch scope review — 3 November 2026
 
 Prepared LAUNCH_SCOPE_REVIEW_2026-11-03.md. Baseline CSV reconciliation: 318 unique routes, five retained and 313 proposed removals (311 code URLs, two directories). Candidate has 13 sitemap content URLs including three guides; not a code lookup library. Recommend limited guide/checklist first release subject to remaining gates; explicit retirement/scope approval pending. 21 current search tests passed; no application change or build rerun. No Netlify or production change.
+
+## Scope approved — 3 November 2026
+
+Owner approved the limited guide/checklist first-release recommendation and retirement of the 311 code URLs/two directory URLs. All 318 baseline disposition approval fields are SCOPE_APPROVED_PENDING_DEPLOY; route behavior and historical HTTP state unchanged. Approval does not authorize main merge, Netlify resumption or ad activation. See CONTENT_RELEASE_REVIEW_2026-11-03.md for current-run boundary checks, inspected source policies and remaining asset/license-notice review.
