@@ -114,3 +114,9 @@ The prior hardcoded-noindex release issue now has a tested configuration mechani
 Six targeted desktop keyboard cases passed on the deployed preview: search-to-button focus, suggestion activation, checklist selection/tab order, build, stale-result invalidation and reset. Homepage and checklist retained noindex; measured focus outlines were visible. No defect was found and no application change or repeat build was necessary. See KEYBOARD_PREVIEW_REVIEW_2026-11-01.md and screenshot for exact coverage and remaining limits.
 
 Stop repeating unchanged green checks. The next useful milestone needs actual mobile testing or closure of operator/mailbox/privacy facts and the content/URL release decision. These cannot be inferred from a working desktop preview.
+
+## Mailbox facts — 3 November 2026
+
+Owner confirms only they access denialcodepro@gmail.com; retention is undecided. Incoming test messages were found in Spam (user report); delivery is confirmed by the user, Inbox placement is not independently verified. Privacy notice now reflects sole owner mailbox access, continued service-provider processing, and no promised automatic deletion period. No retention schedule was adopted on the owner's behalf.
+
+Earlier checkpoint statements about missing mailbox/identity facts are historical. A public personal name is not imposed as a blanket AdSense prerequisite. Retention practice and hosting/provider facts still require final review; mobile testing and production release remain outstanding. No legal or AdSense certification is implied.

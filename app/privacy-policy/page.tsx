@@ -18,6 +18,8 @@ export default function PrivacyPolicyPage() {
       </Section>
       <Section title="Feedback and email">
         <p>Where the feedback form is enabled, your name, email address, and message are sent through Web3Forms so we can receive and respond to website feedback. If you email us directly, your email provider and ours process that correspondence.</p>
+        <p>Only the DenialCodePro site owner has access to our contact mailbox. Our email service provider also processes correspondence to operate the service.</p>
+        <p>We have not yet set a fixed retention period for feedback emails. We cannot promise automatic deletion after a particular number of days.</p>
         <p>Send only the information needed to describe a website problem. To ask about or request deletion of a message you sent, contact <a href="mailto:denialcodepro@gmail.com" className="underline">denialcodepro@gmail.com</a>. Do not send patient documents to establish your request.</p>
       </Section>
       <Section title="Analytics and advertising">
