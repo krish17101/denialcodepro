@@ -21,5 +21,20 @@ const cases = [
   ['approved production',{VERCEL_ENV:'production',VERCEL_TARGET_ENV:'production',DENIALCODEPRO_INDEXING_APPROVED:'true'},true],
   ['approved production without optional target',{VERCEL_ENV:'production',DENIALCODEPRO_INDEXING_APPROVED:'true'},true],
 ];
+const approved = {DENIALCODEPRO_INDEXING_APPROVED:'true'};
+cases.push(
+  ['Netlify approved production',{...approved,NETLIFY:'true',CONTEXT:'production'},true],
+  ['Netlify no approval',{NETLIFY:'true',CONTEXT:'production'},false],
+  ['Netlify deploy preview',{...approved,NETLIFY:'true',CONTEXT:'deploy-preview'},false],
+  ['Netlify branch deploy',{...approved,NETLIFY:'true',CONTEXT:'branch-deploy'},false],
+  ['Netlify dev',{...approved,NETLIFY:'true',CONTEXT:'dev'},false],
+  ['Netlify missing context',{...approved,NETLIFY:'true'},false],
+  ['context without host',{...approved,CONTEXT:'production'},false],
+  ['Netlify false host',{...approved,NETLIFY:'false',CONTEXT:'production'},false],
+  ['Netlify preview server',{...approved,NETLIFY:'true',CONTEXT:'production',NETLIFY_PREVIEW_SERVER:'true'},false],
+  ['Netlify unknown context',{...approved,NETLIFY:'true',CONTEXT:'staging'},false],
+  ['mixed production hosts',{...approved,NETLIFY:'true',CONTEXT:'production',VERCEL_ENV:'production'},false],
+  ['Vercel production with Netlify preview signal',{...approved,VERCEL_ENV:'production',NETLIFY_PREVIEW_SERVER:'true'},false],
+);
 for(const [name,env,expected] of cases){assert.equal(mod.exports.publicIndexingEnabled(env),expected,name);console.log('PASS '+name);}
 console.log(JSON.stringify({passed:cases.length,failed:0,scope:'Indexing configuration policy; rendered metadata and deployed headers tested separately'}));
