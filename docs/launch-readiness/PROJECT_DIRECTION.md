@@ -132,3 +132,7 @@ Netlify release blockers discovered in source: lib/public/indexing.ts only recog
 ## Netlify compatibility preparation — 3 November 2026
 
 Prepared Netlify-aware indexing and npm build lifecycle checks in the preview branch. Earlier source-level blockers now have an implementation; hosted Netlify validation and production approval remain outstanding. See NETLIFY_PREPARATION_2026-11-03.md. No pause, hosted setting, domain or main-branch change. Do not mistake local environment fixtures for a Netlify deployment.
+
+## Launch scope review — 3 November 2026
+
+Prepared LAUNCH_SCOPE_REVIEW_2026-11-03.md. Baseline CSV reconciliation: 318 unique routes, five retained and 313 proposed removals (311 code URLs, two directories). Candidate has 13 sitemap content URLs including three guides; not a code lookup library. Recommend limited guide/checklist first release subject to remaining gates; explicit retirement/scope approval pending. 21 current search tests passed; no application change or build rerun. No Netlify or production change.
