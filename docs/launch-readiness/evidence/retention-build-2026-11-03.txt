@@ -1,0 +1,77 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> nextjs@0.1.0 prebuild
+> node scripts/check-publication-boundary.js
+
+PASS exact approved route-entry set
+PASS public dependency graph excludes held knowledge
+{"passed":2,"failed":0,"reachableModules":29,"scope":"Publication boundary and archival integrity; not copyright or factual verification"}
+
+> nextjs@0.1.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+   ▲ Next.js 15.5.28
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 3.2s
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/19) ...
+   Generating static pages (4/19) 
+   Generating static pages (9/19) 
+   Generating static pages (14/19) 
+ ✓ Generating static pages (19/19)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                        Size  First Load JS
+┌ ○ /                                             123 B         118 kB
+├ ○ /_not-found                                   143 B         103 kB
+├ ○ /about                                        170 B         106 kB
+├ ○ /contact                                      170 B         106 kB
+├ ○ /disclaimer                                   143 B         103 kB
+├ ○ /guides                                       170 B         106 kB
+├ ● /guides/[slug]                                170 B         106 kB
+├   ├ /guides/find-the-claim-response
+├   ├ /guides/choose-a-correction-or-review
+├   └ /guides/build-a-deadline-evidence-record
+├ ○ /methodology                                  143 B         103 kB
+├ ○ /privacy-policy                               143 B         103 kB
+├ ○ /robots.txt                                   143 B         103 kB
+├ ƒ /search                                       123 B         118 kB
+├ ○ /sitemap.xml                                  143 B         103 kB
+├ ○ /sources                                      143 B         103 kB
+├ ○ /terms                                        143 B         103 kB
+└ ○ /tools/evidence-checklist                   1.97 kB         105 kB
++ First Load JS shared by all                    103 kB
+  ├ chunks/255-b1e2483a7e02feee.js              46.6 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js         54.2 kB
+  └ other shared chunks (total)                 1.92 kB
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> nextjs@0.1.0 postbuild
+> node scripts/check-publication-boundary.js --built
+
+PASS exact approved route-entry set
+PASS public dependency graph excludes held knowledge
+PASS built routes exclude held code and payer paths
+PASS sample held official descriptions absent from HTML, RSC and JS
+PASS three original guide pages generated
+Inspected 103 build artifacts; sentinel scan is sampled, dependency graph is the broader boundary.
+{"passed":5,"failed":0,"reachableModules":29,"scope":"Publication boundary and archival integrity; not copyright or factual verification"}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

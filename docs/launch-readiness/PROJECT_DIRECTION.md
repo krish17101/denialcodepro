@@ -120,3 +120,11 @@ Stop repeating unchanged green checks. The next useful milestone needs actual mo
 Owner confirms only they access denialcodepro@gmail.com; retention is undecided. Incoming test messages were found in Spam (user report); delivery is confirmed by the user, Inbox placement is not independently verified. Privacy notice now reflects sole owner mailbox access, continued service-provider processing, and no promised automatic deletion period. No retention schedule was adopted on the owner's behalf.
 
 Earlier checkpoint statements about missing mailbox/identity facts are historical. A public personal name is not imposed as a blanket AdSense prerequisite. Retention practice and hosting/provider facts still require final review; mobile testing and production release remain outstanding. No legal or AdSense certification is implied.
+
+## Approved retention and hosting clarification — 3 November 2026
+
+Owner approved deleting routine feedback emails within 90 days after the conversation is resolved, retaining only a correction note without sender personal details if useful. Public notice updated; this is an owner-operated policy, not implemented Gmail automation or a legal deadline. Owner must track resolved conversations and perform deletion; no mailbox actions were taken.
+
+Owner reported mobile testing passed; device, browser and individual case results were not supplied, so this is user-reported acceptance, not agent-executed mobile QA. Owner confirms domain is served through Netlify linked to this repository with deployment paused. Pause state and hosted settings are not independently inspected. Keep Netlify paused, do not merge or deploy production until a separate release decision. Vercel remains the preview host.
+
+Netlify release blockers discovered in source: lib/public/indexing.ts only recognizes Vercel production; netlify.toml invokes npx next build, bypassing package.json prebuild/postbuild boundary hooks. Prepare and test Netlify-aware indexing and npm run build before resuming deployment. Do not copy Vercel environment values into Netlify to bypass the gate. No hosting configuration was changed in this update.
