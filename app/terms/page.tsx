@@ -30,7 +30,7 @@ export default function TermsPage() {
       <Section title="Intellectual Property">
         <p>
           The original content, features, and functionality of the Website
-          are owned by DenialCode Pro. Third-party materials and linked resources remain subject to their owners’ rights. Links do not grant permission to reproduce those materials.
+          are owned by DenialCode Pro. Third-party materials and linked resources remain subject to their owners’ rights. Links do not grant permission to reproduce those materials. See the <a href="/third-party-notices.txt" className="underline">software, icon and font notices</a>.
         </p>
       </Section>
     </LegalLayout>

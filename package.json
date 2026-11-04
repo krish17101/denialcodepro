@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "validate:knowledge": "node scripts/validate-knowledge.js",
     "test:launch": "node scripts/test-launch-readiness.js",
-    "prebuild": "node scripts/check-publication-boundary.js",
+    "prebuild": "node scripts/check-publication-boundary.js && node scripts/collect-notices.cjs",
     "postbuild": "node scripts/check-publication-boundary.js --built"
   },
   "dependencies": {

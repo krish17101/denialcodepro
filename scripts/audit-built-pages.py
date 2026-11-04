@@ -29,7 +29,9 @@ class Page(HTMLParser):
     def handle_endtag(self,tag):
         if tag=='title':self.in_title=False
 pages={('/' if p.relative_to(base).as_posix()=='index.html' else '/'+p.relative_to(base).as_posix()[:-5]):p for p in base.rglob('*.html')}
-known=set(pages)|{'/search'}
+notice=root/'public/third-party-notices.txt'
+assert notice.is_file() and notice.stat().st_size > 0, 'missing third-party notice asset'
+known=set(pages)|{'/search','/third-party-notices.txt'}
 checks=0
 titles=set()
 descriptions=set()
