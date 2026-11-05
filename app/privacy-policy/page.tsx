@@ -1,3 +1,5 @@
+import { AnalyticsChoice } from '../components/Analytics';
+import { analyticsProduction } from '../../lib/public/analytics-environment';
 import { LegalLayout } from '../components/LegalLayout';
 
 export const metadata = {
@@ -23,7 +25,9 @@ export default function PrivacyPolicyPage() {
         <p>Send only the information needed to describe a website problem. To ask about or request deletion of a message you sent, contact <a href="mailto:denialcodepro@gmail.com" className="underline">denialcodepro@gmail.com</a>. Do not send patient documents to establish your request.</p>
       </Section>
       <Section title="Analytics and advertising">
-        <p>This release does not load Google Analytics or Google AdSense through the application. If advertising or analytics is enabled later, this notice and the applicable consent controls must be updated before those services are activated.</p>
+        <p>On denialcodepro.com, you can choose to share visits to our homepage, guide directory and three billing guides with Google Analytics. It is off until you choose to turn it on. Your choice is saved in this browser. You can turn it off here at any time.</p>
+        <p>When enabled, Google receives the guide or page visited and technical information from your browser and may set analytics cookies. We do not include search terms, checklist answers or feedback in our page-view events. Preview visits are excluded. This site does not load Google AdSense.</p>
+        <AnalyticsChoice production={analyticsProduction(process.env)} />
       </Section>
       <Section title="Evidence checklist">
         <p>The evidence checklist uses categorical selections in the current page. Its application code does not save those selections to browser storage or submit them to a server. This does not eliminate the technical requests needed to load the website.</p>

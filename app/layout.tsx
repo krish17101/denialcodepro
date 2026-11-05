@@ -4,6 +4,7 @@ import './globals.css';
 import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
 import { FeedbackForm } from './components/FeedbackForm';
+import { analyticsProduction } from '../lib/public/analytics-environment';
 import { Analytics } from './components/Analytics';
 import { publicIndexingEnabled } from '../lib/public/indexing';
 
@@ -13,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
  * Root layout — V3.
  *
  * Preserves:
- *  - Analytics integration point (disabled pending consent/privacy review)
+ *  - Optional production-only audience measurement
  *  - metadataBase pointing to https://denialcodepro.com
  *  - SiteHeader, SiteFooter, FeedbackForm
  *  - Inter font
@@ -66,8 +67,7 @@ export default function RootLayout({
           <FeedbackForm />
           <SiteFooter />
         </div>
-        {/* Analytics remains disabled in this release candidate. */}
-        <Analytics />
+        <Analytics production={analyticsProduction(process.env)} />
       </body>
     </html>
   );

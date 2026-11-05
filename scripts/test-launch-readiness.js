@@ -20,11 +20,11 @@ for (const stage of ['unknown', 'front', 'adjudicated']) for (const scope of ['u
   if (finding === 'accurate') assert(steps.some(s => s.includes('available to your role')));
  });
 }
-test('analytics disabled', () => assert.equal(load('app/components/Analytics.tsx').Analytics(), null));
+test('analytics excludes previews and unknown hosts', () => { const { analyticsProduction } = load('lib/public/analytics-environment.ts'); for (const env of [{}, {NODE_ENV:'production', NETLIFY:'true', CONTEXT:'deploy-preview'}, {NODE_ENV:'production', VERCEL_ENV:'production'}]) assert.equal(analyticsProduction(env),false); });
 test('raw query not sent in search event', () => assert(!read('app/components/v3/SearchResults.tsx').includes('search_term:')));
 test('search disclosure and length cap', () => { const s=read('app/components/v3/SearchBox.tsx');assert(s.includes('search-privacy'));assert(s.includes('maxLength={180}')); });
 test('feedback processor and patient warning visible', () => { const s=read('app/components/FeedbackForm.tsx');assert(s.includes('Do not send patient names'));assert(s.includes('through Web3Forms')); });
-test('privacy reflects ad-free candidate', () => {const s=read('app/privacy-policy/page.tsx');assert(!s.includes('DART'));assert(s.includes('does not load Google Analytics or Google AdSense'));});
+test('privacy reflects ad-free candidate', () => {const s=read('app/privacy-policy/page.tsx');assert(!s.includes('DART'));assert(s.includes('does not load Google AdSense') && s.includes('off until you choose'));});
 test('tool avoids storage and network submission', () => {const s=read('app/tools/evidence-checklist/tool.tsx');assert(!/fetch\(|localStorage|sessionStorage|sendBeacon/.test(s));});
 test('changing selections invalidates stale result', () => assert(read('app/tools/evidence-checklist/tool.tsx').includes('setState(s => ({ ...s, ...update })); setResult(null)')));
 console.log(JSON.stringify({passed:count,failed:0,scope:'18 decision cases and 7 release-candidate regression checks; not source or legal verification'}));
