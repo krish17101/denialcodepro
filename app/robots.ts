@@ -8,10 +8,8 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        // Disallow search query URLs to prevent crawler traps
-        disallow: [
-          '/search',
-        ],
+        // Search pages carry noindex. Allow crawling so Google can read it.
+        // Do not generate crawlable links to arbitrary query permutations.
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,

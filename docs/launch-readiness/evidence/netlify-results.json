@@ -1,0 +1,40 @@
+[
+  {
+    "context": "production",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0
+  },
+  {
+    "context": "production",
+    "command": [
+      "python",
+      "scripts/audit-built-pages.py",
+      "--indexing",
+      "production"
+    ],
+    "exit": 0
+  },
+  {
+    "context": "deploy-preview",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0
+  },
+  {
+    "context": "deploy-preview",
+    "command": [
+      "python",
+      "scripts/audit-built-pages.py",
+      "--indexing",
+      "preview"
+    ],
+    "exit": 0
+  }
+]

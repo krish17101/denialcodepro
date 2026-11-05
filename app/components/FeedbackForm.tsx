@@ -7,7 +7,7 @@ import {
   Loader2,
 } from 'lucide-react';
 
-const WEB3FORMS_ACCESS_KEY = '6e91efd0-02f2-4740-b3a8-8cfd52c3719b';
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || '';
 
 export function FeedbackForm() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>(
@@ -16,6 +16,7 @@ export function FeedbackForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!WEB3FORMS_ACCESS_KEY) { setStatus('error'); return; }
     setStatus('loading');
 
     const formData = new FormData(e.currentTarget);
@@ -40,9 +41,16 @@ export function FeedbackForm() {
     }
   };
 
+  if (!WEB3FORMS_ACCESS_KEY) {
+    return <section className="print:hidden border-t border-slate-200 bg-white px-5 py-8 text-center text-sm text-slate-600">
+      <p>Spotted a mistake or an unclear explanation? Email <a className="underline" href="mailto:denialcodepro@gmail.com">denialcodepro@gmail.com</a>.</p>
+      <p className="mt-2">For website feedback only. Do not send patient names, claim numbers, or medical records.</p>
+    </section>;
+  }
+
   if (status === 'success') {
     return (
-      <section className="border-t border-slate-200 bg-slate-50">
+      <section className="print:hidden border-t border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center shadow-sm">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
@@ -68,7 +76,7 @@ export function FeedbackForm() {
   }
 
   return (
-    <section className="border-t border-slate-200 bg-slate-50">
+    <section className="print:hidden border-t border-slate-200 bg-slate-50">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
           <div className="flex items-center gap-3">
@@ -80,13 +88,13 @@ export function FeedbackForm() {
                 Send Us Feedback
               </h3>
               <p className="text-sm text-slate-500">
-                Found a typo, have a suggestion, or need a code added? Let us
-                know.
+                Found a mistake or an explanation that needs work? Let us know.
               </p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+          <p id="feedback-privacy" className="mt-4 text-sm text-slate-600">For website feedback only. Do not send patient names, claim numbers, medical records, or other sensitive information. This form sends your name, email, and message through Web3Forms. <a href="/privacy-policy" className="underline">Read our privacy policy</a>.</p>
+          <form onSubmit={handleSubmit} aria-describedby="feedback-privacy" className="mt-6 space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label

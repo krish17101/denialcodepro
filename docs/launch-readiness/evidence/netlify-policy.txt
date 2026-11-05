@@ -1,0 +1,25 @@
+PASS missing configuration
+PASS approval alone
+PASS production without approval
+PASS explicitly disabled
+PASS preview with approval
+PASS development with approval
+PASS NODE_ENV alone
+PASS noncanonical approval
+PASS custom target
+PASS conflicting preview target
+PASS approved production
+PASS approved production without optional target
+PASS Netlify approved production
+PASS Netlify no approval
+PASS Netlify deploy preview
+PASS Netlify branch deploy
+PASS Netlify dev
+PASS Netlify missing context
+PASS context without host
+PASS Netlify false host
+PASS Netlify preview server
+PASS Netlify unknown context
+PASS mixed production hosts
+PASS Vercel production with Netlify preview signal
+{"passed":24,"failed":0,"scope":"Indexing configuration policy; rendered metadata and deployed headers tested separately"}
