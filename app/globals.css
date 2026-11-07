@@ -31,7 +31,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Keep anchor navigation predictable when zoomed or using the keyboard. */
+    scroll-behavior: auto;
   }
 
   body {
