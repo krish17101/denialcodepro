@@ -66,3 +66,9 @@ Deployment success does not mean every browser interaction passed.
 No live-domain release, main merge, AdSense account setup, hosting protection change or research conversion was performed. The production site was not modified. Analytics and verification files are outside the sole application diff; this does not confirm Google account ownership or live event receipt.
 
 Next milestone: resolve the narrow-pointer/real-device check and Netlify preview access, then complete the held pilot's intended-use and billing-specialist review before enabling any code-specific page. Keep the guide-only preview distinct from the planned code-search product. Obtain explicit owner approval for a reviewed live release.
+
+## Follow-up pointer test — 8 November 2026
+
+A new browser session reproduced the automated locator click remaining on the search page at 400% zoom (340 × 234 CSS px). The result link was visibly clear of the sticky header: link bounding rectangle top 95.25px, bottom 138.5px; header bottom 73px. Read-only hit testing over visible text returned the intended anchor. A direct desktop-pointer click on that visible text opened the correct deadline guide. Normal zoom was restored.
+
+**B13 follow-up: direct-pointer navigation PASS; automated locator-click anomaly retained.** No application defect or exact automation cause was established, so no additional source change was justified. The original 12-pass/1-inconclusive table remains the historical first-pass record; this follow-up adds one direct-pointer task pass, not a rerun of the whole suite. Real touch-device testing and Netlify authenticated browser verification remain outstanding. No build was rerun for this documentation-only follow-up.
