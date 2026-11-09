@@ -61,3 +61,31 @@ Both commands exited 0. The installed-root counts exclude the separate supplemen
 Only the supplemental text, collector, targeted test and this report are changed. Public notice output is generated, not committed. Existing research dossiers, Analytics, Search Console verification, guide wording, main branch and live hosting remain untouched; no new whole-tree preservation hash claim is made.
 
 Next: resolve the remaining specific package-notice questions and validate the newly generated notices on the exact candidate. The prior scope approval is retained. A final live release still requires exact-artifact approval; CARC 19 rights and billing-review gates remain separate and open. Do not repeat the completed 17 browser tasks unless affected behavior changes.
+
+
+## Hosted correction verification — completed 9 November 2026
+
+Candidate commit: `c8a9cfce8bd0d6ffa3b8b0c9a6ae8f7929a070cd`.
+Netlify deploy: `6af180888bcec03b993e0987`.
+Deploy detail: https://app.netlify.com/projects/denialcodepro-guide-staging/deploys/6af180888bcec03b993e0987
+
+The deployment detail explicitly matched this commit and showed success. The inspected build log recorded successful compilation/type checking, two prebuild boundary checks and five postbuild boundary checks. These checks overlap and are not seven distinct content validations. The supplemental-notice unit script was run locally in the preceding checkpoint; it is not claimed to have run in Netlify's build. GitHub subsequently reported both Netlify and Vercel status success; Vercel content was not independently browsed in this pass.
+
+| Current browser check | Result and scope |
+|---|---|
+| H01 Exact artifact source/build | PASS: deploy detail links to the intended full commit; build succeeded. |
+| H02 Corrected deployed notices | PASS: opened the exact artifact's notices; inspected both supplemental license bodies and source URLs. Six marker checks returned true for @next/env heading, Next source, dotenv source, Inter, React and Lucide. Displayed text length 527,559 characters. This is rendered-text inspection, not a byte/hash comparison or exhaustive attribution audit. |
+| H03 Preview indexing | PASS: homepage meta robots is `noindex, follow`, canonical `https://denialcodepro.com/`. HTTP header audit not rerun. |
+| H04 Preview Analytics boundary | PASS within inspected scope: zero external script elements matching Google Analytics/Tag Manager on the homepage. Not a full network audit or evidence of production Analytics data receipt. |
+| H05 Visitor access to notices | PASS: followed homepage Terms link, then “software, icon and font notices”; reached the corrected artifact-specific notice file. |
+
+**Five grouped browser checks passed, zero failed in this listed scope.** Do not add the earlier 17 workflow checks or three local notice tests to this run. No unrelated search/mobile suite was repeated.
+
+Verified artifact file:
+https://6af180888bcec03b993e0987--denialcodepro-guide-staging.netlify.app/third-party-notices.txt
+
+The notice-generation change is now verified on Netlify. No further application correction was indicated by these checks. Only this report is updated in the follow-up.
+
+Still unresolved: precise client-only attribution, the attempted dotenv-expand versioned notice retrieval, and verification of the complete hosted server-function payload. These are distinct from a working build; this record neither declares a violation nor grants blanket legal clearance. The CARC 19 content/rights/specialist gates remain separate. Production repository linkage, indexing activation and publication are not executed.
+
+The next release decision must identify whether the limited guide release can proceed after the remaining bounded attribution review; do not re-open its already-approved scope or repeat unchanged green browser checks. Live website, Analytics configuration, Google verification asset and all research dossiers were untouched.
