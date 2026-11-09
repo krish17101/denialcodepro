@@ -41,6 +41,11 @@ class BundleAuditTests(unittest.TestCase):
     def test_missing_notice_is_not_cleared(self):
         p = self.make([('node_modules/example/package.json','{"name":"example","version":"1","license":"MIT"}')])
         self.assertEqual(audit.inspect_archive(p)['packages'][0]['root_notice_files'], [])
+    def test_combined_notice_reported_separately(self):
+        p = self.make([('public/third-party-notices.txt','combined notices'),('node_modules/example/LICENSE','notice')])
+        result = audit.inspect_archive(p)
+        self.assertEqual(result['notice_files'], ['node_modules/example/LICENSE'])
+        self.assertEqual(result['combined_notice_files'], [{'path':'public/third-party-notices.txt','bytes':16,'sha256':hashlib.sha256(b'combined notices').hexdigest()}])
     def test_no_archive_fails(self):
         with self.assertRaises(ValueError): audit.inspect_directory(self.root)
     def test_traversal_fails(self):

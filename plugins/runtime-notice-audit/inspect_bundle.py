@@ -24,12 +24,15 @@ def inspect_archive(archive):
                 raise ValueError('Unsupported archive entry')
         if sum(i.file_size for i in entries) > LIMIT:
             raise ValueError('Expanded archive exceeds audit limit')
-        manifests, notices, digest_rows = [], [], []
+        manifests, notices, digest_rows, combined_notices = [], [], [], []
         for i in sorted(entries, key=lambda x: x.filename):
             data = z.read(i)  # verifies ZIP CRC; no file is extracted
             digest_rows.append([i.filename, hashlib.sha256(data).hexdigest()])
             if NOTICE.match(PurePosixPath(i.filename).name):
                 notices.append(i.filename)
+            if PurePosixPath(i.filename).name == 'third-party-notices.txt':
+                combined_notices.append({'path': i.filename, 'bytes': len(data),
+                    'sha256': hashlib.sha256(data).hexdigest()})
             if PurePosixPath(i.filename).name == 'package.json':
                 if len(data) > 2 * 1024 * 1024:
                     raise ValueError('Oversized package manifest')
@@ -52,6 +55,7 @@ def inspect_archive(archive):
             'files': len(entries), 'expanded_bytes': sum(i.file_size for i in entries),
             'file_manifest_sha256': hashlib.sha256(json.dumps(digest_rows, separators=(',', ':')).encode()).hexdigest(),
             'packages': packages, 'notice_file_count': len(notices),
+            'notice_files': notices, 'combined_notice_files': combined_notices,
             'scope': 'ZIP inventory and CRC verification; package declarations and notice presence are not legal clearance'}
 
 def inspect_directory(directory):
