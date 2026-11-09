@@ -3,8 +3,11 @@ const path = require('node:path');
 
 module.exports = {
   onPostBuild({ constants, utils }) {
-    // Evidence gathering on previews only; no writes to the function or public assets.
-    if (process.env.CONTEXT !== 'deploy-preview') return;
+    // The dedicated staging site's default branch uses Netlify's production context.
+    // Never enable this audit for the live site's production context.
+    const stagingBuild = process.env.CONTEXT === 'production' &&
+      process.env.URL === 'https://denialcodepro-guide-staging.netlify.app';
+    if (process.env.CONTEXT !== 'deploy-preview' && !stagingBuild) return;
     try {
       const output = execFileSync('python3', [
         path.join(__dirname, 'inspect_bundle.py'), constants.FUNCTIONS_DIST,
