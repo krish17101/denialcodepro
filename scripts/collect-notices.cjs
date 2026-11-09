@@ -24,10 +24,16 @@ function walk(dir){for(const e of fs.readdirSync(dir,{withFileTypes:true}))if(e.
 walk(vend);
 for(const dep of ['next','react','react-dom','lucide-react','styled-jsx','scheduler','tailwindcss'])if(!rows.find(r=>r.path==='node_modules/'+dep)?.noticeFiles.length)throw Error('Missing core notice: '+dep);
 const font=fs.readFileSync('notices/Inter-OFL.txt','utf8');
+// Release-specific upstream notices absent from @next/env's npm file list.
+// A version change needs a fresh review, not reuse of a mismatched notice.
+const envVersion=JSON.parse(fs.readFileSync('node_modules/@next/env/package.json','utf8')).version;
+if(envVersion!=='15.5.28')throw Error('Review supplemental @next/env notices for version '+envVersion);
+const envNotices=fs.readFileSync('notices/next-env-15.5.28.txt','utf8');
 fs.writeFileSync('public/third-party-notices.txt',[
  'DenialCodePro | Third-party notices',
  'Includes installed build tools and framework components as well as visitor-facing software. Inclusion does not imply endorsement or use on every page.',
  'Inter font — Google Fonts, ofl/inter/OFL.txt (source blob 21f6aff961064c2e429f570995e446bcdd555422)',font,
+ envNotices,
  ...Array.from(groups,([body,labels])=>[...new Set(labels)].join('\n')+'\n\n'+body)
 ].join('\n\n'));
 if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(rows,null,2)+'\n');
