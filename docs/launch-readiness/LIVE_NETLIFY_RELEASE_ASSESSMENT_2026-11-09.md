@@ -39,7 +39,7 @@ Also inspected local `next.config.js`, the prior preparation/release records and
 
 Prefer a controlled Git-backed release on the existing live project, preserving its domain. This is a proposal requiring the owner's approval before the live configuration is changed.
 
-1. Resolve candidate content/rights approval and explicitly approve the legacy-URL disposition. The three-guide candidate replaces the older lookup experience; it is not equivalent full code coverage. Keep CARC 19 held under the separate first-code release gates.
+1. Preserve the owner's existing November 3 approval of the limited guide/checklist scope and retirement of 311 code URLs plus two directories, recorded in CONTENT_RELEASE_REVIEW_2026-11-03.md and the 318-row disposition CSV. Do not request that same approval again. Resolve remaining candidate content/asset questions and approve the exact release artifact separately. The November 6 sprint additionally targets code-specific pages; that expanded milestone remains incomplete. Keep CARC 19 held under its separate first-code release gates.
 2. Select an exact reviewed commit. Confirm the hosted preview's source commit and check current build allowance before initiating another build.
 3. With approval, lock the currently published deploy before linking the live project to Git or triggering a build. Confirm the lock in the UI. Locking publication does not stop builds.
 4. Connect the correct repository and select the agreed release branch/commit path. Inspect build settings, Node version, adapter, environment scopes and redirect/header configuration. Do not point the live project at a moving branch without an agreed release process.
@@ -67,6 +67,37 @@ If an approved release causes a material regression, keep publication controlled
 
 ## Remaining decisions
 
-The live “paused Git deployment” assumption is now resolved: the repository is unlinked and auto publishing is on. Exact release commit, current environment/build allowance, approved legacy-route handling and content release decisions remain outstanding. First-code rights and independent billing-specialist review remain open under `FIRST_CODE_RELEASE_ACTIONS_2026-11-08.md`; they are not resolved by hosting tests.
+The live “paused Git deployment” assumption is now resolved: the repository is unlinked and auto publishing is on. Exact release commit, current environment/build allowance, execution of the already-approved legacy-route handling and remaining content release decisions are outstanding. First-code rights and independent billing-specialist review remain open under `FIRST_CODE_RELEASE_ACTIONS_2026-11-08.md`; they are not resolved by hosting tests.
 
-Next milestone: approve the release scope and exact candidate, then perform the controlled live-project setup above. AdSense application follows a stable public release; no approval, ranking or licence-free certification is made.
+Next milestone: finish the remaining candidate checks and approve the exact artifact, then perform the controlled live-project setup above. Existing limited-scope approval remains valid; it is not approval of the unfinished code-page batch. AdSense application follows a stable public release; no approval, ranking or licence-free certification is made.
+
+
+## Sprint checkpoint and correction — 9 November 2026, India time
+
+The seven-day plan was prepared and Day 1 recovery executed on November 6. November 9 is **calendar Day 4**, not evidence that Day 4's planned content batch is complete.
+
+| Milestone | Actual state and supporting record |
+|---|---|
+| Day 1 recovery | 71 dossiers reconciled and preserved in Day1_Report.md; per-page publication triage remains open. |
+| Day 2 pilot | CARC 19 internal draft and evidence mapping completed November 7; publication held, no rendered/searchable code page. See Day2_Review_Report.md. |
+| Days 3–4 code batch | Not complete. No cleared code-page batch or finalized ten-page launch queue. Do not count navigation work as completion of these content milestones. |
+| Days 5–6 technical work | Partly advanced out of sequence: existing three-guide navigation/search, preview checks and live hosting inspection. These do not test nonexistent code pages. |
+| Day 7 public release | Not executed. Production artifact approval and post-release checks remain. |
+
+Correction: this report's initial version and the accompanying reply wrongly described legacy-route scope approval as still pending. The November 3 approved-scope record and CSV establish that it was already given. The current check parsed 318 unique routes: 318 SCOPE_APPROVED_PENDING_DEPLOY, five proposed 200 and 313 proposed 404. No CSV values were changed. Earlier approval-request reports are historical and must not override the later approval.
+
+The asset inventory and notice-generation work also already exists in ASSET_REVIEW_2026-11-04.md. Do not restart it. Its remaining issue is checking applicable notices against the actual hosted adapter/function payload, not creating another inventory.
+
+### Remaining bounded work
+
+1. Match the tested Netlify staging artifact to its source commit; check actual shipped runtime notices and production build settings/allowance. Reuse prior UI/build evidence unless the candidate changes.
+2. Resolve exact content-release decisions. The limited three-guide scope has prior approval. The desired code-specific release still needs P19-R1 intended-use basis and P19-R2 actual specialist review, followed by implementation and tests; no code-page hold is waived here.
+3. With an exact candidate ready and final approval, perform locked Git setup, production-context build, publish, and verify live routes/indexing plus Analytics/Search Console account evidence.
+
+### Estimate, not a completion promise
+
+For the **existing limited guide/checklist release**, budget roughly **2–3 active working sessions/days** for the remaining technical checks, a controlled release and follow-up, assuming account access, necessary decisions and no material defects. This is not a one-hour-per-day estimate and excludes waiting for external review. November 10–12 is a conditional technical target, not a scheduled or approved publication date.
+
+For the **code-specific launch in the November 6 plan**, a defensible end date cannot yet be given: the pilot's intended-use and specialist-review gates are unresolved, and the remaining launch entries have not passed page-level review. The original seven-day goal is at risk. After those inputs, estimate the implementation batch from the approved content rather than promising the entire 71-dossier library in a few days.
+
+No automatic background work, external message, licence agreement, reviewer appointment or AdSense application was initiated. No AdSense timing is included in this estimate.
