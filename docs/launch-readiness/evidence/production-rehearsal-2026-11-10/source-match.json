@@ -1,0 +1,1113 @@
+{
+  "source_commit": "e4775365c4ec65f266ae19af002a89c9e6c23c4a",
+  "tracked_files_checked": 184,
+  "missing": 0,
+  "different": 0,
+  "scope": "Tracked root files and app/components/lib/hooks/notices/plugins/scripts/public. Not a full research-tree preservation audit or exclusion of untracked files.",
+  "results": [
+    {
+      "path": ".eslintrc.json",
+      "expected_git_blob_sha": "bffb357a7122523ec94045523758c4b825b448ef",
+      "actual_git_blob_sha": "bffb357a7122523ec94045523758c4b825b448ef",
+      "matches": true
+    },
+    {
+      "path": ".gitignore",
+      "expected_git_blob_sha": "1629729c0c63e80f96b3c4911598ec81ac863892",
+      "actual_git_blob_sha": "1629729c0c63e80f96b3c4911598ec81ac863892",
+      "matches": true
+    },
+    {
+      "path": "README.md",
+      "expected_git_blob_sha": "675736182f8ba4f92d8b6ce4c6b20160696fad7c",
+      "actual_git_blob_sha": "675736182f8ba4f92d8b6ce4c6b20160696fad7c",
+      "matches": true
+    },
+    {
+      "path": "app/about/page.tsx",
+      "expected_git_blob_sha": "51d7871956dd6f4f1e68c61bb96bdf7584953ca1",
+      "actual_git_blob_sha": "51d7871956dd6f4f1e68c61bb96bdf7584953ca1",
+      "matches": true
+    },
+    {
+      "path": "app/components/AllCodesGrid.tsx",
+      "expected_git_blob_sha": "40666cec46d3ed1194b92c9b7e9cdc5e0d09b281",
+      "actual_git_blob_sha": "40666cec46d3ed1194b92c9b7e9cdc5e0d09b281",
+      "matches": true
+    },
+    {
+      "path": "app/components/Analytics.tsx",
+      "expected_git_blob_sha": "3fc9951a2cac3b4afc884952880dcd89f4951903",
+      "actual_git_blob_sha": "3fc9951a2cac3b4afc884952880dcd89f4951903",
+      "matches": true
+    },
+    {
+      "path": "app/components/CodeDirectory.tsx",
+      "expected_git_blob_sha": "90dcd19ac4861a482c343f8daf2971a7ccd92994",
+      "actual_git_blob_sha": "90dcd19ac4861a482c343f8daf2971a7ccd92994",
+      "matches": true
+    },
+    {
+      "path": "app/components/CopyButton.tsx",
+      "expected_git_blob_sha": "fd06d8375410917894358cc08ba4399d1253aab8",
+      "actual_git_blob_sha": "fd06d8375410917894358cc08ba4399d1253aab8",
+      "matches": true
+    },
+    {
+      "path": "app/components/CopyEhrNote.tsx",
+      "expected_git_blob_sha": "fe13c22ace9187004fa2f4882750febc7e92b491",
+      "actual_git_blob_sha": "fe13c22ace9187004fa2f4882750febc7e92b491",
+      "matches": true
+    },
+    {
+      "path": "app/components/FeedbackForm.tsx",
+      "expected_git_blob_sha": "39d4552da0e7570a327ae38246325f961228c551",
+      "actual_git_blob_sha": "39d4552da0e7570a327ae38246325f961228c551",
+      "matches": true
+    },
+    {
+      "path": "app/components/LegalLayout.tsx",
+      "expected_git_blob_sha": "6cc559394d3b2cb79463a9bf76716f10c3ee9768",
+      "actual_git_blob_sha": "6cc559394d3b2cb79463a9bf76716f10c3ee9768",
+      "matches": true
+    },
+    {
+      "path": "app/components/SiteFooter.tsx",
+      "expected_git_blob_sha": "378501b8e572bfb96ccd3e3417a7dd0b75a4f8ca",
+      "actual_git_blob_sha": "378501b8e572bfb96ccd3e3417a7dd0b75a4f8ca",
+      "matches": true
+    },
+    {
+      "path": "app/components/SiteHeader.tsx",
+      "expected_git_blob_sha": "5eb0c85fc0aa580d593c552e8cb16337c51854ca",
+      "actual_git_blob_sha": "5eb0c85fc0aa580d593c552e8cb16337c51854ca",
+      "matches": true
+    },
+    {
+      "path": "app/components/v3/CopyTextButton.tsx",
+      "expected_git_blob_sha": "3b4ff31e48501421e3096ca91fce9229355bb123",
+      "actual_git_blob_sha": "3b4ff31e48501421e3096ca91fce9229355bb123",
+      "matches": true
+    },
+    {
+      "path": "app/components/v3/EventTracker.tsx",
+      "expected_git_blob_sha": "43cec2a7abaa51897523b424c34baa31b4350b59",
+      "actual_git_blob_sha": "43cec2a7abaa51897523b424c34baa31b4350b59",
+      "matches": true
+    },
+    {
+      "path": "app/components/v3/SearchBox.tsx",
+      "expected_git_blob_sha": "dad33e92714f473be14297ac037fe50d7d71ec6d",
+      "actual_git_blob_sha": "dad33e92714f473be14297ac037fe50d7d71ec6d",
+      "matches": true
+    },
+    {
+      "path": "app/components/v3/SearchResults.tsx",
+      "expected_git_blob_sha": "9074b6e345cd16f3876585bd1bd957cce53522ba",
+      "actual_git_blob_sha": "9074b6e345cd16f3876585bd1bd957cce53522ba",
+      "matches": true
+    },
+    {
+      "path": "app/contact/page.tsx",
+      "expected_git_blob_sha": "47e2ff80876cd95964deaa245819df3499b2d3d9",
+      "actual_git_blob_sha": "47e2ff80876cd95964deaa245819df3499b2d3d9",
+      "matches": true
+    },
+    {
+      "path": "app/data/code1.json.json",
+      "expected_git_blob_sha": "0f5cf23ddf189c4577d0580fb279e86422ebc5d5",
+      "actual_git_blob_sha": "0f5cf23ddf189c4577d0580fb279e86422ebc5d5",
+      "matches": true
+    },
+    {
+      "path": "app/data/full_codes.json",
+      "expected_git_blob_sha": "8fd771c41c5d0cb66039fb5c9c767a803d7115c9",
+      "actual_git_blob_sha": "8fd771c41c5d0cb66039fb5c9c767a803d7115c9",
+      "matches": true
+    },
+    {
+      "path": "app/disclaimer/page.tsx",
+      "expected_git_blob_sha": "33c414c2b2c58b77543f7c616307ee2165bc0845",
+      "actual_git_blob_sha": "33c414c2b2c58b77543f7c616307ee2165bc0845",
+      "matches": true
+    },
+    {
+      "path": "app/globals.css",
+      "expected_git_blob_sha": "3dd56ca60a575ef1fae4b1c1b322e03d83705438",
+      "actual_git_blob_sha": "3dd56ca60a575ef1fae4b1c1b322e03d83705438",
+      "matches": true
+    },
+    {
+      "path": "app/guides/GuideArticle.tsx",
+      "expected_git_blob_sha": "5d9116ded93ed3cc871c8747ae4605bf474c633c",
+      "actual_git_blob_sha": "5d9116ded93ed3cc871c8747ae4605bf474c633c",
+      "matches": true
+    },
+    {
+      "path": "app/guides/build-a-deadline-evidence-record/page.tsx",
+      "expected_git_blob_sha": "91a48d05a086da135647a212900c43cb16879736",
+      "actual_git_blob_sha": "91a48d05a086da135647a212900c43cb16879736",
+      "matches": true
+    },
+    {
+      "path": "app/guides/choose-a-correction-or-review/page.tsx",
+      "expected_git_blob_sha": "d65020a1923e5334dd100e08bda5569bf9401e44",
+      "actual_git_blob_sha": "d65020a1923e5334dd100e08bda5569bf9401e44",
+      "matches": true
+    },
+    {
+      "path": "app/guides/find-the-claim-response/page.tsx",
+      "expected_git_blob_sha": "28adcdb0a1517b5820cb7869d3f3a5cd48df2e76",
+      "actual_git_blob_sha": "28adcdb0a1517b5820cb7869d3f3a5cd48df2e76",
+      "matches": true
+    },
+    {
+      "path": "app/guides/page.tsx",
+      "expected_git_blob_sha": "a59c0e1f3920b88b50af41474407e620d672c678",
+      "actual_git_blob_sha": "a59c0e1f3920b88b50af41474407e620d672c678",
+      "matches": true
+    },
+    {
+      "path": "app/layout.tsx",
+      "expected_git_blob_sha": "d02dae6ea9dceb7b1e565540434080ec579defc4",
+      "actual_git_blob_sha": "d02dae6ea9dceb7b1e565540434080ec579defc4",
+      "matches": true
+    },
+    {
+      "path": "app/lib/codes.ts",
+      "expected_git_blob_sha": "fa28892e9b751e88c1d8e5b6e8a7184674505c10",
+      "actual_git_blob_sha": "fa28892e9b751e88c1d8e5b6e8a7184674505c10",
+      "matches": true
+    },
+    {
+      "path": "app/methodology/page.tsx",
+      "expected_git_blob_sha": "a7cb7cee7e0e9063d89e1cf702744645ca865aa4",
+      "actual_git_blob_sha": "a7cb7cee7e0e9063d89e1cf702744645ca865aa4",
+      "matches": true
+    },
+    {
+      "path": "app/not-found.tsx",
+      "expected_git_blob_sha": "16a0f6f16f0e01434c83ab33710f15d3cb3870f2",
+      "actual_git_blob_sha": "16a0f6f16f0e01434c83ab33710f15d3cb3870f2",
+      "matches": true
+    },
+    {
+      "path": "app/page.tsx",
+      "expected_git_blob_sha": "8e90da2ee262b292220082dcf05c7cf961bb2589",
+      "actual_git_blob_sha": "8e90da2ee262b292220082dcf05c7cf961bb2589",
+      "matches": true
+    },
+    {
+      "path": "app/privacy-policy/page.tsx",
+      "expected_git_blob_sha": "f80f95e05530b882f08ae2282167c9c0e921c7ee",
+      "actual_git_blob_sha": "f80f95e05530b882f08ae2282167c9c0e921c7ee",
+      "matches": true
+    },
+    {
+      "path": "app/robots.ts",
+      "expected_git_blob_sha": "ce612c938e9845ef41177b1875fbe4f41b9d1db2",
+      "actual_git_blob_sha": "ce612c938e9845ef41177b1875fbe4f41b9d1db2",
+      "matches": true
+    },
+    {
+      "path": "app/search/page.tsx",
+      "expected_git_blob_sha": "0a8da1695102b2669b01730a63fd56ba1a228c1b",
+      "actual_git_blob_sha": "0a8da1695102b2669b01730a63fd56ba1a228c1b",
+      "matches": true
+    },
+    {
+      "path": "app/sitemap.ts",
+      "expected_git_blob_sha": "709585555a7c1f4bdd018c4d097601e3d3ba1ab7",
+      "actual_git_blob_sha": "709585555a7c1f4bdd018c4d097601e3d3ba1ab7",
+      "matches": true
+    },
+    {
+      "path": "app/sources/page.tsx",
+      "expected_git_blob_sha": "27c4f4112290c5408e7ff513a530ed0c1f2c6f23",
+      "actual_git_blob_sha": "27c4f4112290c5408e7ff513a530ed0c1f2c6f23",
+      "matches": true
+    },
+    {
+      "path": "app/terms/page.tsx",
+      "expected_git_blob_sha": "cb4bab292e62e981885570d2e405e940f9a74a6f",
+      "actual_git_blob_sha": "cb4bab292e62e981885570d2e405e940f9a74a6f",
+      "matches": true
+    },
+    {
+      "path": "app/tools/evidence-checklist/page.tsx",
+      "expected_git_blob_sha": "56887dc64285058a0051c3dd5108656556e1dbee",
+      "actual_git_blob_sha": "56887dc64285058a0051c3dd5108656556e1dbee",
+      "matches": true
+    },
+    {
+      "path": "app/tools/evidence-checklist/tool.tsx",
+      "expected_git_blob_sha": "0e806fdfa89ef6bc3f6fa56ff51bfcc5a97a540d",
+      "actual_git_blob_sha": "0e806fdfa89ef6bc3f6fa56ff51bfcc5a97a540d",
+      "matches": true
+    },
+    {
+      "path": "components.json",
+      "expected_git_blob_sha": "c597462135e1be048c06784cefd541df07532560",
+      "actual_git_blob_sha": "c597462135e1be048c06784cefd541df07532560",
+      "matches": true
+    },
+    {
+      "path": "components/ui/accordion.tsx",
+      "expected_git_blob_sha": "84bf2ebe4411d0bc7019fa0767ca59bbeb452d60",
+      "actual_git_blob_sha": "84bf2ebe4411d0bc7019fa0767ca59bbeb452d60",
+      "matches": true
+    },
+    {
+      "path": "components/ui/alert-dialog.tsx",
+      "expected_git_blob_sha": "5cba559b0fe2e2c46b622ce673d357d2195f4c2f",
+      "actual_git_blob_sha": "5cba559b0fe2e2c46b622ce673d357d2195f4c2f",
+      "matches": true
+    },
+    {
+      "path": "components/ui/alert.tsx",
+      "expected_git_blob_sha": "d2b59ccd8813b32f05ea82a494c5f7c3013d46ca",
+      "actual_git_blob_sha": "d2b59ccd8813b32f05ea82a494c5f7c3013d46ca",
+      "matches": true
+    },
+    {
+      "path": "components/ui/aspect-ratio.tsx",
+      "expected_git_blob_sha": "aaabffbc4500936ebd49758a3b416c93c66ce8ec",
+      "actual_git_blob_sha": "aaabffbc4500936ebd49758a3b416c93c66ce8ec",
+      "matches": true
+    },
+    {
+      "path": "components/ui/avatar.tsx",
+      "expected_git_blob_sha": "1346957c31824dac8ab674d56da3aa60d6d489c6",
+      "actual_git_blob_sha": "1346957c31824dac8ab674d56da3aa60d6d489c6",
+      "matches": true
+    },
+    {
+      "path": "components/ui/badge.tsx",
+      "expected_git_blob_sha": "2eb790a6c5d079ffb348f8b1298ca2625a925ced",
+      "actual_git_blob_sha": "2eb790a6c5d079ffb348f8b1298ca2625a925ced",
+      "matches": true
+    },
+    {
+      "path": "components/ui/breadcrumb.tsx",
+      "expected_git_blob_sha": "8b6219731d9425abb9395e655053aa731e2b9490",
+      "actual_git_blob_sha": "8b6219731d9425abb9395e655053aa731e2b9490",
+      "matches": true
+    },
+    {
+      "path": "components/ui/button.tsx",
+      "expected_git_blob_sha": "81e2e6ee12fcc7980d6e3bb4523bb3b120e33085",
+      "actual_git_blob_sha": "81e2e6ee12fcc7980d6e3bb4523bb3b120e33085",
+      "matches": true
+    },
+    {
+      "path": "components/ui/calendar.tsx",
+      "expected_git_blob_sha": "7ee4f8227cb17e141054d0cc4f960c99f5d541e3",
+      "actual_git_blob_sha": "7ee4f8227cb17e141054d0cc4f960c99f5d541e3",
+      "matches": true
+    },
+    {
+      "path": "components/ui/card.tsx",
+      "expected_git_blob_sha": "fca7be46ceacc0187371305c4b41c97b9da68de2",
+      "actual_git_blob_sha": "fca7be46ceacc0187371305c4b41c97b9da68de2",
+      "matches": true
+    },
+    {
+      "path": "components/ui/carousel.tsx",
+      "expected_git_blob_sha": "f68920093078b2a1d303dea647fc3599c51f709a",
+      "actual_git_blob_sha": "f68920093078b2a1d303dea647fc3599c51f709a",
+      "matches": true
+    },
+    {
+      "path": "components/ui/chart.tsx",
+      "expected_git_blob_sha": "9b6a04b42e351b35e5e4cb96ca4c2b020f397c83",
+      "actual_git_blob_sha": "9b6a04b42e351b35e5e4cb96ca4c2b020f397c83",
+      "matches": true
+    },
+    {
+      "path": "components/ui/checkbox.tsx",
+      "expected_git_blob_sha": "13a6a291daa1f57eb011928783daec5ae39c5710",
+      "actual_git_blob_sha": "13a6a291daa1f57eb011928783daec5ae39c5710",
+      "matches": true
+    },
+    {
+      "path": "components/ui/collapsible.tsx",
+      "expected_git_blob_sha": "86ab87d88e06375de0ee5084c3d28f2e2465c8bc",
+      "actual_git_blob_sha": "86ab87d88e06375de0ee5084c3d28f2e2465c8bc",
+      "matches": true
+    },
+    {
+      "path": "components/ui/command.tsx",
+      "expected_git_blob_sha": "5b9ca50386eb3137d8cbb2f9ecf2c859720b3359",
+      "actual_git_blob_sha": "5b9ca50386eb3137d8cbb2f9ecf2c859720b3359",
+      "matches": true
+    },
+    {
+      "path": "components/ui/context-menu.tsx",
+      "expected_git_blob_sha": "1046ab83e299eb5f0c9764e5871a37644537e317",
+      "actual_git_blob_sha": "1046ab83e299eb5f0c9764e5871a37644537e317",
+      "matches": true
+    },
+    {
+      "path": "components/ui/dialog.tsx",
+      "expected_git_blob_sha": "b55295225e21a72f1ddd1e35de49ec37d55834af",
+      "actual_git_blob_sha": "b55295225e21a72f1ddd1e35de49ec37d55834af",
+      "matches": true
+    },
+    {
+      "path": "components/ui/drawer.tsx",
+      "expected_git_blob_sha": "f78fb477836d19ae0a4de9f4b0552f28ca488513",
+      "actual_git_blob_sha": "f78fb477836d19ae0a4de9f4b0552f28ca488513",
+      "matches": true
+    },
+    {
+      "path": "components/ui/dropdown-menu.tsx",
+      "expected_git_blob_sha": "283467c688ca40356723ed54bc86ef116e3f0c1d",
+      "actual_git_blob_sha": "283467c688ca40356723ed54bc86ef116e3f0c1d",
+      "matches": true
+    },
+    {
+      "path": "components/ui/form.tsx",
+      "expected_git_blob_sha": "b9fb86034bae74a6dd7f0131ca25e29d55ebb481",
+      "actual_git_blob_sha": "b9fb86034bae74a6dd7f0131ca25e29d55ebb481",
+      "matches": true
+    },
+    {
+      "path": "components/ui/hover-card.tsx",
+      "expected_git_blob_sha": "1c9816ea3ae4cf16e93ef15327690ede0956dd7b",
+      "actual_git_blob_sha": "1c9816ea3ae4cf16e93ef15327690ede0956dd7b",
+      "matches": true
+    },
+    {
+      "path": "components/ui/input-otp.tsx",
+      "expected_git_blob_sha": "e7f1585ed36562f463ddd7b4557abd3725f63839",
+      "actual_git_blob_sha": "e7f1585ed36562f463ddd7b4557abd3725f63839",
+      "matches": true
+    },
+    {
+      "path": "components/ui/input.tsx",
+      "expected_git_blob_sha": "c98211277ed0059ec808201fff201579f12fc002",
+      "actual_git_blob_sha": "c98211277ed0059ec808201fff201579f12fc002",
+      "matches": true
+    },
+    {
+      "path": "components/ui/label.tsx",
+      "expected_git_blob_sha": "1e24ec01fd29efc1bf11e60dc3ff6be9048c7a41",
+      "actual_git_blob_sha": "1e24ec01fd29efc1bf11e60dc3ff6be9048c7a41",
+      "matches": true
+    },
+    {
+      "path": "components/ui/menubar.tsx",
+      "expected_git_blob_sha": "045ad98818ed48ffd34719b1d2176a7ec0aa44dd",
+      "actual_git_blob_sha": "045ad98818ed48ffd34719b1d2176a7ec0aa44dd",
+      "matches": true
+    },
+    {
+      "path": "components/ui/navigation-menu.tsx",
+      "expected_git_blob_sha": "97ec3181455810beb85989d966ec67bd9157bcc0",
+      "actual_git_blob_sha": "97ec3181455810beb85989d966ec67bd9157bcc0",
+      "matches": true
+    },
+    {
+      "path": "components/ui/pagination.tsx",
+      "expected_git_blob_sha": "7462accc3225ab7a49c18734a02809aa6d6ca783",
+      "actual_git_blob_sha": "7462accc3225ab7a49c18734a02809aa6d6ca783",
+      "matches": true
+    },
+    {
+      "path": "components/ui/popover.tsx",
+      "expected_git_blob_sha": "f224d5ed320ad2adf8fc3d4440914d4905745634",
+      "actual_git_blob_sha": "f224d5ed320ad2adf8fc3d4440914d4905745634",
+      "matches": true
+    },
+    {
+      "path": "components/ui/progress.tsx",
+      "expected_git_blob_sha": "b95991816e6efbf885ee06c2c2520592dd912099",
+      "actual_git_blob_sha": "b95991816e6efbf885ee06c2c2520592dd912099",
+      "matches": true
+    },
+    {
+      "path": "components/ui/radio-group.tsx",
+      "expected_git_blob_sha": "acd55f346da327abdbbbbcff434c66d2b2959569",
+      "actual_git_blob_sha": "acd55f346da327abdbbbbcff434c66d2b2959569",
+      "matches": true
+    },
+    {
+      "path": "components/ui/resizable.tsx",
+      "expected_git_blob_sha": "bbd3eb87c372dd16596244fe00a38fcfd2e0a016",
+      "actual_git_blob_sha": "bbd3eb87c372dd16596244fe00a38fcfd2e0a016",
+      "matches": true
+    },
+    {
+      "path": "components/ui/scroll-area.tsx",
+      "expected_git_blob_sha": "75c68fa4fab33fb0a8971d433cd8b44d41c91cbc",
+      "actual_git_blob_sha": "75c68fa4fab33fb0a8971d433cd8b44d41c91cbc",
+      "matches": true
+    },
+    {
+      "path": "components/ui/select.tsx",
+      "expected_git_blob_sha": "9f3ef2157df1131777b18fd1ad385fc73f66c2e7",
+      "actual_git_blob_sha": "9f3ef2157df1131777b18fd1ad385fc73f66c2e7",
+      "matches": true
+    },
+    {
+      "path": "components/ui/separator.tsx",
+      "expected_git_blob_sha": "da040615d4aefd700d45fd67f13b302fbaf7fe6e",
+      "actual_git_blob_sha": "da040615d4aefd700d45fd67f13b302fbaf7fe6e",
+      "matches": true
+    },
+    {
+      "path": "components/ui/sheet.tsx",
+      "expected_git_blob_sha": "257a927c2d0df5d2dbdfebf7f71f6314e88afe8d",
+      "actual_git_blob_sha": "257a927c2d0df5d2dbdfebf7f71f6314e88afe8d",
+      "matches": true
+    },
+    {
+      "path": "components/ui/skeleton.tsx",
+      "expected_git_blob_sha": "a626d9baa6a2128151d0cfab9ba84b265908c867",
+      "actual_git_blob_sha": "a626d9baa6a2128151d0cfab9ba84b265908c867",
+      "matches": true
+    },
+    {
+      "path": "components/ui/slider.tsx",
+      "expected_git_blob_sha": "d25bb55d913f6224fa34136355f14210ec07f09a",
+      "actual_git_blob_sha": "d25bb55d913f6224fa34136355f14210ec07f09a",
+      "matches": true
+    },
+    {
+      "path": "components/ui/sonner.tsx",
+      "expected_git_blob_sha": "b38ad1e0d65af2a3c1f37606324fd20292bd2c1d",
+      "actual_git_blob_sha": "b38ad1e0d65af2a3c1f37606324fd20292bd2c1d",
+      "matches": true
+    },
+    {
+      "path": "components/ui/switch.tsx",
+      "expected_git_blob_sha": "fcdbe8b3caa6acd3c6b3dfc1736bc9e2f96b7e0e",
+      "actual_git_blob_sha": "fcdbe8b3caa6acd3c6b3dfc1736bc9e2f96b7e0e",
+      "matches": true
+    },
+    {
+      "path": "components/ui/table.tsx",
+      "expected_git_blob_sha": "33a120999541d9ce77c4f11716b3e4a4adefc513",
+      "actual_git_blob_sha": "33a120999541d9ce77c4f11716b3e4a4adefc513",
+      "matches": true
+    },
+    {
+      "path": "components/ui/tabs.tsx",
+      "expected_git_blob_sha": "73155376d61e9bff33b9cd3a6804c799fe79a679",
+      "actual_git_blob_sha": "73155376d61e9bff33b9cd3a6804c799fe79a679",
+      "matches": true
+    },
+    {
+      "path": "components/ui/textarea.tsx",
+      "expected_git_blob_sha": "4ca06111bbed2fa860640c485e761ac2c080a763",
+      "actual_git_blob_sha": "4ca06111bbed2fa860640c485e761ac2c080a763",
+      "matches": true
+    },
+    {
+      "path": "components/ui/toast.tsx",
+      "expected_git_blob_sha": "bd67dced4ad5bee6f43bb9af9335beb80900c058",
+      "actual_git_blob_sha": "bd67dced4ad5bee6f43bb9af9335beb80900c058",
+      "matches": true
+    },
+    {
+      "path": "components/ui/toaster.tsx",
+      "expected_git_blob_sha": "8705cd8552c5676305603369a3736f95fe116dcb",
+      "actual_git_blob_sha": "8705cd8552c5676305603369a3736f95fe116dcb",
+      "matches": true
+    },
+    {
+      "path": "components/ui/toggle-group.tsx",
+      "expected_git_blob_sha": "a26cbc60072dd8193de96d092cf9550c2820e993",
+      "actual_git_blob_sha": "a26cbc60072dd8193de96d092cf9550c2820e993",
+      "matches": true
+    },
+    {
+      "path": "components/ui/toggle.tsx",
+      "expected_git_blob_sha": "edae4a995dcc600f59bb49df6a36a5f2cc45b3bd",
+      "actual_git_blob_sha": "edae4a995dcc600f59bb49df6a36a5f2cc45b3bd",
+      "matches": true
+    },
+    {
+      "path": "components/ui/tooltip.tsx",
+      "expected_git_blob_sha": "e015b75a463eb8590e7da35980ad3f470aad8d35",
+      "actual_git_blob_sha": "e015b75a463eb8590e7da35980ad3f470aad8d35",
+      "matches": true
+    },
+    {
+      "path": "hooks/use-toast.ts",
+      "expected_git_blob_sha": "73371151f0a525e8460a0f6b996b0527f77757c9",
+      "actual_git_blob_sha": "73371151f0a525e8460a0f6b996b0527f77757c9",
+      "matches": true
+    },
+    {
+      "path": "lib/public/analytics-environment.ts",
+      "expected_git_blob_sha": "e3cb9eb78b32a7b2bc2a06207fd05ae507f31f43",
+      "actual_git_blob_sha": "e3cb9eb78b32a7b2bc2a06207fd05ae507f31f43",
+      "matches": true
+    },
+    {
+      "path": "lib/public/guides.ts",
+      "expected_git_blob_sha": "f92cfe9ad7fb7ab5b2cadf05acbc1fe614f8db13",
+      "actual_git_blob_sha": "f92cfe9ad7fb7ab5b2cadf05acbc1fe614f8db13",
+      "matches": true
+    },
+    {
+      "path": "lib/public/indexing.ts",
+      "expected_git_blob_sha": "c7a60f01aa33113ff65b4d9850c5342d30a2035d",
+      "actual_git_blob_sha": "c7a60f01aa33113ff65b4d9850c5342d30a2035d",
+      "matches": true
+    },
+    {
+      "path": "lib/public/search.ts",
+      "expected_git_blob_sha": "73e38fa29c6c2643bd37ddd1853d59b973b9f351",
+      "actual_git_blob_sha": "73e38fa29c6c2643bd37ddd1853d59b973b9f351",
+      "matches": true
+    },
+    {
+      "path": "lib/utils.ts",
+      "expected_git_blob_sha": "2819a830d242f11fda91c4e8951794ab815cec77",
+      "actual_git_blob_sha": "2819a830d242f11fda91c4e8951794ab815cec77",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/evidence-checklist.ts",
+      "expected_git_blob_sha": "454da5d30be682e51b0d886e04a3e097f524469f",
+      "actual_git_blob_sha": "454da5d30be682e51b0d886e04a3e097f524469f",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/data.ts",
+      "expected_git_blob_sha": "3d8601150c6e9ee453b22c60f1cf8cb5ac144a81",
+      "actual_git_blob_sha": "3d8601150c6e9ee453b22c60f1cf8cb5ac144a81",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co16.json",
+      "expected_git_blob_sha": "4583019e813b95151449c6e5143b3a6805f32e5a",
+      "actual_git_blob_sha": "4583019e813b95151449c6e5143b3a6805f32e5a",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co16.ts",
+      "expected_git_blob_sha": "982d40e13b0a0bfd64c7daedde2263a35fdb3a84",
+      "actual_git_blob_sha": "982d40e13b0a0bfd64c7daedde2263a35fdb3a84",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co18.json",
+      "expected_git_blob_sha": "8e8629aaa61311a53ee49de25834798d8b440cca",
+      "actual_git_blob_sha": "8e8629aaa61311a53ee49de25834798d8b440cca",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co18.ts",
+      "expected_git_blob_sha": "95576c99977c607fadd583548d53509eb076de14",
+      "actual_git_blob_sha": "95576c99977c607fadd583548d53509eb076de14",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co197.json",
+      "expected_git_blob_sha": "deb0b82337f7b564e820a31278b413a44a03b438",
+      "actual_git_blob_sha": "deb0b82337f7b564e820a31278b413a44a03b438",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co197.ts",
+      "expected_git_blob_sha": "779325c77493998a25151d1bcc77cd71dd5183da",
+      "actual_git_blob_sha": "779325c77493998a25151d1bcc77cd71dd5183da",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co22.json",
+      "expected_git_blob_sha": "fe12cf0d7d7d8fff5c00120a1cd635dbb3b63546",
+      "actual_git_blob_sha": "fe12cf0d7d7d8fff5c00120a1cd635dbb3b63546",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co22.ts",
+      "expected_git_blob_sha": "15dcd47349adfe69d29f8f2a3e1ffde8234483ba",
+      "actual_git_blob_sha": "15dcd47349adfe69d29f8f2a3e1ffde8234483ba",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co29.json",
+      "expected_git_blob_sha": "917983e7cb821f35acb43a1b030f513bcbe2664b",
+      "actual_git_blob_sha": "917983e7cb821f35acb43a1b030f513bcbe2664b",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/guides/co29.ts",
+      "expected_git_blob_sha": "349581b9866e71184e055aebf894df503bdc0041",
+      "actual_git_blob_sha": "349581b9866e71184e055aebf894df503bdc0041",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-alert-rarc-cause.json",
+      "expected_git_blob_sha": "56760d6b838998fd119b094d268087cfb6d3056b",
+      "actual_git_blob_sha": "56760d6b838998fd119b094d268087cfb6d3056b",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-bpr16-appeal-trigger.json",
+      "expected_git_blob_sha": "24f9081adcd9c517844cf73fe8cc2398b8cbf0f5",
+      "actual_git_blob_sha": "24f9081adcd9c517844cf73fe8cc2398b8cbf0f5",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-carc18-blanket-liability.json",
+      "expected_git_blob_sha": "4f4ad49ea256ffc415c5da1c3727be7991dea500",
+      "actual_git_blob_sha": "4f4ad49ea256ffc415c5da1c3727be7991dea500",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-carc18-universal-co.json",
+      "expected_git_blob_sha": "8d263c8539ed216b6c3789fdd238a2bd0b8bd662",
+      "actual_git_blob_sha": "8d263c8539ed216b6c3789fdd238a2bd0b8bd662",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-clearinghouse-835-conflation.json",
+      "expected_git_blob_sha": "0cbf8770e4e4adc2464526c8329057c01686c2fd",
+      "actual_git_blob_sha": "0cbf8770e4e4adc2464526c8329057c01686c2fd",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co-blanket-liability.json",
+      "expected_git_blob_sha": "506036fd08d14a5b419d9c7d2fac2edc2bb48f2a",
+      "actual_git_blob_sha": "506036fd08d14a5b419d9c7d2fac2edc2bb48f2a",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co197-emergency-impossible.json",
+      "expected_git_blob_sha": "95aad88a0e36eaf227b50272c1061e6f131319f5",
+      "actual_git_blob_sha": "95aad88a0e36eaf227b50272c1061e6f131319f5",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co197-emergency-overreach.json",
+      "expected_git_blob_sha": "f9ed2ac06d7e8cb838092061250f475d5326376a",
+      "actual_git_blob_sha": "f9ed2ac06d7e8cb838092061250f475d5326376a",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co197-ma-nsa-conflation.json",
+      "expected_git_blob_sha": "d1d726a1d040a6d1bb18f2aaf7b390705887f05b",
+      "actual_git_blob_sha": "d1d726a1d040a6d1bb18f2aaf7b390705887f05b",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co197-nsa-waiver-overreach.json",
+      "expected_git_blob_sha": "98a657c6a2fe3f21972131897cec66696b10a523",
+      "actual_git_blob_sha": "98a657c6a2fe3f21972131897cec66696b10a523",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co197-opd-abn-overreach.json",
+      "expected_git_blob_sha": "1eee75f6e6a9fdd0954e15b4dbf5a543ae4d0438",
+      "actual_git_blob_sha": "1eee75f6e6a9fdd0954e15b4dbf5a543ae4d0438",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co197-retro-auth-overreach.json",
+      "expected_git_blob_sha": "1f114a20ff6e948f86ae17a3e6455a5a7e730724",
+      "actual_git_blob_sha": "1f114a20ff6e948f86ae17a3e6455a5a7e730724",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-co22-model-cob-overreach.json",
+      "expected_git_blob_sha": "5649e746f5c3c062875bde3f3fa6e0cf77fbb4b6",
+      "actual_git_blob_sha": "5649e746f5c3c062875bde3f3fa6e0cf77fbb4b6",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-commercial-deadlines.json",
+      "expected_git_blob_sha": "fc8923c2ee92ecb065c50b348777a1d5d23fa8df",
+      "actual_git_blob_sha": "fc8923c2ee92ecb065c50b348777a1d5d23fa8df",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-emergency-indicator-overreach.json",
+      "expected_git_blob_sha": "31cb556ccca44d094bb24030f37d109a0b31d9fd",
+      "actual_git_blob_sha": "31cb556ccca44d094bb24030f37d109a0b31d9fd",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-erisa-aob-representation.json",
+      "expected_git_blob_sha": "259e49f69e1787b273f34161e34eae624c1eaa77",
+      "actual_git_blob_sha": "259e49f69e1787b273f34161e34eae624c1eaa77",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-erisa-provider-deadline.json",
+      "expected_git_blob_sha": "1f3256fd4c1e45dbaf86ffd667b18d1cbc97c48c",
+      "actual_git_blob_sha": "1f3256fd4c1e45dbaf86ffd667b18d1cbc97c48c",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-m51-modifier.json",
+      "expected_git_blob_sha": "77dad369f47f9c6aaf680f2b82b46dccef5f52a5",
+      "actual_git_blob_sha": "77dad369f47f9c6aaf680f2b82b46dccef5f52a5",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-ma-appeal-notice-date.json",
+      "expected_git_blob_sha": "c724043be07ba87754fd84711efa9aff92204e78",
+      "actual_git_blob_sha": "c724043be07ba87754fd84711efa9aff92204e78",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-n300-n301-cob.json",
+      "expected_git_blob_sha": "4a0c18b34c0aeb3c84d1cd7966f73890fbdc1ace",
+      "actual_git_blob_sha": "4a0c18b34c0aeb3c84d1cd7966f73890fbdc1ace",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-n382-cob.json",
+      "expected_git_blob_sha": "ccbf1da24d7233edee456ee25c8ad3c5e8db4ca4",
+      "actual_git_blob_sha": "ccbf1da24d7233edee456ee25c8ad3c5e8db4ca4",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-universal-auth-validity.json",
+      "expected_git_blob_sha": "5e5d560c28fc0c4d4774dd06f5e4dd58240b3a0b",
+      "actual_git_blob_sha": "5e5d560c28fc0c4d4774dd06f5e4dd58240b3a0b",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-universal-p2p-window.json",
+      "expected_git_blob_sha": "31fc95458fafb2d16fdf4e78c3f9ecd61abe4a3f",
+      "actual_git_blob_sha": "31fc95458fafb2d16fdf4e78c3f9ecd61abe4a3f",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-universal-unprocessable.json",
+      "expected_git_blob_sha": "3bf72b992fd6388da09a5a2cd0d5768952a9b391",
+      "actual_git_blob_sha": "3bf72b992fd6388da09a5a2cd0d5768952a9b391",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-unknown-rarc.json",
+      "expected_git_blob_sha": "721f87a6f66a576772dae887925bec37b1686b2a",
+      "actual_git_blob_sha": "721f87a6f66a576772dae887925bec37b1686b2a",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/invalid-unverified-provenance.json",
+      "expected_git_blob_sha": "5090d90192b94d05b7ba7261846547ac767a01bb",
+      "actual_git_blob_sha": "5090d90192b94d05b7ba7261846547ac767a01bb",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/fixtures/valid-sample-guide.json",
+      "expected_git_blob_sha": "cb385fada2671224a647be433bf710fe5055b7b9",
+      "actual_git_blob_sha": "cb385fada2671224a647be433bf710fe5055b7b9",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/registry/controlled_authorities.json",
+      "expected_git_blob_sha": "3e6114b1b8e9fe3257415547c0d66641276fbfaa",
+      "actual_git_blob_sha": "3e6114b1b8e9fe3257415547c0d66641276fbfaa",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/registry/controlled_carcs.json",
+      "expected_git_blob_sha": "d070aab5ea447373a8c54cc1d8440178a4305664",
+      "actual_git_blob_sha": "d070aab5ea447373a8c54cc1d8440178a4305664",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/registry/controlled_group_codes.json",
+      "expected_git_blob_sha": "dcf5913b5f1c138785531faf66786193ddb89d6f",
+      "actual_git_blob_sha": "dcf5913b5f1c138785531faf66786193ddb89d6f",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/registry/controlled_rarcs.json",
+      "expected_git_blob_sha": "32127e7c384eaefddb892947a00fa37822a1fd6f",
+      "actual_git_blob_sha": "32127e7c384eaefddb892947a00fa37822a1fd6f",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/rules/code-integrity.ts",
+      "expected_git_blob_sha": "f4a0b924623b56a3060ba19fa40559fb5f165f86",
+      "actual_git_blob_sha": "f4a0b924623b56a3060ba19fa40559fb5f165f86",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/rules/provenance-currency.ts",
+      "expected_git_blob_sha": "d3cca641b265e670c00914037ef626c76562808a",
+      "actual_git_blob_sha": "d3cca641b265e670c00914037ef626c76562808a",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/rules/public-integrity.ts",
+      "expected_git_blob_sha": "6ffeea36a331eec13583bafda926ca1b3bb09db0",
+      "actual_git_blob_sha": "6ffeea36a331eec13583bafda926ca1b3bb09db0",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/rules/remark-relationships.ts",
+      "expected_git_blob_sha": "f715d5d831a00b8ed11a13a082e97fb7e97f78fc",
+      "actual_git_blob_sha": "f715d5d831a00b8ed11a13a082e97fb7e97f78fc",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/rules/scope-sensitive.ts",
+      "expected_git_blob_sha": "9ab725c72b77ba6be31e91a1e8ce97947798bea1",
+      "actual_git_blob_sha": "9ab725c72b77ba6be31e91a1e8ce97947798bea1",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/run-quality-gate.ts",
+      "expected_git_blob_sha": "94eacae1e3263e5b855ab032fd3fb206d3a8f35e",
+      "actual_git_blob_sha": "94eacae1e3263e5b855ab032fd3fb206d3a8f35e",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/types.ts",
+      "expected_git_blob_sha": "527bbddfd718925aa5037d5f916fc2c4c6c468b6",
+      "actual_git_blob_sha": "527bbddfd718925aa5037d5f916fc2c4c6c468b6",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/quality/validator.ts",
+      "expected_git_blob_sha": "2e329299bfd40f5525238eb60876981a043488d9",
+      "actual_git_blob_sha": "2e329299bfd40f5525238eb60876981a043488d9",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/types.ts",
+      "expected_git_blob_sha": "7cb6b8b909f97a98bda024eb4ed00c56112bea60",
+      "actual_git_blob_sha": "7cb6b8b909f97a98bda024eb4ed00c56112bea60",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/knowledge/v3_public_dataset.json",
+      "expected_git_blob_sha": "e2333a4f2db9953cf7f53091bd5c57cc2cc8b4c0",
+      "actual_git_blob_sha": "e2333a4f2db9953cf7f53091bd5c57cc2cc8b4c0",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/search.ts",
+      "expected_git_blob_sha": "745e37b58020fd986540bb4ef877c9b197f11ab8",
+      "actual_git_blob_sha": "745e37b58020fd986540bb4ef877c9b197f11ab8",
+      "matches": true
+    },
+    {
+      "path": "lib/v3/types.ts",
+      "expected_git_blob_sha": "f42462a1a3d2402c2f86f2576754cd8d29854bb1",
+      "actual_git_blob_sha": "f42462a1a3d2402c2f86f2576754cd8d29854bb1",
+      "matches": true
+    },
+    {
+      "path": "netlify.toml",
+      "expected_git_blob_sha": "d9d8686e46edf7875d9f3c176b37d2a881cd2bf1",
+      "actual_git_blob_sha": "d9d8686e46edf7875d9f3c176b37d2a881cd2bf1",
+      "matches": true
+    },
+    {
+      "path": "next.config.js",
+      "expected_git_blob_sha": "b6f0d8b50c11623668f4267bead9fcab009baa9e",
+      "actual_git_blob_sha": "b6f0d8b50c11623668f4267bead9fcab009baa9e",
+      "matches": true
+    },
+    {
+      "path": "notices/Inter-OFL.txt",
+      "expected_git_blob_sha": "21f6aff961064c2e429f570995e446bcdd555422",
+      "actual_git_blob_sha": "21f6aff961064c2e429f570995e446bcdd555422",
+      "matches": true
+    },
+    {
+      "path": "notices/LGPL-3.0-with-GPL-3.0.txt",
+      "expected_git_blob_sha": "513d1c01fe5b5b9724e999d8eb041ff17d444eaa",
+      "actual_git_blob_sha": "513d1c01fe5b5b9724e999d8eb041ff17d444eaa",
+      "matches": true
+    },
+    {
+      "path": "notices/next-env-15.5.28.txt",
+      "expected_git_blob_sha": "151cbcc999fe9d2dd41b28e4643a66f2a918cf03",
+      "actual_git_blob_sha": "151cbcc999fe9d2dd41b28e4643a66f2a918cf03",
+      "matches": true
+    },
+    {
+      "path": "package-lock.json",
+      "expected_git_blob_sha": "a8a8b85a44eaee2db12faa667ee81fa35c6bb172",
+      "actual_git_blob_sha": "a8a8b85a44eaee2db12faa667ee81fa35c6bb172",
+      "matches": true
+    },
+    {
+      "path": "package.json",
+      "expected_git_blob_sha": "0bb34b188f163b3e5759b63504bb8ecca405bb51",
+      "actual_git_blob_sha": "0bb34b188f163b3e5759b63504bb8ecca405bb51",
+      "matches": true
+    },
+    {
+      "path": "plugins/runtime-notice-audit/index.js",
+      "expected_git_blob_sha": "a7c5385b15900dedb9e6c571bde95db071e4553f",
+      "actual_git_blob_sha": "a7c5385b15900dedb9e6c571bde95db071e4553f",
+      "matches": true
+    },
+    {
+      "path": "plugins/runtime-notice-audit/inspect_bundle.py",
+      "expected_git_blob_sha": "d81c63f4f03e3cad1428a64d57c357fa214ebff6",
+      "actual_git_blob_sha": "d81c63f4f03e3cad1428a64d57c357fa214ebff6",
+      "matches": true
+    },
+    {
+      "path": "plugins/runtime-notice-audit/manifest.yml",
+      "expected_git_blob_sha": "7e5a96a7ac139b28ac11279d8564b928b0a0ad34",
+      "actual_git_blob_sha": "7e5a96a7ac139b28ac11279d8564b928b0a0ad34",
+      "matches": true
+    },
+    {
+      "path": "postcss.config.js",
+      "expected_git_blob_sha": "12a703d900da8159c30e75acbd2c4d87ae177f62",
+      "actual_git_blob_sha": "12a703d900da8159c30e75acbd2c4d87ae177f62",
+      "matches": true
+    },
+    {
+      "path": "public/.gitignore",
+      "expected_git_blob_sha": "99157910c9545ba1f1dc0b78fc1f99ca3d7bd4c7",
+      "actual_git_blob_sha": "99157910c9545ba1f1dc0b78fc1f99ca3d7bd4c7",
+      "matches": true
+    },
+    {
+      "path": "public/googlec966e072ab59a2e7.html",
+      "expected_git_blob_sha": "2cab779556337ba867ef23fe4f31960b07af51eb",
+      "actual_git_blob_sha": "2cab779556337ba867ef23fe4f31960b07af51eb",
+      "matches": true
+    },
+    {
+      "path": "public/site-measurement.html",
+      "expected_git_blob_sha": "b3370f2dcacfe62c752a18457833f8d3059187d7",
+      "actual_git_blob_sha": "b3370f2dcacfe62c752a18457833f8d3059187d7",
+      "matches": true
+    },
+    {
+      "path": "scripts/audit-built-pages.py",
+      "expected_git_blob_sha": "48ee1611a97f58164b3bd5ae677f19cbc310a658",
+      "actual_git_blob_sha": "48ee1611a97f58164b3bd5ae677f19cbc310a658",
+      "matches": true
+    },
+    {
+      "path": "scripts/audit-release-http.py",
+      "expected_git_blob_sha": "ba3f7e04bd8d82617aa35157c400627c373a6088",
+      "actual_git_blob_sha": "ba3f7e04bd8d82617aa35157c400627c373a6088",
+      "matches": true
+    },
+    {
+      "path": "scripts/check-publication-boundary.js",
+      "expected_git_blob_sha": "da63c634dedc7a8fe8f6528996594e1ca613990b",
+      "actual_git_blob_sha": "da63c634dedc7a8fe8f6528996594e1ca613990b",
+      "matches": true
+    },
+    {
+      "path": "scripts/collect-notices.cjs",
+      "expected_git_blob_sha": "fc26adf1ae573293b5f03194d79be897d80b59de",
+      "actual_git_blob_sha": "fc26adf1ae573293b5f03194d79be897d80b59de",
+      "matches": true
+    },
+    {
+      "path": "scripts/quality/rules/code-integrity.js",
+      "expected_git_blob_sha": "4f1620897480f7dafdcd3dd155b162628c1a24f9",
+      "actual_git_blob_sha": "4f1620897480f7dafdcd3dd155b162628c1a24f9",
+      "matches": true
+    },
+    {
+      "path": "scripts/quality/rules/provenance-currency.js",
+      "expected_git_blob_sha": "24ccf8a1ce4b32fd3115a39c01862a43d9e270cb",
+      "actual_git_blob_sha": "24ccf8a1ce4b32fd3115a39c01862a43d9e270cb",
+      "matches": true
+    },
+    {
+      "path": "scripts/quality/rules/public-integrity.js",
+      "expected_git_blob_sha": "fe98c16c4a794a3c0a00d13d28ae7444d1d62c32",
+      "actual_git_blob_sha": "fe98c16c4a794a3c0a00d13d28ae7444d1d62c32",
+      "matches": true
+    },
+    {
+      "path": "scripts/quality/rules/remark-relationships.js",
+      "expected_git_blob_sha": "3358d443965bf9b1e7c788135b232bdfa2742e0f",
+      "actual_git_blob_sha": "3358d443965bf9b1e7c788135b232bdfa2742e0f",
+      "matches": true
+    },
+    {
+      "path": "scripts/quality/rules/scope-sensitive.js",
+      "expected_git_blob_sha": "cc509e13360895a29e89847f19ac84330ee12273",
+      "actual_git_blob_sha": "cc509e13360895a29e89847f19ac84330ee12273",
+      "matches": true
+    },
+    {
+      "path": "scripts/quality/validator.js",
+      "expected_git_blob_sha": "97cd120ee15be6b6a1966687fd3c76476d65aa52",
+      "actual_git_blob_sha": "97cd120ee15be6b6a1966687fd3c76476d65aa52",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-analytics.cjs",
+      "expected_git_blob_sha": "4776128fbebad4c852515933c416168d2f6f6fad",
+      "actual_git_blob_sha": "4776128fbebad4c852515933c416168d2f6f6fad",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-indexing-policy.js",
+      "expected_git_blob_sha": "2a4e273fc9a596b0fe6eb8b21ca1301687b10c8f",
+      "actual_git_blob_sha": "2a4e273fc9a596b0fe6eb8b21ca1301687b10c8f",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-launch-readiness.js",
+      "expected_git_blob_sha": "749c56c459c67860bf3d2e4a61c09895ef320cf0",
+      "actual_git_blob_sha": "749c56c459c67860bf3d2e4a61c09895ef320cf0",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-public-search.js",
+      "expected_git_blob_sha": "4a6644252e6ebff1c4160b0176f0db9e7d1ed932",
+      "actual_git_blob_sha": "4a6644252e6ebff1c4160b0176f0db9e7d1ed932",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-release-http.py",
+      "expected_git_blob_sha": "adc4123ad14b5856d415384c9c9a21f2fc7f00a7",
+      "actual_git_blob_sha": "adc4123ad14b5856d415384c9c9a21f2fc7f00a7",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-runtime-notice-audit.py",
+      "expected_git_blob_sha": "83aa3ab99edece661b05e443d2299fdc851ff427",
+      "actual_git_blob_sha": "83aa3ab99edece661b05e443d2299fdc851ff427",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-runtime-notice-context.cjs",
+      "expected_git_blob_sha": "b40b7adf3bf65c43d7b69a2907424def43206c9c",
+      "actual_git_blob_sha": "b40b7adf3bf65c43d7b69a2907424def43206c9c",
+      "matches": true
+    },
+    {
+      "path": "scripts/test-supplemental-notices.cjs",
+      "expected_git_blob_sha": "07f6c321c27881fe615f3fcd666a8c93559f61f0",
+      "actual_git_blob_sha": "07f6c321c27881fe615f3fcd666a8c93559f61f0",
+      "matches": true
+    },
+    {
+      "path": "scripts/validate-knowledge.js",
+      "expected_git_blob_sha": "aecca6e9a3b43cf34f4265ce1a798e94d4a40b89",
+      "actual_git_blob_sha": "aecca6e9a3b43cf34f4265ce1a798e94d4a40b89",
+      "matches": true
+    },
+    {
+      "path": "tailwind.config.ts",
+      "expected_git_blob_sha": "2b95c14b1b607aabebefa4108beaed864f327dab",
+      "actual_git_blob_sha": "2b95c14b1b607aabebefa4108beaed864f327dab",
+      "matches": true
+    },
+    {
+      "path": "tsconfig.json",
+      "expected_git_blob_sha": "f4c73c578293282f0340ec59c7c9730769844885",
+      "actual_git_blob_sha": "f4c73c578293282f0340ec59c7c9730769844885",
+      "matches": true
+    }
+  ]
+}

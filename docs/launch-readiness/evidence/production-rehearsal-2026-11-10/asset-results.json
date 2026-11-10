@@ -1,0 +1,34 @@
+{
+  "passed": 4,
+  "failed": 0,
+  "results": [
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "bytes": 71,
+      "sha256": "8b4f2f9faa04b6459713ac236737170668ff79fc7ee98c4ecb1b6cf3deacc79c",
+      "matches_local_asset": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "bytes": 967,
+      "sha256": "580a5893bf254773881bd244dd45f172ed7531c75f0e13c9e8ec201a7ac5cc3a",
+      "matches_local_asset": true
+    },
+    {
+      "path": "/googlec966e072ab59a2e7.html",
+      "status": 200,
+      "bytes": 54,
+      "sha256": "ca871dd6b0e2578d169265a1a4602a407477044792fbcdf5cf63412981520817",
+      "matches_local_asset": true
+    },
+    {
+      "path": "/third-party-notices.txt",
+      "status": 200,
+      "bytes": 572579,
+      "sha256": "d8e7c5ca5d5cdc750798af701c42a0d2d508c843c658986c9400bb44cac262b0",
+      "matches_local_asset": true
+    }
+  ]
+}

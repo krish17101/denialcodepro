@@ -88,3 +88,51 @@ The remaining native question is the applicable hosting/conveyance and component
 The latest native-notice correction was verified on exact staging deploy preview 6af2d29afcd4e811d84e5212, source 6718051947776cef8ec3b832609df2656ab45e4b. The deployed static notice's bytes/hash match the aggregate reported inside the function ZIP. Six file assertions passed; browser navigation verified the Terms notice link and the new texts. Homepage noindex and absent external Google measurement script tags were checked. See ASSET_REVIEW_2026-11-04.md, Hosted native-notice verification, for measurements and limits.
 
 The earlier NOT_RUN label is superseded for this exact artifact's notice delivery. Remaining items are client-only attribution and applicable native-component obligations, the controlled production-context build and final publication decision, and separate code-content rights/billing review. Do not rebuild or rerun the same notice check without a changed artifact or defect. No production deployment or new build was triggered in this verification.
+
+
+## Local production-mode rehearsal — 10 November 2026
+
+**Outcome:** the current application passed the bounded local release checks below. This is not a hosted production deployment, a publication approval, a legal clearance, or an AdSense decision.
+
+Source: `e4775365c4ec65f266ae19af002a89c9e6c23c4a`. Git blob comparisons matched 184 tracked files: root files and app, components, lib, hooks, notices, plugins, scripts and public. Zero missing or different files in that scope. This is not a complete research preservation audit or an assertion that no untracked files exist. No earlier dossier was edited.
+
+### Environment and commands executed
+
+Node v24.22.1. Local environment only: NETLIFY=true, CONTEXT=production, DENIALCODEPRO_INDEXING_APPROVED=true; VERCEL_ENV, VERCEL_TARGET_ENV and NETLIFY_PREVIEW_SERVER unset. Setting the approval flag for this rehearsal did not approve indexing or change any hosted setting.
+
+```sh
+env -u VERCEL_ENV -u VERCEL_TARGET_ENV -u NETLIFY_PREVIEW_SERVER NETLIFY=true CONTEXT=production DENIALCODEPRO_INDEXING_APPROVED=true NEXT_TELEMETRY_DISABLED=1 npm run build
+python3 scripts/audit-built-pages.py --indexing production
+```
+
+The build log records compilation, type-check progression, 19/19 static generation, finalization, and the postbuild boundary audit. The original shell session exit status was not retained across session recovery; do not report an observed build exit code. Lint was skipped by existing configuration. npm emitted an environment warning about http-proxy. No test was weakened to achieve the results.
+
+A local Next server was started with the same environment, NODE_ENV=production, and a free loopback port, then shut down in a finally block. The exact port and per-route evidence are in the HTTP JSON:
+
+```sh
+node node_modules/next/dist/bin/next start -H 127.0.0.1 -p 38001
+```
+
+The port above was allocated for this local run; it is not a persistent endpoint. The executed checker was:
+
+```sh
+python3 scripts/audit-release-http.py --base http://127.0.0.1:38001 --indexing production --legacy-map docs/launch-readiness/LEGACY_ROUTE_DISPOSITION_2026-10-31.csv
+```
+
+### Executed results
+
+| Scope | Result | Evidence |
+| --- | --- | --- |
+| Build boundary | 2 prebuild and 5 postbuild assertions passed; overlapping checks, not 7 independent cases | evidence/production-rehearsal-2026-11-10/build.log |
+| Generated HTML | 14 pages passed; robots compatibility and exact sitemap coverage also passed; exit 0 | evidence/production-rehearsal-2026-11-10/built-pages.txt |
+| Strict local HTTP | 322 unique requested URLs passed: 8 HTTP 200, 314 HTTP 404; exit 0 | evidence/production-rehearsal-2026-11-10/http-route-results.json |
+| Static public assets | 4 byte-match checks passed, HTTP 200 | evidence/production-rehearsal-2026-11-10/asset-results.json |
+| Selected source provenance | 184 tracked files matched | evidence/production-rehearsal-2026-11-10/source-match.json |
+
+The 318 unique legacy map paths were combined with six base cases, deduplicating overlapping paths to 322. Redirect following was disabled. Checks verified status at the requested URL, expected indexing, unavailable-page wording for 404s, and canonical URLs on non-search 200 pages. The assets were robots.txt, sitemap.xml, the existing Google verification file, and third-party-notices.txt. The HTML audit ran twice against the unchanged build while capturing evidence; count its 14 pages once.
+
+### Limits and next release milestone
+
+No new browser, mobile, search interaction, Google account, analytics-delivery, external source, or legal review ran in this checkpoint. Analytics and Google verification source files matched the candidate; that does not establish live Google receipt or Search Console ownership. Prior preview/mobile observations retain their original scope and date. The native notice and client-only questions remain as documented above; local HTTP success does not resolve them.
+
+The next technical release milestone is a controlled, unpublished production-context artifact on the intended hosting platform, followed by these checks against that exact artifact and intentional canonical-host redirects. Keep production publishing controlled, preserve the rollback artifact and Google configuration, and obtain the final release decision before making it live. No hosting settings, main branch, public pages, research dossiers or application source were changed by this rehearsal. Only this checkpoint and technical evidence are added to the preview branch.
