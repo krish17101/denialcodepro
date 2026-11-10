@@ -76,3 +76,9 @@ python3 scripts/audit-release-http.py --base "$CANDIDATE_BASE_URL" --indexing pr
 Set CANDIDATE_BASE_URL to the actual artifact URL, never a guessed deployment. If authentication is needed, an access failure is BLOCKED, not a passed route check; do not disable protection. Verify robots.txt, sitemap, Google verification, notice availability and application interactions using the existing release checklist, separately from these HTTP assertions. Production Analytics delivery and Search Console account status still require their applicable account/live checks.
 
 No application pages, source notices, research dossiers, Analytics settings, Google verification asset, main branch or live deployment changed in this checkpoint. Public release, final artifact approval and the separately held code-page work remain outstanding.
+
+## Native notice checkpoint — 10 November 2026
+
+See ASSET_REVIEW_2026-11-04.md, Native-library follow-up. A concrete local gap was corrected: include the full LGPLv3 plus incorporated GPLv3 texts alongside the native supplier tables. Seven notice-assembly checks passed locally. Hosted inclusion for this new aggregate is NOT_RUN; the older deployed aggregate does not prove delivery of this addition.
+
+The remaining native question is the applicable hosting/conveyance and component-specific obligation path for the actual artifact, not an assumed requirement to buy a licence or open-source all website content. The client-only question also remains open; this step's public retrieval was stale relative to the posted comment. Do not repeat contact or claim a new reply check passed. These findings do not waive existing final release or code-content gates.

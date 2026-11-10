@@ -29,11 +29,18 @@ const font=fs.readFileSync('notices/Inter-OFL.txt','utf8');
 const envVersion=JSON.parse(fs.readFileSync('node_modules/@next/env/package.json','utf8')).version;
 if(envVersion!=='15.5.28')throw Error('Review supplemental @next/env notices for version '+envVersion);
 const envNotices=fs.readFileSync('notices/next-env-15.5.28.txt','utf8');
+const nativePackages=rows.filter(r=>r.installed && /^node_modules\/@img\/sharp-libvips-/.test(r.path));
+for(const r of nativePackages)if(r.version!=='1.3.4')throw Error('Review supplemental sharp-libvips notices for version '+r.version);
+const nativeNotices=nativePackages.length ? [
+ 'GNU license documents accompanying the @img/sharp-libvips 1.3.4 native packages listed in the supplier notices below. These documents do not relicense DenialCodePro articles or unrelated application code.',
+ fs.readFileSync('notices/LGPL-3.0-with-GPL-3.0.txt','utf8')
+] : [];
 fs.writeFileSync('public/third-party-notices.txt',[
  'DenialCodePro | Third-party notices',
  'Includes installed build tools and framework components as well as visitor-facing software. Inclusion does not imply endorsement or use on every page.',
  'Inter font — Google Fonts, ofl/inter/OFL.txt (source blob 21f6aff961064c2e429f570995e446bcdd555422)',font,
  envNotices,
+ ...nativeNotices,
  ...Array.from(groups,([body,labels])=>[...new Set(labels)].join('\n')+'\n\n'+body)
 ].join('\n\n'));
 if(process.argv[2])fs.writeFileSync(process.argv[2],JSON.stringify(rows,null,2)+'\n');
