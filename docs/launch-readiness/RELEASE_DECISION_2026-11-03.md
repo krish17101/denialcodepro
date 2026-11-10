@@ -82,3 +82,9 @@ No application pages, source notices, research dossiers, Analytics settings, Goo
 See ASSET_REVIEW_2026-11-04.md, Native-library follow-up. A concrete local gap was corrected: include the full LGPLv3 plus incorporated GPLv3 texts alongside the native supplier tables. Seven notice-assembly checks passed locally. Hosted inclusion for this new aggregate is NOT_RUN; the older deployed aggregate does not prove delivery of this addition.
 
 The remaining native question is the applicable hosting/conveyance and component-specific obligation path for the actual artifact, not an assumed requirement to buy a licence or open-source all website content. The client-only question also remains open; this step's public retrieval was stale relative to the posted comment. Do not repeat contact or claim a new reply check passed. These findings do not waive existing final release or code-content gates.
+
+## Hosted delivery closed — 10 November 2026
+
+The latest native-notice correction was verified on exact staging deploy preview 6af2d29afcd4e811d84e5212, source 6718051947776cef8ec3b832609df2656ab45e4b. The deployed static notice's bytes/hash match the aggregate reported inside the function ZIP. Six file assertions passed; browser navigation verified the Terms notice link and the new texts. Homepage noindex and absent external Google measurement script tags were checked. See ASSET_REVIEW_2026-11-04.md, Hosted native-notice verification, for measurements and limits.
+
+The earlier NOT_RUN label is superseded for this exact artifact's notice delivery. Remaining items are client-only attribution and applicable native-component obligations, the controlled production-context build and final publication decision, and separate code-content rights/billing review. Do not rebuild or rerun the same notice check without a changed artifact or defect. No production deployment or new build was triggered in this verification.

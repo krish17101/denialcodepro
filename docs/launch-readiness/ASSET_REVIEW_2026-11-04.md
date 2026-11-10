@@ -58,3 +58,29 @@ The earlier three-check result is historical and is not added to these seven. No
 4. Code-content rights and actual billing-specialist review remain separate. This software-only change does not approve CARC 19 or the internal research library.
 
 No dependency was removed or upgraded. No live setting, Analytics identifier, Google verification file, guide, research dossier or main branch changed.
+
+## Hosted native-notice verification — 10 November 2026 (Asia/Calcutta)
+
+This closes the earlier NOT_RUN delivery check for the native notice addition on the inspected staging deploy preview only. It does not approve production or resolve substantive licence questions.
+
+Exact source: 6718051947776cef8ec3b832609df2656ab45e4b.
+Exact preview: https://6af2d29afcd4e811d84e5212--denialcodepro-guide-staging.netlify.app/
+Notice URL: https://6af2d29afcd4e811d84e5212--denialcodepro-guide-staging.netlify.app/third-party-notices.txt
+
+The existing completed build was inspected; no build trigger or Publish deploy control was used. Its context was deploy-preview. The build log showed npm run build, the collector, successful compilation/type checking, 2 prebuild and 5 postbuild publication-boundary checks, and an executed runtime-notice audit. Those boundary phases overlap and are not seven independent tests.
+
+The onPostBuild audit reported:
+- Function archive: ___netlify-server-handler.zip; 2011 files; 78701257 expanded bytes.
+- Archive SHA-256: d8c418350d93b25b56bbe568e5687701b421df16d62443e2521f780dadbcc497.
+- File-manifest SHA-256: b6dbfb092805f562022005d6b6c9d2706eec47e6539ac075d3191e9acf8378c3.
+- Included aggregate: public/third-party-notices.txt; 571432 bytes; SHA-256 85836aa94bf35322026aacc6c7b8a287b6e0b7c2f87bc3cdbeb6022b026653de.
+
+These archive values are build-log measurements, not a locally downloaded ZIP inspection. The deployed static notice itself was downloaded using Netlify's deploy-file browser. Six local Python assertions passed (exit 0): expected byte length, expected SHA-256, complete exact supplemental file contained in the download, LGPL heading, GPL heading, and the limiting label. The download's size/hash match the aggregate reported inside the function archive.
+
+Reproduction: download third-party-notices.txt from this exact deploy; compare its SHA-256 and length with the values above and verify that every byte of notices/LGPL-3.0-with-GPL-3.0.txt occurs in it. The full text check is stronger than checking headings alone. These are six assertions on one file, not six independent software suites.
+
+The browser also followed Terms -> software, icon and font notices successfully. Read-only DOM checks found both GNU headings, combined-work section, end-of-terms text, both native supplier labels and the limiting label. Browser text length is not a byte count. The homepage had noindex, follow; canonical https://denialcodepro.com; and zero external Google Analytics/Tag Manager script tags. This is DOM inspection, not a network audit or proof of live Analytics receipt. Preview protection was preserved.
+
+Hosted collection reported 682 records, 652 installed and 294 distinct collected notice bodies, compared with local 654/295. Thus the prior local aggregate hash is not the expected hosted hash. The deployed-file-to-bundle comparison above uses the hosted artifact's own values.
+
+No full route, search, mobile, source-rights or billing-expert audit was repeated. No live hosting configuration, main branch, Analytics configuration, verification asset or research dossier changed. This is a source-and-delivery checkpoint, not exhaustive legal clearance or AdSense approval.
