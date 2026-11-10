@@ -61,11 +61,11 @@ These identify inspected local files; they are not a claimed fresh registry inte
 
 Keep the locked dependency and already-preserved framework notices. Do not fabricate a copyright owner/year, remove boundary checks, substitute an unreviewed package, or repeat the same source search indefinitely. Seek a maintainer's exact notice/source reference or a qualified assessment of the remaining attribution question. A maintainer response must be attributable and cover this release; a community answer or silence is insufficient to mark the evidence gap resolved.
 
-No external message has been sent. Proposed question for a relevant official package/framework support channel:
+Historical draft (not the wording ultimately sent; see the posted follow-up below):
 
 > For client-only@0.0.1, the published package metadata declares MIT, but the installed package contains only package.json, index.js and error.js. The corresponding Next.js v15.5.28 vendored files also do not supply a package-specific copyright notice. Could you identify the applicable copyright and MIT permission notice, or the authoritative original source/release that supplies it? We want to preserve the correct notice without guessing the holder or year.
 
-Confirm the appropriate maintainer/channel before sending. No private hosting, account, billing or medical data is needed.
+This longer draft was superseded by the shorter owner-approved follow-up recorded below. Do not send it again.
 
 ## Launch-review disposition
 
@@ -87,3 +87,12 @@ Directly inspected https://github.com/vercel/next.js/discussions/99484 , heading
 This supplies a concrete existing discussion for a possible owner-authorized follow-up; it does not resolve the attribution question. Do not create a duplicate discussion or repeatedly search the same sources without new evidence. No comment or message was sent.
 
 The reconciled release checklist is RELEASE_DECISION_2026-11-03.md (updated November 10; filename retained for continuity). No new test execution is claimed by this source follow-up.
+
+## Authorized follow-up posted — 10 November 2026 (India time)
+
+After explicit owner approval, the following comment was posted as krish17101 and visually verified in the existing discussion:
+https://github.com/vercel/next.js/discussions/99484#discussioncomment-19510974
+
+> We also need the release-specific attribution for `client-only@0.0.1`. Could an authorized maintainer identify the applicable copyright and MIT permission notice, or confirm how downstream users should document the missing notice?
+
+This supersedes the historical unsent status above. No private hosting, account, billing or medical information was included. Attribution remains unresolved; neither the act of posting nor silence establishes rights or clearance. No additional contact or duplicate discussion is authorized by this record.

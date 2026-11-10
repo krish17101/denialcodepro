@@ -1,7 +1,7 @@
 """Read-only HTTP checks. Start the matching build first; no browser claims."""
 import argparse,csv,json
 from html.parser import HTMLParser
-from urllib.request import urlopen
+from urllib.request import build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
 
@@ -10,6 +10,14 @@ parser.add_argument('--base',default='http://127.0.0.1:3017')
 parser.add_argument('--indexing',choices=['preview','production'],required=True)
 parser.add_argument('--legacy-map')
 args=parser.parse_args()
+
+class NoRedirects(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+# Validate the requested route's response, not a redirect destination's response.
+# Apex/www and other intentional redirects require a separate explicit test.
+http=build_opener(NoRedirects())
 
 class Metadata(HTMLParser):
     def __init__(self):
@@ -30,12 +38,12 @@ if args.legacy_map:
 results=[]
 for route,expected in cases.items():
     try:
-        response=urlopen(args.base.rstrip('/')+route,timeout=15)
+        response=http.open(args.base.rstrip('/')+route,timeout=15)
     except HTTPError as error:
         response=error
     with response:
         status=response.status;body=response.read().decode();headers=response.headers
-    assert status==expected,(route,status,expected)
+    assert status==expected,(route,status,expected,'Location',headers.get('Location'))
     p=Metadata();p.feed(body)
     rules=p.rules+headers.get_all('X-Robots-Tag',[])
     tokens={t.strip().lower().split(':')[-1].strip() for rule in rules for t in rule.split(',')}

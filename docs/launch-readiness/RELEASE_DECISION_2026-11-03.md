@@ -27,7 +27,7 @@ This scope does not provide a searchable code-specific CARC library. A visitor s
 ## Remaining sequence
 
 1. Record a decision on remaining software-attribution/obligation questions based on adequate evidence or qualified assessment. Do not mark an unknown as verified, infer that a paid licence is necessarily required, or rewrite the framework merely to avoid documenting uncertainty.
-2. Obtain explicit authorization before any public maintainer question or other external message. The draft is ready in RUNTIME_NOTICE_AUDIT_IMPLEMENTATION_2026-11-09.md; it has not been sent.
+2. The owner-authorized maintainer follow-up has been posted and visually verified under krish17101: https://github.com/vercel/next.js/discussions/99484#discussioncomment-19510974 . The attribution question remains open. No additional external message is authorized by this record.
 3. Complete the controlled release preparation on the existing live project under the established release plan. Preserve the existing Analytics integration and Google verification asset. A noindex staging artifact is not an indexable production artifact merely because it is promoted.
 4. Present the exact production candidate and remaining qualifications at the final publication decision. Preserve rollback availability; then verify domain, canonical, robots, sitemap, intended 404s, search, contact and Analytics behavior after an authorized release.
 5. Keep code-page expansion on its separate evidence/review track. Do not wait for all 71 internal dossiers to become publication-ready before assessing the already-approved limited release.
@@ -46,3 +46,33 @@ The privacy retention commitment remains an operational duty; editing a page doe
 - Directly inspected public Next.js discussion #99484. It was marked Unanswered, and the visible comments did not provide an independently established authorized maintainer confirmation. Community claims were not adopted as ownership evidence.
 - No application files, hosted settings, main branch, Analytics configuration, research dossiers, or source notices changed.
 - No new software tests, browser checks, external messages or legal/billing-expert review occurred during this documentation-only checkpoint.
+
+## Follow-up and release-checker correction — 10 November 2026
+
+The approved short follow-up was posted in the existing discussion and verified in the browser in the preceding execution step. This updates the earlier unsent status; it is not permission, a maintainer response, or legal clearance. No new discussion or other message was created in this checkpoint.
+
+Repository comparison from tested application commit `561a6f69cfaefdbfbfe6fedad776648c1b9b33b3` to `39b3b515edb41c7d2b92bd03ac5b74fe26fade1f` showed only two documentation files changed. The following correction affects the standalone release checker and its regression tests, not the application build or hosting settings.
+
+### Defect and correction
+
+`scripts/audit-release-http.py` followed HTTP redirects by default. A retired route returning 301/302/307/308 to a different route with a matching 404 body could pass. The checker now disables redirect following and checks the response at the requested URL; failures include the Location header. Run it against the intended canonical host. Intentional www/apex redirects require a separate explicit redirect check.
+
+### Executed validation
+
+Command: `python3 scripts/test-release-http.py`
+
+- Before correction: 10 local fixture tests executed; 6 passed and 4 failed, reproducing acceptance of 301, 302, 307 and 308 redirects to a different 404 URL. The captured unittest output is the evidence; the shell wrapper displaying that first output itself exited 0 and is not evidence of a passing suite.
+- After correction: the same 10 tests passed; direct test command exited 0. Two valid preview/production fixture cases each exercised six routes. Eight rejection cases covered the four redirects, a soft 404, missing preview noindex, incorrect canonical and a production-blocking X-Robots-Tag header. Do not sum fixture routes as independent test cases.
+- These are synthetic local HTTP responses. No hosted route audit, new application build, browser/mobile suite, legal assessment or billing review ran for this change. Prior HTTP reports establish final response observations within their stated scope; they did not reliably exclude intervening redirects. Run the corrected checker on the exact authorized production candidate before publication.
+
+### Concrete remaining deployment check
+
+After an unpublished production-context artifact is available under the existing controlled release plan, run:
+
+```sh
+python3 scripts/audit-release-http.py --base "$CANDIDATE_BASE_URL" --indexing production --legacy-map docs/launch-readiness/LEGACY_ROUTE_DISPOSITION_2026-10-31.csv
+```
+
+Set CANDIDATE_BASE_URL to the actual artifact URL, never a guessed deployment. If authentication is needed, an access failure is BLOCKED, not a passed route check; do not disable protection. Verify robots.txt, sitemap, Google verification, notice availability and application interactions using the existing release checklist, separately from these HTTP assertions. Production Analytics delivery and Search Console account status still require their applicable account/live checks.
+
+No application pages, source notices, research dossiers, Analytics settings, Google verification asset, main branch or live deployment changed in this checkpoint. Public release, final artifact approval and the separately held code-page work remain outstanding.
