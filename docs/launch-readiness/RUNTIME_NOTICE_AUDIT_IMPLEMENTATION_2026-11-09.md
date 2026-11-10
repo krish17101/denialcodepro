@@ -79,3 +79,11 @@ Confirm the appropriate maintainer/channel before sending. No private hosting, a
 | AdSense | No approval claimed | Consider application after a stable public release; technical tests are not an approval prediction. |
 
 This update adds source findings and a decision record only. No new build or regression suite was run for the documentation change. The prior executed results retain their original scope and date.
+
+## Source follow-up — 10 November 2026
+
+Directly inspected https://github.com/vercel/next.js/discussions/99484 , heading/status and all four visible comments. The discussion is marked Unanswered. The comments include conflicting ownership assertions and requests for clarification, but no authorized maintainer confirmation was established from the retrieved evidence. Their presence in the official repository's discussion forum does not make them official licence statements.
+
+This supplies a concrete existing discussion for a possible owner-authorized follow-up; it does not resolve the attribution question. Do not create a duplicate discussion or repeatedly search the same sources without new evidence. No comment or message was sent.
+
+The reconciled release checklist is RELEASE_DECISION_2026-11-03.md (updated November 10; filename retained for continuity). No new test execution is claimed by this source follow-up.
