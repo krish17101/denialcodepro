@@ -1,0 +1,141 @@
+[
+  {
+    "h1": [
+      "About DenialCodePro"
+    ],
+    "main": "About DenialCodePro\n\nDenialCodePro helps medical billers work out what to check when a claim is rejected, adjusted, or denied. Our goal is to make the next step easier to understand without pretending that every claim has the same answer.\n\nWhy we are building it\n\nA short definition can tell you what a message means, but it may leave you wondering what to do with it. We want to help close that gap: which records should you compare, what facts are missing, and which findings would change your next step?\n\nWhat you can use today\n\nStart with our guides on claim responses, corrections and review routes, or deadline evidence. The checklist helps you organize what you know and what still needs checking. You do not need to enter patient information.\n\nThis preview has a small collection of general guides. It does not yet include code-by-code explanations or payer-specific instructions.\n\nExplore the guides\nClear explanations, with their limits\n\nWe separate suggested checks from official requirements and link to relevant reference sources. Always confirm the rule for the actual payer, plan, service and dates. Our guides cannot guarantee payment or replace coding judgment, contractual terms or qualified professional advice.\n\nHow we prepare and review content\nHelp us make it clearer\n\nIf you spot a mistake or an explanation that needs work, email denialcodepro@gmail.com. Include the page address and, if available, a public source that explains the issue. Please do not send patient information or claim documents.",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "About — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/about",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Work out which claim response needs attention"
+    ],
+    "main": "All investigation guides\nWork out which claim response needs attention\n\nCompare the claim you sent with the response you received before deciding what to change.\n\nOriginal editorial workflow · Updated 27 October 2026 · Fictional examples\n\nWhat to check first\n\nIdentify who issued the response, which submission it refers to, and whether it concerns the whole claim or a service line.\n\nThis guide recommends investigation steps. It does not establish a payer requirement, deadline, appeal right, or permission to bill a patient.\n\nMatch the finding to a next step\nIf: The response cannot be linked confidently to a submission.\n\nThen: Obtain the receiver’s claim or transaction reference and reconcile it before choosing a correction.\n\nKeep: Original response, submission reference, and clarification record.\n\nIf: The received value differs from the documented outbound value.\n\nThen: Investigate the transmission or processing discrepancy. Ask which correction method applies after the discrepancy is confirmed.\n\nKeep: Documented source value, outbound value, received value, and timestamps.\n\nIf: The values agree, but the decision is disputed.\n\nThen: Identify the rule or rationale and the review route available to the relevant party. Do not invent a data change.\n\nKeep: Decision notice, dated rule, supporting and contradictory evidence.\n\nBuild a short evidence trail\n\nStart with the outbound claim, the clearinghouse or payer response, and the original billing record in your approved work system. Record their identifiers and dates separately. A screenshot of the billing screen may not show what was transmitted or what the receiver processed.\n\nFor each document, note its author, event, and claim or line reference. Distinguish sending a file, receiving a file, accepting a claim for processing, and issuing a payment decision. Do not assume the latest message describes every earlier submission. These are recommended investigation distinctions, not a replacement for the applicable transaction guide.\n\nAsk a question that resolves the missing fact\n\nIf the record is unclear, ask: “Which submission and line does this message refer to? What was received, and what specific field or requirement caused this response?” Request a reference number or written explanation you can retain.\n\nDo not send another unchanged claim simply to see what happens. First establish the status and the appropriate route with the receiver. If a deadline may be approaching, escalate the uncertainty promptly; waiting for clarification should not be assumed to extend the time available.\n\nFinish the investigation\n\nCompare the next response with the disputed fact, not only the payment total. A corrected identifier or accepted transmission does not by itself establish that the claim was paid correctly. Retain the before-and-after evidence and document what remains unresolved.\n\nTo reduce repeats, consider a team checklist that records the original submission, receiver acknowledgement, and final decision separately. Use only records your organization is authorized to access and retain.\n\nWork through an example\nFictional example: two messages, different submissions\n\nFacts: A biller sees a recent rejection and an older remittance in the same account.\n\nReasoning: Their presence in one account does not show that they describe the same submission.\n\nConditional action: Match references and dates first. Retain both messages; choose a route only after the actual affected submission is identified.\n\nFictional example: a value changed in transit\n\nFacts: The billing record and saved outbound claim agree, but the payer’s received image shows a different value.\n\nReasoning: The discrepancy needs investigation before changing the clinical or billing source record.\n\nConditional action: Request a processing/transmission review with the compared records. This may establish the cause; it does not promise payment.\n\nOfficial references and limitations\n\nThe linked references help locate applicable authority; they do not prescribe every editorial step above. Source pages checked 27 October 2026. Confirm the controlling requirement for the actual claim.\n\nCMS: Electronic Billing & EDI Transactions\n\nOfficial Medicare electronic-billing reference hub. Use the applicable program and transaction guidance; this editorial checklist does not supply segment locators.\n\nBuild your evidence checklist",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Work out which claim response needs attention — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/guides/find-the-claim-response",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Should you correct the claim or ask for a review?"
+    ],
+    "main": "All investigation guides\nShould you correct the claim or ask for a review?\n\nSeparate an actual reporting error from a disputed decision on accurately reported information.\n\nOriginal editorial workflow · Updated 27 October 2026 · Fictional examples\n\nWhat to check first\n\nCompare the reported information with the documented source record. Establish what, if anything, is actually wrong.\n\nThis guide recommends investigation steps. It does not establish a payer requirement, deadline, appeal right, or permission to bill a patient.\n\nMatch the finding to a next step\nIf: A supported reporting discrepancy is confirmed.\n\nThen: Validate the correct value, then use the applicable payer correction process. Confirm linkage and submission requirements.\n\nKeep: Original and supported corrected values; governing instructions; submission evidence.\n\nIf: Reported data is accurate and a processing discrepancy is identified.\n\nThen: Ask for the appropriate processing review and establish any separate deadline or escalation route.\n\nKeep: Accurate claim, received record, disputed processing detail, reference number.\n\nIf: The decision is disputed under a policy or benefit rule.\n\nThen: Establish whether a reconsideration, appeal, or provider dispute is available to the requester and what evidence it requires.\n\nKeep: Decision, applicable rule/version, standing or authorization where required, and supporting records.\n\nIf: The facts or applicable route are unknown.\n\nThen: Seek clarification without inventing a correction. Escalate a potentially approaching deadline.\n\nKeep: Open questions, notices and dates, contact attempts, and unresolved conflicts.\n\nDescribe the finding before naming the process\n\nWrite one sentence identifying the discrepancy or disputed decision. For example: “The transmitted value differs from the approved record,” or “The reported value is accurate, but the payer applied a rule whose scope is disputed.” If neither statement can be supported, gather evidence first.\n\nA correction, replacement, new submission, processing inquiry, reconsideration, and formal appeal can have different requirements. Terminology and availability depend on the payer, program, claim status, and requesting party. Confirm the actual process; these labels are not interchangeable instructions.\n\nConfirm the route and its requirements\n\nAsk the payer which channel applies, how the submission should link to the original claim, who may request it, and what notice or rule governs timing. Keep the answer and its source with the case. A customer-service explanation should be checked against the applicable written requirement where a consequential conflict remains.\n\nDo not change a diagnosis, service, date, or units simply because the change might improve payment. A coding question belongs with appropriately qualified staff and the documented service. Do not infer patient liability from the existence of an adjustment.\n\nCheck the result and prevent a repeat\n\nPreserve the original information, the evidence supporting any change, the selected route, required attachments, submission contents, and receipt evidence. After the next response, confirm whether it addresses the disputed fact. A new response can raise a different issue that needs its own investigation.\n\nFor recurring problems, distinguish a source-data issue from a transmission mapping or payer-processing issue before changing your workflow. Review a small sample of affected cases rather than assuming the same cause across an entire queue.\n\nWork through an example\nFictional example: a documented data-entry mistake\n\nFacts: An approved billing record differs from the claim value sent to the payer.\n\nReasoning: There is evidence of a reporting discrepancy, but the right replacement method is still payer-dependent.\n\nConditional action: Validate the documented value, confirm the correction channel and linkage, and preserve both versions. No payment outcome is assumed.\n\nFictional example: accurate data, disputed policy\n\nFacts: The record and claim agree, but staff believe the cited policy does not cover this setting.\n\nReasoning: Changing accurate data would not resolve the applicability question.\n\nConditional action: Obtain the dated policy and decision rationale, then confirm the available review route and evidence requirements.\n\nOfficial references and limitations\n\nThe linked references help locate applicable authority; they do not prescribe every editorial step above. Source pages checked 27 October 2026. Confirm the controlling requirement for the actual claim.\n\nCMS: Original Medicare fee-for-service appeals\n\nProgram-specific authority hub. Do not transfer Medicare FFS appeal processes to Medicare Advantage, Medicaid, or commercial provider disputes.\n\nBuild your evidence checklist",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Should you correct the claim or ask for a review? — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/guides/choose-a-correction-or-review",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Check the rule before calculating a claim deadline"
+    ],
+    "main": "All investigation guides\nCheck the rule before calculating a claim deadline\n\nRecord the rule, triggering event, and counting method instead of guessing a universal filing or appeal period.\n\nOriginal editorial workflow · Updated 27 October 2026 · Fictional examples\n\nWhat to check first\n\nIdentify which action is due, who is taking it, and which payer, program, contract, or notice governs that action.\n\nThis guide recommends investigation steps. It does not establish a payer requirement, deadline, appeal right, or permission to bill a patient.\n\nMatch the finding to a next step\nIf: The action, controlling rule, and trigger are established.\n\nThen: Calculate using that rule, verify the arithmetic and counting convention, and retain the source and trigger evidence.\n\nKeep: Source section/version, trigger record, calculation, and reviewer.\n\nIf: The rule is known but the triggering event is uncertain.\n\nThen: Obtain evidence of the relevant event; do not substitute a convenient date.\n\nKeep: Notice envelope/portal history or other relevant receipt evidence, with limitations.\n\nIf: Sources conflict or requester rights are unclear.\n\nThen: Escalate promptly to the appropriate payer contact or specialist. Keep uncertainty visible and do not assume an extension.\n\nKeep: Conflicting passages, scope comparison, contact record, and pending questions.\n\nKeep the clocks separate\n\nCreate a separate entry for initial filing, claim correction, review, or appeal where those actions have distinct requirements. Do not reuse one date or time period simply because the same claim is involved. Record whether the source refers to service, discharge, submission, receipt, notice, or another event.\n\nThis is a recommended evidence worksheet, not a deadline calculator. It intentionally supplies no default number of days. If the governing rule is unclear, obtain qualified help promptly rather than treating an estimated date as reliable.\n\nComplete the evidence record\n\nFor each action, record: the requesting party; applicable payer/product and setting; source title and exact section; effective period; triggering event; evidence of that event; time unit; counting convention; any supported exception; and the person who checked the calculation. Record uncertainties explicitly.\n\nKeep proof of sending separate from proof of receipt or acceptance. Ask what the applicable rule requires and which record establishes it. A conversation, corrected submission, or request for review should not be assumed to restart or pause a clock.\n\nResolve conflicts before relying on a date\n\nIf a notice, provider manual, and phone answer disagree, preserve all three. Check whether they cover the same product, requesting party, action, and effective period. Seek clarification of the conflict instead of choosing the most generous period.\n\nFor internal prevention, assign an owner to each unresolved timing question, keep the source with the recorded date, and recheck when the payer or process changes. Use your organization’s approved systems for real claim details.\n\nWork through an example\nFictional example: a print date and a received date\n\nFacts: A notice shows one date; the office records receiving it later.\n\nReasoning: Neither date can be selected without identifying the triggering event in the governing rule.\n\nConditional action: Retain both records and verify the rule before calculating. The example establishes no specific appeal period.\n\nFictional example: member and provider processes\n\nFacts: A biller finds a member appeal page while handling a contracted provider payment dispute.\n\nReasoning: The page may concern a different requesting party and action.\n\nConditional action: Find the applicable provider process and authority. Do not copy the member deadline into the case worksheet.\n\nOfficial references and limitations\n\nThe linked references help locate applicable authority; they do not prescribe every editorial step above. Source pages checked 27 October 2026. Confirm the controlling requirement for the actual claim.\n\nCMS: Original Medicare fee-for-service appeals\n\nOne official program reference. The appropriate authority for another payer or provider dispute must be established separately.\n\nBuild your evidence checklist",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Check the rule before calculating a claim deadline — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/guides/build-a-deadline-evidence-record",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Official reference starting points"
+    ],
+    "main": "Official reference starting points\n\nUse the authority that governs the actual question. These external links are reference destinations, not endorsements of DenialCodePro or proof that an editorial recommendation applies to every claim.\n\nCMS: Original Medicare fee-for-service appeals\n\nMedicare FFS reference hub. Confirm the relevant action, party, and level; do not apply this program’s rules to other coverage automatically.\n\nCMS: Electronic Billing & EDI Transactions\n\nMedicare electronic-billing reference hub. Consult the relevant documentation for the transaction and setting.\n\nX12: Official code-list directory\n\nExternal official lookup destination. This release does not reproduce the code lists or implementation guides.\n\nFor another payer or product, obtain the applicable official notice, policy, provider terms, or program authority. A source URL alone does not resolve a conflict in scope or effective date.",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Official reference starting points — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/sources",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Our editorial approach"
+    ],
+    "main": "Our editorial approach\nEvidence before action\n\nStart by identifying the actual response, source record, and disputed fact. Our original workflows show how to organize an investigation; they are not instructions issued by a payer.\n\nScope stays beside the recommendation\n\nPayer, program, setting, dates, and the requesting party can change the relevant process. Missing facts stay unknown. No default deadline, automatic coding change, or patient-billing conclusion is supplied by the checklist.\n\nSources and examples\n\nOfficial reference links identify a place to check applicable authority. They are not presented as endorsement of our editorial steps. Examples are fictional and demonstrate reasoning, not observed outcomes or success rates.\n\nReview limits\n\nThis release was developed with AI assistance and source inspection. It has not received independent medical-billing expert certification. Automated tests check selected software behavior; they do not certify legal correctness or whether an action is appropriate for a particular claim.\n\nCorrections\n\nIf a passage is unclear or inconsistent with an applicable authority, send its URL and a public source to denialcodepro@gmail.com. Do not include patient records.",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Editorial approach — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/methodology",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Privacy Policy"
+    ],
+    "main": "Privacy Policy\nWebsite information and patient privacy\n\nDenialCodePro provides medical-billing educational information. Do not submit patient names, member or claim numbers, medical records, or other sensitive information through search or feedback.\n\nSearch and technical records\n\nSearch terms appear in the search page URL. They can therefore appear in browser history and technical request logs. Use code identifiers or general topics, not patient information.\n\nWebsite delivery involves technical request information, such as an IP address and requested URL. The hosting provider processes requests to serve and protect the site. Contact us with questions about the processing of your information.\n\nFeedback and email\n\nWhere the feedback form is enabled, your name, email address, and message are sent through Web3Forms so we can receive and respond to website feedback. If you email us directly, your email provider and ours process that correspondence.\n\nSend only the information needed to describe a website problem. To ask about or request deletion of a message you sent, contact denialcodepro@gmail.com. Do not send patient documents to establish your request.\n\nAnalytics and advertising\n\nThis release does not load Google Analytics or Google AdSense through the application. If advertising or analytics is enabled later, this notice and the applicable consent controls must be updated before those services are activated.\n\nEvidence checklist\n\nThe evidence checklist uses categorical selections in the current page. Its application code does not save those selections to browser storage or submit them to a server. This does not eliminate the technical requests needed to load the website.\n\nExternal sources and questions\n\nLinks to sources take you to websites with their own privacy practices. For questions about this website or your feedback, email denialcodepro@gmail.com.",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Privacy Policy — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/privacy-policy",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Terms of Service"
+    ],
+    "main": "Terms of Service\nAcceptance of Terms\n\nBy accessing and using DenialCode Pro, you accept and agree to be bound by the terms and provision of this agreement.\n\nUse of the Site\n\nThe educational material provided on this website is for personal and internal business use to assist with medical revenue cycle management (RCM) troubleshooting. You agree not to use the Website for any unlawful purpose or in any way that could damage, disable, overburden, or impair the site.\n\nIntellectual Property\n\nThe original content, features, and functionality of the Website are owned by DenialCode Pro. Third-party materials and linked resources remain subject to their owners’ rights. Links do not grant permission to reproduce those materials.",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Terms of Service — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/terms",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Disclaimer"
+    ],
+    "main": "Disclaimer\n\nThe information provided on DenialCode Pro (the \"Website\") is for general informational and educational purposes only. It is not intended to be a substitute for professional medical billing, coding, legal, or financial advice.\n\nAccuracy & Reliability\n\nApplicable billing rules can change. Confirm the current authority and scope before relying on a rule for a real claim. DenialCode Pro makes no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, or suitability of the information contained on the Website. Any reliance you place on such information is strictly at your own risk.\n\nAlways Verify with Official Sources\n\nAlways verify coding and billing guidelines directly with the specific insurance payer, Medicare Administrative Contractor (MAC), or the official X12/CMS publications before submitting or appealing a medical claim.",
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Billing Disclaimer — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/disclaimer",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Understand the response. Work out what to check next."
+    ],
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Claim response and denial investigation guides — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Claim investigation guides"
+    ],
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Claim investigation guides — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/guides",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Check the evidence before choosing a next step"
+    ],
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Claim investigation evidence checklist — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/tools/evidence-checklist",
+    "viewport": 1363
+  },
+  {
+    "h1": [
+      "Find an investigation guide"
+    ],
+    "overflow": false,
+    "robots": "noindex, follow",
+    "title": "Find an investigation guide — DenialCodePro",
+    "url": "https://denialcodepro-git-codex-original-co-ad86bd-krish17101s-projects.vercel.app/search",
+    "viewport": 1363
+  }
+]

@@ -1,6 +1,12 @@
 [build]
-command = "npx next build"
+command = "npm run build"
 publish = ".next"
+
+[functions]
+included_files = ["public/third-party-notices.txt"]
 
 [[plugins]]
 package = "@netlify/plugin-nextjs"
+
+[[plugins]]
+package = "./plugins/runtime-notice-audit"

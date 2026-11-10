@@ -4,7 +4,9 @@ import './globals.css';
 import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
 import { FeedbackForm } from './components/FeedbackForm';
+import { analyticsProduction } from '../lib/public/analytics-environment';
 import { Analytics } from './components/Analytics';
+import { publicIndexingEnabled } from '../lib/public/indexing';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,7 +14,7 @@ const inter = Inter({ subsets: ['latin'] });
  * Root layout — V3.
  *
  * Preserves:
- *  - GA4 Analytics component (G-QL011FYKSR — initialized once here only)
+ *  - Optional production-only audience measurement
  *  - metadataBase pointing to https://denialcodepro.com
  *  - SiteHeader, SiteFooter, FeedbackForm
  *  - Inter font
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
     template: '%s — DenialCodePro',
   },
   description:
-    'Reference information for U.S. medical billing denial codes. Search a denial code, remark code, or denial combination.',
+    'Original claim-investigation guides and an evidence checklist for U.S. medical billers.',
   openGraph: {
     siteName: 'DenialCodePro',
     type: 'website',
@@ -38,7 +40,14 @@ export const metadata: Metadata = {
   },
   // Robots default — individual pages may override
   robots: {
-    index: true,
+    index: publicIndexingEnabled({
+      DENIALCODEPRO_INDEXING_APPROVED: process.env.DENIALCODEPRO_INDEXING_APPROVED,
+      VERCEL_ENV: process.env.VERCEL_ENV,
+      VERCEL_TARGET_ENV: process.env.VERCEL_TARGET_ENV,
+      NETLIFY: process.env.NETLIFY,
+      CONTEXT: process.env.CONTEXT,
+      NETLIFY_PREVIEW_SERVER: process.env.NETLIFY_PREVIEW_SERVER,
+    }),
     follow: true,
   },
 };
@@ -51,18 +60,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:p-4 focus:text-navy-900">Skip to main content</a>
         <div className="flex min-h-screen flex-col bg-slate-50">
           <SiteHeader />
           <div className="flex-1">{children}</div>
           <FeedbackForm />
           <SiteFooter />
         </div>
-        {/*
-          Analytics — GA4 G-QL011FYKSR.
-          Initialized here and ONLY here. Do not add a second gtag script
-          anywhere else in the application.
-        */}
-        <Analytics />
+        <Analytics production={analyticsProduction(process.env)} />
       </body>
     </html>
   );

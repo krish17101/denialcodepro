@@ -1,0 +1,16 @@
+PASS / headings, landmarks, IDs, internal links and metadata
+PASS /_not-found headings, landmarks, IDs, internal links and metadata
+PASS /about headings, landmarks, IDs, internal links and metadata
+PASS /contact headings, landmarks, IDs, internal links and metadata
+PASS /disclaimer headings, landmarks, IDs, internal links and metadata
+PASS /guides headings, landmarks, IDs, internal links and metadata
+PASS /guides/build-a-deadline-evidence-record headings, landmarks, IDs, internal links and metadata
+PASS /guides/choose-a-correction-or-review headings, landmarks, IDs, internal links and metadata
+PASS /guides/find-the-claim-response headings, landmarks, IDs, internal links and metadata
+PASS /methodology headings, landmarks, IDs, internal links and metadata
+PASS /privacy-policy headings, landmarks, IDs, internal links and metadata
+PASS /sources headings, landmarks, IDs, internal links and metadata
+PASS /terms headings, landmarks, IDs, internal links and metadata
+PASS /tools/evidence-checklist headings, landmarks, IDs, internal links and metadata
+{"pages_passed": 14, "failed": 0, "scope": "All generated HTML pages. Dynamic search separately covered by server-rendered tests; no live HTTP or browser claims."}
+PASS robots/noindex compatibility and exact sitemap route coverage

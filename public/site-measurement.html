@@ -1,0 +1,31 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer"><title>Optional site measurement</title></head>
+<body><script>
+(function () {
+  'use strict';
+  if (location.origin !== 'https://denialcodepro.com' || window.top === window.self || location.search) return;
+  var pages = {
+    home: '/', guides: '/guides', response: '/guides/find-the-claim-response',
+    correction: '/guides/choose-a-correction-or-review', deadline: '/guides/build-a-deadline-evidence-record'
+  };
+  var id = location.hash.slice(1);
+  if (!Object.hasOwn(pages, id)) return;
+  try {
+    if (window.parent !== window.top || window.parent.location.origin !== location.origin ||
+        window.parent.location.pathname !== pages[id] || localStorage.getItem('dcp.analytics.v1') !== 'allow' ||
+        !window.frameElement || window.frameElement.getAttribute('title') !== 'Optional site measurement') return;
+  } catch (_) { return; }
+  var stream = 'G-QL011FYKSR';
+  window.dataLayer = [];
+  function gtag() { window.dataLayer.push(arguments); }
+  gtag('consent', 'default', {analytics_storage:'granted', ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied'});
+  gtag('js', new Date());
+  gtag('config', stream, {send_page_view:false, allow_google_signals:false, allow_ad_personalization_signals:false,
+    page_location:location.origin + pages[id], page_title:id, page_referrer:''});
+  gtag('event', 'page_view', {send_to:stream, page_location:location.origin + pages[id], page_title:id, page_referrer:''});
+  var script = document.createElement('script');
+  script.async = true; script.referrerPolicy = 'no-referrer';
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=' + stream;
+  document.head.appendChild(script);
+}());
+</script></body></html>

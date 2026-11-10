@@ -6,7 +6,7 @@ export function LegalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+    <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold tracking-tight text-navy-800 sm:text-4xl">
         {title}
       </h1>

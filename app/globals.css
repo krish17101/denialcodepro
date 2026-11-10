@@ -31,7 +31,8 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    /* Keep anchor navigation predictable when zoomed or using the keyboard. */
+    scroll-behavior: auto;
   }
 
   body {
@@ -60,4 +61,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+}
+
+/* Visible keyboard focus and comfortable anchor navigation. */
+:where(a, button, input, select, textarea):focus-visible { outline: 3px solid #059669; outline-offset: 3px; }
+#main-content { scroll-margin-top: 6rem; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  header, footer, a[href="#main-content"] { display: none !important; }
+  body { background: white !important; }
+  main { max-width: none !important; padding: 0 !important; }
 }
