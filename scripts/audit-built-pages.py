@@ -4,10 +4,28 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import json
 import argparse
+import hashlib
+import os
+import sys
 
 parser=argparse.ArgumentParser()
-parser.add_argument('--indexing', choices=['preview','production'], default='preview')
+parser.add_argument('--indexing', choices=['preview','production','netlify'], default='preview')
 args=parser.parse_args()
+if not __debug__:
+    sys.exit("Page audits must run with Python assertions enabled.")
+if args.indexing == 'netlify':
+    # Expected output is independent of the application predicate under test.
+    # A production build approved for indexing must not silently pass as a preview.
+    e = os.environ
+    approved = e.get('DENIALCODEPRO_INDEXING_APPROVED') == 'true'
+    production = e.get('CONTEXT') == 'production'
+    args.indexing = 'production' if approved and production else 'preview'
+    print(json.dumps({'stage':'before Netlify packaging', 'expected':args.indexing,
+                      'production_context':production, 'approval_true':approved,
+                      'netlify_true':e.get('NETLIFY') == 'true',
+                      'preview_server_defined':'NETLIFY_PREVIEW_SERVER' in e,
+                      'vercel_env_defined':'VERCEL_ENV' in e,
+                      'vercel_target_defined':'VERCEL_TARGET_ENV' in e}), flush=True)
 
 root=Path(__file__).resolve().parents[1]
 base=root/'.next/server/app'
@@ -29,6 +47,14 @@ class Page(HTMLParser):
     def handle_endtag(self,tag):
         if tag=='title':self.in_title=False
 pages={('/' if p.relative_to(base).as_posix()=='index.html' else '/'+p.relative_to(base).as_posix()[:-5]):p for p in base.rglob('*.html')}
+if '/' not in pages or '/_not-found' not in pages:
+    sys.exit('Missing generated homepage or not-found control; cannot audit build.')
+# Print all route observations before a failing assertion can end the audit.
+for route, file in sorted(pages.items()):
+    raw=file.read_bytes()
+    page=Page();page.feed(raw.decode('utf-8'))
+    print(json.dumps({'route':route,'robots':page.robots,
+                      'html_sha256':hashlib.sha256(raw).hexdigest()}),flush=True)
 notice=root/'public/third-party-notices.txt'
 assert notice.is_file() and notice.stat().st_size > 0, 'missing third-party notice asset'
 known=set(pages)|{'/search','/third-party-notices.txt'}
