@@ -11,7 +11,7 @@ export type PublicGuide = {
 export const publicGuides: PublicGuide[] = [
  {
   "slug": "find-the-claim-response",
-  "title": "Work out which claim response needs attention",
+  "title": "Claim rejected, pending or denied? How to read the response",
   "summary": "Find out whether the message reports a submission problem, a processing status, or a payment decision. Then choose the right investigation.",
   "firstCheck": "Open the actual response, not just the account status. Match its sender and claim reference to the submission you sent. Read whether it identifies a rejection, a pending item, or a decision on a particular claim or line.",
   "updatedOn": "30 October 2026",
@@ -122,7 +122,7 @@ export const publicGuides: PublicGuide[] = [
 },
  {
   "slug": "choose-a-correction-or-review",
-  "title": "Should you correct the claim or ask for a review?",
+  "title": "Corrected claim or payer review? How to choose the next step",
   "summary": "Check whether the submitted information is wrong, the processing is wrong, or you disagree with a decision. Each finding needs a different response.",
   "firstCheck": "Put the submitted claim, the response and the documented service side by side. Write down the exact value or decision you dispute. Also establish whether the receiver returned the claim, is still processing it, or issued a decision.",
   "updatedOn": "31 October 2026",
@@ -241,7 +241,7 @@ export const publicGuides: PublicGuide[] = [
 },
  {
   "slug": "build-a-deadline-evidence-record",
-  "title": "Check the rule before calculating a claim deadline",
+  "title": "Claim filing and appeal deadlines: what to check first",
   "summary": "Identify the action, the rule and the event that starts the clock. Keep the evidence with the date so another biller can check it.",
   "firstCheck": "Name the action that is due: initial claim filing, correction, a particular review or appeal, or a response to an information request. Identify who is acting and the payer/product. Then find the written requirement for that exact process.",
   "updatedOn": "31 October 2026",

@@ -1,12 +1,8 @@
+import { pageSeo } from '../../lib/public/page-seo';
 import { AlertTriangle } from 'lucide-react';
 import { LegalLayout } from '../components/LegalLayout';
 
-export const metadata = {
-  title: 'Billing Disclaimer',
-  alternates: { canonical: '/disclaimer' },
-  description:
-    'Medical billing disclaimer for DenialCode Pro. This website provides educational information only and does not constitute official legal, medical, or financial billing advice.',
-};
+export const metadata = pageSeo("/disclaimer", "Billing Disclaimer", "Medical billing disclaimer for DenialCode Pro. This website provides educational information only and does not constitute official legal, medical, or financial billing advice.");
 
 export default function DisclaimerPage() {
   return (

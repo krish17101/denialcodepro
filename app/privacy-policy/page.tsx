@@ -1,12 +1,9 @@
+import { pageSeo } from '../../lib/public/page-seo';
 import { AnalyticsChoice } from '../components/Analytics';
 import { analyticsProduction } from '../../lib/public/analytics-environment';
 import { LegalLayout } from '../components/LegalLayout';
 
-export const metadata = {
-  title: 'Privacy Policy',
-  description: 'How DenialCodePro handles website feedback, search URLs, and technical information.',
-  alternates: { canonical: '/privacy-policy' },
-};
+export const metadata = pageSeo("/privacy-policy", "Privacy Policy", "How DenialCodePro handles website feedback, search URLs, and technical information.");
 
 export default function PrivacyPolicyPage() {
   return (

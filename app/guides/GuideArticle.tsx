@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { brand, origin, pageSeo } from '../../lib/public/page-seo';
+import { StructuredData } from '../components/StructuredData';
 import { getPublicGuide, publicGuides } from '../../lib/public/guides';
 
 // Keep the three released URLs as concrete routes on both hosting platforms.
@@ -12,19 +14,30 @@ function guide(slug: string) {
 
 export function guideMetadata(slug: string): Metadata {
   const g = guide(slug);
-  return { title: g.title, description: g.summary, alternates: { canonical: '/guides/' + g.slug } };
+  return pageSeo('/guides/' + g.slug, g.title, g.summary, 'article');
 }
 
 export function GuideArticle({ slug }: { slug: string }) {
   const g = guide(slug);
+  const url = origin + '/guides/' + g.slug;
+  const crumbs = [{ name: 'Home', path: '/' }, { name: 'Investigation guides', path: '/guides' }, { name: g.title, path: '/guides/' + g.slug }];
+  const publisher = { '@type': 'Organization', '@id': origin + '/#publisher', name: brand, url: origin + '/about' };
+  const graph = { '@context': 'https://schema.org', '@graph': [
+    { '@type': 'Article', '@id': url + '#article', url, mainEntityOfPage: url, headline: g.title, description: g.summary,
+      inLanguage: 'en-US', author: publisher, publisher, citation: g.sourceLinks.map(s => s.url) },
+    { '@type': 'BreadcrumbList', itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: origin + c.path })) }
+  ] };
   const relatedGuides = publicGuides.filter(entry => entry.slug !== g.slug);
 
   return (
     <main id="main-content" tabIndex={-1} className="mx-auto max-w-4xl px-5 py-12">
-      <Link href="/guides" className="text-sm font-semibold text-navy-700 underline">All investigation guides</Link>
+      <StructuredData data={graph} />
+      <nav aria-label="Breadcrumb"><ol className="flex flex-wrap gap-x-2 gap-y-1 text-sm text-slate-600">
+        {crumbs.map((c, i) => <li key={c.path}>{i > 0 && <span aria-hidden="true" className="mr-2">/</span>}{i === crumbs.length - 1 ? <span aria-current="page">{c.name}</span> : <Link className="font-semibold text-navy-700 underline" href={c.path}>{c.name}</Link>}</li>)}
+      </ol></nav>
       <h1 className="mt-5 text-3xl font-bold leading-tight text-navy-800 sm:text-4xl">{g.title}</h1>
       <p className="mt-4 text-lg text-slate-600">{g.summary}</p>
-      <p className="mt-3 text-sm text-slate-500">Original editorial workflow · Updated {g.updatedOn ?? '27 October 2026'} · Fictional examples</p>
+      <p className="mt-3 text-sm text-slate-500">By <Link href="/about" className="underline">DenialCodePro</Link> · <Link href="/methodology" className="underline">Editorial approach</Link> · Workflow updated {g.updatedOn ?? '27 October 2026'} · Fictional examples</p>
 
       <section id="first-check" tabIndex={-1} className="scroll-mt-24 mt-7 rounded-xl border border-emerald-200 bg-emerald-50 p-6">
         <h2 className="font-bold text-emerald-900">What to check first</h2>
