@@ -1,12 +1,5 @@
 const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const ts = require('typescript');
-const mod = {exports:{}};
-const source = ts.transpileModule(fs.readFileSync(path.join(__dirname,'../lib/public/indexing.ts'),'utf8'), {
-  compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}
-}).outputText;
-new Function('exports','module',source)(mod.exports,mod);
+const { publicIndexingEnabled } = require('../lib/public/indexing.cjs');
 const cases = [
   ['missing configuration',{},false],
   ['approval alone',{DENIALCODEPRO_INDEXING_APPROVED:'true'},false],
@@ -36,5 +29,5 @@ cases.push(
   ['mixed production hosts',{...approved,NETLIFY:'true',CONTEXT:'production',VERCEL_ENV:'production'},false],
   ['Vercel production with Netlify preview signal',{...approved,VERCEL_ENV:'production',NETLIFY_PREVIEW_SERVER:'true'},false],
 );
-for(const [name,env,expected] of cases){assert.equal(mod.exports.publicIndexingEnabled(env),expected,name);console.log('PASS '+name);}
+for(const [name,env,expected] of cases){assert.equal(publicIndexingEnabled(env),expected,name);console.log('PASS '+name);}
 console.log(JSON.stringify({passed:cases.length,failed:0,scope:'Indexing configuration policy; rendered metadata and deployed headers tested separately'}));

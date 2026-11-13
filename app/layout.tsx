@@ -6,7 +6,6 @@ import { SiteFooter } from './components/SiteFooter';
 import { FeedbackForm } from './components/FeedbackForm';
 import { analyticsProduction } from '../lib/public/analytics-environment';
 import { Analytics } from './components/Analytics';
-import { publicIndexingEnabled } from '../lib/public/indexing';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -40,14 +39,8 @@ export const metadata: Metadata = {
   },
   // Robots default — individual pages may override
   robots: {
-    index: publicIndexingEnabled({
-      DENIALCODEPRO_INDEXING_APPROVED: process.env.DENIALCODEPRO_INDEXING_APPROVED,
-      VERCEL_ENV: process.env.VERCEL_ENV,
-      VERCEL_TARGET_ENV: process.env.VERCEL_TARGET_ENV,
-      NETLIFY: process.env.NETLIFY,
-      CONTEXT: process.env.CONTEXT,
-      NETLIFY_PREVIEW_SERVER: process.env.NETLIFY_PREVIEW_SERVER,
-    }),
+    // Next replaces this property at compile time, including in the server bundle.
+    index: process.env.DCP_BUILD_INDEXABLE === 'yes',
     follow: true,
   },
 };
