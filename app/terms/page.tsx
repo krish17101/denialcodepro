@@ -1,11 +1,7 @@
+import { pageSeo } from '../../lib/public/page-seo';
 import { LegalLayout } from '../components/LegalLayout';
 
-export const metadata = {
-  title: 'Terms of Service',
-  alternates: { canonical: '/terms' },
-  description:
-    'Terms of Service for using DenialCode Pro, an educational website with original claim-investigation guides.',
-};
+export const metadata = pageSeo("/terms", "Terms of Service", "Terms of Service for using DenialCode Pro, an educational website with original claim-investigation guides.");
 
 export default function TermsPage() {
   return (

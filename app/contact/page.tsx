@@ -1,11 +1,7 @@
+import { pageSeo } from '../../lib/public/page-seo';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Report an unclear explanation, suggest a correction, or ask about DenialCodePro website privacy.',
-  alternates: { canonical: '/contact' },
-};
+export const metadata = pageSeo("/contact", "Contact", "Report an unclear explanation, suggest a correction, or ask about DenialCodePro website privacy.");
 
 export default function ContactPage() {
   return (

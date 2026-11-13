@@ -1,5 +1,5 @@
 [build]
-command = "npm run build && python3 scripts/audit-built-pages.py --indexing netlify"
+command = "npm run build && python3 scripts/audit-built-pages.py --indexing netlify && python3 scripts/audit-search-presentation.py"
 publish = ".next"
 
 [functions]

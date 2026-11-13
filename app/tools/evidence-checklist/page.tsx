@@ -1,10 +1,6 @@
-import type { Metadata } from 'next';
+import { pageSeo } from '../../../lib/public/page-seo';
 import { EvidenceChecklist } from './tool';
-export const metadata: Metadata = {
-  title: 'Claim investigation evidence checklist',
-  description: 'Organize the evidence and unanswered questions before choosing a claim correction or review route.',
-  alternates: { canonical: '/tools/evidence-checklist' },
-};
+export const metadata = pageSeo("/tools/evidence-checklist", "Medical claim denial evidence checklist", "Build a checklist for a rejected or denied medical claim. Identify the response, the payer rule and any missing records before choosing what to do next.");
 export default function EvidenceChecklistPage() {
   return <main id="main-content" tabIndex={-1} className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
     <h1 className="text-3xl font-bold text-navy-800">Check the evidence before choosing a next step</h1>
