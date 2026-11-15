@@ -22,6 +22,7 @@ const inter = Inter({ subsets: ['latin'] });
  */
 export const metadata: Metadata = {
   metadataBase: new URL('https://denialcodepro.com'),
+  other: { 'google-adsense-account': 'ca-pub-5195297814795458' },
   title: {
     default: 'DenialCodePro — Understand the denial. Know what to do next.',
     template: '%s — DenialCodePro',
