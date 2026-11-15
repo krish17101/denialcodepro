@@ -4,7 +4,6 @@ import './globals.css';
 import { SiteHeader } from './components/SiteHeader';
 import { SiteFooter } from './components/SiteFooter';
 import { FeedbackForm } from './components/FeedbackForm';
-import { analyticsProduction } from '../lib/public/analytics-environment';
 import { Analytics } from './components/Analytics';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -60,7 +59,7 @@ export default function RootLayout({
           <FeedbackForm />
           <SiteFooter />
         </div>
-        <Analytics production={analyticsProduction(process.env)} />
+        <Analytics production={process.env.DCP_BUILD_OPTIONAL_ANALYTICS === 'yes'} />
       </body>
     </html>
   );

@@ -51,6 +51,8 @@ def run(mode, regenerate):
         policy.parent.mkdir(parents=True)
         shutil.copy2(ROOT / "lib/public/indexing.cjs", policy)
 
+        shutil.copy2(ROOT / "lib/public/analytics-environment.cjs", policy.parent)
+
         if regenerate:
             server = build / "server"
             stem = server / "app/index"
@@ -69,7 +71,8 @@ def run(mode, regenerate):
         if mode == "preview":
             env.update(NETLIFY="true", CONTEXT="production", DENIALCODEPRO_INDEXING_APPROVED="true")
         env.update(NODE_ENV="production", NEXT_TELEMETRY_DISABLED="1",
-                   DCP_BUILD_INDEXABLE="no" if mode == "production" else "yes")
+                   DCP_BUILD_INDEXABLE="no" if mode == "production" else "yes",
+                   DCP_BUILD_OPTIONAL_ANALYTICS="no" if mode == "production" else "yes")
         with closing(socket.socket()) as sock:
             sock.bind(("127.0.0.1", 0))
             port = sock.getsockname()[1]
@@ -86,7 +89,7 @@ def run(mode, regenerate):
                     time.sleep(.1)
             else:
                 raise RuntimeError("Next server did not start")
-            for route in ("/", "/search?q=deadline"):
+            for route in ("/", "/privacy-policy", "/search?q=deadline"):
                 with urlopen(f"http://127.0.0.1:{port}{route}", timeout=12) as resp:
                     html = resp.read().decode()
                     parsed = Metadata()
@@ -102,8 +105,16 @@ def run(mode, regenerate):
                         cache = resp.headers.get("x-nextjs-cache")
                         check(cache == ("MISS" if regenerate else "HIT"), f"Unexpected cache: {cache}")
                     else:
-                        cache = "dynamic search"
-                    if route == "/" and mode == "production":
+                        cache = "privacy policy" if route == "/privacy-policy" else "dynamic search"
+                    if route in ("/", "/privacy-policy"):
+                        # Inspect the component props the browser actually receives: the page cannot opt
+                        # in merely because a production-only helper file is present on the server.
+                        import re
+                        flags = re.findall(r'"production":(true|false)', html.replace(chr(92), ""))
+                        expected = "true" if mode == "production" else "false"
+                        count = 2 if route == "/privacy-policy" else 1
+                        check(flags == [expected] * count, f"{route}: optional analytics flags {flags}, expected {expected}")
+                    if route in ("/", "/privacy-policy") and mode == "production":
                         check("index" in rules and not rules & {"none", "noindex"}, f"{route}: {rules}")
                     else:
                         check("noindex" in rules and "index" not in rules, f"{route}: {rules}")

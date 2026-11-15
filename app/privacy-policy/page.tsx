@@ -1,6 +1,5 @@
 import { pageSeo } from '../../lib/public/page-seo';
 import { AnalyticsChoice } from '../components/Analytics';
-import { analyticsProduction } from '../../lib/public/analytics-environment';
 import { LegalLayout } from '../components/LegalLayout';
 
 export const metadata = pageSeo("/privacy-policy", "Privacy Policy", "How DenialCodePro handles website feedback, search URLs, and technical information.");
@@ -24,7 +23,7 @@ export default function PrivacyPolicyPage() {
       <Section title="Analytics and advertising">
         <p>On denialcodepro.com, you can choose to share visits to our homepage, guide directory and three billing guides with Google Analytics. It is off until you choose to turn it on. Your choice is saved in this browser. You can turn it off here at any time.</p>
         <p>When enabled, Google receives the guide or page visited and technical information from your browser and may set analytics cookies. We do not include search terms, checklist answers or feedback in our page-view events. Preview visits are excluded. This site does not load Google AdSense.</p>
-        <AnalyticsChoice production={analyticsProduction(process.env)} />
+        <AnalyticsChoice production={process.env.DCP_BUILD_OPTIONAL_ANALYTICS === 'yes'} />
       </Section>
       <Section title="Evidence checklist">
         <p>The evidence checklist uses categorical selections in the current page. Its application code does not save those selections to browser storage or submit them to a server. This does not eliminate the technical requests needed to load the website.</p>

@@ -20,7 +20,7 @@ for (const stage of ['unknown', 'front', 'adjudicated']) for (const scope of ['u
   if (finding === 'accurate') assert(steps.some(s => s.includes('available to your role')));
  });
 }
-test('analytics excludes previews and unknown hosts', () => { const { analyticsProduction } = load('lib/public/analytics-environment.ts'); for (const env of [{}, {NODE_ENV:'production', NETLIFY:'true', CONTEXT:'deploy-preview'}, {NODE_ENV:'production', VERCEL_ENV:'production'}]) assert.equal(analyticsProduction(env),false); });
+test('analytics excludes previews and unknown hosts', () => { const { analyticsProduction } = require('../lib/public/analytics-environment.cjs'); for (const env of [{}, {NODE_ENV:'production', NETLIFY:'true', CONTEXT:'deploy-preview'}, {NODE_ENV:'production', VERCEL_ENV:'production'}]) assert.equal(analyticsProduction(env),false); });
 test('raw query not sent in search event', () => assert(!read('app/components/v3/SearchResults.tsx').includes('search_term:')));
 test('search disclosure and length cap', () => { const s=read('app/components/v3/SearchBox.tsx');assert(s.includes('search-privacy'));assert(s.includes('maxLength={180}')); });
 test('feedback processor and patient warning visible', () => { const s=read('app/components/FeedbackForm.tsx');assert(s.includes('Do not send patient names'));assert(s.includes('through Web3Forms')); });

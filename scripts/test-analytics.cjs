@@ -2,7 +2,6 @@ const {test} = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
-const ts = require('typescript');
 const origin='https://denialcodepro.com';
 const frame=fs.readFileSync('public/site-measurement.html','utf8').match(/<script>([\s\S]+?)<\/script>/)[1];
 function run({site=origin, path='/', id='home', choice='allow', direct=false, query='', blocked=false}={}) {
@@ -27,8 +26,8 @@ for(const [id,path] of Object.entries({home:'/',guides:'/guides',response:'/guid
     assert.equal(commands[3][2].page_referrer,'');assert(!JSON.stringify(commands).includes('PRIVATE'));
   });
 test('build gate: only unambiguous Netlify production',()=>{
-  const exports={};vm.runInNewContext(ts.transpileModule(fs.readFileSync('lib/public/analytics-environment.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS}}).outputText,{exports});
+  const {analyticsProduction} = require('../lib/public/analytics-environment.cjs');
   const prod={NODE_ENV:'production',NETLIFY:'true',CONTEXT:'production'};
-  assert(exports.analyticsProduction(prod));
-  for(const mix of [{NODE_ENV:'test'},{CONTEXT:'branch-deploy'},{CONTEXT:'deploy-preview'},{VERCEL_ENV:'preview'},{NETLIFY_PREVIEW_SERVER:'true'},{NETLIFY:''}])assert(!exports.analyticsProduction({...prod,...mix}));
+  assert(analyticsProduction(prod));
+  for(const mix of [{NODE_ENV:'test'},{CONTEXT:'branch-deploy'},{CONTEXT:'deploy-preview'},{VERCEL_ENV:'preview'},{NETLIFY_PREVIEW_SERVER:'true'},{NETLIFY:''}])assert(!analyticsProduction({...prod,...mix}));
 });
