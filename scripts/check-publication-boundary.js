@@ -9,7 +9,7 @@ const walk = dir => fs.readdirSync(dir, {withFileTypes:true}).flatMap(e => e.isD
 const relative = p => path.relative(root,p).replaceAll('\\','/');
 let count=0;
 function test(name,fn){fn();count++;console.log('PASS '+name);}
-const allowed=['app/page.tsx','app/about/page.tsx','app/contact/page.tsx','app/disclaimer/page.tsx','app/guides/page.tsx','app/guides/find-the-claim-response/page.tsx','app/guides/choose-a-correction-or-review/page.tsx','app/guides/build-a-deadline-evidence-record/page.tsx','app/methodology/page.tsx','app/privacy-policy/page.tsx','app/search/page.tsx','app/sources/page.tsx','app/terms/page.tsx','app/tools/evidence-checklist/page.tsx'];
+const allowed=['app/page.tsx','app/about/page.tsx','app/contact/page.tsx','app/disclaimer/page.tsx','app/guides/page.tsx','app/guides/workers-comp-medical-claim/page.tsx','app/guides/find-the-claim-response/page.tsx','app/guides/choose-a-correction-or-review/page.tsx','app/guides/build-a-deadline-evidence-record/page.tsx','app/methodology/page.tsx','app/privacy-policy/page.tsx','app/search/page.tsx','app/sources/page.tsx','app/terms/page.tsx','app/tools/evidence-checklist/page.tsx'];
 const entries=walk(path.join(root,'app')).filter(p=>/\/(page|route)\.[jt]sx?$/.test(p));
 test('exact approved route-entry set',()=>assert.deepEqual(entries.map(relative).sort(),allowed.sort()));
 const seen=new Set();
@@ -46,7 +46,7 @@ if(process.argv.includes('--built')){
  const outputs=[...walk(path.join(root,'.next/server/app')),...walk(path.join(root,'.next/static'))].filter(p=>/\.(html|rsc|js|json)$/.test(p));
  const sentinels=['The time limit for filing has expired','Precertification/authorization/notification absent','Patient cannot be identified as our insured'];
  test('sample held official descriptions absent from HTML, RSC and JS',()=>{for(const p of outputs){const s=fs.readFileSync(p,'utf8');for(const text of sentinels)assert(!s.includes(text),'Held sample in '+relative(p));}});
- test('three original guide pages generated',()=>{for(const slug of ['find-the-claim-response','choose-a-correction-or-review','build-a-deadline-evidence-record'])assert(fs.existsSync(path.join(root,'.next/server/app/guides',slug+'.html')));});
+ test('all released guide pages generated',()=>{for(const slug of ['find-the-claim-response','choose-a-correction-or-review','build-a-deadline-evidence-record','workers-comp-medical-claim'])assert(fs.existsSync(path.join(root,'.next/server/app/guides',slug+'.html')));});
  console.log('Inspected '+outputs.length+' build artifacts; sentinel scan is sampled, dependency graph is the broader boundary.');
 }
 console.log(JSON.stringify({passed:count,failed:0,reachableModules:seen.size,scope:'Publication boundary and archival integrity; not copyright or factual verification'}));

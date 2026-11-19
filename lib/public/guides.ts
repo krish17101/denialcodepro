@@ -388,6 +388,83 @@ export const publicGuides: PublicGuide[] = [
       "scope": "Medicare FFS; section 10, PDF page 3. Cover revision 4219, 25 January 2019; section revision 3568. Checked 31 October 2026. Supports the reopening clock warning, not appeal eligibility or an extension."
     }
   ]
+},
+{
+  "slug": "workers-comp-medical-claim",
+  "title": "Workers’ comp or health insurance: where should this medical claim go?",
+  "summary": "A health plan points to a work injury. Check whether the workers’ compensation carrier accepts this particular service before sending the bill elsewhere.",
+  "firstCheck": "Put the health plan’s notice next to the billed line. Which visit, treatment and date does it question? Now look for a carrier decision about that same service. An employer name, accident date or case number gives you a lead; none tells you what the carrier decided about this bill.",
+  "updatedOn": "19 November 2026",
+  "sourcesCheckedOn": "19 November 2026",
+  "scopeNote": "These are billing investigation steps. The Medicare example below has a narrower scope. Confirm the applicable state program, payer instructions and filing or review period. Do not transfer a balance to the patient on the strength of this message.",
+  "branches": [
+    {
+      "finding": "The carrier confirms in writing that it accepts this service for the injury.",
+      "action": "Match the service date, provider and treatment to the acceptance. Ask the carrier where and how to send the bill, what reference to include and what timing rule applies. Check for an earlier submission before sending it. Follow up on its receipt and decision.",
+      "keep": "Acceptance, affected lines, carrier billing instructions, submission and receipt."
+    },
+    {
+      "finding": "There is a case number, but the case is pending or the accepted treatment is unclear.",
+      "action": "Ask the adjuster: “Does the decision include this treatment on this date? If not, is that because it was excluded, denied or not yet reviewed?” Ask both payers about any deadline while this is resolved. Assign an owner and a follow-up date.",
+      "keep": "Carrier response, unanswered question, contact reference, applicable notice and deadline source."
+    },
+    {
+      "finding": "The health plan linked the visit to an injury, but your records point to a different service.",
+      "action": "Compare the saved outbound claim with the encounter record. If an injury indicator was entered in error, confirm the payer’s correction instructions. If the submitted information was accurate, ask what record triggered the linkage and how to request review. Never change an accurate diagnosis to move the claim.",
+      "keep": "Original claim, documentation supporting the distinction and the payer’s correction or review instructions."
+    },
+    {
+      "finding": "The carrier denied part of the bill, or both payers say the other is responsible.",
+      "action": "Separate the disputed lines from the accepted ones. Obtain each written decision and its reason. Ask the plan’s coordination-of-benefits team to reconcile the two decisions and identify the available review route. Escalate a conflict or approaching deadline rather than sending the same bill back and forth.",
+      "keep": "Line-level decisions, payer correspondence, deadline triggers and the assigned follow-up owner."
+    }
+  ],
+  "sections": [
+    {
+      "title": "Ask about the service, not just the accident",
+      "paragraphs": [
+        "In your approved billing system, keep the injury date, date of treatment and date of the decision separate. Ask which employer and carrier handled the injury at the time, what body part or condition the decision covers, and whether it addresses this service. A note that an accident happened at work cannot answer all three questions.",
+        "If the office has only a phone reference, record exactly what was confirmed. Request the written decision or the next step for obtaining one. A status inquiry is not a substitute for filing a required response."
+      ]
+    },
+    {
+      "title": "When the patient also has Medicare",
+      "paragraphs": [
+        "CMS explains that workers’ compensation pays first for services related to a covered occupational injury or illness. If the carrier denies all or part because workers’ compensation does not cover it, CMS says a claim may be filed with Medicare. A pending file is different from that coverage decision; neither situation guarantees Medicare payment.",
+        "For an actual Medicare case, check the denial reason, affected lines and applicable Medicare billing instructions. Do not use this Medicare example as the rule for a commercial health plan or as authority to bill a patient."
+      ],
+      "sourceUrls": [
+        "https://www.cms.gov/medicare/coordination-benefits-recovery/overview/secondary-payer"
+      ]
+    },
+    {
+      "title": "Close the loop on the affected line",
+      "paragraphs": [
+        "After a correction or review, match the new response to the original line. Did the payer accept the submission, request information or make a payment decision? Record which occurred. If the same dispute returns, send the competing decisions to the person responsible for coordination rather than repeating the last submission."
+      ]
+    }
+  ],
+  "examples": [
+    {
+      "title": "Fictional example: one accepted visit, later therapy still in question",
+      "facts": "An adjuster confirms a shoulder evaluation. The bill under review is for therapy three weeks later.",
+      "reasoning": "The letter identifies the evaluation only. It does not settle responsibility for the therapy.",
+      "action": "Ask for the service-specific determination and preserve both dates. Follow the confirmed billing route if the therapy is included; otherwise obtain the reason and review options."
+    },
+    {
+      "title": "Fictional example: an old wrist injury and a new hearing test",
+      "facts": "A plan flags a hearing test; the only work-injury case the office can find concerns a wrist. The saved claim shows no reported link.",
+      "reasoning": "The two records may have been linked incorrectly. The office does not yet know what the payer used.",
+      "action": "Ask which record connects this encounter to the injury. If the claim was accurate, seek review with the encounter documentation and the payer’s reference. Do not send the bill to the wrist carrier merely because its file exists."
+    }
+  ],
+  "sourceLinks": [
+    {
+      "title": "CMS: Medicare Secondary Payer",
+      "url": "https://www.cms.gov/medicare/coordination-benefits-recovery/overview/secondary-payer",
+      "scope": "Common situations, item 7, Workers’ Compensation Insurance. Supports the Medicare payment-order and noncoverage distinction above; it does not decide an individual claim or supply a commercial or state deadline."
+    }
+  ]
 }
 ];
 export const getPublicGuide = (slug:string) => publicGuides.find(g=>g.slug===slug);

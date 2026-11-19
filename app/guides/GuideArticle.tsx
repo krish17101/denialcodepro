@@ -5,7 +5,7 @@ import { brand, origin, pageSeo } from '../../lib/public/page-seo';
 import { StructuredData } from '../components/StructuredData';
 import { getPublicGuide, publicGuides } from '../../lib/public/guides';
 
-// Keep the three released URLs as concrete routes on both hosting platforms.
+// Keep the released URLs as concrete routes on both hosting platforms.
 function guide(slug: string) {
   const entry = getPublicGuide(slug);
   if (!entry) notFound();

@@ -22,7 +22,7 @@ const {SearchResults}=load('app/components/v3/SearchResults.tsx');
 const {SearchBox}=load('app/components/v3/SearchBox.tsx');
 let count=0;
 function test(name,fn){fn();count++;console.log('PASS '+name);}
-for(const [query,slug] of [['appeal deadline','build-a-deadline-evidence-record'],['corrected claim','choose-a-correction-or-review'],['clearinghouse rejection','find-the-claim-response'],['ERA','find-the-claim-response'],['late filing','build-a-deadline-evidence-record'],['replacement','choose-a-correction-or-review']])test('ranking: '+query,()=>assert.equal(searchGuides(query)[0].slug,slug));
+for(const [query,slug] of [['appeal deadline','build-a-deadline-evidence-record'],['corrected claim','choose-a-correction-or-review'],['clearinghouse rejection','find-the-claim-response'],['ERA','find-the-claim-response'],['late filing','build-a-deadline-evidence-record'],['replacement','choose-a-correction-or-review'],['workers comp','workers-comp-medical-claim'],['work injury','workers-comp-medical-claim']])test('ranking: '+query,()=>assert.equal(searchGuides(query)[0].slug,slug));
 for(const q of ['CO-29','carc 16','N123','96'])test('code is not a guide match: '+q,()=>{assert(isCodeQuery(q));assert.equal(searchGuides(q).length,0);});
 test('case and whitespace',()=>assert.deepEqual(searchGuides('  CORRECTED CLAIM  '),searchGuides('corrected claim')));
 test('empty query',()=>assert.equal(searchGuides('   ').length,0));
@@ -32,8 +32,10 @@ test('query length bounded',()=>assert.equal(normalizeQuery('x'.repeat(500)).len
 const render = query => renderToStaticMarkup(React.createElement(SearchResults,{query}));
 test('unmatched suggestions labeled honestly',()=>{const html=render('pancakes');assert(html.includes('No matching guide found'));assert(html.includes('Suggested starting points'));});
 test('code query has scope notice',()=>assert(render('CO-29').includes('not an interpretation of that code')));
+for (const [q,id,list] of [['CO-19','19','claim-adjustment-reason-codes'],['co 22 denial code','22','claim-adjustment-reason-codes'],['RARC MA01','MA01','remittance-advice-remark-codes']]) test('official source for '+q,()=>{const html=render(q);assert(html.includes('https://x12.org/codes/'+list));assert(html.includes('<strong>'+id+'</strong>'));});
+test('identifier-like patient number is not a code',()=>assert(!isCodeQuery('123456789')));
 test('empty search browses guides',()=>assert(render('').includes('Browse the available guides')));
 test('query escaped in rendered output',()=>{const html=render('<img src=x onerror=alert(1)> deadline');assert(!html.includes('<img'));assert(html.includes('&lt;img'));});
 test('search retains query and uses GET',()=>{const html=renderToStaticMarkup(React.createElement(SearchBox,{initialQuery:'corrected claim'}));assert(html.includes('value="corrected claim"'));assert(html.includes('method="get"'));assert(html.includes('>Search</button>'));});
-test('suggestions never leave published guides',()=>{for(const q of ['deadline','rejection','correction','appeal'])for(const g of searchGuides(q))assert(['find-the-claim-response','choose-a-correction-or-review','build-a-deadline-evidence-record'].includes(g.slug));});
+test('suggestions never leave published guides',()=>{for(const q of ['deadline','rejection','correction','appeal'])for(const g of searchGuides(q))assert(['find-the-claim-response','choose-a-correction-or-review','build-a-deadline-evidence-record','workers-comp-medical-claim'].includes(g.slug));});
 console.log(JSON.stringify({passed:count,failed:0,scope:'Search ranking, scope, escaping and server-rendered controls; not browser interaction tests'}));
